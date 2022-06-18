@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>my_active_blog</title>
+    <url>/2022/06/18/my-active-blog/</url>
+    <content><![CDATA[<!-- ## 倒计时
+
+预计将在约 <span id="timeout">5</span> 秒后返回首页。
+当然，你可以 **[点这里](http://fenglielie.github.io)** 直接返回首页。
+
+<script>
+let countTime = 5;
+
+function count() {
+  document.getElementById('timeout').textContent = countTime;
+  countTime -= 1;
+  if(countTime <= 0){
+    location.href = 'http://fenglielie.github.io';
+  }
+  setTimeout(() => {
+    count();
+  }, 1000);
+}
+
+count();
+</script> -->
+]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/06/18/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
@@ -29,30 +55,20 @@ href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
   <entry>
-    <title>my_active_blog</title>
-    <url>/2022/06/18/my-active-blog/</url>
-    <content><![CDATA[<!-- ## 倒计时
-
-预计将在约 <span id="timeout">5</span> 秒后返回首页。
-当然，你可以 **[点这里](http://fenglielie.github.io)** 直接返回首页。
-
-<script>
-let countTime = 5;
-
-function count() {
-  document.getElementById('timeout').textContent = countTime;
-  countTime -= 1;
-  if(countTime <= 0){
-    location.href = 'http://fenglielie.github.io';
-  }
-  setTimeout(() => {
-    count();
-  }, 1000);
-}
-
-count();
-</script> -->
-]]></content>
+    <title>my_encrypt_blog</title>
+    <url>/2022/06/18/my-encrypt-blog/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="9532ac5161ae77a617c58d642aee5b132d23399b4424abf58e8597556c053724">1b693c4938223286468132b2f7068bf6eeb3a4c33651624a93cee180f807df599deaa5f31a58833e7f39a1d44b864326b3a2e87f361e18db4834b9f9d67b176c</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
   </entry>
   <entry>
     <title>my_first_blog</title>
@@ -78,22 +94,6 @@ g(x)=
       <tags>
         <tag>temp_tag</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>my_encrypt_blog</title>
-    <url>/2022/06/18/my-encrypt-blog/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="9532ac5161ae77a617c58d642aee5b132d23399b4424abf58e8597556c053724">1b693c4938223286468132b2f7068bf6eeb3a4c33651624a93cee180f807df599deaa5f31a58833e7f39a1d44b864326b3a2e87f361e18db4834b9f9d67b176c</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
   </entry>
   <entry>
     <title>my_second_blog</title>
