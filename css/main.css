@@ -1791,7 +1791,7 @@ header.header {
 }
 .reading-progress-bar {
   --progress: 0;
-  background: #37c6c0;
+  background: #0593d3;
   height: 3px;
   position: fixed;
   z-index: 50;
