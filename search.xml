@@ -29,31 +29,6 @@ href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
   <entry>
-    <title>my_first_blog</title>
-    <url>/2022/06/18/my-first-blog/</url>
-    <content><![CDATA[<p>这是我的第一个博客测试,</p>
-<h1 id="测试数学公式">测试数学公式</h1>
-<p><span class="math display">\[
-f(x) = x^2
-\]</span></p>
-<p><span class="math display">\[
-g(x)=
-\left\{
-\begin{align}
-&amp; 1, x&lt;1\\
-&amp; x, otherwise
-\end{align}
-\right.
-\]</span></p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-      <tags>
-        <tag>temp_tag</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>my_second_blog</title>
     <url>/2022/06/18/my-second-blog/</url>
     <content><![CDATA[<h1 id="博客测试">博客测试</h1>
@@ -82,6 +57,31 @@ g(x)=
       <tags>
         <tag>temp_tag</tag>
         <tag>temp_tag2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>my_first_blog</title>
+    <url>/2022/06/18/my-first-blog/</url>
+    <content><![CDATA[<p>这是我的第一个博客测试,</p>
+<h1 id="测试数学公式">测试数学公式</h1>
+<p><span class="math display">\[
+f(x) = x^2
+\]</span></p>
+<p><span class="math display">\[
+g(x)=
+\left\{
+\begin{align}
+&amp; 1, x&lt;1\\
+&amp; x, otherwise
+\end{align}
+\right.
+\]</span></p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>temp_tag</tag>
       </tags>
   </entry>
 </search>
