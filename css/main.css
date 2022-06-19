@@ -946,6 +946,11 @@ pre code {
   border-bottom-color: #84333f;
   color: #84333f;
 }
+.pdfobject-container iframe,
+.pdfobject-container embed {
+  height: 500px;
+  width: 100%;
+}
 .post-body .tabs {
   margin-bottom: 20px;
 }
