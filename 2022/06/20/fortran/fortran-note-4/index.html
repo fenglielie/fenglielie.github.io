@@ -29,7 +29,7 @@
 <meta property="og:description" content="在前三篇笔记，学习了Fortran作为一个编程语言，最基本的内容：变量，输入输出，流程控制和程序结构。接下来是Fortran的数组以及基于数组的数值计算，我认为这是Fortran语言最有价值的精华部分，因此特意放在了学习笔记靠后的部分，在学习了基本的语法和子程序等之后。注意，Fortran的字符集不包括中括号[]，因此与c语言的风格不同，Fortran对数组分量的操作全都是使用小括号()的。 因">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-20T08:11:20.000Z">
-<meta property="article:modified_time" content="2022-06-20T08:25:12.854Z">
+<meta property="article:modified_time" content="2022-06-20T11:30:23.813Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="fortran">
 <meta name="twitter:card" content="summary">
@@ -256,7 +256,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-20 16:11:20 / Modified: 16:25:12" itemprop="dateCreated datePublished" datetime="2022-06-20T16:11:20+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 16:11:20 / Modified: 19:30:23" itemprop="dateCreated datePublished" datetime="2022-06-20T16:11:20+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -352,11 +352,12 @@ c"相当于c语言风格的 <figure class="highlight c"><table><tr><td class="gu
 <p>将数组作为参数传递，本质上是把数组变量(也就是连续内存部分的第一个元素的地址)以址传递的形式传过来，而子程序/函数的接收和处理方式，取决于自己对形参的定义：如果视作一个整数则只能访问和修改地址，如果视作数组则会进一步访问到数组中的连续内存部分，依照自己理解的尺寸进行处理。</p>
 <p>通常为了安全，将数组作为参数传递时，也会把尺寸作为若干整数变量一起传递给子程序/函数。</p>
 <h2 id="指针">指针</h2>
-<p>Fortran实际上还有指针pointer，与c语言的指针相比感觉非常鸡肋： 1.
-我们没有用Fortran建立链表之类的动态需求，动态数组完全够用。 2.
-语法比c语言更繁琐而且更弱，需要target形容的变量才能被指针指向，也没有*p这种运算。
-3.
-各种Fortran编译器对于指针的实现可能有差异或麻烦，我们倾向于完全避免使用指针。</p>
+<p>Fortran实际上还有指针pointer，与c语言的指针相比感觉非常鸡肋：</p>
+<ol type="1">
+<li>我们没有用Fortran建立链表之类的动态需求，动态数组完全够用。</li>
+<li>语法比c语言更繁琐而且更弱，需要target形容的变量才能被指针指向，也没有*p这种运算。</li>
+<li>各种Fortran编译器对于指针的实现可能有差异或麻烦，我们倾向于完全避免使用指针。</li>
+</ol>
 <p>Fortran的指针pointer需要配套target使用，target表明变量可以被指针指向，pointer表明这个变量是指针。</p>
 <p>一个指针的简单例子如下 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">target</span> :: a=<span class="number">1</span> <span class="comment">! 声明一个可以被当作目标的整数变量</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">pointer</span> :: p  <span class="comment">! 声明一个可以指向整数的指针</span></span><br><span class="line">    <span class="keyword">logical</span> :: b</span><br><span class="line"></span><br><span class="line">    <span class="comment">! 把指针初始化时赋给null, 可以更安全, 表明这个指针是不可访问的</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">pointer</span> :: p2 =&gt; null()</span><br><span class="line"></span><br><span class="line">    p=&gt;a <span class="comment">! =&gt; 将指针p指向目标变量a，</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">! 可以通过指针直接访问目标变量</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) p <span class="comment">! 1</span></span><br><span class="line"></span><br><span class="line">    a=<span class="number">2</span> <span class="comment">! 对目标变量的修改也会体现在指针访问时</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) p <span class="comment">! 2</span></span><br><span class="line"></span><br><span class="line">    p=<span class="number">3</span> <span class="comment">! 基于指针的修改也会体现在原始变量上</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">! 可以检查当前的指针是否可以访问</span></span><br><span class="line">    b = <span class="built_in">associated</span>(p)</span><br><span class="line">    <span class="comment">! 可以检查当前的指针是否绑定到当前的目标变量</span></span><br><span class="line">    b = <span class="built_in">associated</span>(p,a)</span><br><span class="line">    <span class="comment">! 可以用nullify命令把指针设置为不可访问的</span></span><br><span class="line">    <span class="built_in">nullify</span>(p)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure></p>
 

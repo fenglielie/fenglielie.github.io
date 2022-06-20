@@ -29,7 +29,7 @@
 <meta property="og:description" content="第一部分基本内容包括了变量的声明，输入输出语句，接下来是条件语句和循环语句等运算的流程控制。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-20T08:09:20.000Z">
-<meta property="article:modified_time" content="2022-06-20T08:25:21.355Z">
+<meta property="article:modified_time" content="2022-06-20T11:32:08.613Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="fortran">
 <meta name="twitter:card" content="summary">
@@ -256,7 +256,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-20 16:09:20 / Modified: 16:25:21" itemprop="dateCreated datePublished" datetime="2022-06-20T16:09:20+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 16:09:20 / Modified: 19:32:08" itemprop="dateCreated datePublished" datetime="2022-06-20T16:09:20+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -302,9 +302,12 @@
 <h3 id="逻辑语句和逻辑运算">逻辑语句和逻辑运算</h3>
 <p>在if语句之后，顺便介绍逻辑类型和运算。
 逻辑类型：.true.，.false.。0被视作false，1被视作true。 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">logical</span> var</span><br><span class="line">var = (a&gt;<span class="number">10</span>)</span><br></pre></td></tr></table></figure></p>
-<p>逻辑运算： * Fortran 77：.EQ.，.NE.，.GT.，.GE.，.LT.，.LE.。 *
-Fortran 90：==，/=，&gt;，&gt;=，&lt;，&lt;=。
-注意不等号和c语言不同。</p>
+<p>逻辑运算：</p>
+<ul>
+<li>Fortran 77：.EQ.，.NE.，.GT.，.GE.，.LT.，.LE.。</li>
+<li>Fortran 90：==，/=，&gt;，&gt;=，&lt;，&lt;=。
+注意不等号和c语言不同。</li>
+</ul>
 <p>集合运算：优先级比上面的逻辑运算更低，.AND.，.OR.，.NOT.，.EQV.，.NEQV.。</p>
 <p>例如 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a&gt;=<span class="number">80</span> .and. a&lt;<span class="number">90</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="select语句">select语句</h2>
@@ -312,9 +315,14 @@ Fortran 90：==，/=，&gt;，&gt;=，&lt;，&lt;=。
 相当于c语言的switch，每个分支自带break。select判断的变量a只能是整数，字符或者逻辑变量，不允许实数复数。
 case里面只支持常量，支持语法糖(3:5)，表示在这两个值的闭区间内均可。</p>
 <h2 id="特殊命令">特殊命令</h2>
-<p>pause: 程序暂停，等待用户按下enter键后继续执行。 stop: 程序直接退出。
-continue: 不大有用，相当于无效语句。 goto: 强制跳转(垃圾语句)。 cycle:
-在循环中相当于c语言的continue； exit: 在循环中相当于c语言的break。</p>
+<ul>
+<li>pause: 程序暂停，等待用户按下enter键后继续执行。</li>
+<li>stop: 程序直接退出。</li>
+<li>continue: 不大有用，相当于无效语句。</li>
+<li>goto: 强制跳转(垃圾语句)。</li>
+<li>cycle: 在循环中相当于c语言的continue；</li>
+<li>exit: 在循环中相当于c语言的break。</li>
+</ul>
 <h2 id="do循环语句">do循环语句</h2>
 <p>例如 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> <span class="built_in">count</span>=<span class="number">1</span>,<span class="number">10</span>,<span class="number">2</span></span><br><span class="line">    <span class="comment">! count 从1开始，每次增加2，若&lt;=10继续执行，否则结束循环</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
 相当于c语言的for循环，其中最后的步长可缺省，默认为1，步长可以为负数。
