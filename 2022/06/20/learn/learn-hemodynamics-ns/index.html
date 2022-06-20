@@ -21,15 +21,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="血液动力学，关于血液的特点部分。">
+    <meta name="description" content="血液流动 血液是由多种血细胞和血浆(牛顿流体)组成的悬浮液，其中血细胞的尺度约\(8\mu m\)，而人体的血管尺度从\(3\mu m\)的毛细血管到\(3\times 10^5 \mu m\)的主动脉血管，范围变化大，因此流动比较复杂。当血管直径大于\(1 mm\)时，血液流动可以视作均匀连续的非牛顿流体。当直径小于\(1 mm\)时，连续介质假设不成立，血液流动会受到血细胞个体的影响。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="血液动力学学习">
+<meta property="og:title" content="血流动力学学习">
 <meta property="og:url" content="https://fenglielie.github.io/2022/06/20/learn/learn-hemodynamics-ns/index.html">
 <meta property="og:site_name" content="Fenglielie&#39;s blog">
-<meta property="og:description" content="血液动力学，关于血液的特点部分。">
+<meta property="og:description" content="血液流动 血液是由多种血细胞和血浆(牛顿流体)组成的悬浮液，其中血细胞的尺度约\(8\mu m\)，而人体的血管尺度从\(3\mu m\)的毛细血管到\(3\times 10^5 \mu m\)的主动脉血管，范围变化大，因此流动比较复杂。当血管直径大于\(1 mm\)时，血液流动可以视作均匀连续的非牛顿流体。当直径小于\(1 mm\)时，连续介质假设不成立，血液流动会受到血细胞个体的影响。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-20T12:32:49.000Z">
-<meta property="article:modified_time" content="2022-06-20T12:47:09.882Z">
+<meta property="article:modified_time" content="2022-06-20T13:17:07.900Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="learn">
 <meta name="twitter:card" content="summary">
@@ -39,10 +39,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/20/learn/learn-hemodynamics-ns/","path":"2022/06/20/learn/learn-hemodynamics-ns/","title":"血液动力学学习"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/20/learn/learn-hemodynamics-ns/","path":"2022/06/20/learn/learn-hemodynamics-ns/","title":"血流动力学学习"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>血液动力学学习 | Fenglielie's blog</title>
+<title>血流动力学学习 | Fenglielie's blog</title>
   
 
 
@@ -135,7 +135,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -148,6 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%80%E6%B6%B2%E6%B5%81%E5%8A%A8"><span class="nav-number">1.</span> <span class="nav-text">血液流动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%80%E7%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">血管</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%89%9B%E9%A1%BF%E6%B5%81%E4%BD%93"><span class="nav-number">3.</span> <span class="nav-text">非牛顿流体</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -238,12 +239,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="血液动力学学习 | Fenglielie's blog">
+      <meta itemprop="name" content="血流动力学学习 | Fenglielie's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          血液动力学学习
+          血流动力学学习
         </h1>
 
         <div class="post-meta-container">
@@ -255,7 +256,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-20 20:32:49 / Modified: 20:47:09" itemprop="dateCreated datePublished" datetime="2022-06-20T20:32:49+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 20:32:49 / Modified: 21:17:07" itemprop="dateCreated datePublished" datetime="2022-06-20T20:32:49+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -274,7 +275,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>16</span>
+      <span>602</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -292,7 +293,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>血液动力学，关于血液的特点部分。</p>
+        <h2 id="血液流动">血液流动</h2>
+<p>血液是由多种血细胞和血浆(牛顿流体)组成的悬浮液，其中血细胞的尺度约<span
+class="math inline">\(8\mu m\)</span>，而人体的血管尺度从<span
+class="math inline">\(3\mu m\)</span>的毛细血管到<span
+class="math inline">\(3\times 10^5 \mu
+m\)</span>的主动脉血管，范围变化大，因此流动比较复杂。当血管直径大于<span
+class="math inline">\(1
+mm\)</span>时，血液流动可以视作均匀连续的非牛顿流体。当直径小于<span
+class="math inline">\(1
+mm\)</span>时，连续介质假设不成立，血液流动会受到血细胞个体的影响。</p>
+<p>实验表明，在动脉的某些特定区域会出现一些不规则流动的现象，主要位于肺动脉和升主动脉，主要发生于心脏搏动收缩期的最后阶段，它们并不具备统计意义上的性质而能够成为湍流，因此在动脉中的血流通常作为层流加以分析。</p>
+<h2 id="血管">血管</h2>
+<p>对于动脉的血流动力学，我们需要考虑血管壁的性质，动脉管壁是具有弹性的，血液本身是脉动的，因此血流和血管壁组成了非定常的流固耦合系统(fluid-structure
+interaction, FSI)。</p>
+<p>生理状态下，脉动血流引起的血管壁的位移可以达到管径的10%左右。</p>
+<p>血管壁在建模时可以假定为刚性或者弹性，发生病变的血管壁通常会增厚硬化，比正常状态下的弹性更低。研究表明，刚性管的假设对于脉动的流场影响不是十分明显。</p>
+<h2 id="非牛顿流体">非牛顿流体</h2>
+<p>几种典型的用于描述血液的非牛顿流体模型：</p>
+<ul>
+<li>Casson模型</li>
+<li>Bingham模型(典型为牙膏)</li>
+<li>Power-Law模型，包括剪切稠化的膨胀型流体和剪切稀化的伪塑性流体，血液属于剪切稀化的流体。</li>
+<li>Quemada模型</li>
+</ul>
 
     </div>
 
@@ -310,7 +334,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://fenglielie.github.io/2022/06/20/learn/learn-hemodynamics-ns/" title="血液动力学学习">https://fenglielie.github.io/2022/06/20/learn/learn-hemodynamics-ns/</a>
+      <a href="https://fenglielie.github.io/2022/06/20/learn/learn-hemodynamics-ns/" title="血流动力学学习">https://fenglielie.github.io/2022/06/20/learn/learn-hemodynamics-ns/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -366,14 +390,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Symbols count total: </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">23k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">37 mins.</span>
+    <span title="Reading time total">38 mins.</span>
   </span>
 </div>
 

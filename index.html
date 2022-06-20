@@ -249,7 +249,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-20 20:35:46 / Modified: 20:40:04" itemprop="dateCreated datePublished" datetime="2022-06-20T20:35:46+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 20:35:46 / Modified: 21:11:19" itemprop="dateCreated datePublished" datetime="2022-06-20T20:35:46+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,7 +287,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>主要是投影法等的学习笔记。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/20/learn/learn-inse/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -331,7 +338,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/20/learn/learn-hemodynamics-ns/" class="post-title-link" itemprop="url">血液动力学学习</a>
+          <a href="/2022/06/20/learn/learn-hemodynamics-ns/" class="post-title-link" itemprop="url">血流动力学学习</a>
         </h2>
 
         <div class="post-meta-container">
@@ -343,7 +350,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-20 20:32:49 / Modified: 20:47:09" itemprop="dateCreated datePublished" datetime="2022-06-20T20:32:49+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 20:32:49 / Modified: 21:17:07" itemprop="dateCreated datePublished" datetime="2022-06-20T20:32:49+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -362,7 +369,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>16</span>
+      <span>602</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -380,7 +387,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>血液动力学，关于血液的特点部分。</p>
+          <h2 id="血液流动">血液流动</h2>
+<p>血液是由多种血细胞和血浆(牛顿流体)组成的悬浮液，其中血细胞的尺度约<span
+class="math inline">\(8\mu m\)</span>，而人体的血管尺度从<span
+class="math inline">\(3\mu m\)</span>的毛细血管到<span
+class="math inline">\(3\times 10^5 \mu
+m\)</span>的主动脉血管，范围变化大，因此流动比较复杂。当血管直径大于<span
+class="math inline">\(1
+mm\)</span>时，血液流动可以视作均匀连续的非牛顿流体。当直径小于<span
+class="math inline">\(1
+mm\)</span>时，连续介质假设不成立，血液流动会受到血细胞个体的影响。</p>
+<p>实验表明，在动脉的某些特定区域会出现一些不规则流动的现象，主要位于肺动脉和升主动脉，主要发生于心脏搏动收缩期的最后阶段，它们并不具备统计意义上的性质而能够成为湍流，因此在动脉中的血流通常作为层流加以分析。</p>
+<h2 id="血管">血管</h2>
+<p>对于动脉的血流动力学，我们需要考虑血管壁的性质，动脉管壁是具有弹性的，血液本身是脉动的，因此血流和血管壁组成了非定常的流固耦合系统(fluid-structure
+interaction, FSI)。</p>
+<p>生理状态下，脉动血流引起的血管壁的位移可以达到管径的10%左右。</p>
+<p>血管壁在建模时可以假定为刚性或者弹性，发生病变的血管壁通常会增厚硬化，比正常状态下的弹性更低。研究表明，刚性管的假设对于脉动的流场影响不是十分明显。</p>
+<h2 id="非牛顿流体">非牛顿流体</h2>
+<p>几种典型的用于描述血液的非牛顿流体模型：</p>
+<ul>
+<li>Casson模型</li>
+<li>Bingham模型(典型为牙膏)</li>
+<li>Power-Law模型，包括剪切稠化的膨胀型流体和剪切稀化的伪塑性流体，血液属于剪切稀化的流体。</li>
+<li>Quemada模型</li>
+</ul>
 
       
     </div>
@@ -1220,14 +1250,14 @@ Java等至少一门现代编程语言，只学习Fortran的核心应用——数
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Symbols count total: </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">23k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">37 mins.</span>
+    <span title="Reading time total">38 mins.</span>
   </span>
 </div>
 
