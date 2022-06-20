@@ -5,6 +5,220 @@
     <url>/2022/06/20/learn/learn-inse/</url>
     <content><![CDATA[<p>主要是投影法等的学习笔记。</p>
 <span id="more"></span>
+<h1 id="不可压缩流的数值方法">不可压缩流的数值方法</h1>
+<p>考虑不可压缩N-S方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \nu \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\mathbf{u}|_{\partial \Omega} &amp;= \mathbf{u}_b\\
+\mathbf{u}|_{t=0} &amp;= \mathbf{u}_0
+\end{aligned}
+\]</span></p>
+<p>与可压缩流动相比，不可压N-S方程具有如下特点：</p>
+<ul>
+<li>压强只出现在动量方程中，从数学上只是起到了一个Lagrange乘子的作用，失去了热力学意义。</li>
+<li>不可压缩条件不含有时间导数项，使得方程组呈现椭圆型特点。</li>
+<li>物理意义上，不可压缩条件意味着声速无穷大，在一点的扰动会瞬间传遍整个区域。</li>
+</ul>
+<p>不可压缩流解决速度压力耦合的算法从大的方面可以分为：</p>
+<ul>
+<li>耦合式算法，所有变量联立求解，方法直观，但是代数方程组具有很强的刚性，计算效率低；</li>
+<li>分离式算法，逐个求解速度和压强。</li>
+</ul>
+<p>按照变量的类型也可以分为：</p>
+<ul>
+<li>非原始变量方法，优点是直接消去了压强p，缺点是导出变量的边界条件难以确定，不易推广为三维情况，
+<ul>
+<li>涡量-流函数方法，</li>
+<li>涡量-速度方法，</li>
+</ul></li>
+<li>原始变量方法，数值求解算法的主要的发展方向，见下文。</li>
+</ul>
+<p>常见的数值算法：</p>
+<ul>
+<li>以SIMPLE为代表的压力修正方法，</li>
+<li>投影法，</li>
+<li>MAC方法或压力Poisson方程方法，</li>
+<li>人工压缩方法(artificial compressibility method, ACM)</li>
+</ul>
+<h2 id="投影法">投影法</h2>
+<p>投影法也称为时间分裂法，分步法，按照思路分为两类：</p>
+<ul>
+<li>第一类基于NS方程组的半离散格式，Helmholtz分解定理</li>
+<li>第二类基于NS方程组的全离散格式，采用近似算子分裂/近似矩阵分裂。</li>
+</ul>
+<p>第一类的投影法基于如下分解定理：</p>
+<h3 id="helmholtz分解定理">Helmholtz分解定理</h3>
+<p>对于任意光滑的向量场<span
+class="math inline">\(V\)</span>可以唯一分解为一个无源场<span
+class="math inline">\(V^d\)</span>和一个无旋场<span
+class="math inline">\(\nabla \phi\)</span> 之和。 <span
+class="math display">\[
+V = V^d + \nabla \phi
+\]</span> 满足<span class="math inline">\(\nabla \cdot V^d = 0\)</span>,
+和<span class="math inline">\(\nabla \times \nabla \phi=0\)</span>。</p>
+<p>投影法通常分为三步：</p>
+<ol type="1">
+<li>预测步，基于<span class="math inline">\(\mathbf{u}^n\)</span>
+得到预测的速度<span class="math inline">\(\mathbf{u}^*\)</span></li>
+<li>投影步，通过Poisson方程求解得到压强<span
+class="math inline">\(p^{n+1}\)</span></li>
+<li>更新步，得到速度<span
+class="math inline">\(\mathbf{u}^{n+1}\)</span></li>
+</ol>
+<h3 id="无压力增量投影法">无压力增量投影法</h3>
+<p>最早由Chorin和Temam提出的投影法如下，利用显式欧拉离散得到</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1} + \nu \nabla^2
+\mathbf{u}^n\\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0\\
+\mathbf{u}^{n+1}|_{\partial \Omega} &amp;= \mathbf{u}_b^{n+1}\\
+\end{align}
+\]</span></p>
+<p>对于动量方程，引入一个中间变量<span
+class="math inline">\(\mathbf{u}^*\)</span>，拆分为两个式子 <span
+class="math display">\[
+\begin{align}
+\frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n &amp;=  \nu \nabla^2 \mathbf{u}^n\\
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^*}{\Delta t} &amp;= -\nabla p^{n+1}
+\end{align}
+\]</span></p>
+<p>我们可以分步求解，对于中间变量缺少一个边界条件，直接使用<span
+class="math inline">\(\mathbf{u}^*|_{\partial \Omega} =
+\mathbf{u}_b^{n+1}\)</span>。 第一步求解如下方程得到预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span></p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n &amp;=  \nu \nabla^2 \mathbf{u}^n\\
+\mathbf{u}^*|_{\partial \Omega} &amp;= \mathbf{u}_b^{n+1}
+\end{align}
+\]</span></p>
+<p>第二步处理压强，由于</p>
+<p><span class="math display">\[
+\mathbf{u}^* = \mathbf{u}^{n+1} + \Delta t \nabla p^{n+1}
+\]</span> 由于Helmholtz分解的唯一性，上式即为<span
+class="math inline">\(\mathbf{u}^*\)</span>的Helmholtz分解，对上式求散度，有<span
+class="math inline">\(\nabla \mathbf{u}^{n+1}=0\)</span>，得到 <span
+class="math display">\[
+\nabla^2 p^{n+1}=\frac{1}{\Delta t} \nabla \mathbf{u}^*
+\]</span> 由于<span
+class="math inline">\(\mathbf{u}^*\)</span>采用了和<span
+class="math inline">\(\mathbf{u}^{n+1}\)</span>一样的边界条件，因此有压强的边界条件
+<span class="math display">\[
+\nabla p^{n+1} \cdot \mathbf{n}|_{\partial \Omega} = \frac{\partial
+p^{n+1}}{\partial n}|_{\partial \Omega} = 0
+\]</span> 得到关于压强的Poisson方程组</p>
+<p><span class="math display">\[
+\begin{align}
+\nabla^2 p^{n+1}&amp;=\frac{1}{\Delta t} \nabla \mathbf{u}^*\\
+\frac{\partial p^{n+1}}{\partial n}|_{\partial \Omega} &amp;= 0
+\end{align}
+\]</span> 求解得到 <span class="math inline">\(p^{n+1}\)</span>。</p>
+<p>第三步，更新 <span class="math inline">\(\mathbf{u}^{n+1}\)</span>
+<span class="math display">\[
+\mathbf{u}^{n+1} = \mathbf{u}^{*} - \Delta t \nabla p^{n+1}
+\]</span> 计算完成。</p>
+<p>这种投影法通常称作无压力增量投影法：因为计算中间层的预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>时，没有考虑压强梯度的影响。可以改成隐式的时间离散格式，可以在计算预测速度时考虑压强的影响，有一系列衍生的投影法。</p>
+<h3 id="压力增量投影法">压力增量投影法</h3>
+<p>首先，时间上不使用显式Euler，而改用二阶向后差分格式 <span
+class="math display">\[
+\frac{\partial \mathbf{u}^{n+1}}{\partial t} \approx
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t}
+\]</span></p>
+<p>动量方程离散为 <span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^{n+1}\cdot \nabla) \mathbf{u}^{n+1} &amp;= -\nabla p^{n+1} +
+\nu \nabla^2 \mathbf{u}^{n+1}\\
+\end{align}
+\]</span> (不等价地)拆为下面两个式子 <span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{*}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^{*}\cdot \nabla) \mathbf{u}^{*} &amp;= -\nabla p^{n+1} + \nu
+\nabla^2 \mathbf{u}^{*}\\
+\frac{3(\mathbf{u}^{n+1}-\mathbf{u}^*)}{2\Delta t} &amp;=
+-\nabla (p^{n+1}-p^n)
+\end{align}
+\]</span></p>
+<p>第一步，预测步计算中间速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，考虑压强梯度的影响</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^*\cdot \nabla) \mathbf{u}^* &amp;=  -\nabla p^{n} + \nu
+\nabla^2 \mathbf{u}^*\\
+\mathbf{u}^*|_{\partial \Omega} &amp;= \mathbf{u}_b^{n+1}
+\end{align}
+\]</span></p>
+<p>第二步，求解压强增量<span class="math inline">\(q =
+p^{n+1}-p^n\)</span>，对第二个式子求散度得</p>
+<p><span class="math display">\[
+\begin{align}
+\nabla^2 q &amp;=\frac{3}{2\Delta t} \nabla \cdot \mathbf{u}^* \\
+\frac{\partial q}{\partial n}|_{\partial \Omega}&amp;=0
+\end{align}
+\]</span></p>
+<p>第三步，更新<span class="math inline">\(\mathbf{u}^{n+1}\)</span>,
+<span class="math inline">\(p^{n+1}\)</span> <span
+class="math display">\[
+\begin{align}
+\mathbf{u}^{n+1} &amp;= \mathbf{u}^* - \frac{2\Delta t}{3} \nabla q\\
+p^{n+1} &amp;= p^n + q
+\end{align}
+\]</span></p>
+<p>注：上述格式在求解压强增量 <span class="math inline">\(q\)</span>
+时，使用的边界条件有问题，限制了压强的精度。</p>
+<h3 id="旋度型压力增量投影法">旋度型压力增量投影法</h3>
+<p>作为上述压力增量投影法的修正。</p>
+<p>第一步，预测步不变, 计算中间速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，考虑压强梯度的影响</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^*\cdot \nabla) \mathbf{u}^* &amp;=  -\nabla p^{n} + \nu
+\nabla^2 \mathbf{u}^*\\
+\mathbf{u}^*|_{\partial \Omega} &amp;= \mathbf{u}_b^{n+1}
+\end{align}
+\]</span></p>
+<p>第二步，从求解压强增量<span
+class="math inline">\(q=p^{n+1}-p^n\)</span> 变成求解新的变量<span
+class="math inline">\(\phi\)</span> <span class="math display">\[
+\phi = p^{n+1}-p^n + \nu \nabla \cdot \mathbf{u}^*
+\]</span> 满足如下方程组 <span class="math display">\[
+\begin{align}
+\nabla^2 \phi &amp;=\frac{3}{2\Delta t} \nabla \cdot \mathbf{u}^* \\
+\frac{\partial \phi}{\partial n}|_{\partial \Omega}&amp;=0
+\end{align}
+\]</span></p>
+<p>第三步，更新<span class="math inline">\(\mathbf{u}^{n+1}\)</span>,
+<span class="math inline">\(p^{n+1}\)</span> <span
+class="math display">\[
+\begin{align}
+\mathbf{u}^{n+1} &amp;= \mathbf{u}^* - \frac{2\Delta t}{3} \nabla \phi\\
+p^{n+1} &amp;= p^n + \phi - \nu \nabla \cdot \mathbf{u}^*
+\end{align}
+\]</span></p>
+<p>分析表明这里对 <span class="math inline">\(\phi\)</span>
+给出了几乎正确的边界条件。</p>
+<h2 id="simple压力修正法">SIMPLE压力修正法</h2>
+<p>SIMPLE:压力耦合方程组的半隐式方法,
+SIMPLEC是它的改进。在工业软件中广泛应用。 ...</p>
+<h2 id="mac方法和smac方法">MAC方法和SMAC方法</h2>
+<p>MAC方法提出的时间很早，因为时间步长的约束，并没有太大吸引力，但是它开创性地提出了交错网格，并被用于之后的SIMPLE算法中。
+...</p>
+<h2 id="人工压缩性方法">人工压缩性方法</h2>
+<p>对于定常问题使用非定常的方法进行迭代求解，直到收敛为止。
+将不可压缩条件改成 <span class="math display">\[
+\frac{\partial p}{\partial t} + c^2 \nabla\cdot \mathbf{u} = 0
+\]</span> 其中 <span class="math inline">\(c\)</span>
+为音速，称为伪压缩方程。可以利用很多现有的可压缩方程的数值格式进行求解。</p>
 ]]></content>
       <categories>
         <category>learn</category>
