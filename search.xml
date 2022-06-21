@@ -1,6 +1,473 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Fenglielie</title>
+    <url>/2022/06/18/fenglielie/</url>
+    <content><![CDATA[<p>Welcome to Fenglielie's blog.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/06/18/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Fortran学习笔记——1.基本内容</title>
+    <url>/2022/06/20/fortran/fortran-note-1/</url>
+    <content><![CDATA[<p>本系列笔记假定读者具有基础的计算机知识，以及c/c++,
+Java等至少一门现代编程语言，只学习Fortran的核心应用——数值计算需要的部分，对于其他的部分比如鸡肋的Fortran面向对象等，直接忽略（c++，Java不香么）。
+我们使用vscode+mingw(gfortran)的编程环境和编译器，环境配置过程见前文。</p>
+<span id="more"></span>
+<h2 id="基本特点">基本特点</h2>
+<ul>
+<li>固定格式
+Fortran：在早期计算机使用Fortran进行科学计算时，需要使用穿孔卡片纸带输入源代码，因此每行的缩进/长度等格式有着极其苛刻的要求，一般全文都使用大写字符，文件名以.FOR，.for或.f为后缀。语法标准为Fortran
+77。如果希望感受20年前的Fortran教程风格，参考<a
+href="http://micro.ustc.edu.cn/Fortran/ZJDing/">USTC
+Fortran教程</a>。</li>
+<li>自由格式
+Fortran：为了适应现代的编程风格，Fortran标准提出了自由格式，没有那些适合打孔纸带的格式要求。一般全文的保留关键词使用小写字符，文件名以.F90、.f90为后缀。<strong>(固定格式就应该彻底留在历史书上，我们当然应该使用自由格式编写Fortran，使用Fortran
+90及以后的现代语法标准)</strong></li>
+</ul>
+<p>Fortran字符集：</p>
+<ul>
+<li>大小写英文字母：A到Z，a到z。</li>
+<li>数字：0到9。</li>
+<li>22个特殊符号：
+<ul>
+<li>+加法，-减法，*乘法，/除法，()小括号。</li>
+<li>=等号，&gt;大于，&lt;小于。</li>
+<li>,英文逗号，.英文句号，:英文冒号，;英文分号，‘单引号，"双引号。</li>
+<li>_下划线，空格，%百分号，&amp;与，$美元符号，?问号，!感叹号。</li>
+</ul></li>
+</ul>
+<p>与c/c++相比，Fortran还有以下值得注意的特点：</p>
+<ul>
+<li>Fortran源代码中不区分大小写，INTEGER和Integer,
+integer是完全一样的效果，变量a和A是同一个变量。为了历史兼容性，不论固定格式还是自由格式都不区分大小写。</li>
+<li>以感叹号!开头的一行视作注释。</li>
+<li>不支持使用"{}"划分代码结构，甚至"{}","[]"都不是合法的Fortran源代码字符；也不要求使用任何的缩进划分代码结构，只是为了方便阅读建议使用。</li>
+<li>每一行结尾不需要以分号;结尾。每一行至多132个字符，如果代码过长需要跨行拼接：在第一行的行尾使用&amp;，第二行的行首使用&amp;进行拼接。(只在一行使用&amp;也是可以的)</li>
+<li>空格除了方便阅读以外没有任何意义，甚至可以用空格分隔保留关键词。</li>
+<li>变量名可以含有字母，数字和下划线，但是只允许字母开头，不允许下划线开头。</li>
+</ul>
+<h3 id="禁止变量的默认类型">禁止变量的默认类型</h3>
+<p>与c类似，Fortran使用变量之前通常用需要声明变量的类型。但<strong>为了兼容打孔纸带时代的语法糖，Fortran还可以不声明直接使用变量</strong>——它居然自己通过变量名的首字母推断变量类型：首字母为I,J,K,L,M,N的变量视作整数，其他视作浮点数。</p>
+<p>这简直离了大谱，为了避免可能的bug，建议在源代码的开头使用下面的语句禁止所有的默认类型的自动推断。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">implicit</span> <span class="keyword">none</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>与c/c++,Java,python等现代的计算机语言相比，Fortran的辈分实在是太老了：从1957年开始，Fortran的诞生标志着计算机从汇编进入了高级语言时代。此后也陆续涌现了一些高级语言，但同时代的只有Fortran语言活到了现在，c语言直到1972年才诞生。
+Fortran为了完全兼容历史上的固定格式语法，保留了很多奇怪的语法糖和规定，包括全局乱用的goto语句，以及上面的默认类型，这些当然都是我们难以容忍的，可能会导致一些难以理解的bug。因此我们选择尽可能地避免奇怪的语法，虽然它们仍然有效。</p>
+</blockquote>
+<h3 id="数据类型与运算符">数据类型与运算符</h3>
+<blockquote>
+<p>Fortran其实就是Formula
+Translation的缩写，因此从数学表达式转换为Fortran语句是非常方便直观的，这可能也是Fortran活到现在的原因之一吧。</p>
+</blockquote>
+<p>基本数据类型</p>
+<ol type="1">
+<li>整数——integer
+包括短整数——对应c语言的short，长整数——对应c语言的int。默认都是有符号的。和c语言不同，我们需要明确指定整数采用几个字节：2bytes，4bytes。</li>
+<li>实数，浮点数——real
+包括单精度——对应c语言的float，双精度——对应c语言的double。和c语言不同，我们需要明确指定实数采用几个字节：4bytes，8bytes。</li>
+<li>复数——complex
+a+bi其实就是一个实数对(a,b)，也分为单精度和双精度。Fortran直接在内置数据类型中就提供了复数，而c/c++实现复数需要进一步的封装。</li>
+<li>字符——character；</li>
+<li>逻辑判断——logical：支持.true.和.false.。</li>
+</ol>
+<p>数学运算符：</p>
+<ol type="1">
+<li>+，加法，-，减法</li>
+<li>*，乘法，/，除法</li>
+<li>**乘方</li>
+<li>() 括号，改变优先级</li>
+</ol>
+<p>注意不支持+=之类的语法糖。
+和c语言一样，整数之间的除法也有自动取整的问题。还需要注意类型之间可能的显式转换或者隐式转换。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a=<span class="number">2</span></span><br><span class="line">    <span class="keyword">integer</span> :: b=<span class="number">3</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a/b=&quot;</span>, a/b</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a*1.0/b=&quot;</span>, a*<span class="number">1.0</span>/b</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+<h2 id="helloworld">HelloWorld</h2>
+<p>和c语言从main函数执行一样，Fortran也有固定的主程序，Helloworld程序如下：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+<p>这里main是我们给program起的名称，也可以是其他名称，Fortran程序只需要有唯一的program并从这里开始执行，在end处结束。implicit命令必须在program之后的第一行。</p>
+<h2 id="hello-io">Hello IO</h2>
+<p>最基本的输入输出的例子如下：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;please input a:&quot;</span></span><br><span class="line">    read(*,*) a</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a=&quot;</span>,a</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+<p>运行效果为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> please input a:</span><br><span class="line">8</span><br><span class="line"> a=           8</span><br></pre></td></tr></table></figure>
+<p>write是标准的输出语句，read是标准的输入语句。
+其中的(*,*)：第一个*指的是默认的输入/输出设备，第二个*是默认的输入/输出格式，可以改成其他的参数，先不管这些细节，(*,*)将就着总是可以用的。
+print语句也可以用来输出，但是局限于向屏幕输出，建议使用write完全替代。</p>
+<h2 id="变量声明">变量声明</h2>
+<p>与c语言不同，Fortran对于变量声明的位置要求严格，只能在程序代码的可执行部分之前，一旦开始执行输入输出或者运算就不能再进行变量声明，报编译错误。</p>
+<p>基本数据类型的声明，可以用kind明确指定变量的字节数确保跨平台性，也可以不使用kind使用默认的字节数。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>(<span class="keyword">kind</span>=<span class="number">2</span>) :: a1</span><br><span class="line"><span class="keyword">integer</span>(<span class="number">4</span>) :: a2 <span class="comment">! 也代表kind=4</span></span><br><span class="line"><span class="keyword">real</span>*<span class="number">2</span> :: b1 <span class="comment">! 也代表kind=2</span></span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: b2, b3 <span class="comment">! 可以同时声明多个变量</span></span><br></pre></td></tr></table></figure>
+<p>双冒号::表示变量的声明和描述已经完成，因为下文允许较复杂的声明描述。
+对于字面值常量可以在下划线后指定对应的kind。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">a1 = <span class="number">1.0_4</span> <span class="comment">! 确保是单精度浮点数</span></span><br><span class="line">ab = <span class="number">1.0_8</span> <span class="comment">! 确保是双精度浮点数</span></span><br></pre></td></tr></table></figure>
+<p>可以在声明时定义变量的初值，此时必须加上双冒号::。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: a=<span class="number">4</span></span><br><span class="line"><span class="keyword">complex</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: c=(<span class="number">1.0</span>,<span class="number">2.0</span>)</span><br></pre></td></tr></table></figure>
+<p>Fortran 77的语法还需要特制的Data命令才能批量地定义初值。</p>
+<p>可以在声明时对变量赋值并且定义为常量，视作声明内容的一部分，也可以直接写在声明的语句中。对常量进行的修改会导致编译报错。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! type 1</span></span><br><span class="line"><span class="keyword">real</span> pi</span><br><span class="line"><span class="keyword">parameter</span>(pi=<span class="number">3.1415926</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! type 2</span></span><br><span class="line"><span class="keyword">real</span>,<span class="keyword">parameter</span> :: pi=<span class="number">3.1415926</span> <span class="comment">! 此时必须使用::表示声明和描述已完成</span></span><br></pre></td></tr></table></figure>
+<p>可以让两个同类型变量共享一个内存空间，可以视作别名，用于强调变量的具体含义或者简写某个数组的重要分量(读写会更快)，也可以用于共享的临时变量命名，节约内存(没意义，不缺这点内存)。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> a,b</span><br><span class="line"><span class="keyword">equivalence</span>(a,b)</span><br></pre></td></tr></table></figure>
+<h2 id="类型转换">类型转换</h2>
+<p>不同基本类型的变量之间支持类型转换，显式转换例如：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> :: a1,a2</span><br><span class="line"><span class="keyword">integer</span> :: b=<span class="number">1</span>,c=<span class="number">2</span></span><br><span class="line"></span><br><span class="line">a1 = b/c <span class="comment">! 0</span></span><br><span class="line">a2 = <span class="keyword">real</span>(b)/<span class="keyword">real</span>(c) <span class="comment">! 0.5</span></span><br></pre></td></tr></table></figure>
+<p>Fortran也支持自动的隐式转换，与c语言基本相同。不过这种隐式转换似乎只主动地发生在运算表达式中；在赋值时，1和1.0是不同的，把1赋给一个实数可能有大问题！</p>
+<h2 id="预处理">预处理</h2>
+<p>Fortran标准语法中，不包含预处理的部分，但是实际上Fortran可以使用#ifdef,
+#define
+等与c语言完全相同的基本宏定义，并且可以调用c语言的预处理器进行处理。</p>
+]]></content>
+      <categories>
+        <category>fortran</category>
+      </categories>
+      <tags>
+        <tag>fortran</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fortran学习笔记——2.流程控制</title>
+    <url>/2022/06/20/fortran/fortran-note-2/</url>
+    <content><![CDATA[<p>第一部分基本内容包括了变量的声明，输入输出语句，接下来是条件语句和循环语句等运算的流程控制。</p>
+<span id="more"></span>
+<h2 id="if条件语句">if条件语句</h2>
+<p>无需多言，例子即可： <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(a &gt; <span class="number">5</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment">! do 3</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure> 在if后面必须接then，if 和 end if
+构成一个标准的条件结构。支持if结构的嵌套。</p>
+<p>可以使用简单的单行if，不需要end和then。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a&gt;<span class="number">10</span>) b=a</span><br></pre></td></tr></table></figure></p>
+<h3 id="逻辑语句和逻辑运算">逻辑语句和逻辑运算</h3>
+<p>在if语句之后，顺便介绍逻辑类型和运算。
+逻辑类型：.true.，.false.。0被视作false，1被视作true。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">logical</span> var</span><br><span class="line">var = (a&gt;<span class="number">10</span>)</span><br></pre></td></tr></table></figure></p>
+<p>逻辑运算：</p>
+<ul>
+<li>Fortran 77：.EQ.，.NE.，.GT.，.GE.，.LT.，.LE.。</li>
+<li>Fortran 90：==，/=，&gt;，&gt;=，&lt;，&lt;=。
+注意不等号和c语言不同。</li>
+</ul>
+<p>集合运算：优先级比上面的逻辑运算更低，.AND.，.OR.，.NOT.，.EQV.，.NEQV.。</p>
+<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a&gt;=<span class="number">80</span> .and. a&lt;<span class="number">90</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="select语句">select语句</h2>
+<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">case</span>(a)</span><br><span class="line"><span class="keyword">case</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">case</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">case</span>(<span class="number">3</span>:<span class="number">6</span>) <span class="comment">! a=3,4,5</span></span><br><span class="line">    <span class="comment">! do 3</span></span><br><span class="line"><span class="keyword">case</span> <span class="keyword">default</span></span><br><span class="line">    ！ <span class="keyword">do</span> <span class="keyword">default</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">select</span></span><br></pre></td></tr></table></figure>
+相当于c语言的switch，每个分支自带break。select判断的变量a只能是整数，字符或者逻辑变量，不允许实数复数。
+case里面只支持常量，支持语法糖(3:5)，表示在这两个值的闭区间内均可。</p>
+<h2 id="特殊命令">特殊命令</h2>
+<ul>
+<li>pause: 程序暂停，等待用户按下enter键后继续执行。</li>
+<li>stop: 程序直接退出。</li>
+<li>continue: 不大有用，相当于无效语句。</li>
+<li>goto: 强制跳转(垃圾语句)。</li>
+<li>cycle: 在循环中相当于c语言的continue；</li>
+<li>exit: 在循环中相当于c语言的break。</li>
+</ul>
+<h2 id="do循环语句">do循环语句</h2>
+<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> <span class="built_in">count</span>=<span class="number">1</span>,<span class="number">10</span>,<span class="number">2</span></span><br><span class="line">    <span class="comment">! count 从1开始，每次增加2，若&lt;=10继续执行，否则结束循环</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
+相当于c语言的for循环，其中最后的步长可缺省，默认为1，步长可以为负数。
+Fortran 77 更麻烦，它的do循环不使用end
+do而需要指定行号来标记循环块的结束行。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> <span class="number">12138</span>,counter=<span class="number">1</span>, b, <span class="number">2</span></span><br><span class="line"><span class="number">12138</span> <span class="comment">! do something</span></span><br></pre></td></tr></table></figure>
+行号称作行的标记更合适，不是第几行的含义。</p>
+<h2 id="do-while循环语句">do while循环语句</h2>
+<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> <span class="keyword">while</span>(a&lt;<span class="number">10</span>)</span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line">    a = a+<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
+类比到c语言中，不是do-while语句，而是while语句，在第一次进入代码块之前就会进行逻辑判断。</p>
+]]></content>
+      <categories>
+        <category>fortran</category>
+      </categories>
+      <tags>
+        <tag>fortran</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fortran学习笔记——3.子程序, 函数与模块</title>
+    <url>/2022/06/20/fortran/fortran-note-3/</url>
+    <content><![CDATA[<p>与c语言只有函数不同，Fortran提供了子程序subroutine，函数function，模块module等多种结构。</p>
+<span id="more"></span>
+<h2 id="子程序subroutine">子程序subroutine</h2>
+<p>首先，回顾之前的HelloWorld <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+其中使用了名称为main的主程序program，一个可执行程序只允许有一个program，为了分离和复用某个功能，可以使用子程序subroutine。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">call</span> hello() <span class="comment">! call 调用子程序</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> hello()</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,subroutine!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> hello</span><br></pre></td></tr></table></figure>
+<p>运行结果 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hello,world!</span><br><span class="line">hello,subroutine!</span><br></pre></td></tr></table></figure></p>
+<p>主程序和子程序的相对位置无关，子程序不需要写在call调用它之前，主程序也不需要写在开头。子程序可以call调用其他子程序，也可以递归调用自身。子程序可以用return语句结束，或者遇到end
+subroutine自动结束。</p>
+<p>子程序拥有绝对独立的变量和运行环境等，与主程序完全隔离，不存在变量覆盖或者重名等问题。因此在子程序中也需要implicit
+none语句。</p>
+<p>当然子程序需要和主程序产生交互，主程序可以传递指定的变量给子程序，形参和实参可以名称各异，注意形参同样需要声明。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: a=<span class="number">1.0</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a=&quot;</span>,a</span><br><span class="line">    <span class="keyword">call</span> hello(a) <span class="comment">! call 调用子程序</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a=&quot;</span>,a</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> hello(b)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: b <span class="comment">! 形参也需要子程序进行声明</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,subroutine!&quot;</span></span><br><span class="line">    b = <span class="number">2.0</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> hello</span><br></pre></td></tr></table></figure>
+<p><strong>注意Fortran传递参数默认使用传址调用，因此对于参数变量，主程序和子程序共享一个内存，修改可以反馈给主程序，这也是子程序存在的意义。</strong>
+运行结果: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hello,world!</span><br><span class="line">a=   1.00000000</span><br><span class="line">hello,subroutine!</span><br><span class="line">a=   2.00000000</span><br></pre></td></tr></table></figure>
+因为默认使用了传址调用，但子程序的实参允许使用字面值常量，如果在子程序中尝试进行了修改，程序会直接崩溃。</p>
+<h3 id="形参属性">形参属性</h3>
+<p>为了明确形参的使用意图，可以在形参声明时指定参数属性，与属性冲突时编译会警告或报错。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>,<span class="keyword">intent</span>(<span class="keyword">in</span>) :: a <span class="comment">! 只读形参，修改会编译报错</span></span><br><span class="line"><span class="keyword">real</span>,<span class="keyword">intent</span>(<span class="keyword">out</span>) :: b <span class="comment">! 只写形参，如果没有语句对变量进行修改，则会编译警告</span></span><br><span class="line"><span class="keyword">real</span>,<span class="keyword">intent</span>(inout) :: c <span class="comment">! 读写形参，默认</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="形参缺省">形参缺省</h3>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">subroutine</span></span> test(a,b)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a</span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">optional</span> :: b <span class="comment">! 可选参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">present</span>(b)) <span class="keyword">then</span></span><br><span class="line">        <span class="comment">! 判断是否给了形参b</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> test</span><br></pre></td></tr></table></figure>
+<p>对于这种特殊情形，在使用前必须要使用interface更具体地描述接口，见下文。</p>
+<h3 id="变量生存周期">变量生存周期</h3>
+<p>通常情况下，子程序结束时变量全部清除，但是在变量声明时使用save可以设置局部静态变量，变量会保留到下一次调用。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>,<span class="keyword">save</span> :: <span class="built_in">count</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+注意：有的编译器可能默认对所有的局部变量都视作局部静态的。</p>
+<h2 id="函数function">函数function</h2>
+<p>与子程序主要有两点不同：函数在主程序内进行使用之前需要声明，函数有一个返回值。似乎subroutine的应用比function更广泛。作为子程序subroutine和函数function的对比，建议在function中不对形参做任何处理。在function中也需要使用implicit
+none。</p>
+<p>第一种，标准形式，返回值和函数同名。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: a=<span class="number">1.0</span>,b=<span class="number">2.0</span></span><br><span class="line">    <span class="keyword">real</span>,<span class="keyword">external</span> :: add</span><br><span class="line">    <span class="comment">! 声明add是一个返回值为real的自定义函数</span></span><br><span class="line">    <span class="comment">! external 可以缺省, 但是建议保留</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span>,a,b</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a+b=&quot;</span>, add(a,b)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span></span> add(a,b)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: add <span class="comment">! 声明本函数的返回值为real, 返回值与函数同名</span></span><br><span class="line">    <span class="keyword">real</span> :: a,b</span><br><span class="line">    add = a+b</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">! return返回可缺省</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+这里external表明是一个自定义函数，类似地可以用关键词intrinsic表明是一个库函数。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>, <span class="keyword">intrinsic</span> :: <span class="built_in">sin</span> <span class="comment">! 声明sin是一个库函数</span></span><br><span class="line"><span class="keyword">real</span>, <span class="keyword">external</span> :: mysin <span class="comment">! 声明mysin是一个自定义函数</span></span><br></pre></td></tr></table></figure></p>
+<p>第二种，函数在定义时直接指出返回值类型。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> <span class="function"><span class="keyword">function</span></span> add(a,b) <span class="comment">! 自动声明本函数的返回值为real</span></span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: a,b</span><br><span class="line">    add = a+b</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>第三种，简短的函数定义，只能在当前区域被使用。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: a=<span class="number">1.0</span>,b=<span class="number">2.0</span></span><br><span class="line">    <span class="keyword">real</span> :: add</span><br><span class="line">    <span class="comment">! 声明add是一个返回值为real的自定义函数</span></span><br><span class="line"></span><br><span class="line">    add(a,b) = a+b</span><br><span class="line">    <span class="comment">! 直接在此处定义add函数</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span>,a,b</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a+b=&quot;</span>, add(a,b)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure></p>
+<p>第四种，在函数内部指明返回值的名称，对于调用方则没有任何影响。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> <span class="function"><span class="keyword">function</span></span> add(a,b) result(ans)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: a,b</span><br><span class="line"></span><br><span class="line">    ans = a+b</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>在递归函数中，必须要把返回值和函数名分开，同时还需要recursive关键词。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: n=<span class="number">5</span>, result</span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">external</span> :: fact</span><br><span class="line"></span><br><span class="line">    result = fact(n)</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;10!=&quot;</span>,result</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">recursive</span> <span class="keyword">integer</span> <span class="function"><span class="keyword">function</span></span> fact(n) result(ans)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span>,<span class="keyword">intent</span>(<span class="keyword">in</span>) :: n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">        ans = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ans = n * fact(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+第五种，内部函数：为了限制子程序/自定义函数的应用范围，可以使用contains命令把定义直接附在主程序内的最后部分。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">integer</span> :: m=<span class="number">5</span>, result</span><br><span class="line">   <span class="comment">!integer, external :: fact 不再需要前置的函数声明</span></span><br><span class="line"></span><br><span class="line">   result = fact(m)</span><br><span class="line">   <span class="built_in">write</span>(*,*) <span class="string">&quot;10!=&quot;</span>,result</span><br><span class="line"></span><br><span class="line">   <span class="comment">! 直接包含</span></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line">   <span class="keyword">recursive</span> <span class="keyword">integer</span> <span class="function"><span class="keyword">function</span></span> fact(n) result(ans)</span><br><span class="line">      <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">      <span class="keyword">integer</span>,<span class="keyword">intent</span>(<span class="keyword">in</span>) :: n</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(n &lt; <span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">         ans = -<span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">         ans = <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">         ans = n * fact(n-<span class="number">1</span>)</span><br><span class="line">      <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure></p>
+<h2 id="模块module">模块module</h2>
+<p>模块module最基本的用法是封装与共享全局静态变量。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> global</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">save</span> :: a,b</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> global</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> global <span class="comment">! use语句还需要在implicit none之前</span></span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b = <span class="number">2</span></span><br><span class="line">    <span class="keyword">call</span> sub()</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub()</span><br><span class="line">    <span class="keyword">use</span> global</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) a,b</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub</span><br></pre></td></tr></table></figure>
+这里名为global的模块module需要在源文件的开头部分，在use global之前。
+主程序和子程序无须声明变量即可使用，基于save属性(或者common)可以实现更好的全局静态变量的效果。如果不使用save则不能共享变量。</p>
+<p>为了更全面地了解module，必须结合Fortran的面向对象进行，module内部的变量和函数/子程序表现的非常像类的结构。(Fortran甚至还可以进行简单的运算符重载，函数重载和module继承，是为了得到面向对象风格进行的尝试，但可能存在各种麻烦，不去管它们)</p>
+<p>module实例如下： <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> bank</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> :: money <span class="comment">! 声明这是私有的</span></span><br><span class="line">    <span class="comment">! 变量会被module的各个子程序/方法共享</span></span><br><span class="line">    <span class="keyword">public</span> :: LoadMoney, SaveMoney, Report <span class="comment">! 声明这是公开的, 缺省时默认公开</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">integer</span> :: money = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line">    <span class="function"><span class="keyword">subroutine</span></span> LoadMoney(num)</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="keyword">integer</span> :: num</span><br><span class="line">        money = money - num</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">subroutine</span></span> SaveMoney(num)</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="keyword">integer</span> :: num</span><br><span class="line">        money = money + num</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">subroutine</span></span> Report()</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="built_in">write</span>(*,*) <span class="string">&quot;now money=&quot;</span>, money</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> bank</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> bank <span class="comment">! 使用bank这个module</span></span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">call</span> LoadMoney(<span class="number">10</span>) <span class="comment">! 传入常量是有风险的, 如果子程序修改了形参会崩溃，除非确定形参不会被修改</span></span><br><span class="line">    <span class="keyword">call</span> Report()</span><br><span class="line">    <span class="keyword">call</span> SaveMoney(<span class="number">100</span>)</span><br><span class="line">    <span class="keyword">call</span> Report()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">stop</span> <span class="comment">! 强制结束, 可以不写</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure> 运行结果为 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">now money=          90</span><br><span class="line">now money=         190</span><br></pre></td></tr></table></figure></p>
+<p>private和public：需要使用单独的语句强调变量或者子程序/函数是私有还是公开的，默认是public的。</p>
+<p>单行的public/private描述符是针对全局的，除非显式声明为另一种，下文只有c是公开的，对于函数同样适用。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> hello</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">private</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">real</span> :: a</span><br><span class="line">    <span class="keyword">integer</span> :: b</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">real</span> :: c</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> hello</span><br></pre></td></tr></table></figure></p>
+<h3 id="use命令">use命令</h3>
+<p>上述的module还是非常鸡肋的面向对象效果，因为没有实现类和对象的分层，use
+bank就会直接地使用它。module内部use其他模块，但是不建议使用。</p>
+<p>重名变量的改名 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> A</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> A</span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> B</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> B</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> A</span><br><span class="line">    <span class="keyword">use</span> B, bva=&gt;va <span class="comment">! 导入模块B，对B内部的变量va改名为bva使用。</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+如上，模块A和B同时被使用，则产生了va重名的问题，可以改名加以区分。</p>
+<p>变量的限制导入 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> A</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va,vb</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> A</span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> B</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va,vb,vc</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> B</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> A <span class="comment">! 导入了模块A的全部变量，va，vb</span></span><br><span class="line">    <span class="keyword">use</span> B, <span class="keyword">only</span>: vc <span class="comment">! 只导入B模块的vc变量，B模块的其他变量都不能在此处使用</span></span><br><span class="line">    <span class="comment">! 也可以在限制导入的同时改名</span></span><br><span class="line">    <span class="comment">! use B, only : bvc=&gt;vc</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure> 建议使用下列语法进行安全的use
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> A, <span class="keyword">only</span> Ax=&gt;x</span><br><span class="line"><span class="comment">! 如果还需要别的</span></span><br><span class="line"><span class="keyword">use</span> A, <span class="keyword">only</span> Ay=&gt;y</span><br></pre></td></tr></table></figure></p>
+<h2 id="补充">补充</h2>
+<p>有几种过时的语法，提一句：</p>
+<ol type="1">
+<li>common
+声明变量是全局的，在多个主程序/子程序中都使用common对同一个变量进行声明，则可以共享同一个全局变量。</li>
+<li>data 和 block data 用来批量地赋初值。</li>
+</ol>
+<h2 id="多文件编程">多文件编程</h2>
+<blockquote>
+<p>现代Fortran建议以主程序program和多个module组成。所有的函数function和子程序subroutine应该封装在module中。这样既可以避免同名函数导致的链接错误，更能使编译器在链接时帮忙检查参数列表。</p>
+</blockquote>
+<h3 id="include命令">include命令</h3>
+<p>相当于c语言的include，是简单直接的代码注入，例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! main.f90</span></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">call</span> sub()</span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;sub.f90&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! sub.f90</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub()</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello ,world&quot;</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br></pre></td></tr></table></figure>
+此时不能把main.f90和sub.f90一起编译，否则会产生重复定义的问题，只能对main.f90进行编译，与c语言类似。
+这种include方式一般在Fortran 77中使用，在Fortran
+90之后，建议基于module进行多文件编程。</p>
+<h3 id="module多文件组织">module多文件组织</h3>
+<p>建议除了主程序源文件包含一个program之外，其他单个源文件都由一个module组成，把子程序和函数都封装在module里，上例重写如下，此时两个源文件都需要参与编译。
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! main.f90</span></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> hello</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">call</span> sub()</span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">! sub.f90</span></span><br><span class="line"><span class="keyword">module</span> hello</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line">   <span class="function"><span class="keyword">subroutine</span></span> sub()</span><br><span class="line">      <span class="built_in">write</span>(*,*) <span class="string">&quot;hello ,world&quot;</span></span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">   <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> hello</span><br></pre></td></tr></table></figure>
+注意，编译会在目录中产生hello.mod文件，这是由hello这个模块产生的二进制文件。</p>
+]]></content>
+      <categories>
+        <category>fortran</category>
+      </categories>
+      <tags>
+        <tag>fortran</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fortran学习笔记——4.数组，指针与数值计算</title>
+    <url>/2022/06/20/fortran/fortran-note-4/</url>
+    <content><![CDATA[<p>在前三篇笔记，学习了Fortran作为一个编程语言，最基本的内容：变量，输入输出，流程控制和程序结构。接下来是Fortran的数组以及基于数组的数值计算，我认为这是Fortran语言最有价值的精华部分，因此特意放在了学习笔记靠后的部分，在学习了基本的语法和子程序等之后。注意，Fortran的字符集不包括中括号[]，因此与c语言的风格不同，Fortran对数组分量的操作全都是使用小括号()的。</p>
+<p>因为这部分内容比较重要，不像前几篇对Fortran
+77的上古语法大部分进行了忽略，这一篇对于Fortran 77的语法也进行介绍。</p>
+<span id="more"></span>
+<h2 id="一维数组">一维数组</h2>
+<p>最基本的一维数组声明如下</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: nums(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: len = <span class="number">20</span></span><br><span class="line"><span class="keyword">real</span> :: datas(len)</span><br></pre></td></tr></table></figure>
+<p>一维数组的类型可以是integer, real, complex,
+logical四种基本类型，(也可以是字符或者自定义类型，暂时不管)一维数组的长度可以是字面值常量，也可以是声明为parameter的整数——和c语言一样，数组的长度需要在编译时确定。(与c/c++语言不同，我们不需要纠结Fortran声明和定义的区别，全部称为声明)</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">nums(<span class="number">1</span>) = <span class="number">0</span></span><br><span class="line">a = <span class="number">2</span></span><br><span class="line">nums(a) = nums(<span class="number">1</span>) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>数组分量的用法如上，数组分量的索引可以是整数常量或者整数变量，编译器不会进行索引的越界检查，越界检查需要程序员自行负责。</p>
+<p>可以使用其他语法进行数组的声明，在Fortran
+77中没有双冒号，而且需要两条命令分别确定数组元素的类型和数组的尺寸。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! 基本的用法</span></span><br><span class="line"><span class="keyword">integer</span> :: a(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是另一种用法</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">dimension</span>(<span class="number">10</span>) :: a</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是Fortran 77 的语法</span></span><br><span class="line"><span class="keyword">integer</span> a</span><br><span class="line"><span class="keyword">dimension</span> a(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="二维数组与高维数组">二维数组与高维数组</h2>
+<p>与一维数组同理，二维数组的定义如下</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! 基本的用法</span></span><br><span class="line"><span class="keyword">real</span> :: a(<span class="number">5</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是另一种用法</span></span><br><span class="line"><span class="keyword">real</span>, <span class="keyword">dimension</span>(<span class="number">5</span>,<span class="number">10</span>) :: a</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是Fortran 77的语法</span></span><br><span class="line">read a</span><br><span class="line"><span class="keyword">dimension</span> a(<span class="number">10</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>Fortran原生支持最多7维的数组。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> :: a(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">a(<span class="number">1</span>,<span class="number">1</span>) = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>特别需要注意的是，Fortran的下标从1开始！Fortran对于高维数组在内存中的连续存储方式和c语言是相反的，分别为列优先和行优先。Matlab对数组的处理继承了Fortran的风格，也是下标从1开始，列优先。</strong>
+列优先：只有第一个分量变化的元素在内存中连续排列；
+行优先：只有最后一个分量变化的元素在内存中连续排列。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">! 数据在内存中的连续分布</span></span><br><span class="line"><span class="comment">! a(1,1) =&gt; a(2,1) =&gt; a(3,1) =&gt; a(1,2) =&gt; a(2,2) =&gt; a(3,2)</span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义索引">自定义索引</h2>
+<p>索引默认从1开始，但是也支持显式指定数组的合法索引范围，范围的左右是闭区间。例如</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> a(<span class="number">0</span>:<span class="number">5</span>)</span><br><span class="line"><span class="comment">! 合法元素 a(0) a(1) a(2) a(3) a(4) a(5)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> b(<span class="number">2</span>:<span class="number">3</span>,-<span class="number">1</span>:<span class="number">1</span>) <span class="comment">! 甚至允许负值作为索引</span></span><br><span class="line"><span class="comment">! 合法元素</span></span><br><span class="line"><span class="comment">! b(2,-1) b(2,0) b(2,1)</span></span><br><span class="line"><span class="comment">! b(3,-1) b(3,0) b(3,1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> c(<span class="number">1</span>:<span class="number">5</span>)</span><br><span class="line"><span class="comment">! 等效于基本的 integer c(5) 把从1开始省略</span></span><br><span class="line"><span class="comment">! 合法元素 c(1) c(2) c(3) c(4) c(5)</span></span><br></pre></td></tr></table></figure>
+<h2 id="批量设置初值">批量设置初值</h2>
+<p>Fortran 77使用data命令赋初值，例如</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> a</span><br><span class="line"><span class="keyword">dimension</span> a(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">data</span> a /<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>/</span><br><span class="line"><span class="comment">! a(1)=1 a(2)=2 a(3)=3 a(4)=4 a(5)=5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> i</span><br><span class="line"><span class="keyword">integer</span> b</span><br><span class="line"><span class="keyword">dimension</span> b(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">data</span> (b(i), i=<span class="number">2</span>,<span class="number">4</span>) /<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>/ <span class="comment">! 一种隐式循环语法</span></span><br><span class="line"><span class="comment">! b(2)=10 b(3)=20 b(4)=30</span></span><br></pre></td></tr></table></figure>
+<p>Fortran 90可以抛弃data命令，对隐式循环语法也有更强的支持。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> i</span><br><span class="line"><span class="keyword">integer</span> :: a(<span class="number">5</span>) =(/ (i,i=<span class="number">1</span>,<span class="number">5</span>) /)</span><br><span class="line"><span class="comment">! a(1)=1 a(2)=2 a(3)=3 a(4)=4 a(5)=5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">3</span>) =(/ <span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span> /)</span><br><span class="line"><span class="comment">! b(1)=10 b(2)=20 b(3)=30</span></span><br></pre></td></tr></table></figure>
+<p>这里使用(/ /)结构省略了data命令，直接批量赋初值。</p>
+<p>对数组的所有元素赋同一个初值，有如下的语法糖</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">3</span>) = <span class="number">5</span></span><br><span class="line"><span class="comment">! a(1)=5 a(2)=5 a(3)=5</span></span><br></pre></td></tr></table></figure>
+<h2 id="数组整体运算">数组整体运算</h2>
+<p>Fortran 90
+提供了很多语法糖——原生支持对数组整体进行的运算，相比于c语言更加方便，不需要依赖循环语句实现。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span> :: c(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! 对所有元素都赋值为5</span></span><br><span class="line">a = <span class="number">5</span> <span class="comment">! a(i)=5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 逐个分量操作</span></span><br><span class="line"><span class="comment">! 要求a,b或者a,b,c为尺寸完全相同的数组，自动遍历所有元素</span></span><br><span class="line">a = b <span class="comment">! a(i)=b(i)</span></span><br><span class="line">a = b+c <span class="comment">! a(i)=b(i)+c(i)</span></span><br><span class="line">a = b-c <span class="comment">! a(i)=b(i)-c(i)</span></span><br><span class="line">a = b*c <span class="comment">! a(i)=b(i)*c(i)</span></span><br><span class="line">a = b/c <span class="comment">! a(i)=b(i)/c(i)</span></span><br><span class="line">a = <span class="built_in">sin</span>(b) <span class="comment">! a(i) = sin(b(i)) 内置函数如sin等支持此类操作</span></span><br></pre></td></tr></table></figure>
+<p>以上对于高维数组也是一样的。</p>
+<h2 id="数组部分运算">数组部分运算</h2>
+<p>这也是Fortran
+90之后的语法，和python的numpy等的数组切片操作很类似，或者说numpy的切片继承了Fortran的语法风格。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">integer</span> :: c(<span class="number">10</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">a(<span class="number">3</span>:<span class="number">5</span>)=<span class="number">5</span> <span class="comment">! a(3)=5 a(4)=5 a(5)=5</span></span><br><span class="line">a(<span class="number">3</span>: )=<span class="number">5</span> <span class="comment">! a(3)=...=a(10)=5 可以缺省一侧的下标范围</span></span><br><span class="line">a(<span class="number">3</span>:<span class="number">5</span>)=(/ <span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> /) <span class="comment">! a(3)=3 a(4)=4 a(5)=5 左右必须一样多</span></span><br><span class="line"></span><br><span class="line">a(<span class="number">1</span>:<span class="number">3</span>)=b(<span class="number">4</span>:<span class="number">6</span>) <span class="comment">! a(1)=b(4) a(2)=b(5) a(3)=b(6) 左右必须一样多</span></span><br><span class="line">a(:)=b(<span class="number">11</span>:) <span class="comment">! a(1)=b(11) ... a(10)=b(20)</span></span><br><span class="line"></span><br><span class="line">a(:)=c(:,<span class="number">1</span>) <span class="comment">! a(1)=c(1,1) ... a(10)=c(10,1) 限制c的第二个分量为1对a进行赋值</span></span><br></pre></td></tr></table></figure>
+<p>还可以有更复杂的，使用步长，步长"a : b : c"相当于c语言风格的</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// c&gt;0</span></span><br><span class="line"><span class="keyword">for</span>(i=a;i&lt;=b;i=i+c)&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c&lt;0</span></span><br><span class="line"><span class="keyword">for</span>(i=a;i&gt;=b;i=i+c)&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>示例如下</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">b = a(<span class="number">2</span>:<span class="number">1</span>:-<span class="number">1</span>, <span class="number">3</span>:<span class="number">1</span>:-<span class="number">1</span>)</span><br><span class="line"><span class="comment">! 对于a的前面的维度视作内层循环，多层循环依次赋值</span></span><br><span class="line"><span class="comment">! 对b视作b(:,:)按照内存的列优先顺序依次被赋值</span></span><br><span class="line"><span class="comment">! b(1,1) = a(2,3)</span></span><br><span class="line"><span class="comment">! b(2,1) = a(1,3)</span></span><br><span class="line"><span class="comment">! b(1,2) = a(2,2)</span></span><br><span class="line"><span class="comment">! b(2,2) = a(1,2)</span></span><br><span class="line"><span class="comment">! b(1,3) = a(2,1)</span></span><br><span class="line"><span class="comment">! b(2,3) = a(1,1)</span></span><br></pre></td></tr></table></figure>
+<p>上述针对数组的整体运算和部分运算放在赋值的左侧和右侧均可，相当于隐含的循环展开。write(<em>,</em>)语句也支持。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment">! 对a赋值，运算</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,*) a</span><br><span class="line"><span class="comment">! 输出a(1,1) a(2,1) a(1,2) a(2,2) a(1,3) a(2,3)与内存顺序一致</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,*) a(<span class="number">1</span>,:)</span><br><span class="line"><span class="comment">! 输出a(1,1) a(1,2) a(1,3)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,*) a(<span class="number">1</span>,<span class="number">3</span>:<span class="number">1</span>:-<span class="number">1</span>)</span><br><span class="line"><span class="comment">! 输出a(1,3) a(1,2) a(1,1)</span></span><br></pre></td></tr></table></figure>
+<h2 id="动态数组">动态数组</h2>
+<p>Fortran
+77不支持动态数组，数组尺寸必须在编译期间确定，只能在代码中使用足够大的N作为数组尺寸。Fortran
+90开始支持动态数组(可变长数组)，数组尺寸可以在运行期间确定。</p>
+<p>使用allocatable声明一个动态数组</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: a(:) <span class="comment">! 声明一个一维数组a, 尺寸待定</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: b(:,:) <span class="comment">! 声明一个二维数组b, 尺寸待定</span></span><br></pre></td></tr></table></figure>
+<p>在源代码的声明部分不需要明确数组的尺寸，<strong>在源代码的运算部分使用该数组之前，使用allocate命令明确数组尺寸，分配相应的内存。</strong>(相当于c语言的malloc)</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: len</span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: a(:)</span><br><span class="line"><span class="comment">! 也可以写作如下形式</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span>, <span class="keyword">dimension</span>(:) :: a</span><br><span class="line"></span><br><span class="line">read(*,*) len <span class="comment">! 获取动态数组需要的尺寸</span></span><br><span class="line"><span class="built_in">allocate</span>(a(len)) <span class="comment">! 为动态数组分配内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 可以正常使用数组a</span></span><br></pre></td></tr></table></figure>
+<p>和c语言一样，Fortran在运行期间分配内存allocate存在是否成功的问题，以及使用完成后及时释放内存deallocate的问题。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: error <span class="comment">! 事先声明好的整型变量，用来记录标识</span></span><br><span class="line"><span class="keyword">integer</span> :: len1,len2</span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: a(:,:)</span><br><span class="line"></span><br><span class="line">... <span class="comment">! 获取len1,len2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 完整的allocate语句，包含一个标识记录是否成功分配内存</span></span><br><span class="line"><span class="comment">! allocate会通过stat传递给error一个数值</span></span><br><span class="line"><span class="comment">! error == 0 代表成功分配，error /= 0 代表失败</span></span><br><span class="line"><span class="built_in">allocate</span>(a(len1,len2), stat=error)</span><br><span class="line"><span class="keyword">if</span>(error /= <span class="number">0</span>)</span><br><span class="line">    <span class="comment">! 未成功对数组a分配内存</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 也可以使用allocated语句，判断当前动态数组是否成功分配内存，返回一个逻辑值</span></span><br><span class="line"><span class="keyword">if</span>(.not. <span class="built_in">allocated</span>(a))</span><br><span class="line">    <span class="comment">! 未成功对数组a分配内存</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">... <span class="comment">! 使用数组a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 释放内存，此后仍然可以继续allocate与deallocate，相当于重新设置数组尺寸。也可以使用标识</span></span><br><span class="line"><span class="built_in">deallocate</span>(a,stat=error)</span><br><span class="line"><span class="comment">! 或者直接deallocate(a)</span></span><br></pre></td></tr></table></figure>
+<p>固定尺寸的数组和动态数组的本质区别，就像c/c++中的一样：固定尺寸的数组在栈上分配内存，不需要手动释放；动态数组在堆上分配内存，需要手动释放，相比于栈可使用的空间更多。对大规模的数据存储需求，倾向于在主程序中使用动态数组，由主程序负责分配和释放。</p>
+<p>注：之前的笔记遗漏了一部分——显式指定参数，以改变多个参数的匹配顺序。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">subroutine</span></span> fun(x1,x2,x3)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> fun</span><br><span class="line"></span><br><span class="line"><span class="comment">! 使用fun(a,b,c)调用，则默认按照顺序对应</span></span><br><span class="line"><span class="comment">! x1=a x2=b x3=c</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 可以如下显式改变参数的匹配</span></span><br><span class="line"><span class="comment">! fun(x1=a,x3=b,x2=c)</span></span><br></pre></td></tr></table></figure>
+<h2 id="数组作为参数传递">数组作为参数传递</h2>
+<p>和c语言类似，直接把数组a作为实参传递给子程序subroutine或者函数function等，相当于把第一个元素的内存地址传递过去。
+如果子程序把这个形参定义为整数，则子程序得到的是内存地址对应的整数。此时对整数的修改会导致调用者丢失整个数组，非常危险。
+如果子程序把这个形参定义为数组，则会根据形参数组的尺寸处理实参对应的部分内存，实质还是传地址，因此对分量的修改会反馈给调用者。</p>
+<p>以一个例子说明，主程序</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a(<span class="number">5</span>) = (/ <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> /)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">call</span> sub_num(a) <span class="comment">! 把a第一个元素的地址当作整数传过去</span></span><br><span class="line">    <span class="keyword">call</span> sub_array5(a) <span class="comment">! 把a当作一个尺寸为5的一维数组传过去</span></span><br><span class="line">    <span class="keyword">call</span> sub_array22(a) <span class="comment">! 把a当作一个尺寸为2*2的二维数值传过去</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+<p>三个子程序为</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub_num(a)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a</span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 读出的是a(1)的内存地址</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub_num</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub_array5(a)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a(<span class="number">5</span>)</span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 读出的是a在内存中的全部元素</span></span><br><span class="line">    <span class="comment">! a(1) a(2) a(3) a(4) a(5)</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub_array5</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub_array22(a)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 读出的是a在内存中的前4个元素</span></span><br><span class="line">    <span class="comment">! a(1,1) a(2,1) a(1,2) a(2,2)</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub_array22</span><br></pre></td></tr></table></figure>
+<p>将数组作为参数传递，本质上是把数组变量(也就是连续内存部分的第一个元素的地址)以址传递的形式传过来，而子程序/函数的接收和处理方式，取决于自己对形参的定义：如果视作一个整数则只能访问和修改地址，如果视作数组则会进一步访问到数组中的连续内存部分，依照自己理解的尺寸进行处理。</p>
+<p>通常为了安全，将数组作为参数传递时，也会把尺寸作为若干整数变量一起传递给子程序/函数。</p>
+<h2 id="指针">指针</h2>
+<p>Fortran实际上还有指针pointer，与c语言的指针相比感觉非常鸡肋：</p>
+<ol type="1">
+<li>我们没有用Fortran建立链表之类的动态需求，动态数组完全够用。</li>
+<li>语法比c语言更繁琐而且更弱，需要target形容的变量才能被指针指向，也没有*p这种运算。</li>
+<li>各种Fortran编译器对于指针的实现可能有差异或麻烦，我们倾向于完全避免使用指针。</li>
+</ol>
+<p>Fortran的指针pointer需要配套target使用，target表明变量可以被指针指向，pointer表明这个变量是指针。</p>
+<p>一个指针的简单例子如下</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">target</span> :: a=<span class="number">1</span> <span class="comment">! 声明一个可以被当作目标的整数变量</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">pointer</span> :: p  <span class="comment">! 声明一个可以指向整数的指针</span></span><br><span class="line">    <span class="keyword">logical</span> :: b</span><br><span class="line"></span><br><span class="line">    <span class="comment">! 把指针初始化时赋给null, 可以更安全, 表明这个指针是不可访问的</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">pointer</span> :: p2 =&gt; null()</span><br><span class="line"></span><br><span class="line">    p=&gt;a <span class="comment">! =&gt; 将指针p指向目标变量a，</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">! 可以通过指针直接访问目标变量</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) p <span class="comment">! 1</span></span><br><span class="line"></span><br><span class="line">    a=<span class="number">2</span> <span class="comment">! 对目标变量的修改也会体现在指针访问时</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) p <span class="comment">! 2</span></span><br><span class="line"></span><br><span class="line">    p=<span class="number">3</span> <span class="comment">! 基于指针的修改也会体现在原始变量上</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">! 可以检查当前的指针是否可以访问</span></span><br><span class="line">    b = <span class="built_in">associated</span>(p)</span><br><span class="line">    <span class="comment">! 可以检查当前的指针是否绑定到当前的目标变量</span></span><br><span class="line">    b = <span class="built_in">associated</span>(p,a)</span><br><span class="line">    <span class="comment">! 可以用nullify命令把指针设置为不可访问的</span></span><br><span class="line">    <span class="built_in">nullify</span>(p)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>fortran</category>
+      </categories>
+      <tags>
+        <tag>fortran</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fortran学习笔记——5.其他</title>
+    <url>/2022/06/20/fortran/fortran-note-5/</url>
+    <content><![CDATA[<p>一些琐碎的小部分，放在最后。</p>
+<span id="more"></span>
+<h2 id="自定义类型">自定义类型</h2>
+<p>Fortran 90支持自定义类型，相当于c语言的结构体。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">type</span> :: person</span><br><span class="line">        <span class="keyword">integer</span> :: age</span><br><span class="line">        <span class="keyword">integer</span> :: height</span><br><span class="line">        <span class="keyword">integer</span> :: weight</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">type</span> person</span><br><span class="line"></span><br><span class="line">    <span class="keyword">type</span>(person) :: a <span class="comment">! 声明a是一个person类型的变量</span></span><br><span class="line">    <span class="comment">! %用于提取结构体的分量</span></span><br><span class="line"></span><br><span class="line">    read(*,*) a%age, a%height, a%weight</span><br><span class="line">    <span class="built_in">write</span>(*,*) a%age, a%height, a%weight</span><br><span class="line"></span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+<h2 id="字符字符串">字符/字符串</h2>
+<p>在前面的基本数据类型的笔记中，我们特意完全忽略了字符和字符串的部分，只是在write语句中使用了字符串常量。
+注：Fortran对于字符串的处理效率比较慢，谨慎使用——数值计算其实也没什么字符串处理的需求。</p>
+<p>与c语言不同，Fortran的字符串不是定义为字符的一维数组，而是进行了单独的实现
+(可能这就是低效率的原因？)</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">character</span> :: c</span><br><span class="line"></span><br><span class="line"><span class="keyword">character</span>(len=<span class="number">20</span>) :: str1</span><br><span class="line"><span class="keyword">character</span>(<span class="number">20</span>) :: str2</span><br><span class="line"><span class="keyword">character</span>*<span class="number">20</span> :: str3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Fortran只有在字符和字符串的字面值常量中，会区分大小写。可以基于字面值常量进行赋值。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">c = ‘H<span class="string">&#x27;</span></span><br><span class="line"><span class="string">str1 = &quot;hello,world&quot;</span></span><br><span class="line"><span class="string">str2 = &quot;I&#x27;</span><span class="string">&#x27;m fenglielie&quot;</span></span><br></pre></td></tr></table></figure>
+<p>虽然和数组不同，但是字符串也支持类似于数组的切片操作。</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">str1(<span class="number">2</span>) = <span class="string">&#x27;o&#x27;</span></span><br><span class="line">str2(<span class="number">1</span>:<span class="number">1</span>) = <span class="string">&quot;Y&quot;</span></span><br></pre></td></tr></table></figure>
+<p>对于两个字符串常量或变量，可以使用//进行直接的拼接。</p>
+<p>对于中间存在空格的字符串，默认write(*,*)输出可能出现问题，因为对字符串的输出遇到空格就结束了；默认read(*,*)输入字符串也会存在问题，因为空格会被视作多个字符串的分隔。</p>
+<h2 id="格式化-io">格式化 IO</h2>
+<p>输入read(*,*)的形式为</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">read(<span class="keyword">unit</span>=<span class="number">5</span>,<span class="keyword">fmt</span>=*)</span><br><span class="line"><span class="comment">! unit 代表输入设备, 键盘的编号为5, 通常键盘为默认输入设备</span></span><br><span class="line"><span class="comment">! unit=5 等价于 unit=* 为默认输入设备</span></span><br><span class="line"><span class="comment">! fmt 代表输入格式, fmt=* 为默认格式</span></span><br></pre></td></tr></table></figure>
+<p>输出write(*,*)的第一个参数指代屏幕输出，第二个参数可以替换为具体格式。下面的部分使用下划线代替空格。</p>
+<p>整数格式化</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Iw[.m]</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出整数，如果不足补空格，如果超过则输出全变成*。(离谱)</span></span><br><span class="line"><span class="comment">! 至少显示m个字符，不足会在首位补0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(I5)&quot;</span>) <span class="number">100</span></span><br><span class="line">__100</span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(I3)&quot;</span>) <span class="number">10000</span></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(I5,3)&quot;</span>) <span class="number">10</span></span><br><span class="line">__010</span><br></pre></td></tr></table></figure>
+<p>实数格式化(浮点数)</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Fw.d</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出浮点数，小数部分占d个字符。</span></span><br><span class="line"><span class="comment">! 小数点也占一位，超过宽度会全部变成*</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(F9.3)&quot;</span>) <span class="number">123.45</span></span><br><span class="line">__123<span class="number">.450</span></span><br></pre></td></tr></table></figure>
+<p>实数格式化(科学计数法)</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Ew.d[Ee]</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出科学计数法，小数部分占d个字符，指数部分占e个字符。</span></span><br><span class="line"><span class="comment">! E也占一位，超过宽度会全部变成*</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(E15.7)&quot;</span>) <span class="number">123.45</span></span><br><span class="line">__0<span class="number">.1234500E+03</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(E9.2E3&quot;</span>) <span class="number">12.34</span></span><br><span class="line">_0<span class="number">.12E002</span></span><br></pre></td></tr></table></figure>
+<p>字符串格式化</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Aw</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出字符串，不足补充空格，多了会直接省略</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(A10)&quot;</span>) <span class="string">&quot;hello&quot;</span></span><br><span class="line">_____hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(A3)&quot;</span>) <span class="string">&quot;hello&quot;</span></span><br><span class="line">hel</span><br></pre></td></tr></table></figure>
+<p>其他</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">nX</span><br><span class="line"><span class="comment">! 输出位置右移n格, 或者说输出n个空格</span></span><br><span class="line">/</span><br><span class="line"><span class="comment">! 换行</span></span><br></pre></td></tr></table></figure>
+<p>倾向于不使用格式化输入输出，不然有可能输出全是星号。(真是太离谱了)
+了解一下即可。</p>
+<h2 id="文件读写">文件读写</h2>
+<p>最基本的文件写入例子</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a=<span class="number">2</span></span><br><span class="line">    <span class="keyword">integer</span> :: b=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">    open(<span class="keyword">unit</span>=<span class="number">10</span>,<span class="keyword">file</span>=<span class="string">&#x27;hello.txt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(<span class="number">10</span>,*) <span class="string">&quot;a/b=&quot;</span>, a/b</span><br><span class="line">    <span class="built_in">write</span>(<span class="number">10</span>,*) <span class="string">&quot;a*1.0/b=&quot;</span>, a*<span class="number">1.0</span>/b</span><br><span class="line"></span><br><span class="line">    close(<span class="keyword">file</span>)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
+<p>首先通过open命令打开一个hello.txt文件，并且编号记录为10，运行时会在当前目录下的hello.txt文件中写入如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a/b=           0</span><br><span class="line">a*1.0/b=  0.666666687</span><br></pre></td></tr></table></figure>
+<p>文件读写和c语言类似，有非常多的选项，包括打开方式，二进制文件或文本文件等，略。</p>
+]]></content>
+      <categories>
+        <category>fortran</category>
+      </categories>
+      <tags>
+        <tag>fortran</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>血流动力学学习</title>
+    <url>/2022/06/20/learn/learn-hemodynamics-ns/</url>
+    <content><![CDATA[<p>主要是血液流动的特点。 <span id="more"></span></p>
+<h2 id="血液流动">血液流动</h2>
+<p>血液是由多种血细胞和血浆(牛顿流体)组成的悬浮液，其中血细胞的尺度约<span
+class="math inline">\(8\mu m\)</span>，而人体的血管尺度从<span
+class="math inline">\(3\mu m\)</span>的毛细血管到<span
+class="math inline">\(3\times 10^5 \mu
+m\)</span>的主动脉血管，范围变化大，因此流动比较复杂。当血管直径大于<span
+class="math inline">\(1
+mm\)</span>时，血液流动可以视作均匀连续的非牛顿流体。当直径小于<span
+class="math inline">\(1
+mm\)</span>时，连续介质假设不成立，血液流动会受到血细胞个体的影响。</p>
+<p>实验表明，在动脉的某些特定区域会出现一些不规则流动的现象，主要位于肺动脉和升主动脉，主要发生于心脏搏动收缩期的最后阶段，它们并不具备统计意义上的性质而能够成为湍流，因此在动脉中的血流通常作为层流加以分析。</p>
+<h2 id="血管">血管</h2>
+<p>对于动脉的血流动力学，我们需要考虑血管壁的性质，动脉管壁是具有弹性的，血液本身是脉动的，因此血流和血管壁组成了非定常的流固耦合系统(fluid-structure
+interaction, FSI)。</p>
+<p>生理状态下，脉动血流引起的血管壁的位移可以达到管径的10%左右。</p>
+<p>血管壁在建模时可以假定为刚性或者弹性，发生病变的血管壁通常会增厚硬化，比正常状态下的弹性更低。研究表明，刚性管的假设对于脉动的流场影响不是十分明显。</p>
+<h2 id="非牛顿流体">非牛顿流体</h2>
+<p>几种典型的用于描述血液的非牛顿流体模型：</p>
+<ul>
+<li>Casson模型</li>
+<li>Bingham模型(典型为牙膏)</li>
+<li>Power-Law模型，包括剪切稠化的膨胀型流体和剪切稀化的伪塑性流体，血液属于剪切稀化的流体。</li>
+<li>Quemada模型</li>
+</ul>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>learn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>不可压NS方程中压强的数学意义</title>
     <url>/2022/06/21/learn/learn-inse-lagrange/</url>
     <content><![CDATA[<p>为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。</p>
@@ -10,8 +477,8 @@
 <p><span class="math display">\[
 \left\{
 \begin{aligned}
-\max f(\mathbf{x})\\
-s.t. g(\mathbf{x})=0
+&amp;\max f(\mathbf{x})\\
+&amp;s.t. g(\mathbf{x})=0
 \end{aligned}
 \right.
 \]</span></p>
@@ -25,11 +492,13 @@ L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda \,g(\mathbf{x})
 <strong>必要条件</strong> 为 <span class="math inline">\(\mathbf{x},
 \lambda\)</span> 满足如下方程组</p>
 <p><span class="math display">\[
+\left\{
 \begin{aligned}
 \nabla_{\mathbf{x}}L(\mathbf{x},\lambda) &amp;= \nabla f - \lambda
 \nabla g = 0\\
 \nabla_{\lambda} L(\mathbf{x},\lambda) &amp;= g(\mathbf{x}) = 0
 \end{aligned}
+\right.
 \]</span></p>
 <p>这只是必要条件，解出的 <span
 class="math inline">\(\mathbf{x}\)</span>
@@ -37,7 +506,8 @@ class="math inline">\(\mathbf{x}\)</span>
 <p>几何意义：如图所示，<span
 class="math inline">\(w=f(\mathbf{x})=f(x,y)\)</span>等值线如下图，<span
 class="math inline">\(g(\mathbf{x})=g(x,y)=0\)</span>
-限制子空间为一个圆。</p>
+限制子空间为一个圆，<span
+class="math inline">\(P\)</span>点是一个满足的解，但方程组的解可能不唯一。</p>
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png" /></p>
 <h2 id="基本概念">基本概念</h2>
 <p>在讨论更一般的问题时，我们需要引入相关的概念，为了简化记号不再使用黑体强调矢量。
@@ -73,7 +543,7 @@ class="math inline">\(K^o\)</span>内需要满足的方程组， <span
 class="math display">\[
 J(u) = \min_{v \in K} J(v) \iff \nabla J(u) \in K^o
 \]</span></p>
-<h3 id="有限维的例子">有限维的例子</h3>
+<h3 id="例一">例一</h3>
 <p>对于Hilbert空间<span
 class="math inline">\(H\)</span>，取一组单位正交向量<span
 class="math inline">\(a_1,a_2,\cdots,a_M\)</span>，张成子空间<span
@@ -90,11 +560,87 @@ class="math inline">\(u \in V\)</span>使得</p>
 J(u) = \min_{v \in V} J(v)
 \]</span></p>
 <p>其中<span
-class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前的命题，条件极值问题转化为了</p>
-<p>$$</p>
-<p>$$</p>
+class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前的命题，条件极值问题转化为了：存在系数<span
+class="math inline">\(\{\lambda_i\}_{i=1}^M\)</span>，使得</p>
+<p><span class="math display">\[
+\begin{aligned}
+V^{\perp} \in
+\nabla J(u) &amp;= \sum_{i=1}^M \lambda_i a_i
+\end{aligned}
+\]</span></p>
+<h3 id="例二">例二</h3>
+<p>对于对称正定方阵<span class="math inline">\(A \in R^{N\times
+N}\)</span>，<span class="math inline">\(b \in R^N\)</span>，列向量<span
+class="math inline">\(b \in R^N\)</span>，矩阵<span
+class="math inline">\(C \in R^{M\times N}\)</span>是满秩的，<span
+class="math inline">\(M &lt; N\)</span>。考虑如下最优化问题：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\min_{x \in Ker C} J(x)
+\end{aligned}
+\]</span></p>
+<p>其中<span
+class="math inline">\(J(x)=\frac12(x,Ax)-(b,x)\)</span>，<span
+class="math inline">\(Ker C = \{x| C x = 0\}\)</span>。
+其实例二是例一的特殊情形，取<span
+class="math inline">\(H=R^N\)</span>，<span
+class="math inline">\(C=[a_1,\cdots,a_M]^T\)</span>。因此有</p>
+<p><span class="math display">\[
+\nabla J(u) = \sum_{i=1}^M \lambda_i a_i
+\]</span></p>
+<p>对于上述具体的<span class="math inline">\(J(u)\)</span>，有<span
+class="math inline">\(\nabla J(u) = A x-b\)</span>，因此</p>
+<p><span class="math display">\[
+Ax-b = \sum_{i=1}^M \lambda_i a_i = C^T \Lambda
+\]</span></p>
+<p>其中<span class="math inline">\(\Lambda =
+[\lambda_1,\cdots,\lambda_M]^T\)</span>即为拉格朗日乘子。从而问题变成下式，这里左边的方阵是满秩的，存在唯一解。</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+A &amp; -C^T\\
+C &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x\\
+\Lambda
+\end{bmatrix}
+=
+\begin{bmatrix}
+b\\
+0
+\end{bmatrix}
+\]</span></p>
+<p>拉格朗日乘子<span
+class="math inline">\(\Lambda\)</span>起到了一个余量的作用。</p>
+<h2 id="一般模型">一般模型</h2>
+<p>对于两个Hilbert空间<span class="math inline">\(H,M\)</span>，记<span
+class="math inline">\(T:H\to M^*\)</span>为一个有界线性算子，<span
+class="math inline">\(T^*:M\to
+H^*\)</span>为它的对偶算子，即对于任意<span class="math inline">\(u\in
+H,q\in M\)</span>下式都成立</p>
+<p><span class="math display">\[
+\langle Tu,q\rangle = \langle T^* q,u\rangle
+\]</span></p>
+<p>假设算子<span class="math inline">\(T\)</span>满足条件：存在<span
+class="math inline">\(C &gt; 0\)</span>使得</p>
+<p><span class="math display">\[
+\Vert T^* q\Vert_{H^*} \ge C \Vert q \Vert_M, \forall q \in M
+\]</span></p>
+<p>那么，对于下凸的Frechet可微的泛函<span class="math inline">\(J:H\to
+R\)</span>，最优化问题</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in Ker T} J(v)
+\]</span></p>
+<p>存在解<span class="math inline">\(u \in Ker T\)</span>等价于存在<span
+class="math inline">\(p \in M\)</span>使得</p>
+<p><span class="math display">\[
+T^* p = \nabla J(u)
+\]</span></p>
+<p>并且如果<span class="math inline">\(p\)</span>存在，则<span
+class="math inline">\(p\)</span>也是唯一的。我们把证明留到最后。</p>
 <h2 id="stokes方程组">Stokes方程组</h2>
-<p>不可压NS方程组含有时间项不易处理，因此考虑与时间无关的Stokes方程组</p>
+<h3 id="三种形式">三种形式</h3>
+<p>不可压NS方程组含有时间项不易处理，因此考虑与时间无关的Stokes方程组(第一种形式)</p>
 <p><span class="math display">\[
 \begin{aligned}
 -\Delta u + \nabla p &amp;= f\\
@@ -102,6 +648,126 @@ class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前
 u|_{\partial \Omega} &amp;= 0
 \end{aligned}
 \]</span></p>
+<p>其中<span
+class="math inline">\(\Omega\)</span>是有界区域，我们定义如下空间</p>
+<p><span class="math display">\[
+\begin{aligned}
+V &amp;= \{v \in H_0^1(\Omega)| \nabla \cdot v = 0\}\\
+L_0^2(\Omega) &amp;= \{q \in L^2(\Omega)| \int_{\Omega} q = 0\}
+\end{aligned}
+\]</span></p>
+<p>将Stokes方程组转化为第二种形式：寻找<span class="math inline">\(u \in
+V\)</span>，<span class="math inline">\(p \in L^2_0\)</span>使得</p>
+<p><span class="math display">\[
+(\nabla u,\nabla v) - (p,\nabla \cdot v) = (f,v) \, \forall v \in
+H_0^1(\Omega)
+\]</span></p>
+<p>并且我们断言Stokes方程组有第三种形式：寻找<span
+class="math inline">\(u \in V\)</span>取到<span
+class="math inline">\(J(u)\)</span>的条件极值，</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in V} J(v)
+\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[
+J(v)=\frac12 (\nabla v,\nabla v)-(f,v)
+\]</span></p>
+<p>注意到这个泛函<span class="math inline">\(J(v)\)</span>不含有<span
+class="math inline">\(p\)</span>，我们希望证明<span
+class="math inline">\(p\)</span>作为这个问题的拉格朗日乘子而出现。</p>
+<h3 id="等价性证明一">等价性证明一</h3>
+<p>我们首先证明第二种形式可以推出第三种形式，(第三种形式推出第二种形式的证明留到最后)</p>
+<p>如果<span
+class="math inline">\(u,p\)</span>满足第二种形式的方程，则任取增量<span
+class="math inline">\(v \in V\)</span>，<span
+class="math inline">\(\delta&gt;0\)</span>，定义<span
+class="math inline">\(g(\delta)=J(u+\delta v)\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+g(\delta)=J(u+\delta v) &amp;= \frac12(\nabla u,\nabla u) +
+\delta(\nabla u,\nabla v) + \delta^2 (\nabla v,\nabla v) - (f,u)-
+\delta(f,v)\\
+&amp;= J(u) + \delta(\nabla u,\nabla v) + \delta^2 (\nabla v,\nabla v)-
+\delta(f,v)
+\end{aligned}
+\]</span></p>
+<p>$$ |_{= 0} =</p>
+<p>$$</p>
+<h3 id="作为一般模型的特殊化">作为一般模型的特殊化</h3>
+<p>作为一般模型的特殊化，我们首先取<span
+class="math inline">\(H=H_0^1(\Omega)\)</span>，<span
+class="math inline">\(M=L_0^2(\Omega)\)</span>，我们需要明确<span
+class="math inline">\(T:H\to M^* \cong
+L_0^2\)</span>的定义，并且验证<span
+class="math inline">\(T^*\)</span>满足一般模型中需要的条件，验证<span
+class="math inline">\(Ker T = V\)</span>。</p>
+<p>基于<span class="math inline">\(J(v)\)</span>的形式，可以证明</p>
+<p><span class="math display">\[
+\nabla J(v) = (\nabla v, \nabla (\cdot))-(f,\cdot) \in H^*
+\]</span></p>
+<p>上式的含义为，<span class="math inline">\(\forall w\in
+H\)</span>，</p>
+<p><span class="math display">\[
+\langle \nabla J(v),w\rangle = (\nabla v, \nabla w)-(f,w) \in R
+\]</span></p>
+<p>定义<span class="math inline">\(T:H \to M^*\)</span>，对于<span
+class="math inline">\(v \in H\)</span>，<span class="math inline">\(Tv
+\in M^*\)</span>满足</p>
+<p><span class="math display">\[
+\langle Tv,q \rangle = (\nabla \cdot v,q), \,\forall q \in M
+\]</span></p>
+<p>显然<span class="math inline">\(V=Ker T\)</span>，定义<span
+class="math inline">\(T^*:M\to H^*\)</span>，对于<span
+class="math inline">\(q\in M\)</span>，<span class="math inline">\(T^* q
+\in H^*\)</span>满足</p>
+<p><span class="math display">\[
+\langle T^*q, v\rangle = -(\nabla q,v), \,\forall v \in H
+\]</span></p>
+<p>验证一下它们确实是对偶的，注意到由于<span class="math inline">\(V
+\subset H_0^1\)</span>分部积分没有边界项，</p>
+<p><span class="math display">\[
+\langle Tv,q\rangle = (\nabla \cdot v,q) = -(v,\nabla q)
+= \langle T^*q,v \rangle
+\]</span></p>
+<p><span
+class="math inline">\(T^*\)</span>需要满足的条件即著名的Poincare不等式，<span
+class="math inline">\(\forall q \in L_0^2\)</span>，</p>
+<p><span class="math display">\[
+\Vert T^*q \Vert_{H^{-1}} =
+\Vert \nabla q \Vert_{H^{-1}}
+\ge C \Vert q \Vert_{L^2}
+\]</span></p>
+<h3 id="基于一般模型得到的结果">基于一般模型得到的结果</h3>
+<p>基于上述一般模型的结果，可知条件极值问题</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in V} J(v) = \min_{v \in Ker T} J(v)
+\]</span></p>
+<p>等价于存在<span class="math inline">\(u\in H_0^2\)</span>，<span
+class="math inline">\(p \in M = L_0^2(\Omega)\)</span>，使得</p>
+<p><span class="math display">\[
+T^* p = \nabla J(u)
+\]</span></p>
+<p>并且<span class="math inline">\(p\)</span>如果存在，也是唯一的。</p>
+<h3 id="等价性证明二">等价性证明二</h3>
+<p>我们把<span class="math inline">\(T^* p = \nabla
+J(u)\)</span>乘以测试函数<span
+class="math inline">\(v\)</span>，得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\langle T^* p,v\rangle &amp;= \langle \nabla J(u),v\rangle \\
+\langle T v,p\rangle &amp;= (\nabla u, \nabla v)-(f,v)\\
+(\nabla\cdot v,p) &amp;= (\nabla u,\nabla v)-(f,v)
+\end{aligned}
+\]</span></p>
+<p>因此我们从条件极值的第三种形式推出了第二种形式</p>
+<p><span class="math display">\[
+(\nabla u,\nabla v) - (p,\nabla \cdot v) = (f,v) \,\,\forall v \in
+H_0^1(\Omega)
+\]</span></p>
+<h2 id="详细证明">详细证明</h2>
+<h3 id="一般模型的证明">一般模型的证明</h3>
+<h3
+id="stokes方程组两种形式的等价性证明">Stokes方程组两种形式的等价性证明</h3>
 ]]></content>
       <categories>
         <category>learn</category>
@@ -337,457 +1003,6 @@ SIMPLEC是它的改进。在工业软件中广泛应用。 ...</p>
       </tags>
   </entry>
   <entry>
-    <title>血流动力学学习</title>
-    <url>/2022/06/20/learn/learn-hemodynamics-ns/</url>
-    <content><![CDATA[<p>主要是血液流动的特点。 <span id="more"></span></p>
-<h2 id="血液流动">血液流动</h2>
-<p>血液是由多种血细胞和血浆(牛顿流体)组成的悬浮液，其中血细胞的尺度约<span
-class="math inline">\(8\mu m\)</span>，而人体的血管尺度从<span
-class="math inline">\(3\mu m\)</span>的毛细血管到<span
-class="math inline">\(3\times 10^5 \mu
-m\)</span>的主动脉血管，范围变化大，因此流动比较复杂。当血管直径大于<span
-class="math inline">\(1
-mm\)</span>时，血液流动可以视作均匀连续的非牛顿流体。当直径小于<span
-class="math inline">\(1
-mm\)</span>时，连续介质假设不成立，血液流动会受到血细胞个体的影响。</p>
-<p>实验表明，在动脉的某些特定区域会出现一些不规则流动的现象，主要位于肺动脉和升主动脉，主要发生于心脏搏动收缩期的最后阶段，它们并不具备统计意义上的性质而能够成为湍流，因此在动脉中的血流通常作为层流加以分析。</p>
-<h2 id="血管">血管</h2>
-<p>对于动脉的血流动力学，我们需要考虑血管壁的性质，动脉管壁是具有弹性的，血液本身是脉动的，因此血流和血管壁组成了非定常的流固耦合系统(fluid-structure
-interaction, FSI)。</p>
-<p>生理状态下，脉动血流引起的血管壁的位移可以达到管径的10%左右。</p>
-<p>血管壁在建模时可以假定为刚性或者弹性，发生病变的血管壁通常会增厚硬化，比正常状态下的弹性更低。研究表明，刚性管的假设对于脉动的流场影响不是十分明显。</p>
-<h2 id="非牛顿流体">非牛顿流体</h2>
-<p>几种典型的用于描述血液的非牛顿流体模型：</p>
-<ul>
-<li>Casson模型</li>
-<li>Bingham模型(典型为牙膏)</li>
-<li>Power-Law模型，包括剪切稠化的膨胀型流体和剪切稀化的伪塑性流体，血液属于剪切稀化的流体。</li>
-<li>Quemada模型</li>
-</ul>
-]]></content>
-      <categories>
-        <category>learn</category>
-      </categories>
-      <tags>
-        <tag>learn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Fortran学习笔记——5.其他</title>
-    <url>/2022/06/20/fortran/fortran-note-5/</url>
-    <content><![CDATA[<p>一些琐碎的小部分，放在最后。</p>
-<span id="more"></span>
-<h2 id="自定义类型">自定义类型</h2>
-<p>Fortran 90支持自定义类型，相当于c语言的结构体。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">type</span> :: person</span><br><span class="line">        <span class="keyword">integer</span> :: age</span><br><span class="line">        <span class="keyword">integer</span> :: height</span><br><span class="line">        <span class="keyword">integer</span> :: weight</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">type</span> person</span><br><span class="line"></span><br><span class="line">    <span class="keyword">type</span>(person) :: a <span class="comment">! 声明a是一个person类型的变量</span></span><br><span class="line">    <span class="comment">! %用于提取结构体的分量</span></span><br><span class="line"></span><br><span class="line">    read(*,*) a%age, a%height, a%weight</span><br><span class="line">    <span class="built_in">write</span>(*,*) a%age, a%height, a%weight</span><br><span class="line"></span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-<h2 id="字符字符串">字符/字符串</h2>
-<p>在前面的基本数据类型的笔记中，我们特意完全忽略了字符和字符串的部分，只是在write语句中使用了字符串常量。
-注：Fortran对于字符串的处理效率比较慢，谨慎使用——数值计算其实也没什么字符串处理的需求。</p>
-<p>与c语言不同，Fortran的字符串不是定义为字符的一维数组，而是进行了单独的实现
-(可能这就是低效率的原因？)</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">character</span> :: c</span><br><span class="line"></span><br><span class="line"><span class="keyword">character</span>(len=<span class="number">20</span>) :: str1</span><br><span class="line"><span class="keyword">character</span>(<span class="number">20</span>) :: str2</span><br><span class="line"><span class="keyword">character</span>*<span class="number">20</span> :: str3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>Fortran只有在字符和字符串的字面值常量中，会区分大小写。可以基于字面值常量进行赋值。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">c = ‘H<span class="string">&#x27;</span></span><br><span class="line"><span class="string">str1 = &quot;hello,world&quot;</span></span><br><span class="line"><span class="string">str2 = &quot;I&#x27;</span><span class="string">&#x27;m fenglielie&quot;</span></span><br></pre></td></tr></table></figure>
-<p>虽然和数组不同，但是字符串也支持类似于数组的切片操作。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">str1(<span class="number">2</span>) = <span class="string">&#x27;o&#x27;</span></span><br><span class="line">str2(<span class="number">1</span>:<span class="number">1</span>) = <span class="string">&quot;Y&quot;</span></span><br></pre></td></tr></table></figure>
-<p>对于两个字符串常量或变量，可以使用//进行直接的拼接。</p>
-<p>对于中间存在空格的字符串，默认write(*,*)输出可能出现问题，因为对字符串的输出遇到空格就结束了；默认read(*,*)输入字符串也会存在问题，因为空格会被视作多个字符串的分隔。</p>
-<h2 id="格式化-io">格式化 IO</h2>
-<p>输入read(*,*)的形式为</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">read(<span class="keyword">unit</span>=<span class="number">5</span>,<span class="keyword">fmt</span>=*)</span><br><span class="line"><span class="comment">! unit 代表输入设备, 键盘的编号为5, 通常键盘为默认输入设备</span></span><br><span class="line"><span class="comment">! unit=5 等价于 unit=* 为默认输入设备</span></span><br><span class="line"><span class="comment">! fmt 代表输入格式, fmt=* 为默认格式</span></span><br></pre></td></tr></table></figure>
-<p>输出write(*,*)的第一个参数指代屏幕输出，第二个参数可以替换为具体格式。下面的部分使用下划线代替空格。</p>
-<p>整数格式化</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Iw[.m]</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出整数，如果不足补空格，如果超过则输出全变成*。(离谱)</span></span><br><span class="line"><span class="comment">! 至少显示m个字符，不足会在首位补0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(I5)&quot;</span>) <span class="number">100</span></span><br><span class="line">__100</span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(I3)&quot;</span>) <span class="number">10000</span></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(I5,3)&quot;</span>) <span class="number">10</span></span><br><span class="line">__010</span><br></pre></td></tr></table></figure>
-<p>实数格式化(浮点数)</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Fw.d</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出浮点数，小数部分占d个字符。</span></span><br><span class="line"><span class="comment">! 小数点也占一位，超过宽度会全部变成*</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(F9.3)&quot;</span>) <span class="number">123.45</span></span><br><span class="line">__123<span class="number">.450</span></span><br></pre></td></tr></table></figure>
-<p>实数格式化(科学计数法)</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Ew.d[Ee]</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出科学计数法，小数部分占d个字符，指数部分占e个字符。</span></span><br><span class="line"><span class="comment">! E也占一位，超过宽度会全部变成*</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(E15.7)&quot;</span>) <span class="number">123.45</span></span><br><span class="line">__0<span class="number">.1234500E+03</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(E9.2E3&quot;</span>) <span class="number">12.34</span></span><br><span class="line">_0<span class="number">.12E002</span></span><br></pre></td></tr></table></figure>
-<p>字符串格式化</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">Aw</span><br><span class="line"><span class="comment">! 以w个字符的固定宽度输出字符串，不足补充空格，多了会直接省略</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(A10)&quot;</span>) <span class="string">&quot;hello&quot;</span></span><br><span class="line">_____hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,<span class="string">&quot;(A3)&quot;</span>) <span class="string">&quot;hello&quot;</span></span><br><span class="line">hel</span><br></pre></td></tr></table></figure>
-<p>其他</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">nX</span><br><span class="line"><span class="comment">! 输出位置右移n格, 或者说输出n个空格</span></span><br><span class="line">/</span><br><span class="line"><span class="comment">! 换行</span></span><br></pre></td></tr></table></figure>
-<p>倾向于不使用格式化输入输出，不然有可能输出全是星号。(真是太离谱了)
-了解一下即可。</p>
-<h2 id="文件读写">文件读写</h2>
-<p>最基本的文件写入例子</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a=<span class="number">2</span></span><br><span class="line">    <span class="keyword">integer</span> :: b=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">    open(<span class="keyword">unit</span>=<span class="number">10</span>,<span class="keyword">file</span>=<span class="string">&#x27;hello.txt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(<span class="number">10</span>,*) <span class="string">&quot;a/b=&quot;</span>, a/b</span><br><span class="line">    <span class="built_in">write</span>(<span class="number">10</span>,*) <span class="string">&quot;a*1.0/b=&quot;</span>, a*<span class="number">1.0</span>/b</span><br><span class="line"></span><br><span class="line">    close(<span class="keyword">file</span>)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-<p>首先通过open命令打开一个hello.txt文件，并且编号记录为10，运行时会在当前目录下的hello.txt文件中写入如下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a/b=           0</span><br><span class="line">a*1.0/b=  0.666666687</span><br></pre></td></tr></table></figure>
-<p>文件读写和c语言类似，有非常多的选项，包括打开方式，二进制文件或文本文件等，略。</p>
-]]></content>
-      <categories>
-        <category>fortran</category>
-      </categories>
-      <tags>
-        <tag>fortran</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Fortran学习笔记——4.数组，指针与数值计算</title>
-    <url>/2022/06/20/fortran/fortran-note-4/</url>
-    <content><![CDATA[<p>在前三篇笔记，学习了Fortran作为一个编程语言，最基本的内容：变量，输入输出，流程控制和程序结构。接下来是Fortran的数组以及基于数组的数值计算，我认为这是Fortran语言最有价值的精华部分，因此特意放在了学习笔记靠后的部分，在学习了基本的语法和子程序等之后。注意，Fortran的字符集不包括中括号[]，因此与c语言的风格不同，Fortran对数组分量的操作全都是使用小括号()的。</p>
-<p>因为这部分内容比较重要，不像前几篇对Fortran
-77的上古语法大部分进行了忽略，这一篇对于Fortran 77的语法也进行介绍。</p>
-<span id="more"></span>
-<h2 id="一维数组">一维数组</h2>
-<p>最基本的一维数组声明如下</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: nums(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: len = <span class="number">20</span></span><br><span class="line"><span class="keyword">real</span> :: datas(len)</span><br></pre></td></tr></table></figure>
-<p>一维数组的类型可以是integer, real, complex,
-logical四种基本类型，(也可以是字符或者自定义类型，暂时不管)一维数组的长度可以是字面值常量，也可以是声明为parameter的整数——和c语言一样，数组的长度需要在编译时确定。(与c/c++语言不同，我们不需要纠结Fortran声明和定义的区别，全部称为声明)</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">nums(<span class="number">1</span>) = <span class="number">0</span></span><br><span class="line">a = <span class="number">2</span></span><br><span class="line">nums(a) = nums(<span class="number">1</span>) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>数组分量的用法如上，数组分量的索引可以是整数常量或者整数变量，编译器不会进行索引的越界检查，越界检查需要程序员自行负责。</p>
-<p>可以使用其他语法进行数组的声明，在Fortran
-77中没有双冒号，而且需要两条命令分别确定数组元素的类型和数组的尺寸。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! 基本的用法</span></span><br><span class="line"><span class="keyword">integer</span> :: a(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是另一种用法</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">dimension</span>(<span class="number">10</span>) :: a</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是Fortran 77 的语法</span></span><br><span class="line"><span class="keyword">integer</span> a</span><br><span class="line"><span class="keyword">dimension</span> a(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="二维数组与高维数组">二维数组与高维数组</h2>
-<p>与一维数组同理，二维数组的定义如下</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! 基本的用法</span></span><br><span class="line"><span class="keyword">real</span> :: a(<span class="number">5</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是另一种用法</span></span><br><span class="line"><span class="keyword">real</span>, <span class="keyword">dimension</span>(<span class="number">5</span>,<span class="number">10</span>) :: a</span><br><span class="line"></span><br><span class="line"><span class="comment">! 这是Fortran 77的语法</span></span><br><span class="line">read a</span><br><span class="line"><span class="keyword">dimension</span> a(<span class="number">10</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>Fortran原生支持最多7维的数组。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> :: a(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">a(<span class="number">1</span>,<span class="number">1</span>) = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p><strong>特别需要注意的是，Fortran的下标从1开始！Fortran对于高维数组在内存中的连续存储方式和c语言是相反的，分别为列优先和行优先。Matlab对数组的处理继承了Fortran的风格，也是下标从1开始，列优先。</strong>
-列优先：只有第一个分量变化的元素在内存中连续排列；
-行优先：只有最后一个分量变化的元素在内存中连续排列。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">! 数据在内存中的连续分布</span></span><br><span class="line"><span class="comment">! a(1,1) =&gt; a(2,1) =&gt; a(3,1) =&gt; a(1,2) =&gt; a(2,2) =&gt; a(3,2)</span></span><br></pre></td></tr></table></figure>
-<h2 id="自定义索引">自定义索引</h2>
-<p>索引默认从1开始，但是也支持显式指定数组的合法索引范围，范围的左右是闭区间。例如</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> a(<span class="number">0</span>:<span class="number">5</span>)</span><br><span class="line"><span class="comment">! 合法元素 a(0) a(1) a(2) a(3) a(4) a(5)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> b(<span class="number">2</span>:<span class="number">3</span>,-<span class="number">1</span>:<span class="number">1</span>) <span class="comment">! 甚至允许负值作为索引</span></span><br><span class="line"><span class="comment">! 合法元素</span></span><br><span class="line"><span class="comment">! b(2,-1) b(2,0) b(2,1)</span></span><br><span class="line"><span class="comment">! b(3,-1) b(3,0) b(3,1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> c(<span class="number">1</span>:<span class="number">5</span>)</span><br><span class="line"><span class="comment">! 等效于基本的 integer c(5) 把从1开始省略</span></span><br><span class="line"><span class="comment">! 合法元素 c(1) c(2) c(3) c(4) c(5)</span></span><br></pre></td></tr></table></figure>
-<h2 id="批量设置初值">批量设置初值</h2>
-<p>Fortran 77使用data命令赋初值，例如</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> a</span><br><span class="line"><span class="keyword">dimension</span> a(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">data</span> a /<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>/</span><br><span class="line"><span class="comment">! a(1)=1 a(2)=2 a(3)=3 a(4)=4 a(5)=5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> i</span><br><span class="line"><span class="keyword">integer</span> b</span><br><span class="line"><span class="keyword">dimension</span> b(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">data</span> (b(i), i=<span class="number">2</span>,<span class="number">4</span>) /<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>/ <span class="comment">! 一种隐式循环语法</span></span><br><span class="line"><span class="comment">! b(2)=10 b(3)=20 b(4)=30</span></span><br></pre></td></tr></table></figure>
-<p>Fortran 90可以抛弃data命令，对隐式循环语法也有更强的支持。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> i</span><br><span class="line"><span class="keyword">integer</span> :: a(<span class="number">5</span>) =(/ (i,i=<span class="number">1</span>,<span class="number">5</span>) /)</span><br><span class="line"><span class="comment">! a(1)=1 a(2)=2 a(3)=3 a(4)=4 a(5)=5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">3</span>) =(/ <span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span> /)</span><br><span class="line"><span class="comment">! b(1)=10 b(2)=20 b(3)=30</span></span><br></pre></td></tr></table></figure>
-<p>这里使用(/ /)结构省略了data命令，直接批量赋初值。</p>
-<p>对数组的所有元素赋同一个初值，有如下的语法糖</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">3</span>) = <span class="number">5</span></span><br><span class="line"><span class="comment">! a(1)=5 a(2)=5 a(3)=5</span></span><br></pre></td></tr></table></figure>
-<h2 id="数组整体运算">数组整体运算</h2>
-<p>Fortran 90
-提供了很多语法糖——原生支持对数组整体进行的运算，相比于c语言更加方便，不需要依赖循环语句实现。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span> :: c(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! 对所有元素都赋值为5</span></span><br><span class="line">a = <span class="number">5</span> <span class="comment">! a(i)=5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 逐个分量操作</span></span><br><span class="line"><span class="comment">! 要求a,b或者a,b,c为尺寸完全相同的数组，自动遍历所有元素</span></span><br><span class="line">a = b <span class="comment">! a(i)=b(i)</span></span><br><span class="line">a = b+c <span class="comment">! a(i)=b(i)+c(i)</span></span><br><span class="line">a = b-c <span class="comment">! a(i)=b(i)-c(i)</span></span><br><span class="line">a = b*c <span class="comment">! a(i)=b(i)*c(i)</span></span><br><span class="line">a = b/c <span class="comment">! a(i)=b(i)/c(i)</span></span><br><span class="line">a = <span class="built_in">sin</span>(b) <span class="comment">! a(i) = sin(b(i)) 内置函数如sin等支持此类操作</span></span><br></pre></td></tr></table></figure>
-<p>以上对于高维数组也是一样的。</p>
-<h2 id="数组部分运算">数组部分运算</h2>
-<p>这也是Fortran
-90之后的语法，和python的numpy等的数组切片操作很类似，或者说numpy的切片继承了Fortran的语法风格。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">integer</span> :: c(<span class="number">10</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">a(<span class="number">3</span>:<span class="number">5</span>)=<span class="number">5</span> <span class="comment">! a(3)=5 a(4)=5 a(5)=5</span></span><br><span class="line">a(<span class="number">3</span>: )=<span class="number">5</span> <span class="comment">! a(3)=...=a(10)=5 可以缺省一侧的下标范围</span></span><br><span class="line">a(<span class="number">3</span>:<span class="number">5</span>)=(/ <span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> /) <span class="comment">! a(3)=3 a(4)=4 a(5)=5 左右必须一样多</span></span><br><span class="line"></span><br><span class="line">a(<span class="number">1</span>:<span class="number">3</span>)=b(<span class="number">4</span>:<span class="number">6</span>) <span class="comment">! a(1)=b(4) a(2)=b(5) a(3)=b(6) 左右必须一样多</span></span><br><span class="line">a(:)=b(<span class="number">11</span>:) <span class="comment">! a(1)=b(11) ... a(10)=b(20)</span></span><br><span class="line"></span><br><span class="line">a(:)=c(:,<span class="number">1</span>) <span class="comment">! a(1)=c(1,1) ... a(10)=c(10,1) 限制c的第二个分量为1对a进行赋值</span></span><br></pre></td></tr></table></figure>
-<p>还可以有更复杂的，使用步长，步长"a : b : c"相当于c语言风格的</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// c&gt;0</span></span><br><span class="line"><span class="keyword">for</span>(i=a;i&lt;=b;i=i+c)&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c&lt;0</span></span><br><span class="line"><span class="keyword">for</span>(i=a;i&gt;=b;i=i+c)&#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<p>示例如下</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="keyword">integer</span> :: b(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">b = a(<span class="number">2</span>:<span class="number">1</span>:-<span class="number">1</span>, <span class="number">3</span>:<span class="number">1</span>:-<span class="number">1</span>)</span><br><span class="line"><span class="comment">! 对于a的前面的维度视作内层循环，多层循环依次赋值</span></span><br><span class="line"><span class="comment">! 对b视作b(:,:)按照内存的列优先顺序依次被赋值</span></span><br><span class="line"><span class="comment">! b(1,1) = a(2,3)</span></span><br><span class="line"><span class="comment">! b(2,1) = a(1,3)</span></span><br><span class="line"><span class="comment">! b(1,2) = a(2,2)</span></span><br><span class="line"><span class="comment">! b(2,2) = a(1,2)</span></span><br><span class="line"><span class="comment">! b(1,3) = a(2,1)</span></span><br><span class="line"><span class="comment">! b(2,3) = a(1,1)</span></span><br></pre></td></tr></table></figure>
-<p>上述针对数组的整体运算和部分运算放在赋值的左侧和右侧均可，相当于隐含的循环展开。write(<em>,</em>)语句也支持。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: a(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment">! 对a赋值，运算</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,*) a</span><br><span class="line"><span class="comment">! 输出a(1,1) a(2,1) a(1,2) a(2,2) a(1,3) a(2,3)与内存顺序一致</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,*) a(<span class="number">1</span>,:)</span><br><span class="line"><span class="comment">! 输出a(1,1) a(1,2) a(1,3)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">write</span>(*,*) a(<span class="number">1</span>,<span class="number">3</span>:<span class="number">1</span>:-<span class="number">1</span>)</span><br><span class="line"><span class="comment">! 输出a(1,3) a(1,2) a(1,1)</span></span><br></pre></td></tr></table></figure>
-<h2 id="动态数组">动态数组</h2>
-<p>Fortran
-77不支持动态数组，数组尺寸必须在编译期间确定，只能在代码中使用足够大的N作为数组尺寸。Fortran
-90开始支持动态数组(可变长数组)，数组尺寸可以在运行期间确定。</p>
-<p>使用allocatable声明一个动态数组</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: a(:) <span class="comment">! 声明一个一维数组a, 尺寸待定</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: b(:,:) <span class="comment">! 声明一个二维数组b, 尺寸待定</span></span><br></pre></td></tr></table></figure>
-<p>在源代码的声明部分不需要明确数组的尺寸，<strong>在源代码的运算部分使用该数组之前，使用allocate命令明确数组尺寸，分配相应的内存。</strong>(相当于c语言的malloc)</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: len</span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: a(:)</span><br><span class="line"><span class="comment">! 也可以写作如下形式</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span>, <span class="keyword">dimension</span>(:) :: a</span><br><span class="line"></span><br><span class="line">read(*,*) len <span class="comment">! 获取动态数组需要的尺寸</span></span><br><span class="line"><span class="built_in">allocate</span>(a(len)) <span class="comment">! 为动态数组分配内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 可以正常使用数组a</span></span><br></pre></td></tr></table></figure>
-<p>和c语言一样，Fortran在运行期间分配内存allocate存在是否成功的问题，以及使用完成后及时释放内存deallocate的问题。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: error <span class="comment">! 事先声明好的整型变量，用来记录标识</span></span><br><span class="line"><span class="keyword">integer</span> :: len1,len2</span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">allocatable</span> :: a(:,:)</span><br><span class="line"></span><br><span class="line">... <span class="comment">! 获取len1,len2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 完整的allocate语句，包含一个标识记录是否成功分配内存</span></span><br><span class="line"><span class="comment">! allocate会通过stat传递给error一个数值</span></span><br><span class="line"><span class="comment">! error == 0 代表成功分配，error /= 0 代表失败</span></span><br><span class="line"><span class="built_in">allocate</span>(a(len1,len2), stat=error)</span><br><span class="line"><span class="keyword">if</span>(error /= <span class="number">0</span>)</span><br><span class="line">    <span class="comment">! 未成功对数组a分配内存</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 也可以使用allocated语句，判断当前动态数组是否成功分配内存，返回一个逻辑值</span></span><br><span class="line"><span class="keyword">if</span>(.not. <span class="built_in">allocated</span>(a))</span><br><span class="line">    <span class="comment">! 未成功对数组a分配内存</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">... <span class="comment">! 使用数组a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 释放内存，此后仍然可以继续allocate与deallocate，相当于重新设置数组尺寸。也可以使用标识</span></span><br><span class="line"><span class="built_in">deallocate</span>(a,stat=error)</span><br><span class="line"><span class="comment">! 或者直接deallocate(a)</span></span><br></pre></td></tr></table></figure>
-<p>固定尺寸的数组和动态数组的本质区别，就像c/c++中的一样：固定尺寸的数组在栈上分配内存，不需要手动释放；动态数组在堆上分配内存，需要手动释放，相比于栈可使用的空间更多。对大规模的数据存储需求，倾向于在主程序中使用动态数组，由主程序负责分配和释放。</p>
-<p>注：之前的笔记遗漏了一部分——显式指定参数，以改变多个参数的匹配顺序。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">subroutine</span></span> fun(x1,x2,x3)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> fun</span><br><span class="line"></span><br><span class="line"><span class="comment">! 使用fun(a,b,c)调用，则默认按照顺序对应</span></span><br><span class="line"><span class="comment">! x1=a x2=b x3=c</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! 可以如下显式改变参数的匹配</span></span><br><span class="line"><span class="comment">! fun(x1=a,x3=b,x2=c)</span></span><br></pre></td></tr></table></figure>
-<h2 id="数组作为参数传递">数组作为参数传递</h2>
-<p>和c语言类似，直接把数组a作为实参传递给子程序subroutine或者函数function等，相当于把第一个元素的内存地址传递过去。
-如果子程序把这个形参定义为整数，则子程序得到的是内存地址对应的整数。此时对整数的修改会导致调用者丢失整个数组，非常危险。
-如果子程序把这个形参定义为数组，则会根据形参数组的尺寸处理实参对应的部分内存，实质还是传地址，因此对分量的修改会反馈给调用者。</p>
-<p>以一个例子说明，主程序</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a(<span class="number">5</span>) = (/ <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> /)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">call</span> sub_num(a) <span class="comment">! 把a第一个元素的地址当作整数传过去</span></span><br><span class="line">    <span class="keyword">call</span> sub_array5(a) <span class="comment">! 把a当作一个尺寸为5的一维数组传过去</span></span><br><span class="line">    <span class="keyword">call</span> sub_array22(a) <span class="comment">! 把a当作一个尺寸为2*2的二维数值传过去</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-<p>三个子程序为</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub_num(a)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a</span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 读出的是a(1)的内存地址</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub_num</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub_array5(a)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a(<span class="number">5</span>)</span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 读出的是a在内存中的全部元素</span></span><br><span class="line">    <span class="comment">! a(1) a(2) a(3) a(4) a(5)</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub_array5</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub_array22(a)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 读出的是a在内存中的前4个元素</span></span><br><span class="line">    <span class="comment">! a(1,1) a(2,1) a(1,2) a(2,2)</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub_array22</span><br></pre></td></tr></table></figure>
-<p>将数组作为参数传递，本质上是把数组变量(也就是连续内存部分的第一个元素的地址)以址传递的形式传过来，而子程序/函数的接收和处理方式，取决于自己对形参的定义：如果视作一个整数则只能访问和修改地址，如果视作数组则会进一步访问到数组中的连续内存部分，依照自己理解的尺寸进行处理。</p>
-<p>通常为了安全，将数组作为参数传递时，也会把尺寸作为若干整数变量一起传递给子程序/函数。</p>
-<h2 id="指针">指针</h2>
-<p>Fortran实际上还有指针pointer，与c语言的指针相比感觉非常鸡肋：</p>
-<ol type="1">
-<li>我们没有用Fortran建立链表之类的动态需求，动态数组完全够用。</li>
-<li>语法比c语言更繁琐而且更弱，需要target形容的变量才能被指针指向，也没有*p这种运算。</li>
-<li>各种Fortran编译器对于指针的实现可能有差异或麻烦，我们倾向于完全避免使用指针。</li>
-</ol>
-<p>Fortran的指针pointer需要配套target使用，target表明变量可以被指针指向，pointer表明这个变量是指针。</p>
-<p>一个指针的简单例子如下</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">target</span> :: a=<span class="number">1</span> <span class="comment">! 声明一个可以被当作目标的整数变量</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">pointer</span> :: p  <span class="comment">! 声明一个可以指向整数的指针</span></span><br><span class="line">    <span class="keyword">logical</span> :: b</span><br><span class="line"></span><br><span class="line">    <span class="comment">! 把指针初始化时赋给null, 可以更安全, 表明这个指针是不可访问的</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">pointer</span> :: p2 =&gt; null()</span><br><span class="line"></span><br><span class="line">    p=&gt;a <span class="comment">! =&gt; 将指针p指向目标变量a，</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">! 可以通过指针直接访问目标变量</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) p <span class="comment">! 1</span></span><br><span class="line"></span><br><span class="line">    a=<span class="number">2</span> <span class="comment">! 对目标变量的修改也会体现在指针访问时</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) p <span class="comment">! 2</span></span><br><span class="line"></span><br><span class="line">    p=<span class="number">3</span> <span class="comment">! 基于指针的修改也会体现在原始变量上</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) a <span class="comment">! 3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">! 可以检查当前的指针是否可以访问</span></span><br><span class="line">    b = <span class="built_in">associated</span>(p)</span><br><span class="line">    <span class="comment">! 可以检查当前的指针是否绑定到当前的目标变量</span></span><br><span class="line">    b = <span class="built_in">associated</span>(p,a)</span><br><span class="line">    <span class="comment">! 可以用nullify命令把指针设置为不可访问的</span></span><br><span class="line">    <span class="built_in">nullify</span>(p)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>fortran</category>
-      </categories>
-      <tags>
-        <tag>fortran</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Fortran学习笔记——3.子程序, 函数与模块</title>
-    <url>/2022/06/20/fortran/fortran-note-3/</url>
-    <content><![CDATA[<p>与c语言只有函数不同，Fortran提供了子程序subroutine，函数function，模块module等多种结构。</p>
-<span id="more"></span>
-<h2 id="子程序subroutine">子程序subroutine</h2>
-<p>首先，回顾之前的HelloWorld <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-其中使用了名称为main的主程序program，一个可执行程序只允许有一个program，为了分离和复用某个功能，可以使用子程序subroutine。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">call</span> hello() <span class="comment">! call 调用子程序</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> hello()</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,subroutine!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> hello</span><br></pre></td></tr></table></figure>
-<p>运行结果 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hello,world!</span><br><span class="line">hello,subroutine!</span><br></pre></td></tr></table></figure></p>
-<p>主程序和子程序的相对位置无关，子程序不需要写在call调用它之前，主程序也不需要写在开头。子程序可以call调用其他子程序，也可以递归调用自身。子程序可以用return语句结束，或者遇到end
-subroutine自动结束。</p>
-<p>子程序拥有绝对独立的变量和运行环境等，与主程序完全隔离，不存在变量覆盖或者重名等问题。因此在子程序中也需要implicit
-none语句。</p>
-<p>当然子程序需要和主程序产生交互，主程序可以传递指定的变量给子程序，形参和实参可以名称各异，注意形参同样需要声明。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: a=<span class="number">1.0</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a=&quot;</span>,a</span><br><span class="line">    <span class="keyword">call</span> hello(a) <span class="comment">! call 调用子程序</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a=&quot;</span>,a</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> hello(b)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: b <span class="comment">! 形参也需要子程序进行声明</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,subroutine!&quot;</span></span><br><span class="line">    b = <span class="number">2.0</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> hello</span><br></pre></td></tr></table></figure>
-<p><strong>注意Fortran传递参数默认使用传址调用，因此对于参数变量，主程序和子程序共享一个内存，修改可以反馈给主程序，这也是子程序存在的意义。</strong>
-运行结果: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hello,world!</span><br><span class="line">a=   1.00000000</span><br><span class="line">hello,subroutine!</span><br><span class="line">a=   2.00000000</span><br></pre></td></tr></table></figure>
-因为默认使用了传址调用，但子程序的实参允许使用字面值常量，如果在子程序中尝试进行了修改，程序会直接崩溃。</p>
-<h3 id="形参属性">形参属性</h3>
-<p>为了明确形参的使用意图，可以在形参声明时指定参数属性，与属性冲突时编译会警告或报错。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>,<span class="keyword">intent</span>(<span class="keyword">in</span>) :: a <span class="comment">! 只读形参，修改会编译报错</span></span><br><span class="line"><span class="keyword">real</span>,<span class="keyword">intent</span>(<span class="keyword">out</span>) :: b <span class="comment">! 只写形参，如果没有语句对变量进行修改，则会编译警告</span></span><br><span class="line"><span class="keyword">real</span>,<span class="keyword">intent</span>(inout) :: c <span class="comment">! 读写形参，默认</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="形参缺省">形参缺省</h3>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">subroutine</span></span> test(a,b)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a</span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">optional</span> :: b <span class="comment">! 可选参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">present</span>(b)) <span class="keyword">then</span></span><br><span class="line">        <span class="comment">! 判断是否给了形参b</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> test</span><br></pre></td></tr></table></figure>
-<p>对于这种特殊情形，在使用前必须要使用interface更具体地描述接口，见下文。</p>
-<h3 id="变量生存周期">变量生存周期</h3>
-<p>通常情况下，子程序结束时变量全部清除，但是在变量声明时使用save可以设置局部静态变量，变量会保留到下一次调用。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>,<span class="keyword">save</span> :: <span class="built_in">count</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-注意：有的编译器可能默认对所有的局部变量都视作局部静态的。</p>
-<h2 id="函数function">函数function</h2>
-<p>与子程序主要有两点不同：函数在主程序内进行使用之前需要声明，函数有一个返回值。似乎subroutine的应用比function更广泛。作为子程序subroutine和函数function的对比，建议在function中不对形参做任何处理。在function中也需要使用implicit
-none。</p>
-<p>第一种，标准形式，返回值和函数同名。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: a=<span class="number">1.0</span>,b=<span class="number">2.0</span></span><br><span class="line">    <span class="keyword">real</span>,<span class="keyword">external</span> :: add</span><br><span class="line">    <span class="comment">! 声明add是一个返回值为real的自定义函数</span></span><br><span class="line">    <span class="comment">! external 可以缺省, 但是建议保留</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span>,a,b</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a+b=&quot;</span>, add(a,b)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span></span> add(a,b)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: add <span class="comment">! 声明本函数的返回值为real, 返回值与函数同名</span></span><br><span class="line">    <span class="keyword">real</span> :: a,b</span><br><span class="line">    add = a+b</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">! return返回可缺省</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-这里external表明是一个自定义函数，类似地可以用关键词intrinsic表明是一个库函数。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>, <span class="keyword">intrinsic</span> :: <span class="built_in">sin</span> <span class="comment">! 声明sin是一个库函数</span></span><br><span class="line"><span class="keyword">real</span>, <span class="keyword">external</span> :: mysin <span class="comment">! 声明mysin是一个自定义函数</span></span><br></pre></td></tr></table></figure></p>
-<p>第二种，函数在定义时直接指出返回值类型。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> <span class="function"><span class="keyword">function</span></span> add(a,b) <span class="comment">! 自动声明本函数的返回值为real</span></span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: a,b</span><br><span class="line">    add = a+b</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>第三种，简短的函数定义，只能在当前区域被使用。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: a=<span class="number">1.0</span>,b=<span class="number">2.0</span></span><br><span class="line">    <span class="keyword">real</span> :: add</span><br><span class="line">    <span class="comment">! 声明add是一个返回值为real的自定义函数</span></span><br><span class="line"></span><br><span class="line">    add(a,b) = a+b</span><br><span class="line">    <span class="comment">! 直接在此处定义add函数</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span>,a,b</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a+b=&quot;</span>, add(a,b)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure></p>
-<p>第四种，在函数内部指明返回值的名称，对于调用方则没有任何影响。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> <span class="function"><span class="keyword">function</span></span> add(a,b) result(ans)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">real</span> :: a,b</span><br><span class="line"></span><br><span class="line">    ans = a+b</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>在递归函数中，必须要把返回值和函数名分开，同时还需要recursive关键词。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: n=<span class="number">5</span>, result</span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">external</span> :: fact</span><br><span class="line"></span><br><span class="line">    result = fact(n)</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;10!=&quot;</span>,result</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">recursive</span> <span class="keyword">integer</span> <span class="function"><span class="keyword">function</span></span> fact(n) result(ans)</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span>,<span class="keyword">intent</span>(<span class="keyword">in</span>) :: n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">        ans = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ans = n * fact(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-第五种，内部函数：为了限制子程序/自定义函数的应用范围，可以使用contains命令把定义直接附在主程序内的最后部分。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">integer</span> :: m=<span class="number">5</span>, result</span><br><span class="line">   <span class="comment">!integer, external :: fact 不再需要前置的函数声明</span></span><br><span class="line"></span><br><span class="line">   result = fact(m)</span><br><span class="line">   <span class="built_in">write</span>(*,*) <span class="string">&quot;10!=&quot;</span>,result</span><br><span class="line"></span><br><span class="line">   <span class="comment">! 直接包含</span></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line">   <span class="keyword">recursive</span> <span class="keyword">integer</span> <span class="function"><span class="keyword">function</span></span> fact(n) result(ans)</span><br><span class="line">      <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">      <span class="keyword">integer</span>,<span class="keyword">intent</span>(<span class="keyword">in</span>) :: n</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(n &lt; <span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">         ans = -<span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">         ans = <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">         ans = n * fact(n-<span class="number">1</span>)</span><br><span class="line">      <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure></p>
-<h2 id="模块module">模块module</h2>
-<p>模块module最基本的用法是封装与共享全局静态变量。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> global</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span>, <span class="keyword">save</span> :: a,b</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> global</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> global <span class="comment">! use语句还需要在implicit none之前</span></span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b = <span class="number">2</span></span><br><span class="line">    <span class="keyword">call</span> sub()</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub()</span><br><span class="line">    <span class="keyword">use</span> global</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) a,b</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> sub</span><br></pre></td></tr></table></figure>
-这里名为global的模块module需要在源文件的开头部分，在use global之前。
-主程序和子程序无须声明变量即可使用，基于save属性(或者common)可以实现更好的全局静态变量的效果。如果不使用save则不能共享变量。</p>
-<p>为了更全面地了解module，必须结合Fortran的面向对象进行，module内部的变量和函数/子程序表现的非常像类的结构。(Fortran甚至还可以进行简单的运算符重载，函数重载和module继承，是为了得到面向对象风格进行的尝试，但可能存在各种麻烦，不去管它们)</p>
-<p>module实例如下： <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> bank</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> :: money <span class="comment">! 声明这是私有的</span></span><br><span class="line">    <span class="comment">! 变量会被module的各个子程序/方法共享</span></span><br><span class="line">    <span class="keyword">public</span> :: LoadMoney, SaveMoney, Report <span class="comment">! 声明这是公开的, 缺省时默认公开</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">integer</span> :: money = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line">    <span class="function"><span class="keyword">subroutine</span></span> LoadMoney(num)</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="keyword">integer</span> :: num</span><br><span class="line">        money = money - num</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">subroutine</span></span> SaveMoney(num)</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="keyword">integer</span> :: num</span><br><span class="line">        money = money + num</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">subroutine</span></span> Report()</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="built_in">write</span>(*,*) <span class="string">&quot;now money=&quot;</span>, money</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> bank</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> bank <span class="comment">! 使用bank这个module</span></span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">call</span> LoadMoney(<span class="number">10</span>) <span class="comment">! 传入常量是有风险的, 如果子程序修改了形参会崩溃，除非确定形参不会被修改</span></span><br><span class="line">    <span class="keyword">call</span> Report()</span><br><span class="line">    <span class="keyword">call</span> SaveMoney(<span class="number">100</span>)</span><br><span class="line">    <span class="keyword">call</span> Report()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">stop</span> <span class="comment">! 强制结束, 可以不写</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure> 运行结果为 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">now money=          90</span><br><span class="line">now money=         190</span><br></pre></td></tr></table></figure></p>
-<p>private和public：需要使用单独的语句强调变量或者子程序/函数是私有还是公开的，默认是public的。</p>
-<p>单行的public/private描述符是针对全局的，除非显式声明为另一种，下文只有c是公开的，对于函数同样适用。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> hello</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">private</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">real</span> :: a</span><br><span class="line">    <span class="keyword">integer</span> :: b</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">real</span> :: c</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> hello</span><br></pre></td></tr></table></figure></p>
-<h3 id="use命令">use命令</h3>
-<p>上述的module还是非常鸡肋的面向对象效果，因为没有实现类和对象的分层，use
-bank就会直接地使用它。module内部use其他模块，但是不建议使用。</p>
-<p>重名变量的改名 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> A</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> A</span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> B</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> B</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> A</span><br><span class="line">    <span class="keyword">use</span> B, bva=&gt;va <span class="comment">! 导入模块B，对B内部的变量va改名为bva使用。</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-如上，模块A和B同时被使用，则产生了va重名的问题，可以改名加以区分。</p>
-<p>变量的限制导入 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> A</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va,vb</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> A</span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> B</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: va,vb,vc</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> B</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> A <span class="comment">! 导入了模块A的全部变量，va，vb</span></span><br><span class="line">    <span class="keyword">use</span> B, <span class="keyword">only</span>: vc <span class="comment">! 只导入B模块的vc变量，B模块的其他变量都不能在此处使用</span></span><br><span class="line">    <span class="comment">! 也可以在限制导入的同时改名</span></span><br><span class="line">    <span class="comment">! use B, only : bvc=&gt;vc</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure> 建议使用下列语法进行安全的use
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> A, <span class="keyword">only</span> Ax=&gt;x</span><br><span class="line"><span class="comment">! 如果还需要别的</span></span><br><span class="line"><span class="keyword">use</span> A, <span class="keyword">only</span> Ay=&gt;y</span><br></pre></td></tr></table></figure></p>
-<h2 id="补充">补充</h2>
-<p>有几种过时的语法，提一句：</p>
-<ol type="1">
-<li>common
-声明变量是全局的，在多个主程序/子程序中都使用common对同一个变量进行声明，则可以共享同一个全局变量。</li>
-<li>data 和 block data 用来批量地赋初值。</li>
-</ol>
-<h2 id="多文件编程">多文件编程</h2>
-<blockquote>
-<p>现代Fortran建议以主程序program和多个module组成。所有的函数function和子程序subroutine应该封装在module中。这样既可以避免同名函数导致的链接错误，更能使编译器在链接时帮忙检查参数列表。</p>
-</blockquote>
-<h3 id="include命令">include命令</h3>
-<p>相当于c语言的include，是简单直接的代码注入，例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! main.f90</span></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">call</span> sub()</span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;sub.f90&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">! sub.f90</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> sub()</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello ,world&quot;</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br></pre></td></tr></table></figure>
-此时不能把main.f90和sub.f90一起编译，否则会产生重复定义的问题，只能对main.f90进行编译，与c语言类似。
-这种include方式一般在Fortran 77中使用，在Fortran
-90之后，建议基于module进行多文件编程。</p>
-<h3 id="module多文件组织">module多文件组织</h3>
-<p>建议除了主程序源文件包含一个program之外，其他单个源文件都由一个module组成，把子程序和函数都封装在module里，上例重写如下，此时两个源文件都需要参与编译。
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! main.f90</span></span><br><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">use</span> hello</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">call</span> sub()</span><br><span class="line">    <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">! sub.f90</span></span><br><span class="line"><span class="keyword">module</span> hello</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line">   <span class="function"><span class="keyword">subroutine</span></span> sub()</span><br><span class="line">      <span class="built_in">write</span>(*,*) <span class="string">&quot;hello ,world&quot;</span></span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">   <span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> hello</span><br></pre></td></tr></table></figure>
-注意，编译会在目录中产生hello.mod文件，这是由hello这个模块产生的二进制文件。</p>
-]]></content>
-      <categories>
-        <category>fortran</category>
-      </categories>
-      <tags>
-        <tag>fortran</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Fortran学习笔记——2.流程控制</title>
-    <url>/2022/06/20/fortran/fortran-note-2/</url>
-    <content><![CDATA[<p>第一部分基本内容包括了变量的声明，输入输出语句，接下来是条件语句和循环语句等运算的流程控制。</p>
-<span id="more"></span>
-<h2 id="if条件语句">if条件语句</h2>
-<p>无需多言，例子即可： <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(a &gt; <span class="number">5</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment">! do 3</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure> 在if后面必须接then，if 和 end if
-构成一个标准的条件结构。支持if结构的嵌套。</p>
-<p>可以使用简单的单行if，不需要end和then。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a&gt;<span class="number">10</span>) b=a</span><br></pre></td></tr></table></figure></p>
-<h3 id="逻辑语句和逻辑运算">逻辑语句和逻辑运算</h3>
-<p>在if语句之后，顺便介绍逻辑类型和运算。
-逻辑类型：.true.，.false.。0被视作false，1被视作true。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">logical</span> var</span><br><span class="line">var = (a&gt;<span class="number">10</span>)</span><br></pre></td></tr></table></figure></p>
-<p>逻辑运算：</p>
-<ul>
-<li>Fortran 77：.EQ.，.NE.，.GT.，.GE.，.LT.，.LE.。</li>
-<li>Fortran 90：==，/=，&gt;，&gt;=，&lt;，&lt;=。
-注意不等号和c语言不同。</li>
-</ul>
-<p>集合运算：优先级比上面的逻辑运算更低，.AND.，.OR.，.NOT.，.EQV.，.NEQV.。</p>
-<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a&gt;=<span class="number">80</span> .and. a&lt;<span class="number">90</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="select语句">select语句</h2>
-<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">case</span>(a)</span><br><span class="line"><span class="keyword">case</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">case</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">case</span>(<span class="number">3</span>:<span class="number">6</span>) <span class="comment">! a=3,4,5</span></span><br><span class="line">    <span class="comment">! do 3</span></span><br><span class="line"><span class="keyword">case</span> <span class="keyword">default</span></span><br><span class="line">    ！ <span class="keyword">do</span> <span class="keyword">default</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">select</span></span><br></pre></td></tr></table></figure>
-相当于c语言的switch，每个分支自带break。select判断的变量a只能是整数，字符或者逻辑变量，不允许实数复数。
-case里面只支持常量，支持语法糖(3:5)，表示在这两个值的闭区间内均可。</p>
-<h2 id="特殊命令">特殊命令</h2>
-<ul>
-<li>pause: 程序暂停，等待用户按下enter键后继续执行。</li>
-<li>stop: 程序直接退出。</li>
-<li>continue: 不大有用，相当于无效语句。</li>
-<li>goto: 强制跳转(垃圾语句)。</li>
-<li>cycle: 在循环中相当于c语言的continue；</li>
-<li>exit: 在循环中相当于c语言的break。</li>
-</ul>
-<h2 id="do循环语句">do循环语句</h2>
-<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> <span class="built_in">count</span>=<span class="number">1</span>,<span class="number">10</span>,<span class="number">2</span></span><br><span class="line">    <span class="comment">! count 从1开始，每次增加2，若&lt;=10继续执行，否则结束循环</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
-相当于c语言的for循环，其中最后的步长可缺省，默认为1，步长可以为负数。
-Fortran 77 更麻烦，它的do循环不使用end
-do而需要指定行号来标记循环块的结束行。 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> <span class="number">12138</span>,counter=<span class="number">1</span>, b, <span class="number">2</span></span><br><span class="line"><span class="number">12138</span> <span class="comment">! do something</span></span><br></pre></td></tr></table></figure>
-行号称作行的标记更合适，不是第几行的含义。</p>
-<h2 id="do-while循环语句">do while循环语句</h2>
-<p>例如 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> <span class="keyword">while</span>(a&lt;<span class="number">10</span>)</span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line">    a = a+<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
-类比到c语言中，不是do-while语句，而是while语句，在第一次进入代码块之前就会进行逻辑判断。</p>
-]]></content>
-      <categories>
-        <category>fortran</category>
-      </categories>
-      <tags>
-        <tag>fortran</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Fortran学习笔记——1.基本内容</title>
-    <url>/2022/06/20/fortran/fortran-note-1/</url>
-    <content><![CDATA[<p>本系列笔记假定读者具有基础的计算机知识，以及c/c++,
-Java等至少一门现代编程语言，只学习Fortran的核心应用——数值计算需要的部分，对于其他的部分比如鸡肋的Fortran面向对象等，直接忽略（c++，Java不香么）。
-我们使用vscode+mingw(gfortran)的编程环境和编译器，环境配置过程见前文。</p>
-<span id="more"></span>
-<h2 id="基本特点">基本特点</h2>
-<ul>
-<li>固定格式
-Fortran：在早期计算机使用Fortran进行科学计算时，需要使用穿孔卡片纸带输入源代码，因此每行的缩进/长度等格式有着极其苛刻的要求，一般全文都使用大写字符，文件名以.FOR，.for或.f为后缀。语法标准为Fortran
-77。如果希望感受20年前的Fortran教程风格，参考<a
-href="http://micro.ustc.edu.cn/Fortran/ZJDing/">USTC
-Fortran教程</a>。</li>
-<li>自由格式
-Fortran：为了适应现代的编程风格，Fortran标准提出了自由格式，没有那些适合打孔纸带的格式要求。一般全文的保留关键词使用小写字符，文件名以.F90、.f90为后缀。<strong>(固定格式就应该彻底留在历史书上，我们当然应该使用自由格式编写Fortran，使用Fortran
-90及以后的现代语法标准)</strong></li>
-</ul>
-<p>Fortran字符集：</p>
-<ul>
-<li>大小写英文字母：A到Z，a到z。</li>
-<li>数字：0到9。</li>
-<li>22个特殊符号：
-<ul>
-<li>+加法，-减法，*乘法，/除法，()小括号。</li>
-<li>=等号，&gt;大于，&lt;小于。</li>
-<li>,英文逗号，.英文句号，:英文冒号，;英文分号，‘单引号，"双引号。</li>
-<li>_下划线，空格，%百分号，&amp;与，$美元符号，?问号，!感叹号。</li>
-</ul></li>
-</ul>
-<p>与c/c++相比，Fortran还有以下值得注意的特点：</p>
-<ul>
-<li>Fortran源代码中不区分大小写，INTEGER和Integer,
-integer是完全一样的效果，变量a和A是同一个变量。为了历史兼容性，不论固定格式还是自由格式都不区分大小写。</li>
-<li>以感叹号!开头的一行视作注释。</li>
-<li>不支持使用"{}"划分代码结构，甚至"{}","[]"都不是合法的Fortran源代码字符；也不要求使用任何的缩进划分代码结构，只是为了方便阅读建议使用。</li>
-<li>每一行结尾不需要以分号;结尾。每一行至多132个字符，如果代码过长需要跨行拼接：在第一行的行尾使用&amp;，第二行的行首使用&amp;进行拼接。(只在一行使用&amp;也是可以的)</li>
-<li>空格除了方便阅读以外没有任何意义，甚至可以用空格分隔保留关键词。</li>
-<li>变量名可以含有字母，数字和下划线，但是只允许字母开头，不允许下划线开头。</li>
-</ul>
-<h3 id="禁止变量的默认类型">禁止变量的默认类型</h3>
-<p>与c类似，Fortran使用变量之前通常用需要声明变量的类型。但<strong>为了兼容打孔纸带时代的语法糖，Fortran还可以不声明直接使用变量</strong>——它居然自己通过变量名的首字母推断变量类型：首字母为I,J,K,L,M,N的变量视作整数，其他视作浮点数。</p>
-<p>这简直离了大谱，为了避免可能的bug，建议在源代码的开头使用下面的语句禁止所有的默认类型的自动推断。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">implicit</span> <span class="keyword">none</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>与c/c++,Java,python等现代的计算机语言相比，Fortran的辈分实在是太老了：从1957年开始，Fortran的诞生标志着计算机从汇编进入了高级语言时代。此后也陆续涌现了一些高级语言，但同时代的只有Fortran语言活到了现在，c语言直到1972年才诞生。
-Fortran为了完全兼容历史上的固定格式语法，保留了很多奇怪的语法糖和规定，包括全局乱用的goto语句，以及上面的默认类型，这些当然都是我们难以容忍的，可能会导致一些难以理解的bug。因此我们选择尽可能地避免奇怪的语法，虽然它们仍然有效。</p>
-</blockquote>
-<h3 id="数据类型与运算符">数据类型与运算符</h3>
-<blockquote>
-<p>Fortran其实就是Formula
-Translation的缩写，因此从数学表达式转换为Fortran语句是非常方便直观的，这可能也是Fortran活到现在的原因之一吧。</p>
-</blockquote>
-<p>基本数据类型</p>
-<ol type="1">
-<li>整数——integer
-包括短整数——对应c语言的short，长整数——对应c语言的int。默认都是有符号的。和c语言不同，我们需要明确指定整数采用几个字节：2bytes，4bytes。</li>
-<li>实数，浮点数——real
-包括单精度——对应c语言的float，双精度——对应c语言的double。和c语言不同，我们需要明确指定实数采用几个字节：4bytes，8bytes。</li>
-<li>复数——complex
-a+bi其实就是一个实数对(a,b)，也分为单精度和双精度。Fortran直接在内置数据类型中就提供了复数，而c/c++实现复数需要进一步的封装。</li>
-<li>字符——character；</li>
-<li>逻辑判断——logical：支持.true.和.false.。</li>
-</ol>
-<p>数学运算符：</p>
-<ol type="1">
-<li>+，加法，-，减法</li>
-<li>*，乘法，/，除法</li>
-<li>**乘方</li>
-<li>() 括号，改变优先级</li>
-</ol>
-<p>注意不支持+=之类的语法糖。
-和c语言一样，整数之间的除法也有自动取整的问题。还需要注意类型之间可能的显式转换或者隐式转换。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a=<span class="number">2</span></span><br><span class="line">    <span class="keyword">integer</span> :: b=<span class="number">3</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a/b=&quot;</span>, a/b</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a*1.0/b=&quot;</span>, a*<span class="number">1.0</span>/b</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-<h2 id="helloworld">HelloWorld</h2>
-<p>和c语言从main函数执行一样，Fortran也有固定的主程序，Helloworld程序如下：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-<p>这里main是我们给program起的名称，也可以是其他名称，Fortran程序只需要有唯一的program并从这里开始执行，在end处结束。implicit命令必须在program之后的第一行。</p>
-<h2 id="hello-io">Hello IO</h2>
-<p>最基本的输入输出的例子如下：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;please input a:&quot;</span></span><br><span class="line">    read(*,*) a</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a=&quot;</span>,a</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
-<p>运行效果为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> please input a:</span><br><span class="line">8</span><br><span class="line"> a=           8</span><br></pre></td></tr></table></figure>
-<p>write是标准的输出语句，read是标准的输入语句。
-其中的(*,*)：第一个*指的是默认的输入/输出设备，第二个*是默认的输入/输出格式，可以改成其他的参数，先不管这些细节，(*,*)将就着总是可以用的。
-print语句也可以用来输出，但是局限于向屏幕输出，建议使用write完全替代。</p>
-<h2 id="变量声明">变量声明</h2>
-<p>与c语言不同，Fortran对于变量声明的位置要求严格，只能在程序代码的可执行部分之前，一旦开始执行输入输出或者运算就不能再进行变量声明，报编译错误。</p>
-<p>基本数据类型的声明，可以用kind明确指定变量的字节数确保跨平台性，也可以不使用kind使用默认的字节数。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>(<span class="keyword">kind</span>=<span class="number">2</span>) :: a1</span><br><span class="line"><span class="keyword">integer</span>(<span class="number">4</span>) :: a2 <span class="comment">! 也代表kind=4</span></span><br><span class="line"><span class="keyword">real</span>*<span class="number">2</span> :: b1 <span class="comment">! 也代表kind=2</span></span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: b2, b3 <span class="comment">! 可以同时声明多个变量</span></span><br></pre></td></tr></table></figure>
-<p>双冒号::表示变量的声明和描述已经完成，因为下文允许较复杂的声明描述。
-对于字面值常量可以在下划线后指定对应的kind。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">a1 = <span class="number">1.0_4</span> <span class="comment">! 确保是单精度浮点数</span></span><br><span class="line">ab = <span class="number">1.0_8</span> <span class="comment">! 确保是双精度浮点数</span></span><br></pre></td></tr></table></figure>
-<p>可以在声明时定义变量的初值，此时必须加上双冒号::。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: a=<span class="number">4</span></span><br><span class="line"><span class="keyword">complex</span>(<span class="keyword">kind</span>=<span class="number">4</span>) :: c=(<span class="number">1.0</span>,<span class="number">2.0</span>)</span><br></pre></td></tr></table></figure>
-<p>Fortran 77的语法还需要特制的Data命令才能批量地定义初值。</p>
-<p>可以在声明时对变量赋值并且定义为常量，视作声明内容的一部分，也可以直接写在声明的语句中。对常量进行的修改会导致编译报错。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! type 1</span></span><br><span class="line"><span class="keyword">real</span> pi</span><br><span class="line"><span class="keyword">parameter</span>(pi=<span class="number">3.1415926</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">! type 2</span></span><br><span class="line"><span class="keyword">real</span>,<span class="keyword">parameter</span> :: pi=<span class="number">3.1415926</span> <span class="comment">! 此时必须使用::表示声明和描述已完成</span></span><br></pre></td></tr></table></figure>
-<p>可以让两个同类型变量共享一个内存空间，可以视作别名，用于强调变量的具体含义或者简写某个数组的重要分量(读写会更快)，也可以用于共享的临时变量命名，节约内存(没意义，不缺这点内存)。</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">integer</span> a,b</span><br><span class="line"><span class="keyword">equivalence</span>(a,b)</span><br></pre></td></tr></table></figure>
-<h2 id="类型转换">类型转换</h2>
-<p>不同基本类型的变量之间支持类型转换，显式转换例如：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span> :: a1,a2</span><br><span class="line"><span class="keyword">integer</span> :: b=<span class="number">1</span>,c=<span class="number">2</span></span><br><span class="line"></span><br><span class="line">a1 = b/c <span class="comment">! 0</span></span><br><span class="line">a2 = <span class="keyword">real</span>(b)/<span class="keyword">real</span>(c) <span class="comment">! 0.5</span></span><br></pre></td></tr></table></figure>
-<p>Fortran也支持自动的隐式转换，与c语言基本相同。不过这种隐式转换似乎只主动地发生在运算表达式中；在赋值时，1和1.0是不同的，把1赋给一个实数可能有大问题！</p>
-<h2 id="预处理">预处理</h2>
-<p>Fortran标准语法中，不包含预处理的部分，但是实际上Fortran可以使用#ifdef,
-#define
-等与c语言完全相同的基本宏定义，并且可以调用c语言的预处理器进行处理。</p>
-]]></content>
-      <categories>
-        <category>fortran</category>
-      </categories>
-      <tags>
-        <tag>fortran</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>加密测试博客</title>
-    <url>/2022/06/19/test/test-encrypt-blog/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="e2581393a492f15eca9ebd6a714a755ead8cf6c23c52d78a8204c9e2dd3da0d0">1b693c4938223286468132b2f7068bf6eeb3a4c33651624a93cee180f807df59968100ccd211fe0508eceb67acc624765ee91f6d90f48d1542b1f84cc2e5715418b81ef0a6778681b070ddaf38d9007af4c92479becb117fb6f7c4cd286c03d9fcda7a7ea6a5467ed28655647eb20ed7a4cb6232e6b01a16ecc556972b93a58fb60850267bf876cdbfdfcf3b2656237d96166ded288dd61f0887ae3d757d8ae1f51ab80ba2456a43c156a31a6e3f3ce5dea1b93aa4b6da0d070ba4c004ca30731b45466327b53f60eae6881c301d79cc8d1588c36161bcdb4e1ee226ab32fc8630708bc5b6d9f06f074c7123239e81b9929fa0b6df2db7450b34fe4e984524eae0def8005c094effade981c01f4f72736a4915d42cf0c9742f79ac0fa98d63f75e1ba334f4d2d41b56a4b7b28c14c96e56b0912f76cf8fa0b7f40c6c7bbb626f70b70ac89a91e06daa9ea9b669a0481b4d197cb1dd8005e5df1c221ea788dfde6a19bc7ea042c52f594b75b1bb29bc1075be973a0e99a2d4745e7210a66054c35a40482cc57cdb63bc382ef0aef826bca1d0d392e74b10c700a3d87c16d9a8ab0ad8fb2ed261a0594c818f056fa737b243732ce5540948ed4b4041759cd0db5c07c56ee9515d3ff927d8b0d2a1cdeb76986c24dad16f0334c86bb61b22413ad5b3eb7edad911bd9b79c7c4c232f109d473ffdec4ef24b8b3700cab2e4ca1871a9e3a5fdf170c159c12e5ede82ef9e5b69e2a463f3fe7b36f099c2659758b91039eeff1a25bfb7184ae2476ae06eee1b44a9b5b87725750e35113c5592247017b7e14a3506b885522cb2942b98449031ae2ad8815dae72aa542acee1d1c8f8cd143e9d435e759b2369c2eddf6d52b29674766da311a05bb36b4ad02313093e3c519e218d95a608ca0a5140af0dcb78b35416661e7a6f56cb07ed6233bac66408484e47bdfa47fb07e6dcbbbf204c68667a01fce0758836c8e51e3b623d62c47295905b56deda846d364028a26fc4ae474255170958f72da8a404363cb8e73b48105fd8bfde97fca2f1d0df8801d09175436f3426615d93f6b3b3355980e6d378b3ec94b529b9bb1cd426adfc84df9aa0d9b324c39459663907d5fb1981d61a56491f66ae760958efa38be9ec8e0d570475bc5ecdb707f929919ae7f8308ce1138eff2682474f123963f67df8eaf59149aef775da0d227f234133fe1dcf510c71679db696140e825c637c8a0d77f7cd33e8d6350a417fd6ed9979a7d4e0c1767e108eb208aae91d3d22332929fad6f0c71ef279127c77314dc9e92bfe037a72dd464f260905b74ec178c8c228bc7259de85c072a685464a1935210fd3b5e6de8e2e1b79d86784ea6ae05d9ba5ece052f9e797982865f22d9b0a583306ffca4633e533892b46441b3e4ed0c4b74f7cbe978145f213b018402aefedc6aa8eeb583933d32c2b37968e735c23b673130af0e40db8565feaa8be27365be1bb1979bbc2ac37f4c1de8cb7bc1724142e849425006c3b801baddd62d791522081537ed36871a5ab00674a6c81d07cfd4961adf20cc45c2b3e5da8bef5e60ac62f56ebb05646ba1f31efc846e6e5b71e8b0fb7b9fe819916dd232fa83158894744da479c1f8e5918ce8f52807a5686681baa95d5b3dc26bb29ce22bddf3110255f1e0880a2c0cc783776f8316562b35034fe11e6fe726cfc51f22c01fcf84d88499b807ddafb0255da156ffef174f9c86b31d24c49741adb796b9edcb6fc30dcebde20c149f4461e46928d0f478513ff220f7f0875633e45fae11dd9ea1bd866053bb869c25971e1c7355662a9100ae95f05c2bb083a8f75c746ad7494cb24420dbfffa4c3e9321d3fd4e36214bb8d0e0fe506ebfe1be08f83f6fbaa10e5769f984cb186aed782bfe89326829b759718cf376f295d363173942dbc8b9eb237a2f8ace2cd475d5d508d9f3dd3f4c048f4cbb741b9a7d0ac07f40e0c2547ab85d1e703610cfad</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>测试博客</title>
     <url>/2022/06/19/test/test-blog/</url>
     <content><![CDATA[<p>这是用于测试hexo对markdown支持效果的博客。</p>
@@ -928,38 +1143,22 @@ href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
       </tags>
   </entry>
   <entry>
-    <title>Fenglielie</title>
-    <url>/2022/06/18/fenglielie/</url>
-    <content><![CDATA[<p>Welcome to Fenglielie's blog.</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/06/18/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+    <title>加密测试博客</title>
+    <url>/2022/06/19/test/test-encrypt-blog/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="e2581393a492f15eca9ebd6a714a755ead8cf6c23c52d78a8204c9e2dd3da0d0">1b693c4938223286468132b2f7068bf6eeb3a4c33651624a93cee180f807df59968100ccd211fe0508eceb67acc624765ee91f6d90f48d1542b1f84cc2e5715418b81ef0a6778681b070ddaf38d9007af4c92479becb117fb6f7c4cd286c03d9fcda7a7ea6a5467ed28655647eb20ed7a4cb6232e6b01a16ecc556972b93a58fb60850267bf876cdbfdfcf3b2656237d96166ded288dd61f0887ae3d757d8ae1f51ab80ba2456a43c156a31a6e3f3ce5dea1b93aa4b6da0d070ba4c004ca30731b45466327b53f60eae6881c301d79cc8d1588c36161bcdb4e1ee226ab32fc8630708bc5b6d9f06f074c7123239e81b9929fa0b6df2db7450b34fe4e984524eae0def8005c094effade981c01f4f72736a4915d42cf0c9742f79ac0fa98d63f75e1ba334f4d2d41b56a4b7b28c14c96e56b0912f76cf8fa0b7f40c6c7bbb626f70b70ac89a91e06daa9ea9b669a0481b4d197cb1dd8005e5df1c221ea788dfde6a19bc7ea042c52f594b75b1bb29bc1075be973a0e99a2d4745e7210a66054c35a40482cc57cdb63bc382ef0aef826bca1d0d392e74b10c700a3d87c16d9a8ab0ad8fb2ed261a0594c818f056fa737b243732ce5540948ed4b4041759cd0db5c07c56ee9515d3ff927d8b0d2a1cdeb76986c24dad16f0334c86bb61b22413ad5b3eb7edad911bd9b79c7c4c232f109d473ffdec4ef24b8b3700cab2e4ca1871a9e3a5fdf170c159c12e5ede82ef9e5b69e2a463f3fe7b36f099c2659758b91039eeff1a25bfb7184ae2476ae06eee1b44a9b5b87725750e35113c5592247017b7e14a3506b885522cb2942b98449031ae2ad8815dae72aa542acee1d1c8f8cd143e9d435e759b2369c2eddf6d52b29674766da311a05bb36b4ad02313093e3c519e218d95a608ca0a5140af0dcb78b35416661e7a6f56cb07ed6233bac66408484e47bdfa47fb07e6dcbbbf204c68667a01fce0758836c8e51e3b623d62c47295905b56deda846d364028a26fc4ae474255170958f72da8a404363cb8e73b48105fd8bfde97fca2f1d0df8801d09175436f3426615d93f6b3b3355980e6d378b3ec94b529b9bb1cd426adfc84df9aa0d9b324c39459663907d5fb1981d61a56491f66ae760958efa38be9ec8e0d570475bc5ecdb707f929919ae7f8308ce1138eff2682474f123963f67df8eaf59149aef775da0d227f234133fe1dcf510c71679db696140e825c637c8a0d77f7cd33e8d6350a417fd6ed9979a7d4e0c1767e108eb208aae91d3d22332929fad6f0c71ef279127c77314dc9e92bfe037a72dd464f260905b74ec178c8c228bc7259de85c072a685464a1935210fd3b5e6de8e2e1b79d86784ea6ae05d9ba5ece052f9e797982865f22d9b0a583306ffca4633e533892b46441b3e4ed0c4b74f7cbe978145f213b018402aefedc6aa8eeb583933d32c2b37968e735c23b673130af0e40db8565feaa8be27365be1bb1979bbc2ac37f4c1de8cb7bc1724142e849425006c3b801baddd62d791522081537ed36871a5ab00674a6c81d07cfd4961adf20cc45c2b3e5da8bef5e60ac62f56ebb05646ba1f31efc846e6e5b71e8b0fb7b9fe819916dd232fa83158894744da479c1f8e5918ce8f52807a5686681baa95d5b3dc26bb29ce22bddf3110255f1e0880a2c0cc783776f8316562b35034fe11e6fe726cfc51f22c01fcf84d88499b807ddafb0255da156ffef174f9c86b31d24c49741adb796b9edcb6fc30dcebde20c149f4461e46928d0f478513ff220f7f0875633e45fae11dd9ea1bd866053bb869c25971e1c7355662a9100ae95f05c2bb083a8f75c746ad7494cb24420dbfffa4c3e9321d3fd4e36214bb8d0e0fe506ebfe1be08f83f6fbaa10e5769f984cb186aed782bfe89326829b759718cf376f295d363173942dbc8b9eb237a2f8ace2cd475d5d508d9f3dd3f4c048f4cbb741b9a7d0ac07f40e0c2547ab85d1e703610cfad</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
   </entry>
 </search>

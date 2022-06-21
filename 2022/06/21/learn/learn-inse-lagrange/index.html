@@ -29,7 +29,7 @@
 <meta property="og:description" content="为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-21T07:21:36.000Z">
-<meta property="article:modified_time" content="2022-06-21T09:28:56.636Z">
+<meta property="article:modified_time" content="2022-06-21T14:34:07.270Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="learn">
 <meta name="twitter:card" content="summary">
@@ -148,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrange%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Lagrange乘子法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E9%99%90%E7%BB%B4%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">2.1.</span> <span class="nav-text">有限维的例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stokes%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">Stokes方程组</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrange%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Lagrange乘子法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">例一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">例二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">一般模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stokes%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">Stokes方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">三种形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%B8%80"><span class="nav-number">4.2.</span> <span class="nav-text">等价性证明一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E4%B8%80%E8%88%AC%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%89%B9%E6%AE%8A%E5%8C%96"><span class="nav-number">4.3.</span> <span class="nav-text">作为一般模型的特殊化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E4%B8%80%E8%88%AC%E6%A8%A1%E5%9E%8B%E5%BE%97%E5%88%B0%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="nav-number">4.4.</span> <span class="nav-text">基于一般模型得到的结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%BA%8C"><span class="nav-number">4.5.</span> <span class="nav-text">等价性证明二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E8%AF%81%E6%98%8E"><span class="nav-number">5.</span> <span class="nav-text">详细证明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">5.1.</span> <span class="nav-text">一般模型的证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stokes%E6%96%B9%E7%A8%8B%E7%BB%84%E4%B8%A4%E7%A7%8D%E5%BD%A2%E5%BC%8F%E7%9A%84%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E"><span class="nav-number">5.2.</span> <span class="nav-text">Stokes方程组两种形式的等价性证明</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -256,7 +256,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-21 15:21:36 / Modified: 17:28:56" itemprop="dateCreated datePublished" datetime="2022-06-21T15:21:36+08:00">2022-06-21</time>
+      <time title="Created: 2022-06-21 15:21:36 / Modified: 22:34:07" itemprop="dateCreated datePublished" datetime="2022-06-21T15:21:36+08:00">2022-06-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,14 +275,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>1.6k</span>
+      <span>4.9k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>8 mins.</span>
     </span>
 </div>
 
@@ -300,8 +300,8 @@
 <p><span class="math display">\[
 \left\{
 \begin{aligned}
-\max f(\mathbf{x})\\
-s.t. g(\mathbf{x})=0
+&amp;\max f(\mathbf{x})\\
+&amp;s.t. g(\mathbf{x})=0
 \end{aligned}
 \right.
 \]</span></p>
@@ -315,11 +315,13 @@ L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda \,g(\mathbf{x})
 <strong>必要条件</strong> 为 <span class="math inline">\(\mathbf{x},
 \lambda\)</span> 满足如下方程组</p>
 <p><span class="math display">\[
+\left\{
 \begin{aligned}
 \nabla_{\mathbf{x}}L(\mathbf{x},\lambda) &amp;= \nabla f - \lambda
 \nabla g = 0\\
 \nabla_{\lambda} L(\mathbf{x},\lambda) &amp;= g(\mathbf{x}) = 0
 \end{aligned}
+\right.
 \]</span></p>
 <p>这只是必要条件，解出的 <span
 class="math inline">\(\mathbf{x}\)</span>
@@ -327,7 +329,8 @@ class="math inline">\(\mathbf{x}\)</span>
 <p>几何意义：如图所示，<span
 class="math inline">\(w=f(\mathbf{x})=f(x,y)\)</span>等值线如下图，<span
 class="math inline">\(g(\mathbf{x})=g(x,y)=0\)</span>
-限制子空间为一个圆。</p>
+限制子空间为一个圆，<span
+class="math inline">\(P\)</span>点是一个满足的解，但方程组的解可能不唯一。</p>
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png" /></p>
 <h2 id="基本概念">基本概念</h2>
 <p>在讨论更一般的问题时，我们需要引入相关的概念，为了简化记号不再使用黑体强调矢量。
@@ -363,7 +366,7 @@ class="math inline">\(K^o\)</span>内需要满足的方程组， <span
 class="math display">\[
 J(u) = \min_{v \in K} J(v) \iff \nabla J(u) \in K^o
 \]</span></p>
-<h3 id="有限维的例子">有限维的例子</h3>
+<h3 id="例一">例一</h3>
 <p>对于Hilbert空间<span
 class="math inline">\(H\)</span>，取一组单位正交向量<span
 class="math inline">\(a_1,a_2,\cdots,a_M\)</span>，张成子空间<span
@@ -380,11 +383,87 @@ class="math inline">\(u \in V\)</span>使得</p>
 J(u) = \min_{v \in V} J(v)
 \]</span></p>
 <p>其中<span
-class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前的命题，条件极值问题转化为了</p>
-<p>$$</p>
-<p>$$</p>
+class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前的命题，条件极值问题转化为了：存在系数<span
+class="math inline">\(\{\lambda_i\}_{i=1}^M\)</span>，使得</p>
+<p><span class="math display">\[
+\begin{aligned}
+V^{\perp} \in
+\nabla J(u) &amp;= \sum_{i=1}^M \lambda_i a_i
+\end{aligned}
+\]</span></p>
+<h3 id="例二">例二</h3>
+<p>对于对称正定方阵<span class="math inline">\(A \in R^{N\times
+N}\)</span>，<span class="math inline">\(b \in R^N\)</span>，列向量<span
+class="math inline">\(b \in R^N\)</span>，矩阵<span
+class="math inline">\(C \in R^{M\times N}\)</span>是满秩的，<span
+class="math inline">\(M &lt; N\)</span>。考虑如下最优化问题：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\min_{x \in Ker C} J(x)
+\end{aligned}
+\]</span></p>
+<p>其中<span
+class="math inline">\(J(x)=\frac12(x,Ax)-(b,x)\)</span>，<span
+class="math inline">\(Ker C = \{x| C x = 0\}\)</span>。
+其实例二是例一的特殊情形，取<span
+class="math inline">\(H=R^N\)</span>，<span
+class="math inline">\(C=[a_1,\cdots,a_M]^T\)</span>。因此有</p>
+<p><span class="math display">\[
+\nabla J(u) = \sum_{i=1}^M \lambda_i a_i
+\]</span></p>
+<p>对于上述具体的<span class="math inline">\(J(u)\)</span>，有<span
+class="math inline">\(\nabla J(u) = A x-b\)</span>，因此</p>
+<p><span class="math display">\[
+Ax-b = \sum_{i=1}^M \lambda_i a_i = C^T \Lambda
+\]</span></p>
+<p>其中<span class="math inline">\(\Lambda =
+[\lambda_1,\cdots,\lambda_M]^T\)</span>即为拉格朗日乘子。从而问题变成下式，这里左边的方阵是满秩的，存在唯一解。</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+A &amp; -C^T\\
+C &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x\\
+\Lambda
+\end{bmatrix}
+=
+\begin{bmatrix}
+b\\
+0
+\end{bmatrix}
+\]</span></p>
+<p>拉格朗日乘子<span
+class="math inline">\(\Lambda\)</span>起到了一个余量的作用。</p>
+<h2 id="一般模型">一般模型</h2>
+<p>对于两个Hilbert空间<span class="math inline">\(H,M\)</span>，记<span
+class="math inline">\(T:H\to M^*\)</span>为一个有界线性算子，<span
+class="math inline">\(T^*:M\to
+H^*\)</span>为它的对偶算子，即对于任意<span class="math inline">\(u\in
+H,q\in M\)</span>下式都成立</p>
+<p><span class="math display">\[
+\langle Tu,q\rangle = \langle T^* q,u\rangle
+\]</span></p>
+<p>假设算子<span class="math inline">\(T\)</span>满足条件：存在<span
+class="math inline">\(C &gt; 0\)</span>使得</p>
+<p><span class="math display">\[
+\Vert T^* q\Vert_{H^*} \ge C \Vert q \Vert_M, \forall q \in M
+\]</span></p>
+<p>那么，对于下凸的Frechet可微的泛函<span class="math inline">\(J:H\to
+R\)</span>，最优化问题</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in Ker T} J(v)
+\]</span></p>
+<p>存在解<span class="math inline">\(u \in Ker T\)</span>等价于存在<span
+class="math inline">\(p \in M\)</span>使得</p>
+<p><span class="math display">\[
+T^* p = \nabla J(u)
+\]</span></p>
+<p>并且如果<span class="math inline">\(p\)</span>存在，则<span
+class="math inline">\(p\)</span>也是唯一的。我们把证明留到最后。</p>
 <h2 id="stokes方程组">Stokes方程组</h2>
-<p>不可压NS方程组含有时间项不易处理，因此考虑与时间无关的Stokes方程组</p>
+<h3 id="三种形式">三种形式</h3>
+<p>不可压NS方程组含有时间项不易处理，因此考虑与时间无关的Stokes方程组(第一种形式)</p>
 <p><span class="math display">\[
 \begin{aligned}
 -\Delta u + \nabla p &amp;= f\\
@@ -392,6 +471,126 @@ class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前
 u|_{\partial \Omega} &amp;= 0
 \end{aligned}
 \]</span></p>
+<p>其中<span
+class="math inline">\(\Omega\)</span>是有界区域，我们定义如下空间</p>
+<p><span class="math display">\[
+\begin{aligned}
+V &amp;= \{v \in H_0^1(\Omega)| \nabla \cdot v = 0\}\\
+L_0^2(\Omega) &amp;= \{q \in L^2(\Omega)| \int_{\Omega} q = 0\}
+\end{aligned}
+\]</span></p>
+<p>将Stokes方程组转化为第二种形式：寻找<span class="math inline">\(u \in
+V\)</span>，<span class="math inline">\(p \in L^2_0\)</span>使得</p>
+<p><span class="math display">\[
+(\nabla u,\nabla v) - (p,\nabla \cdot v) = (f,v) \, \forall v \in
+H_0^1(\Omega)
+\]</span></p>
+<p>并且我们断言Stokes方程组有第三种形式：寻找<span
+class="math inline">\(u \in V\)</span>取到<span
+class="math inline">\(J(u)\)</span>的条件极值，</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in V} J(v)
+\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[
+J(v)=\frac12 (\nabla v,\nabla v)-(f,v)
+\]</span></p>
+<p>注意到这个泛函<span class="math inline">\(J(v)\)</span>不含有<span
+class="math inline">\(p\)</span>，我们希望证明<span
+class="math inline">\(p\)</span>作为这个问题的拉格朗日乘子而出现。</p>
+<h3 id="等价性证明一">等价性证明一</h3>
+<p>我们首先证明第二种形式可以推出第三种形式，(第三种形式推出第二种形式的证明留到最后)</p>
+<p>如果<span
+class="math inline">\(u,p\)</span>满足第二种形式的方程，则任取增量<span
+class="math inline">\(v \in V\)</span>，<span
+class="math inline">\(\delta&gt;0\)</span>，定义<span
+class="math inline">\(g(\delta)=J(u+\delta v)\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+g(\delta)=J(u+\delta v) &amp;= \frac12(\nabla u,\nabla u) +
+\delta(\nabla u,\nabla v) + \delta^2 (\nabla v,\nabla v) - (f,u)-
+\delta(f,v)\\
+&amp;= J(u) + \delta(\nabla u,\nabla v) + \delta^2 (\nabla v,\nabla v)-
+\delta(f,v)
+\end{aligned}
+\]</span></p>
+<p>$$ |_{= 0} =</p>
+<p>$$</p>
+<h3 id="作为一般模型的特殊化">作为一般模型的特殊化</h3>
+<p>作为一般模型的特殊化，我们首先取<span
+class="math inline">\(H=H_0^1(\Omega)\)</span>，<span
+class="math inline">\(M=L_0^2(\Omega)\)</span>，我们需要明确<span
+class="math inline">\(T:H\to M^* \cong
+L_0^2\)</span>的定义，并且验证<span
+class="math inline">\(T^*\)</span>满足一般模型中需要的条件，验证<span
+class="math inline">\(Ker T = V\)</span>。</p>
+<p>基于<span class="math inline">\(J(v)\)</span>的形式，可以证明</p>
+<p><span class="math display">\[
+\nabla J(v) = (\nabla v, \nabla (\cdot))-(f,\cdot) \in H^*
+\]</span></p>
+<p>上式的含义为，<span class="math inline">\(\forall w\in
+H\)</span>，</p>
+<p><span class="math display">\[
+\langle \nabla J(v),w\rangle = (\nabla v, \nabla w)-(f,w) \in R
+\]</span></p>
+<p>定义<span class="math inline">\(T:H \to M^*\)</span>，对于<span
+class="math inline">\(v \in H\)</span>，<span class="math inline">\(Tv
+\in M^*\)</span>满足</p>
+<p><span class="math display">\[
+\langle Tv,q \rangle = (\nabla \cdot v,q), \,\forall q \in M
+\]</span></p>
+<p>显然<span class="math inline">\(V=Ker T\)</span>，定义<span
+class="math inline">\(T^*:M\to H^*\)</span>，对于<span
+class="math inline">\(q\in M\)</span>，<span class="math inline">\(T^* q
+\in H^*\)</span>满足</p>
+<p><span class="math display">\[
+\langle T^*q, v\rangle = -(\nabla q,v), \,\forall v \in H
+\]</span></p>
+<p>验证一下它们确实是对偶的，注意到由于<span class="math inline">\(V
+\subset H_0^1\)</span>分部积分没有边界项，</p>
+<p><span class="math display">\[
+\langle Tv,q\rangle = (\nabla \cdot v,q) = -(v,\nabla q)
+= \langle T^*q,v \rangle
+\]</span></p>
+<p><span
+class="math inline">\(T^*\)</span>需要满足的条件即著名的Poincare不等式，<span
+class="math inline">\(\forall q \in L_0^2\)</span>，</p>
+<p><span class="math display">\[
+\Vert T^*q \Vert_{H^{-1}} =
+\Vert \nabla q \Vert_{H^{-1}}
+\ge C \Vert q \Vert_{L^2}
+\]</span></p>
+<h3 id="基于一般模型得到的结果">基于一般模型得到的结果</h3>
+<p>基于上述一般模型的结果，可知条件极值问题</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in V} J(v) = \min_{v \in Ker T} J(v)
+\]</span></p>
+<p>等价于存在<span class="math inline">\(u\in H_0^2\)</span>，<span
+class="math inline">\(p \in M = L_0^2(\Omega)\)</span>，使得</p>
+<p><span class="math display">\[
+T^* p = \nabla J(u)
+\]</span></p>
+<p>并且<span class="math inline">\(p\)</span>如果存在，也是唯一的。</p>
+<h3 id="等价性证明二">等价性证明二</h3>
+<p>我们把<span class="math inline">\(T^* p = \nabla
+J(u)\)</span>乘以测试函数<span
+class="math inline">\(v\)</span>，得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\langle T^* p,v\rangle &amp;= \langle \nabla J(u),v\rangle \\
+\langle T v,p\rangle &amp;= (\nabla u, \nabla v)-(f,v)\\
+(\nabla\cdot v,p) &amp;= (\nabla u,\nabla v)-(f,v)
+\end{aligned}
+\]</span></p>
+<p>因此我们从条件极值的第三种形式推出了第二种形式</p>
+<p><span class="math display">\[
+(\nabla u,\nabla v) - (p,\nabla \cdot v) = (f,v) \,\,\forall v \in
+H_0^1(\Omega)
+\]</span></p>
+<h2 id="详细证明">详细证明</h2>
+<h3 id="一般模型的证明">一般模型的证明</h3>
+<h3
+id="stokes方程组两种形式的等价性证明">Stokes方程组两种形式的等价性证明</h3>
 
     </div>
 
@@ -462,14 +661,14 @@ u|_{\partial \Omega} &amp;= 0
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Symbols count total: </span>
-    <span title="Symbols count total">29k</span>
+    <span title="Symbols count total">32k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">49 mins.</span>
+    <span title="Reading time total">54 mins.</span>
   </span>
 </div>
 
