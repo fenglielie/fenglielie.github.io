@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -219,6 +219,177 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/21/learn/learn-inse-langrange/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
+      <meta itemprop="name" content="Fenglielie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fenglielie's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Fenglielie's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/21/learn/learn-inse-langrange/" class="post-title-link" itemprop="url">NS方程中压强的数学意义</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-06-21 15:21:36 / Modified: 16:52:02" itemprop="dateCreated datePublished" datetime="2022-06-21T15:21:36+08:00">2022-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>为了理解这样一句话：NS方程中的压强项是作为Lagrange乘子存在的。</p>
+<h2 id="lagrange乘子法">Lagrange乘子法</h2>
+<p>基本的拉格朗日乘子法主要是针对等式约束下的非线性方程最优化问题，具体形式如下：</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+\max f(\mathbf{x})\\
+s.t. g(\mathbf{x})=0
+\end{aligned}
+\right.
+\]</span></p>
+<p>引入拉格朗日乘子<span
+class="math inline">\(\lambda\)</span>，定义拉格朗日函数<span
+class="math inline">\(L(\mathbf{x},\lambda)\)</span>，</p>
+<p><span class="math display">\[
+L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda \,g(\mathbf{x})
+\]</span></p>
+<p>则 <span class="math inline">\(\mathbf{x}\)</span> 取到最优解的
+<strong>必要条件</strong> 为 <span class="math inline">\(\mathbf{x},
+\lambda\)</span> 满足如下方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_{\mathbf{x}}L(\mathbf{x},\lambda) &amp;= \nabla f - \lambda
+\nabla g = 0\\
+\nabla_{\lambda} L(\mathbf{x},\lambda) &amp;= g(\mathbf{x}) = 0
+\end{aligned}
+\]</span></p>
+<p>这只是必要条件，解出的 <span
+class="math inline">\(\mathbf{x}\)</span>
+需要继续验证是否取到唯一的最值。</p>
+<p>几何意义：如图所示，<span
+class="math inline">\(w=f(\mathbf{x})=f(x,y)\)</span>等值线如下图，<span
+class="math inline">\(g(\mathbf{x})=g(x,y)=0\)</span>
+限制子空间为一个圆。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png" /></p>
+<h2 id="基本概念">基本概念</h2>
+<p>在讨论更一般的问题时，我们需要引入相关的概念，为了简化记号不再使用黑体强调矢量。
+对于Hilbert空间<span class="math inline">\(H\)</span>，<span
+class="math inline">\(J\)</span>是<span
+class="math inline">\(H\)</span>上的一个下凸的Frechet可微的泛函<span
+class="math inline">\(J:H\to
+R\)</span>。这里Frechet可微的含义为：对于<span
+class="math inline">\(\forall v \in H\)</span>，存在$ f_v
+H^*$使得下式成立</p>
+<p><span class="math display">\[
+J(v+w) = J(v) + \langle f_v,w \rangle + o(\Vert w \Vert)
+\]</span></p>
+<p>其中<span class="math inline">\(\langle f_v,
+w\rangle\)</span>表示线性泛函<span class="math inline">\(f_v \in
+H^*\)</span>作用到元素<span class="math inline">\(w \in
+H\)</span>上，随着<span class="math inline">\(\Vert w \Vert \to
+0\)</span>，余项除以<span class="math inline">\(\Vert w
+\Vert\)</span>也趋于0。此时记作<span class="math inline">\(\nabla J(v) =
+f_v\)</span> 视作<span class="math inline">\(J\)</span>在<span
+class="math inline">\(v\)</span>处的"导数"。</p>
+<p><span class="math display">\[
+J(v+w) = J(v) + \langle \nabla J(v),w \rangle + o(\Vert w \Vert)
+\]</span></p>
+<p>对于子集<span class="math inline">\(K \sub H\)</span>，记<span
+class="math inline">\(K^o\)</span>定义如下</p>
+<p><span class="math display">\[
+K^o = \{u^* \in H^*| \langle u^*,v\rangle =0, \forall v \in K \} \sub
+H^*
+\]</span></p>
+<p>有以下命题成立，条件极值问题转化为"导数"落在<span
+class="math inline">\(K^o\)</span>内需要满足的方程组， <span
+class="math display">\[
+J(u) = \min_{v \in K} J(v) \iff \nabla J(u) \in K^o
+\]</span></p>
+<h2 id="stokes方程组">Stokes方程组</h2>
+<p>NS方程组含有时间项不易处理，因此考虑与时间无关的Stokes方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+-\Delta u + \nabla p &amp;= f\\
+\nabla \cdot u &amp;= 0\\
+u|_{\partial \Omega} &amp;= 0
+\end{aligned}
+\]</span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/20/learn/learn-inse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -247,9 +418,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-20 20:35:46 / Modified: 21:44:48" itemprop="dateCreated datePublished" datetime="2022-06-20T20:35:46+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 20:35:46" itemprop="dateCreated datePublished" datetime="2022-06-20T20:35:46+08:00">2022-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-06-21 16:12:07" itemprop="dateModified" datetime="2022-06-21T16:12:07+08:00">2022-06-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -552,7 +729,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-20 16:11:20 / Modified: 22:47:56" itemprop="dateCreated datePublished" datetime="2022-06-20T16:11:20+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 16:11:20 / Modified: 23:59:42" itemprop="dateCreated datePublished" datetime="2022-06-20T16:11:20+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -855,9 +1032,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-20 16:08:20 / Modified: 22:45:03" itemprop="dateCreated datePublished" datetime="2022-06-20T16:08:20+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 16:08:20" itemprop="dateCreated datePublished" datetime="2022-06-20T16:08:20+08:00">2022-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-06-21 13:25:47" itemprop="dateModified" datetime="2022-06-21T13:25:47+08:00">2022-06-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1118,97 +1301,6 @@ Java等至少一门现代编程语言，只学习Fortran的核心应用——数
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/18/fenglielie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
-      <meta itemprop="name" content="Fenglielie">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fenglielie's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Fenglielie's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/18/fenglielie/" class="post-title-link" itemprop="url">Fenglielie</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-18 16:22:39" itemprop="dateCreated datePublished" datetime="2022-06-18T16:22:39+08:00">2022-06-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-20 20:38:19" itemprop="dateModified" datetime="2022-06-20T20:38:19+08:00">2022-06-20</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>26</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to Fenglielie's blog.</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
@@ -1234,14 +1326,14 @@ Java等至少一门现代编程语言，只学习Fortran的核心应用——数
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Symbols count total: </span>
-    <span title="Symbols count total">28k</span>
+    <span title="Symbols count total">29k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">46 mins.</span>
+    <span title="Reading time total">48 mins.</span>
   </span>
 </div>
 
