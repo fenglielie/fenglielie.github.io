@@ -21,16 +21,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。(未完待续)">
+    <meta name="description" content="为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不可压NS方程中压强的数学意义">
 <meta property="og:url" content="https://fenglielie.github.io/2022/06/21/learn/learn-inse-lagrange/index.html">
 <meta property="og:site_name" content="Fenglielie&#39;s blog">
-<meta property="og:description" content="为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。(未完待续)">
+<meta property="og:description" content="为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png">
 <meta property="article:published_time" content="2022-06-21T07:21:36.000Z">
-<meta property="article:modified_time" content="2022-06-22T09:41:36.701Z">
+<meta property="article:modified_time" content="2022-06-22T14:56:16.985Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="learn">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84lagrange%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">经典的Lagrange乘子法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%9A%84%E5%91%BD%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">主要的命题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%85%B7%E4%BD%93%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">更具体的形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">两个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%B8%80"><span class="nav-number">3.1.</span> <span class="nav-text">例一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%BA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">例二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stokes%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">Stokes方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">三种形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%B8%80"><span class="nav-number">4.2.</span> <span class="nav-text">等价性证明一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%85%B7%E4%BD%93%E5%8C%96"><span class="nav-number">4.3.</span> <span class="nav-text">抽象模型的具体化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%BA%8C"><span class="nav-number">4.4.</span> <span class="nav-text">等价性证明二</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84lagrange%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">经典的Lagrange乘子法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%9A%84%E5%91%BD%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">主要的命题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%85%B7%E4%BD%93%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">更具体的形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">两个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%B8%80"><span class="nav-number">3.1.</span> <span class="nav-text">例一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%BA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">例二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stokes%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">Stokes方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">三种形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%B8%80"><span class="nav-number">4.2.</span> <span class="nav-text">等价性证明一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%85%B7%E4%BD%93%E5%8C%96"><span class="nav-number">4.3.</span> <span class="nav-text">抽象模型的具体化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%BA%8C"><span class="nav-number">4.4.</span> <span class="nav-text">等价性证明二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%97%B6%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">5.</span> <span class="nav-text">求解线性方程组时的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lagrange%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">Lagrange乘子法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">5.2.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%8E%A8%E5%AF%BC"><span class="nav-number">5.3.</span> <span class="nav-text">一些推导</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-22 17:41:36" itemprop="dateModified" datetime="2022-06-22T17:41:36+08:00">2022-06-22</time>
+      <time title="Modified: 2022-06-22 22:56:16" itemprop="dateModified" datetime="2022-06-22T22:56:16+08:00">2022-06-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -283,14 +283,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>6.9k</span>
+      <span>10k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>11 mins.</span>
+      <span>17 mins.</span>
     </span>
 </div>
 
@@ -301,7 +301,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。(未完待续)</p>
+        <p>为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。</p>
 <span id="more"></span>
 <h2 id="经典的lagrange乘子法">经典的Lagrange乘子法</h2>
 <p>经典的Lagrange乘子法是针对等式约束下的非线性方程最优化问题，将其转化为一个方程组的求解问题，具体形式如下：</p>
@@ -323,7 +323,7 @@ L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda \,g(\mathbf{x})
 \]</span></p>
 <p>则<span
 class="math inline">\(\mathbf{x}\)</span>取到最优解的<strong>必要条件</strong>为<span
-class="math inline">\((\mathbf{x}, \lambda)\)</span>满足如下方程组</p>
+class="math inline">\((\mathbf{x}, \lambda)\)</span>满足如下方程组：</p>
 <p><span class="math display">\[
 \left\{
 \begin{aligned}
@@ -334,9 +334,9 @@ class="math inline">\((\mathbf{x}, \lambda)\)</span>满足如下方程组</p>
 \right.
 \]</span></p>
 <p>注意这只是必要条件，解出的<span
-class="math inline">\(\mathbf{x}\)</span>只能保证是一个驻点，需要继续验证是否取到唯一的最值。如果<span
+class="math inline">\(\mathbf{x}\)</span>只能保证是一个驻点，需要继续验证是否取到唯一的最值。(如果<span
 class="math inline">\(f\)</span>是上凸函数，则显然<span
-class="math inline">\(\mathbf{x}\)</span>是唯一的。</p>
+class="math inline">\(\mathbf{x}\)</span>是唯一的)</p>
 <p>几何意义：取<span
 class="math inline">\(R^N=R^2\)</span>的情形，如图所示，<span
 class="math inline">\(w=f(\mathbf{x})=f(x,y)\)</span>等值线如下图，<span
@@ -344,7 +344,8 @@ class="math inline">\(g(\mathbf{x})=g(x,y)=0\)</span>
 限制子空间为一个圆，<span
 class="math inline">\(P\)</span>点是一个满足的解，但方程组的解可能不唯一。</p>
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png" width="50%"  /></p>
-<p>对于上述简单情形，可以基于反证法给出证明： 如果最值点<span
+<p>对于上述简单情形，可以基于反证法给出证明：</p>
+<p>如果最值点<span
 class="math inline">\(\mathbf{x}_0=(x_0,y_0)\)</span>不能找到一个<span
 class="math inline">\(\lambda\)</span>使得方程组成立，换言之，<span
 class="math inline">\(\nabla f\)</span>与<span
@@ -363,7 +364,7 @@ class="math inline">\((x_1,y(x_1))\)</span>，使得<span
 class="math inline">\(f(x_1,y(x_1)) &gt;
 f(x_0,y(x_0))\)</span>，矛盾。</p>
 <h2 id="基本概念">基本概念</h2>
-<div class="note info"><p>上述Lagrange乘子法可以在线性规划，最优化方面进行推广，但是我们需要的是关于函数的Lagrange乘子法，因此需要从泛函的角度进行推广，在讨论更一般的问题时，我们需要引入泛函分析中相关的概念。</p>
+<div class="note info"><p>上述Lagrange乘子法可以在线性规划，最优化方面进行推广，但是我们需要的是关于函数的Lagrange乘子法，因此需要从泛函的角度讨论，在讨论更一般的问题时，我们需要引入泛函分析中相关的概念。</p>
 </div>
 <p>对于Hilbert空间<span class="math inline">\(H\)</span>，<span
 class="math inline">\(J\)</span>是定义在<span
@@ -371,7 +372,7 @@ class="math inline">\(H\)</span>上的一个下凸的Frechet可微的泛函<span
 class="math inline">\(J:H\to
 R\)</span>。这里Frechet可微的含义为：对于<span
 class="math inline">\(\forall v \in H\)</span>，存在<span
-class="math inline">\(f_v \in H^*\)</span>使得下式成立</p>
+class="math inline">\(f_v \in H^*\)</span>使得下式成立：</p>
 <p><span class="math display">\[
 J(v+w) = J(v) + \langle f_v,w \rangle + o(\Vert w \Vert)
 \]</span></p>
@@ -380,31 +381,48 @@ w\rangle\)</span>表示有界线性泛函<span class="math inline">\(f_v \in
 H^*\)</span>作用到元素<span class="math inline">\(w \in
 H\)</span>上，余项的范数是关于<span class="math inline">\(\Vert w
 \Vert\)</span>的高阶无穷小。此时记作<span class="math inline">\(\nabla
-J(v) = f_v\)</span>，视作<span class="math inline">\(J\)</span>在<span
-class="math inline">\(v\)</span>处的"导数"。</p>
+J(v) = f_v \in H^*\)</span>，视作<span
+class="math inline">\(J\)</span>在<span
+class="math inline">\(v\)</span>处的"导数"：</p>
 <p><span class="math display">\[
 J(v+w) = J(v) + \langle \nabla J(v),w \rangle + o(\Vert w \Vert)
 \]</span></p>
 <p>对于子集<span class="math inline">\(V \subset H\)</span>，记<span
-class="math inline">\(^{\perp}V\)</span>定义如下</p>
+class="math inline">\(^{\perp}V\)</span>定义如下，</p>
 <p><span class="math display">\[
 ^{\perp}V = \{u^* \in H^*\,|\, \langle u^*,v\rangle =0, \forall v \in V
 \} \subset H^*
 \]</span></p>
 <p>对于子集<span class="math inline">\(W \subset H^*\)</span>，记<span
-class="math inline">\(W^\perp\)</span>定义如下</p>
+class="math inline">\(W^\perp\)</span>定义如下，</p>
 <p><span class="math display">\[
 W^\perp = \{ v \in H \,|\, \langle u^*,v \rangle = 0, \forall u^* \in
 H^* \} \subset H
 \]</span></p>
 <h3 id="主要的命题">主要的命题</h3>
-<p>有以下命题成立，条件极值问题转化为"导数"落在<span
+<p>有以下命题成立，在约束空间<span
+class="math inline">\(V\)</span>的最优化问题转化为"导数"落在<span
 class="math inline">\(^{\perp}V\)</span>内需要满足的方程组，</p>
 <p><span class="math display">\[
 J(u) = \min_{v \in V} J(v) \iff \nabla J(u) \in ^{\perp}V
 \]</span></p>
-<div class="note "><p>这个命题的完整描述和证明留到最后。</p>
-</div>
+<p>证明如下： 如果在<span
+class="math inline">\(u_0\)</span>处取到最小值，则易知</p>
+<p><span class="math display">\[
+\langle \nabla J(u_0),v\rangle = 0,\, \forall v \in V
+\]</span></p>
+<p>因此<span class="math inline">\(\nabla J(u_0) \in
+^{\perp}V\)</span>。 反过来，利用下凸的性质，任取<span
+class="math inline">\(v \in V\)</span>，<span class="math inline">\(t
+&gt; 0\)</span>，有</p>
+<p><span class="math display">\[
+J(v)-J(u) \ge \frac{1}{t}\left( J(u+t(v-u)) - J(u)\right)
+\overset{t \to 0^+}\to 0
+\]</span></p>
+<p>因此<span class="math inline">\(J(u) \le
+J(v)\)</span>取到最小值，命题得证。 (如果<span
+class="math inline">\(J\)</span>可微但没有下凸性质，则右侧只是必要条件而非充分条件)</p>
+<h3 id="更具体的形式">更具体的形式</h3>
 <p>假设有另一个Hilbert空间<span
 class="math inline">\(M\)</span>，对于子集<span
 class="math inline">\(V\)</span>我们取作一个有界线性算子<span
@@ -422,7 +440,7 @@ class="math inline">\(u\in H,w\in M\)</span>下式都成立</p>
 Im(T^*) = \{ u^* \in H^* \,|\, u^* = T^* w,\, \exists\, w \in M\}
 \]</span></p>
 <p>断言有<span
-class="math inline">\(^{\perp}V=\overline{Im(T^*)}\)</span>，(如果 <span
+class="math inline">\(^{\perp}V=Im(T^*)\)</span>的闭包，(如果 <span
 class="math inline">\(T^*\)</span>
 是闭值域算子，则闭包等于自身)，验证一下：</p>
 <ul>
@@ -434,13 +452,12 @@ class="math inline">\(T^*\)</span>
 <li>若<span class="math inline">\(u^* \in H^*\)</span>满足 <span
 class="math inline">\(u^* \in ^{\perp}Ker(T) \subset
 ^{\perp}(Im(T^*)^\perp)\)</span>，根据HBT定理的推论可证明<span
-class="math inline">\(u^* \in \overline{Im(T^*)}\)</span>。</li>
+class="math inline">\(u^* \in Im(T^*)\)</span>的闭包。</li>
 </ul>
 <p>此时上述命题变成</p>
 <p><span class="math display">\[
 J(u) = \min_{v \in Ker(T)} J(v) \iff \nabla J(u) \in \overline{Im(T^*)}
 \]</span></p>
-<h3 id="更具体的形式">更具体的形式</h3>
 <p>如果<span
 class="math inline">\(T^*\)</span>是单射的闭算子，则存在更直接的结论：</p>
 <p><span class="math display">\[
@@ -460,7 +477,7 @@ class="math inline">\(T^*\)</span>是单射的闭算子，从而满足需要。<
 <h3 id="例一">例一</h3>
 <p>对于Hilbert空间<span
 class="math inline">\(H\)</span>，取一组单位正交向量<span
-class="math inline">\(a_1,a_2,\cdots,a_M\)</span>，张成子空间<span
+class="math inline">\(a_1,a_2,\cdots,a_M\)</span>张成子空间<span
 class="math inline">\(V\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -468,13 +485,14 @@ V &amp;= \{v \in H | (a_i,v) =0, \forall i=1,\cdots,M\}\\
 ^{\perp}V &amp;= \text{span}\{a_1,\cdots,a_M\}
 \end{aligned}
 \]</span></p>
-<p>相当于一组超平面的交集，考虑条件极值问题：寻找<span
+<p>子空间<span
+class="math inline">\(V\)</span>相当于一组超平面的交集，考虑最优化问题：寻找<span
 class="math inline">\(u \in V\)</span>使得</p>
 <p><span class="math display">\[
 J(u) = \min_{v \in V} J(v)
 \]</span></p>
 <p>其中<span
-class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前的命题，条件极值问题转化为了：存在系数<span
+class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前的命题，最优化问题转化为了：存在系数<span
 class="math inline">\(\{\lambda_i\}_{i=1}^M\)</span>，使得</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -500,15 +518,19 @@ class="math inline">\(Ker(C) = \{x\,|\, C x = 0\}\)</span>。
 class="math inline">\(H=R^N\)</span>，<span
 class="math inline">\(C=[a_1,\cdots,a_M]^T\)</span>。因此有</p>
 <p><span class="math display">\[
-\nabla J(u) = \sum_{i=1}^M \lambda_i a_i
+\nabla J(x) = \sum_{i=1}^M \lambda_i a_i
 \]</span></p>
-<p>对于上述具体的<span class="math inline">\(J(u)\)</span>，有<span
-class="math inline">\(\nabla J(u) = A x-b\)</span>，因此</p>
+<p>(也可以引入<span class="math inline">\(T,T^*\)</span>的记号：<span
+class="math inline">\(H=R^N,M=R^M\)</span>， <span
+class="math inline">\(T(x)=Cx\)</span>，<span
+class="math inline">\(T^*(y)=C^Ty\)</span> )</p>
+<p>对于上述具体的<span class="math inline">\(J(x)\)</span>，有<span
+class="math inline">\(\nabla J(x) = A x-b\)</span>，因此</p>
 <p><span class="math display">\[
-Ax-b = \nabla J(u) =\sum_{i=1}^M \lambda_i a_i = C^T \Lambda
+Ax-b = \nabla J(x) =\sum_{i=1}^M \lambda_i a_i = C^T \Lambda
 \]</span></p>
 <p>其中<span class="math inline">\(\Lambda =
-[\lambda_1,\cdots,\lambda_M]^T\)</span>即为Lagrange乘子，起到了一个余量的作用。从而问题变成下式，这里左边的方阵是满秩的，因此存在唯一解。</p>
+[\lambda_1,\cdots,\lambda_M]^T\)</span>即为Lagrange乘子，起到了一个余量的作用。从而问题变成下列线性方程组的求解，这里左边的方阵是满秩的，因此存在唯一解。</p>
 <p><span class="math display">\[
 \begin{bmatrix}
 A &amp; -C^T\\
@@ -602,7 +624,7 @@ t^2 (\nabla v,\nabla v) - (f,u)- t(f,v)\\
 class="math inline">\(u\)</span>处至少是一个驻点，由于<span
 class="math inline">\(J\)</span>是下凸的，因此<span
 class="math inline">\(J\)</span>在<span
-class="math inline">\(u\)</span>取到极小值。</p>
+class="math inline">\(u\)</span>取到最小值。</p>
 <h3 id="抽象模型的具体化">抽象模型的具体化</h3>
 <p>我们取<span class="math inline">\(H=H_0^1(\Omega)\)</span>，<span
 class="math inline">\(M=L_0^2(\Omega)\)</span>，首先明确一下<span
@@ -636,7 +658,8 @@ class="math inline">\(v \in H\)</span>，<span class="math inline">\(Tv
 <p><span class="math display">\[
 \langle Tv,q \rangle = (\nabla \cdot v,q), \,\forall q \in M
 \]</span></p>
-<p>显然<span class="math inline">\(V=Ker\,T\)</span>，定义<span
+<p>显然限制子空间<span
+class="math inline">\(V=Ker\,T\)</span>，定义<span
 class="math inline">\(T^*:M\to H^*\)</span>，对于<span
 class="math inline">\(q\in M\)</span>，<span class="math inline">\(T^* q
 \in H^*\)</span>满足</p>
@@ -681,15 +704,240 @@ H\)</span>，得到</p>
 \langle T v,p\rangle = (\nabla\cdot v,p)
 \end{aligned}
 \]</span></p>
-<p>因此我们从条件极值的第三种形式推出了第二种形式</p>
+<p>因此我们从求最值的第三种形式推出了第二种形式</p>
 <p><span class="math display">\[
 (\nabla u,\nabla v) - (p,\nabla \cdot v) = (f,v) ,\,\forall v \in
 H=H_0^1
 \]</span></p>
+<p>得证两种形式是等价的，在Stokes方程组中<span
+class="math inline">\(p\)</span>确实是作为Lagrange乘子而存在。</p>
 <div class="note info"><p>由于第三种形式不含压强<span
 class="math inline">\(p\)</span>，因此从第三种形式推出第二种形式必须以合适的方式产生<span
 class="math inline">\(p\)</span>，也就是作为Lagrange乘子被引入。</p>
 </div>
+<h2 id="求解线性方程组时的对比">求解线性方程组时的对比</h2>
+<h3 id="lagrange乘子法">Lagrange乘子法</h3>
+<p>对例二更一般的问题：基于一个可逆/超定/欠定的线性方程组<span
+class="math inline">\(Ax=b_1\)</span>，加上额外的严格限制条件<span
+class="math inline">\(Cx=b_2\)</span>，Lagrange乘子法是在如下最优化的意义下求出唯一解<span
+class="math inline">\(x_0\in R^N\)</span>：</p>
+<p><span class="math display">\[
+J(x_0)=\min_{Cx=b_2} J(x) = \min_{Cx=b_2} \left\{\frac12
+(x,Ax)-(b_1,x)\right\}
+\]</span></p>
+<p>其中<span class="math inline">\(A\in R^{N\times N}\)</span>，<span
+class="math inline">\(b_1 \in R^N\)</span>，<span
+class="math inline">\(b_2 \in R^M\)</span>，<span
+class="math inline">\(C \in R^{M\times N}\)</span>，<span
+class="math inline">\((M &lt; N)\)</span>。
+与最小二乘法不同，我们需要解<span
+class="math inline">\(x_0\)</span>严格满足限制条件<span
+class="math inline">\(Cx=b_2\)</span>，仍然有<span
+class="math inline">\(\nabla J(x) = Ax-b_1\)</span>，同样地，取集合<span
+class="math inline">\(V\)</span></p>
+<p><span class="math display">\[
+V = \{ x \in R^N\,|\, Cx=b_2 \}
+\]</span></p>
+<p>记<span
+class="math inline">\(C=[a_1,\cdots,a_M]^T\)</span>，对应的集合</p>
+<p><span class="math display">\[
+^{\perp}V =\{ y \in R^N \,|\, y^Tx = 0,\forall x \in V \}
+\]</span></p>
+<p>对于最一般的情形，可能仅有<span class="math inline">\(0 \in ^\perp
+V\)</span>，而如果假设<span class="math inline">\(b_2=0\)</span>，<span
+class="math inline">\(C\)</span>行满秩，则</p>
+<p><span class="math display">\[
+^{\perp}V = \{y \in R^N \,|\, y=C^T w, \exists \, w \in R^M\}
+\]</span></p>
+<p>最优化问题等价于</p>
+<p><span class="math display">\[
+\nabla J(x) = Ax-b = C^T \Lambda \in ^{\perp}V
+\]</span></p>
+<p>等价于</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+A &amp; -C^T\\
+C &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x\\
+\Lambda
+\end{bmatrix}
+=
+\begin{bmatrix}
+b\\
+0
+\end{bmatrix}
+\]</span></p>
+<p>引入Lagrange乘子后的新矩阵的分析：</p>
+<ul>
+<li>若<span class="math inline">\(A\)</span>对称正定方阵，加上<span
+class="math inline">\(C\)</span>行满秩，则一定可逆，从而存在唯一解，</li>
+</ul>
+<p><span class="math display">\[
+\text{det}
+\begin{bmatrix}
+A &amp; -C^T\\
+C &amp; 0
+\end{bmatrix}
+=
+\text{det}[A] \text{det}[CA^{-1}C^T]\neq 0
+\]</span></p>
+<ul>
+<li>若<span
+class="math inline">\(A\)</span>是不满秩的方阵，新矩阵可能是可逆的，例如</li>
+</ul>
+<p><span class="math display">\[
+\text{det}
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; -1\\
+0 &amp; 1 &amp; 0 &amp; -1\\
+0 &amp; 0 &amp; 0 &amp; -1\\
+1 &amp; 1 &amp; 1 &amp; 0
+\end{bmatrix}
+=1
+\]</span></p>
+<ul>
+<li>若<span
+class="math inline">\(A\)</span>是不满秩的方阵，新矩阵也可能是不可逆的，例如</li>
+</ul>
+<p><span class="math display">\[
+\text{det}
+\begin{bmatrix}
+0 &amp; 2 &amp; 0 &amp; -1\\
+0 &amp; 1 &amp; 0 &amp; -1\\
+0 &amp; 0 &amp; 0 &amp; -1\\
+1 &amp; 1 &amp; 1 &amp; 0
+\end{bmatrix}
+=0
+\]</span></p>
+<h3 id="最小二乘法">最小二乘法</h3>
+<p>经典的最小二乘法(LS)是基于一个超定/欠定方程组<span
+class="math inline">\(Ax=b\)</span>，在如下最优化的意义下求出唯一解<span
+class="math inline">\(x_0\in R^N\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+J_{LS}(x_0) &amp;= \min_{x} J_{LS}(x) = \min_{x} \Vert Ax-b \Vert_2 \\
+&amp;= (b,b) + 2 \min_{x} \left\{ \frac12(Ax,Ax)-(b,Ax) \right\}
+\end{aligned}
+\]</span></p>
+<p>根据维数和秩具体可以分成以下几类：</p>
+<ul>
+<li>(1)方阵<span class="math inline">\(A\in R^{N\times
+N}\)</span>，<span class="math inline">\(b\in R^N\)</span>，但是<span
+class="math inline">\(A\)</span>不满秩，<span
+class="math inline">\(\text{rank}(A)=k &lt; N\)</span></li>
+<li>(2)超定方程组，<span class="math inline">\(A\in R^{M \times
+N}\)</span>，<span class="math inline">\(b \in R^M\)</span>，<span
+class="math inline">\(M&gt;N\)</span>，
+<ul>
+<li>(2a)<span class="math inline">\(A\)</span>列满秩，<span
+class="math inline">\(\text{rank}(A)=N\)</span></li>
+<li>(2b)<span class="math inline">\(A\)</span>不是列满秩，$(A)=k&lt;N
+$</li>
+</ul></li>
+<li>(3)欠定方程组，<span class="math inline">\(A\in R^{M\times
+N}\)</span>，<span class="math inline">\(b \in R^M\)</span>，<span
+class="math inline">\(M&lt;N\)</span>，
+<ul>
+<li>(3a)<span class="math inline">\(A\)</span>行满秩，<span
+class="math inline">\(\text{rank}(A)=M\)</span></li>
+<li>(3b)<span class="math inline">\(A\)</span>不是行满秩，<span
+class="math inline">\(\text{rank}(A)=k&lt;M\)</span></li>
+</ul></li>
+</ul>
+<p>与例二类似的是线性约束下的最小二乘问题(ELS)，即</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+A \\
+C
+\end{bmatrix}
+x
+=
+\begin{bmatrix}
+b_1\\
+b_2
+\end{bmatrix}
+\]</span></p>
+<p>我们希望<span class="math inline">\(Cx=b_2\)</span>严格成立，而<span
+class="math inline">\(Ax=b_1\)</span>允许有误差，在如下最优化的意义下求出唯一解<span
+class="math inline">\(x_0\in R^N\)</span>：</p>
+<p><span class="math display">\[
+J_{ELS}(x_0)=\min_{Cx=b_2} J_{ELS}(x) = \min_{Cx=b_2} \Vert Ax-b_1
+\Vert_2
+\]</span></p>
+<p>但是由于<span class="math inline">\(J \neq
+J_{ELS}\)</span>，两个问题是不等价的。</p>
+<h3 id="一些推导">一些推导</h3>
+<p>对于欠定的线性方程组<span
+class="math inline">\(Ax=b\)</span>，以及额外的限制<span
+class="math inline">\(y^Tx=0\)</span>(<span class="math inline">\(y \in
+R^N\)</span>给定)，记<span
+class="math inline">\(V,W,\widetilde{W}\)</span>为三个集合，<span
+class="math inline">\(x_1\)</span>为<span
+class="math inline">\(Ax=b\)</span>的任意特解，</p>
+<p><span class="math display">\[
+\begin{aligned}
+V&amp;=\{x \,|\, y^Tx=0\}\\
+\widetilde{W}&amp;=\{x \,|\, Ax=0\}\\
+W&amp;=\{x\,|\,Ax=b\} = x_1 + \widetilde{W}
+\end{aligned}
+\]</span></p>
+<p>我们比较两种解法：</p>
+<ol type="1">
+<li>首先求解<span class="math inline">\(Ax=b\)</span>得到任意特解<span
+class="math inline">\(x_2\)</span>，然后根据限制条件<span
+class="math inline">\(y^Tx=0\)</span>，在<span
+class="math inline">\(\widetilde{W}\)</span>空间中寻找修正量<span
+class="math inline">\(\delta x \in \widetilde{W}\)</span>，使得<span
+class="math inline">\(y^T(x_2+\delta x)=0\)</span>，以<span
+class="math inline">\(x_3=x_2 + \delta x\)</span>
+为最终解。(我们直接假定<span class="math inline">\(\delta
+x\)</span>是存在的)</li>
+<li>利用上述Lagrange乘子法，得到解<span class="math inline">\((x_4,
+\Lambda)\)</span>，满足<span class="math inline">\(A x_4 - y^T \Lambda =
+b\)</span>，<span class="math inline">\(y^T x_4 =
+0\)</span>。(Lagrange乘子法得到的线性方程组一定存在解)</li>
+</ol>
+<p><strong>Q1: 第一种解法得到的解是否唯一？也就是<span
+class="math inline">\(\delta x\)</span>是否唯一？</strong>
+如果不唯一，亦即存在<span class="math inline">\(\delta x&#39; \neq 0 \in
+\widetilde{W}\)</span>满足</p>
+<p><span class="math display">\[
+y^T \delta x&#39; = 0
+\]</span></p>
+<p>因此，第一种解法得到的解的唯一性等价于以下命题成立</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+Ax=0\\
+y^Tx=0
+\end{aligned}
+\right.
+\overset{?}{\Rightarrow}
+x=0
+\]</span></p>
+<p><strong>Q2:
+第二种解法得到的解是否唯一？也就是Lagrange乘子法得到的矩阵是否可逆？</strong></p>
+<p>第二种解法的唯一性，等价于齐次问题的唯一性</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+Ax&#39;&amp;=y^T \Lambda\\
+y^T x&#39;&amp;=0
+\end{aligned}
+\right.
+\overset{?}{\Rightarrow}
+\left\{
+\begin{aligned}
+x&#39;=0\\
+\Lambda =0
+\end{aligned}
+\right.
+\]</span></p>
+<p><strong>Q3: 两种解法得到的解是否一致？在什么情况下一致？</strong>
+事实上，第一种解法得到的解一定也是第二种解法得到的解，取<span
+class="math inline">\(\Lambda=0\)</span>即可。因此如果第二种解法有唯一性，可以推出第一种解法的唯一性。</p>
 
     </div>
 
@@ -760,14 +1008,14 @@ class="math inline">\(p\)</span>，也就是作为Lagrange乘子被引入。</p>
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Symbols count total: </span>
-    <span title="Symbols count total">35k</span>
+    <span title="Symbols count total">38k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">58 mins.</span>
+    <span title="Reading time total">1:04</span>
   </span>
 </div>
 
