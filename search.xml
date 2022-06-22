@@ -65,7 +65,7 @@ class="math inline">\((x_1,y(x_1))\)</span>，使得<span
 class="math inline">\(f(x_1,y(x_1)) &gt;
 f(x_0,y(x_0))\)</span>，矛盾。</p>
 <h2 id="基本概念">基本概念</h2>
-<div class="note info"><p>在讨论更一般的问题时，我们需要引入相关的概念，为了简化记号不再使用黑体强调矢量。</p>
+<div class="note info"><p>上述Lagrange乘子法可以在最优化方面进行推广，但是我们需要的是关于函数的Lagrange乘子法，因此需要从泛函的角度进行推广，在讨论更一般的问题时，我们需要引入泛函分析中相关的概念。</p>
 </div>
 <p>对于Hilbert空间<span class="math inline">\(H\)</span>，<span
 class="math inline">\(J\)</span>是定义在<span
@@ -78,7 +78,7 @@ class="math inline">\(f_v \in H^*\)</span>使得下式成立</p>
 J(v+w) = J(v) + \langle f_v,w \rangle + o(\Vert w \Vert)
 \]</span></p>
 <p>其中<span class="math inline">\(\langle f_v,
-w\rangle\)</span>表示线性泛函<span class="math inline">\(f_v \in
+w\rangle\)</span>表示有界线性泛函<span class="math inline">\(f_v \in
 H^*\)</span>作用到元素<span class="math inline">\(w \in
 H\)</span>上，余项的范数是关于<span class="math inline">\(\Vert w
 \Vert\)</span>的高阶无穷小。此时记作<span class="math inline">\(\nabla
@@ -88,17 +88,24 @@ class="math inline">\(v\)</span>处的"导数"。</p>
 J(v+w) = J(v) + \langle \nabla J(v),w \rangle + o(\Vert w \Vert)
 \]</span></p>
 <p>对于子集<span class="math inline">\(V \subset H\)</span>，记<span
-class="math inline">\(V^\perp\)</span>定义如下</p>
+class="math inline">\(^{\perp}V\)</span>定义如下</p>
 <p><span class="math display">\[
-V^\perp = \{u^* \in H^*\,|\, \langle u^*,v\rangle =0, \forall v \in V \}
-\subset H^*
+^{\perp}V = \{u^* \in H^*\,|\, \langle u^*,v\rangle =0, \forall v \in V
+\} \subset H^*
 \]</span></p>
-<p>有以下定理成立，条件极值问题转化为"导数"落在<span
-class="math inline">\(V^\perp\)</span>内需要满足的方程组，</p>
+<p>对于子集<span class="math inline">\(W \subset H^*\)</span>，记<span
+class="math inline">\(W^\perp\)</span>定义如下</p>
 <p><span class="math display">\[
-J(u) = \min_{v \in V} J(v) \iff \nabla J(u) \in V^\perp
+W^\perp = \{ v \in H \,|\, \langle u^*,v \rangle = 0, \forall u^* \in
+H^* \} \subset H
 \]</span></p>
-<div class="note "><p>这个定理的完整描述和证明留到最后。</p>
+<h3 id="主要的命题">主要的命题</h3>
+<p>有以下命题成立，条件极值问题转化为"导数"落在<span
+class="math inline">\(^{\perp}V\)</span>内需要满足的方程组，</p>
+<p><span class="math display">\[
+J(u) = \min_{v \in V} J(v) \iff \nabla J(u) \in ^{\perp}V
+\]</span></p>
+<div class="note "><p>这个命题的完整描述和证明留到最后。</p>
 </div>
 <p>通常子集<span
 class="math inline">\(V\)</span>会取作一个有界线性算子<span
@@ -106,14 +113,21 @@ class="math inline">\(T:H\to \widetilde{H}\)</span>的Kernel，即</p>
 <p><span class="math display">\[
 V = Ker(T) = \{ v \in H \,|\, Tv = 0 \in \widetilde{H}\}
 \]</span></p>
-<p>对应的<span class="math inline">\(V^\perp\)</span>需要<span
-class="math inline">\(T\)</span>的对偶算子<span
-class="math inline">\(T^*:\widetilde{H}^* \to H^*\)</span>，有</p>
+<p>需要<span class="math inline">\(T\)</span>的对偶算子<span
+class="math inline">\(T^*:\widetilde{H}^* \to
+H^*\)</span>，即对于任意<span class="math inline">\(u\in H,w\in
+\widetilde{H}^*\)</span>下式都成立</p>
 <p><span class="math display">\[
-V^{\perp} = Im(T^*) = \{ u^* \in H^* \,|\, u^* = T^* w,\, \exists\, w
-\in \widetilde{H}^*\}
+\langle Tu,w\rangle = \langle T^* w,u\rangle
+\]</span> 有</p>
+<p><span class="math display">\[
+Im(T^*) = \{ u^* \in H^* \,|\, u^* = T^* w,\, \exists\, w \in
+\widetilde{H}^*\}
 \]</span></p>
-<p>验证一下：</p>
+<p><span class="math inline">\(^{\perp}V\)</span>对应为<span
+class="math inline">\(\overline{Im(T^*)}\)</span>的闭包(如果 <span
+class="math inline">\(T^*\)</span>
+是闭值域算子，则闭包等于自身)，验证一下：</p>
 <ul>
 <li>若<span class="math inline">\(u^* = T^* w \in Im(T^*)\)</span>，则有
 <span class="math display">\[
@@ -121,14 +135,25 @@ V^{\perp} = Im(T^*) = \{ u^* \in H^* \,|\, u^* = T^* w,\, \exists\, w
 0, \,\, \forall v \in V=Ker(T)
 \]</span></li>
 <li>若<span class="math inline">\(u^* \in H^*\)</span>满足 <span
-class="math display">\[
-\langle u^*,v\rangle = 0,\,\, \forall v \in V=Ker(T)
-\]</span></li>
+class="math inline">\(u^* \in ^{\perp}Ker(T) \subset
+^{\perp}(Im(T^*)^\perp)\)</span>，根据HBT定理的推论可证明<span
+class="math inline">\(u^* \in Im(T^*)\)</span>的闭包。</li>
 </ul>
-<p>此时上述定理变成</p>
+<p>此时上述命题变成</p>
 <p><span class="math display">\[
-J(u) = \min_{v \in Ker(T)} J(v) \iff \nabla J(u) \in Im(T^*)
+J(u) = \min_{v \in Ker(T)} J(v) \iff \nabla J(u) \in
+{Im(T^*)}\text{的闭包}
 \]</span></p>
+<h3 id="更具体的形式">更具体的形式</h3>
+<p>如果<span
+class="math inline">\(T^*\)</span>是单射的闭算子，则存在更直接的结论：</p>
+<p><span class="math display">\[
+J(u) = \min_{v \in Ker(T)} J(v) \iff \nabla J(u) = T^* w
+\]</span></p>
+<p>其中的<span class="math inline">\(w \in
+\widetilde{H}^*\)</span>是存在且唯一的，<span
+class="math inline">\(w\)</span>就是我们需要的Lagrange算子。</p>
+<h2 id="两个例子">两个例子</h2>
 <h3 id="例一">例一</h3>
 <p>对于Hilbert空间<span
 class="math inline">\(H\)</span>，取一组单位正交向量<span
@@ -137,7 +162,7 @@ class="math inline">\(V\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
 V &amp;= \{v \in H | (a_i,v) =0, \forall i\}\\
-V^\perp &amp;= \text{span}\{a_1,\cdots,a_M\}
+^{\perp}V &amp;= \text{span}\{a_1,\cdots,a_M\}
 \end{aligned}
 \]</span></p>
 <p>相当于一组超平面的交集，考虑条件极值问题，找<span
