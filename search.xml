@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>并行计算学习笔记——MPI</title>
+    <url>/2022/06/23/cpp/learn-bxjs-mpi/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>cpp</category>
+      </categories>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>并行计算学习笔记——OpenMP</title>
     <url>/2022/06/23/cpp/learn-bxjs-openmp/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>cpp</category>
+      </categories>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>并行计算学习笔记——pthread和std::thread</title>
+    <url>/2022/06/23/cpp/learn-bxjs-pthread/</url>
     <content><![CDATA[
 ]]></content>
       <categories>
@@ -31,34 +55,11 @@
       </tags>
   </entry>
   <entry>
-    <title>并行计算学习笔记——MPI</title>
-    <url>/2022/06/23/cpp/learn-bxjs-mpi/</url>
-    <content><![CDATA[
-]]></content>
-      <categories>
-        <category>cpp</category>
-      </categories>
-      <tags>
-        <tag>cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>并行计算学习笔记——pthread和std::thread</title>
-    <url>/2022/06/23/cpp/learn-bxjs-pthread/</url>
-    <content><![CDATA[
-]]></content>
-      <categories>
-        <category>cpp</category>
-      </categories>
-      <tags>
-        <tag>cpp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>不可压NS方程中压强的数学意义</title>
     <url>/2022/06/21/learn/learn-inse-lagrange/</url>
     <content><![CDATA[<p>为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。</p>
 <span id="more"></span>
+<!--toc-->
 <h2 id="经典的lagrange乘子法">经典的Lagrange乘子法</h2>
 <p>经典的Lagrange乘子法是针对等式约束下的非线性方程最优化问题，将其转化为一个方程组的求解问题，具体形式如下：</p>
 <p><span class="math display">\[
