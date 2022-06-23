@@ -27,7 +27,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fortran学习笔记——4.数组，指针与数值计算">
 <meta property="og:url" content="https://fenglielie.github.io/2022/06/20/fortran/fortran-note-4/index.html">
-<meta property="og:site_name" content="Fenglielie&#39;s blog">
+<meta property="og:site_name" content="Fenglielie&#39;s Blog">
 <meta property="og:description" content="在前三篇笔记，学习了Fortran作为一个编程语言，最基本的内容：变量，输入输出，流程控制和程序结构。接下来是Fortran的数组以及基于数组的数值计算，我认为这是Fortran语言最有价值的精华部分，因此特意放在了学习笔记靠后的部分，在学习了基本的语法和子程序等之后。注意，Fortran的字符集不包括中括号[]，因此与c语言的风格不同，Fortran对数组分量的操作全都是使用小括号()的。 因">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-20T08:11:20.000Z">
@@ -44,13 +44,13 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/20/fortran/fortran-note-4/","path":"2022/06/20/fortran/fortran-note-4/","title":"Fortran学习笔记——4.数组，指针与数值计算"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Fortran学习笔记——4.数组，指针与数值计算 | Fenglielie's blog</title>
+<title>Fortran学习笔记——4.数组，指针与数值计算 | Fenglielie's Blog</title>
   
 
 
 
 
-
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -78,7 +78,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Fenglielie's blog</p>
+      <p class="site-title">Fenglielie's Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -236,12 +236,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fenglielie's blog">
+      <meta itemprop="name" content="Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Fortran学习笔记——4.数组，指针与数值计算 | Fenglielie's blog">
+      <meta itemprop="name" content="Fortran学习笔记——4.数组，指针与数值计算 | Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -478,6 +478,26 @@ logical四种基本类型，(也可以是字符或者自定义类型，暂时不
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
 </body>
 </html>
