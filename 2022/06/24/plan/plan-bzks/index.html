@@ -23,26 +23,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="并行计算学习笔记——pthread和std::thread">
-<meta property="og:url" content="https://fenglielie.github.io/2022/06/23/cpp/learn-bxjs-pthread/index.html">
+    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="plan-bzks">
+<meta property="og:url" content="https://fenglielie.github.io/2022/06/24/plan/plan-bzks/index.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-23T13:00:57.000Z">
-<meta property="article:modified_time" content="2022-06-23T15:01:24.932Z">
+<meta property="article:published_time" content="2022-06-24T06:24:02.000Z">
+<meta property="article:modified_time" content="2022-06-24T06:45:21.688Z">
 <meta property="article:author" content="Fenglielie">
-<meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fenglielie.github.io/2022/06/23/cpp/learn-bxjs-pthread/">
+<link rel="canonical" href="https://fenglielie.github.io/2022/06/24/plan/plan-bzks/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/23/cpp/learn-bxjs-pthread/","path":"2022/06/23/cpp/learn-bxjs-pthread/","title":"并行计算学习笔记——pthread和std::thread"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/24/plan/plan-bzks/","path":"2022/06/24/plan/plan-bzks/","title":"plan-bzks"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>并行计算学习笔记——pthread和std::thread | Fenglielie's Blog</title>
+<title>plan-bzks | Fenglielie's Blog</title>
   
 
 
@@ -225,7 +226,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/23/cpp/learn-bxjs-pthread/">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/24/plan/plan-bzks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
@@ -238,12 +239,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="并行计算学习笔记——pthread和std::thread | Fenglielie's Blog">
+      <meta itemprop="name" content="plan-bzks | Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          并行计算学习笔记——pthread和std::thread
+          plan-bzks
         </h1>
 
         <div class="post-meta-container">
@@ -255,16 +256,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-23 21:00:57 / Modified: 23:01:24" itemprop="dateCreated datePublished" datetime="2022-06-23T21:00:57+08:00">2022-06-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/cpp/" itemprop="url" rel="index"><span itemprop="name">cpp</span></a>
-        </span>
+      <time title="Created: 2022-06-24 14:24:02 / Modified: 14:45:21" itemprop="dateCreated datePublished" datetime="2022-06-24T14:24:02+08:00">2022-06-24</time>
     </span>
 
   
@@ -274,14 +266,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>0</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
+      <span>2 mins.</span>
     </span>
 </div>
 
@@ -292,8 +284,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="93170f6af8c457a6e081a5099d31745043c95c8824b713a417db3b7d1c73f11d">76a19a6dc0dee90cb1ad0e4f753b46233839ba73e69c26efa7553ec4b9506ab84fa599c6846fab1798fd63626bdb31d8712201fa7cdd497c2b578498e72d52c06778ca8ab7abeaf5ec3ae8657d7eecd91f027ec0fc6fd769faf6cefeefa0386c645dcc5b4ef4235c84af733a1aedf8ba3b0d2248d51214b5886533988bdd037cca59763346bcf74c4748e235dacc6affdc69b81a1a84781463c377a9bb87e4be7050603ddbfb1b9077dbbf734d7ca7dd3cbc07212660ae1c00223e1e0dcb94c8d7926c12b94d22337838af5646bb4913e82ad556d2074a9fc918493ba9efc4e7db5b5dcb54e1a732dda8fe8ab0f40b73b9be1cb3812431d82e7a4ddc1979da39a0872b0574464cf3f4e98928aa00fe715b027e28eafbc269f469f52d40070d55d44b6c23b4aed55b52656f1fae80270d1d12116edaed3a72493cb6f11bc62bb46bf2d51bff55854ff3b761a4d20a7b84352d74f0cbeda9eef7d3f24755e61e7749cf33358ba937193242ff9089249e36a3233fc30e9ffe25b83bc79e9891bc931e09d411a58a2839af5cd8ebf4253d4938479306d48b4678c6b0700736d5f0562ea934c3fef4b06f5f9f3eb1e01b808acbe6b1042bd30896eae95546791d83f308455e13ecbe5848688b2470711792b8ed6cd5c041c96138b0b9f6e55db348f8e47f584e127d2b93a363cd4e028722f503115e4cb873d7fdb15f0b0d36bd14105214c770690d2b1191e1ad45410c8bcc4184ff89ad2b3011b7ee368873446275bf02c46da5b4c5f4783aa5ab55ac547e0842701c1cace1e180a40334a79b510f4ef2391f63d11a7d0b0e5a145d063e47a379c4670cab70ee614ebf217caeed68b7200958488aef4242b1e0c3c80cc0e530c3df0e82560b8345adbee6331c604cd4fc06eacb553d9bf92271f319936c4fe11eec5bac226beffcc48b5d1b3a1c840496b83945e7fd71663336bb3ac614b043996879a6ef12a416273acec38a2c5cf46284993956f8ac5f6c78be84971cd0844b82169711214a3181ba28bd02a2c010cb6cf7e1d19d5c989743d95ad3a9a563dec9b3ce14133e6a5a08dd06dbd829e18fd27091c883e029ab06044e38838642b2ea9460713e54c7b622af72b76281de6cdf88b7b41a561c940e3d82713162b521f3e4de6a75b916b38384207bd7d07799f107ab9ff38d9e922136d045424005c7b84d04b3044ddbd24cfd158058ce2f7848ef82c29b9880767587ff0aa595c5c6683da873948e800b85c45bd91e88e0d5e9ac46a443a9d93a90debf7bc9b388e34e391d9cd506cbf07d6e9df4450846a50bd3e2fcf6211fc6e517eca86c9876e354448d92b4671817e46ee8d4c083a966f23efb6f3586e68929ce6b6707574fdf1efa31227ae9f050aac6c6112402e09955baf84ea9f0fa647e88bcdc9cfabe1aa7ce89633d6e5cf28d54e144e46bfb552d5c10b8e726f354b4aaaa841cc145b99b00d23e9f596103df6b3b9a897c13fd368feb98eb899a81d66590a7ae21ab4eda1393c67573829a207cb99c1526f49ce3aa144141ae6792505ab4cf36e70952c9ab6966f75ed5373072bc918a347047ce67e011bb5633bfcf81da9cc01c0973f0651df7a759dea7fe7b9535cbe2569fb59ec01aa2288d72d2a8a031e89170b4e1e87c9cdc5ffaff065ca8fba3fb362ad0101f693a65219341bc49833ddd1eddfae6445b74e27c09f3b1424c171ceecfd7a0288b50bff16e4a37b1a0132893811efb782ee1b688f6a37970bab8411679344aaa2a181c71c0ea152cc11cd80a33958dcae42258445335a214ce247389a8613a1cc72fd59d0606a3a28541edd2367ba3391c15b93fb22526130667a4e40386d6071d6f3aaaea844a78cc0b96f5a56da6b1b120abe1d5aac4d14cc5bb321a426329d1e8efa654193563230a27c4ca191eaf23f5e1e048c00acc73e31c8d8a1835ed2c53f118940604793de33cbf2cc1ffc6874b097ec2286efeded4684fe8d5682b74fc01368f2e6c3867ff4a4bce504d645c8bbfff8333da1bebdeb2727bc53c502e893d3b4fa6ea21db6412e69a7d89004fb500eff8240de6bdeac42668019804887a1b42030769313a91635e96e0b0a961e504557fda1b5cd224f057d5a75b4fb820366b0f98422e231fc68ec0b71c315bc4228d0bf91f00a2ffba40b045c195d5e9dcb328282139db397fe29abfcc3e3a08b02514b4b946feeea9cf660359dd33e5abb500dd9eb6cd3243174e9fe2f308110e9cfd7014004845ca88a324776c3e93f761bec97237277ca8a271366a43fa7678a0f6e2797d659beafac157c76b41641516bd241225e1c47cfd1ca9cb21680cc620515b0d4785b941143ad465b75918341841dc116aa02883da07344b25d89709d80ebcf0129760d881a66ffdbf36d2a3ec7fc3606d55e6181109076bb10c6cfba38d008cdb9c6d35ebcb88b8f489614a656bdc2c7a829aa014687d01a4646f478edefc82d6ed75b193447988810f83a2ab9f6d8bcf6464021dc9147368d7db90bd6607fd8638a5e90067508b6cf6a48d78a9065379c5ce14a1fc454600909ef77fb9b772cb4a554763242e1ca315efa7104a7a69dc11bc0d0f1e3d6c9e60182c1dfbbab96b07f7199b13bff6bf150189e96b784ec5c4705a82182e5ff94fa4032610104a50b53bd47eea8bc5dd72baa80e422b33d255d09b8ff948f5f3b484eae5f13c243d5af7244861c13778cbea80d5c696df447086234c8fb1ae4dc5b02a43b00936bef14eea8b40b724bf095c91cd11f282b8d01d667e4840c217ca76bc062f9a418153a15fd6711d3e2aa26c08fa457c0dbebac3652cafc84a70f2f92a296145b9614b0c868be4fd9534ead547733cbc607c96453216eec5c2eac43de6e3ca589a19af219b0691b126bf63e25f051df9f2917ab92b3d1c716572aab88ad31a56a723dd41c30b8702baf000b3ec313b8d309199c701c47fe9a50b0228f5d37c5f7e075db9f063020bf3810c0bef4a4dde1ab45e9adbecca060ec207c7f6c08ee624934a5f0609bbc2cfde580f5ce4286c135ed3511017b58172a4cff489d83082bc634329fb836d3476044b2a9ce3a52d9816bf6f9b123734a2f00abb1c4be1b68ebd17d6bcce83c580a2077752f59502e9bc08b11e1eba55a3cb113506099d0d784c7ba976af844b7a9de722aca965b12f1f5e6092b5c07c7e83fe2549a4dc82fbdae80eedd7fd21a819f4fefe038bde4c215c9fc2b32099d6fab45e612b571cda37ff5bbb7424bad4b90bdbd69378b3c31bd1d1705149e6d138d1075a7f1b5b092d9ab579ee92df5fd3d9474b8fddc57c455448c76c81016e296fcdbb118aff5997ee45869ed72cc00716aa5fa83f0eab4ae928effc53e46ad035bb5b2296a610c8b8915ffdab903a5bba0c2f04b6f0818b0bdc9351177e53a6b8bd072645a7c12cbb5cadc0de7efd7c726b32294c0c39d747f4c2495f38795198dd3dd38214761a53f9baa01c375b08f9346ac74db15510d25e1b9385584ac70f25707091a97c2de370be62339c691db8fafb076459928e63aee1688580d828ccbb4e19853e6c08e7a3a0d1ad28145d7c9c02462860b092922bbcf7c3ffb958efad80ae9f0c19e3da202c8f13bd482763a77496a0126d9f566a687823e786839d03a85900526b7ba933d690a3f6bdc15361ad44fd91a029523036b9e9f8b5decfbfe2164f950850716b600d99cdd21cb6e7a5c60376bf2734218416fb572f5e0bfda1bebce6d80561b7b02fe840210262ec0637874f445be5fb59a890bf2807ac933df1e16e2464fa95bfc97ae450c2a5b499f5f59cd3deae60b7dcf77a8d19929483db2a62c7a389287374a9e4dd7321218692486cddbed564b058855f3aa1fbf81f7b5598a3b9feb543056b549aa8024b48075b1698acd8a0715befea10b0b23d30e6da7e4d4f83c9401eb0dabf0846f3a9d5b135f70701d60d39883cba1a8801af302d781458b61eab296a6998615e230b15e617834f30c455dbfe0948a78e0ae54f76313ed65a337ac4a92ef4c424bcc1e5d97afa273192b59850ad70dad71cb669b3fa571a5d66fa3ff3a3df952f8c2599bb0382103b3d3ed0d529cc82f5f6e85b8e83cfbb46dcbc8a68e11a31e0a604588cb15a00a7136056a47c8508cbf739cd2edefc2c77f9316df976436d05b2f0b11ddd26d06577858f8f803d988b4e5ec73aa2e7d2b87e263078b02819b4e557462ee8db7298690cde5aaca01490b786f323fb2502f2829596bbf0ed581644f397c50d62b5a95f951ce9383e160a9347cfca7d1d82f373b0dd843082ce4e4cbb0a6f5ebe1dc7e622529ae06e5fc67d5d8fe876851894e21f2ec6b3ef364b97def8a74154c8b0c67a9d6a7fa2e482df361b0e0e8bd754fa0480a58b25353e1390cb3ac2f598b8d088a8b285d607909a65ab9322a24b29eead2bcf1e1f6a8fbcfc26ec5a324008d868ac5cacbc744feba930b1953f65fd8635be253e5e0b93f13bbab4869cbb718e225383da1a8b228c0361f7e71bea6273d99c019ee3810b5abdeeb3ee8409f159e252efd8a70e0685d339ba339b9705fe3437cb46c1aa512856a2394f457c4b0726c52bfe82a260aae4379879bca5fca35c0f361015f3b00c0697edb55c410ffeadd36c6487d9d312eebefa1aa1d227b5a027be96baa23dc4e485fe7697fbc5e9a3b156eb9b6743125f4140d325cd981dfe57c043354ae8473b481ebe99d9f831d7e58e8ea0e667cc83200111c4d25ca7b5b6f8b6ffbc002fe2257c3ab4df449b87434b8cc7175d2eaafe83156de7fd6f2ac148dceb3eb6c6ae032162bbecb9a6335359c42a07f7749042bdb0db025aac974cfc62d11f444a77d279398f6b36684bc2905288197f8ef76545d21edcd61eacd5a1746c1af375bb153ded25fc44d7a700505420ffe25a9477f133b28ebe8c06a35bda52c661e6ad35997e835f4750f56de72023a72af857ad1fa7c2162f0d20bb9167edc5c140f9e3ef0ac44498711d82dc13edcf75817f74fb1fb77fda07b481b44e4aff9c0b1762cba61f267ba677db156d5a673b9cca7e32a1d878e814a3e123e996b1ace9238e0a8c912f2c996137d70ef8350daf4131e6b69aecec3d8ee2afdc3c3c8a5dbc152c2d0c7118c62586072b3bd8b140dc983dee9713e56d2a1b92e11ad7225f9302f33f481a37ce5e4b4ca80aa46b388181a101e004096b41373f4fa4a84d8d319467a5051b9439801bff37b7aa22f6e1230db7c07d84d21118fce023c6aafb60337e120e68c31fbf5f76d1498211767fe4f165ab30bb6bd728484ce16c6ec7a7bd77dd1cf3661e9b45cee8d473fb00b935cd90276b9f2ceeb6b503f95a760fbf29fa26adff61f84bb4587cc821fdb646e7a56688cf113351c4dcbd2a8a657186b4b91808977a4c7fde38a06cd47cf952980b01548e4a1ea1b83d5c48673e08060f5495bcd33b46ca0e1aa355e0ab90cd477e5162eea8ff70f73c9c7df785085f04aacee7406a473c8f600bb0e4657504eefecf14846cf7e7f6cd705c5e215391f106d0583c559df76bf4dba308527a70e443e3c699f52f9dfa2798f2a7c54980b0056c815e7c21f02dcc17602ef11c52ecd48d163c1691d9a3b62ae33708e6ed3ab436012a9734bdaf4d370ea920cd0581fc102ebc1390d41800f4aa3d50bb001c68dbd3b8ea18105c1ddd576cd5b87f525cf30f11b17c8c979a482ca9364b98eb3fc12a8c14b73ff76215cd1a8e1ff9fb2840e743e5cc6230f2637d5cc478e859aac7ec3b2da12d2ef2092f62b398b5b88c00fb79b23271113ab6d49657126733d3648aff5914e430f26e4e6c57b025989585d193357cd362a82f30c68f4ad396e560f4ba4038c283a0b992172c2c00ee34787eba2d48c1ef4b374999f9aa436b0669e3e4c08abf2c1cec6db4091b2e19e16465ba8c40c517872315b6298b56e0f7e1c93b03fe45f69db5298a6b9298695c92d85b05287036f626ecb5b331c83df654562ebdcc6eaa0670945ad6e9c35f5d86b97c1256288b06faffedc5753748708a301b739165cc787cf10428893342ba301aea42ccc24d12fe39cca03240d5a0c0d5e020c71c056f26b8ae145cd9b5d7bc9303647f6bb7308a4079e8a94c846d6c00081e54e975684c15cbcd97345cb7ca3a9cc1eac363e4fe80ff3d980e73f37ad0befdb5bd707580fe18c2645f63e0416ad46f2313d0495808e66331fc5fb1a5973dfc295a5658c1a9fee879106b23634a21c52ba11038a0d9611f4dae267cdf098300190a8ac6fe2c7876bca173cd4be004a0ba145ce44d65d6c9c4b1a3997e8fdf8d68a409a4f2f0da303683a0d2866b0328e99100073d2b54af7e71e86585a92193d49437dc10ae30d2a093f86e816dcf634f877c0ed73e33c5dc874eb024cd9a16b2d795e76d5e05e90a865293f91eb520dede0feac941aee5e4c5da97cbfa400bdc3d7505b7f25c47f622666338f5e79b04c46f26970ca316f477a422736096b7c5024730807876595807cf14f4eed56b45586c89c26f479349745503bdab83f8d0e4bde0431eef5e0f3cbccb2e2769099d0dbfd2f832f7d386b80a010c5e06601332eb8398ac316aab75aef98e5368045af114bf568154aba9934f1aaba57ff2142650fb92844d0fc73b55e8cf5c9f1c384a2a734f9f16aab0cf09057188a721f2942f3496d8d094407795a3c949719ddbd5256197b62983f9d399405bd3f4d27c56302b38eb5731bf2d913714ef808739139ccaf41621e4d580d8ca602fcdf86663af5b194b7a87740db160729a2fb421439b3dd08b6551b3da08fcae85f91be09b7d6ef4db188cdb17678e7c76bc270f4f8e1cbd3e44ed3b6ece8de9479472b2df5a6e9f31d8e71936e661286c8a465e6a062f0d2d7e2de8a7824606a1546b6d705f060adcf943417e6c2dfb5af6cc49d40a58f636302f996222cbda10cd5315e5edb68a9fa60431454210c92f25c89d0956f7af15986d3e1644e549a7057c8dc75068d5c7ba975dba38211f2cffeb8975539e4a61efab23695a4a472ca3ba135fcb2cc1562c771d50a06723a3960d0b2eec773ea387c2f46f0c6af5ac51e9f851c5afa8a7e2db49e4139dcbde6a3dabebee7d4921917a698bbe2a357715d37faa4b68faa864f2b0ab567ec4b79a49449ddb4ef49e3a1519a501e9dce0adae204f</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -310,7 +312,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://fenglielie.github.io/2022/06/23/cpp/learn-bxjs-pthread/" title="并行计算学习笔记——pthread和std::thread">https://fenglielie.github.io/2022/06/23/cpp/learn-bxjs-pthread/</a>
+      <a href="https://fenglielie.github.io/2022/06/24/plan/plan-bzks/" title="plan-bzks">https://fenglielie.github.io/2022/06/24/plan/plan-bzks/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -318,22 +320,16 @@
 </ul>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/cpp/" rel="tag"><i class="fa fa-tag"></i> cpp</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/23/cpp/learn-bxjs-start/" rel="prev" title="并行计算学习笔记——理论基础">
-                  <i class="fa fa-chevron-left"></i> 并行计算学习笔记——理论基础
+                <a href="/2022/06/23/cpp/learn-bxjs-mpi/" rel="prev" title="并行计算学习笔记——MPI">
+                  <i class="fa fa-chevron-left"></i> 并行计算学习笔记——MPI
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/23/cpp/learn-bxjs-openmp/" rel="next" title="并行计算学习笔记——OpenMP">
-                  并行计算学习笔记——OpenMP <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
