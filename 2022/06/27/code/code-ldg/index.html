@@ -23,28 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="之前的DG程序都是用C++写的，并且也积累了一些基础库和框架，不想用Fortran重写一遍，现在需要写一个对流扩散方程求解的代码，一维的比较简单，正好作为Fortran的练手。">
+    <meta name="description" content="LDG练习，一维对流扩散方程和一维可压缩N-S方程组。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fortran学习笔记——练习:对流扩散方程">
-<meta property="og:url" content="https://fenglielie.github.io/2022/06/27/code/code-convection-diffusion/index.html">
+<meta property="og:title" content="LDG——一维对流扩散方程，一维N-S方程组">
+<meta property="og:url" content="https://fenglielie.github.io/2022/06/27/code/code-ldg/index.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
-<meta property="og:description" content="之前的DG程序都是用C++写的，并且也积累了一些基础库和框架，不想用Fortran重写一遍，现在需要写一个对流扩散方程求解的代码，一维的比较简单，正好作为Fortran的练手。">
+<meta property="og:description" content="LDG练习，一维对流扩散方程和一维可压缩N-S方程组。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-27T03:37:14.000Z">
-<meta property="article:modified_time" content="2022-06-27T04:56:10.324Z">
+<meta property="article:modified_time" content="2022-06-29T06:39:27.867Z">
 <meta property="article:author" content="Fenglielie">
-<meta property="article:tag" content="fortran">
+<meta property="article:tag" content="LDG">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fenglielie.github.io/2022/06/27/code/code-convection-diffusion/">
+<link rel="canonical" href="https://fenglielie.github.io/2022/06/27/code/code-ldg/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/27/code/code-convection-diffusion/","path":"2022/06/27/code/code-convection-diffusion/","title":"Fortran学习笔记——练习:对流扩散方程"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/27/code/code-ldg/","path":"2022/06/27/code/code-ldg/","title":"LDG——一维对流扩散方程，一维N-S方程组"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Fortran学习笔记——练习:对流扩散方程 | Fenglielie's Blog</title>
+<title>LDG——一维对流扩散方程，一维N-S方程组 | Fenglielie's Blog</title>
   
 
 
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">对流扩散方程</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">对流扩散方程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">一维N-S方程组</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,7 +176,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -228,7 +228,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/27/code/code-convection-diffusion/">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/27/code/code-ldg/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
@@ -241,12 +241,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Fortran学习笔记——练习:对流扩散方程 | Fenglielie's Blog">
+      <meta itemprop="name" content="LDG——一维对流扩散方程，一维N-S方程组 | Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Fortran学习笔记——练习:对流扩散方程
+          LDG——一维对流扩散方程，一维N-S方程组
         </h1>
 
         <div class="post-meta-container">
@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-27 11:37:14 / Modified: 12:56:10" itemprop="dateCreated datePublished" datetime="2022-06-27T11:37:14+08:00">2022-06-27</time>
+      <time title="Created: 2022-06-27 11:37:14" itemprop="dateCreated datePublished" datetime="2022-06-27T11:37:14+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-06-29 14:39:27" itemprop="dateModified" datetime="2022-06-29T14:39:27+08:00">2022-06-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,14 +283,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.2k</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
@@ -295,17 +301,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>之前的DG程序都是用C++写的，并且也积累了一些基础库和框架，不想用Fortran重写一遍，现在需要写一个对流扩散方程求解的代码，一维的比较简单，正好作为Fortran的练手。</p>
+        <p>LDG练习，一维对流扩散方程和一维可压缩N-S方程组。</p>
 <span id="more"></span>
 <h1 id="对流扩散方程">对流扩散方程</h1>
-<div class="note info"><p>参考文章： Y. Cheng and C.-W. Shu, Superconvergence of local
-discontinuous Galerkin methods for one-dimensional convection-diffusion
-equations , Computers and Structures, v87 (2009), pp.630-641.</p>
-</div>
-<p>一维的对流扩散方程如下</p>
+<p>考虑一维的对流扩散方程如下</p>
 <p><span class="math display">\[
 \begin{aligned}
-u_t + f(u,x)_x &amp;= (b(u) u_x)_x\\
+u_t + f(u)_x &amp;= (b(u) u_x)_x\\
 u(x,0)&amp;=u_0(x)\\
 u(0,t)&amp;=u(2\pi,t)\\
 \end{aligned}
@@ -323,7 +325,7 @@ q - g(u)_x &amp;= 0
 <p>其中<span class="math inline">\(a(u)=\sqrt{b(u)}\)</span>，<span
 class="math inline">\(g(u)\)</span>是<span
 class="math inline">\(a(u)\)</span>的原函数。</p>
-<p>首先给几个文章中算例：</p>
+<p>首先给出文章中算例：</p>
 <ul>
 <li>算例一(热方程)：方程为<span
 class="math inline">\(u_t=u_{xx}\)</span>，精确解为<span
@@ -341,32 +343,37 @@ u_t + \lambda u_x = \mu^2 u_{xx}
 <p>加入中间变量后变成方程组</p>
 <p><span class="math display">\[
 \begin{aligned}
-u_t + \lambda u_x &amp;= \mu q_x \\
-q - \mu u_x &amp;= 0
+u_t + f(u)_x &amp;= h(q)_x \\
+q - g(u)_x &amp;= 0
 \end{aligned}
 \]</span></p>
+<p>其中<span class="math inline">\(f(u)=\lambda u\)</span>，<span
+class="math inline">\(g(u)=\mu u\)</span>，<span
+class="math inline">\(h(q)=\mu
+q\)</span>。对应两个算例，分别取不同的常数<span
+class="math inline">\(\lambda,\mu\)</span>即可。</p>
 <p>在一维均匀网格下，DG半离散格式变为：find <span
 class="math inline">\(u_h,q_h \in V_h^k\)</span>, s.t. <span
 class="math inline">\(\forall v_h, w_h \in V_h^k\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
-\int_{I_j} (u_h)_t v_h - \lambda \int_{I_j} u_h (v_h)_x + \lambda \left[
-\widehat{u}_h^c(x_{j+1/2}) v_h(x_{j+1/2}^-) -
-\widehat{u}_h^c(x_{j-1/2}) v_h(x_{j-1/2}^+) \right]\\
-= -\mu \int_{I_j} q_h (v_h)_x + \mu \left[
-\widehat{q}_h(x_{j+1/2})v_h(x_{j+1/2}^-) -
-\widehat{q}_h(x_{j-1/2})v_h(x_{j-1/2}^+) \right]\\
-\int_{I_j} q_h w_h =- \mu \int_{I_j} u_h (w_h)_x + \mu
+\int_{I_j} (u_h)_t v_h - \int_{I_j} f(u_h) (v_h)_x +  \left[
+\widehat{f}(u_h(x_{j+1/2})) v_h(x_{j+1/2}^-) -
+\widehat{f}(u_h(x_{j-1/2})) v_h(x_{j-1/2}^+) \right]\\
+= - \int_{I_j} h(q_h) (v_h)_x + \left[
+\widehat{h}(q_h(x_{j+1/2}))v_h(x_{j+1/2}^-) -
+\widehat{h}(q_h(x_{j-1/2}))v_h(x_{j-1/2}^+) \right]\\
+\int_{I_j} q_h w_h =- \int_{I_j} g(u_h) (w_h)_x +
 \left[
-\widehat{u}_h(x_{j+1/2})w_h(x_{j+1/2}^-)-\widehat{u}_h(x_{j-1/2})w_h(x_{j-1/2}^+)
+\widehat{g}(u_h(x_{j+1/2}))w_h(x_{j+1/2}^-)-\widehat{g}(u_h(x_{j-1/2}))w_h(x_{j-1/2}^+)
 \right]
 \end{aligned}
 \]</span></p>
-<p>为了兼容其他格式，我们把第二个公式再次分部积分进行转化，在使用<span
+<p>为了兼容其他格式，我们也把第二个公式再次分部积分进行转化，在使用<span
 class="math inline">\(q_h \in V_h^k\)</span>近似<span
-class="math inline">\(\mu (u_h)_x \in V_h^{k-1}\)</span>时，记</p>
+class="math inline">\(g(u_h)_x \in V_h^{k-1}\)</span>时，记</p>
 <p><span class="math display">\[
-q_h = \mu \left[(u_h)_x + R^w_h + R^e_h \right]
+q_h = g(u_h)_x + R^w_h + R^e_h
 \]</span></p>
 <p>其中基于右边界的修正量<span
 class="math inline">\(R^e_h\)</span>和基于左边界的修正量<span
@@ -374,10 +381,10 @@ class="math inline">\(R^w_h\)</span>分别满足：<span
 class="math inline">\(\forall w_h \in V_h^k\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
-\int_{I_j} R^e_h w_h &amp;= \left[\widehat{u}_h(x_{j+1/2}) -
-u_h(x_{j+1/2}^-)\right] w_h(x_{j+1/2}^-)\\
-\int_{I_j} R^w_h w_h &amp;= \left[\widehat{u}_h(x_{j-1/2}) -
-u_h(x_{j-1/2}^+)\right] w_h(x_{j-1/2}^+)\\
+\int_{I_j} R^e_h w_h &amp;= \left[\widehat{g}(u_h(x_{j+1/2})) -
+g(u_h(x_{j+1/2}^-))\right] w_h(x_{j+1/2}^-)\\
+\int_{I_j} R^w_h w_h &amp;= \left[\widehat{g}(u_h(x_{j-1/2})) -
+g(u_h(x_{j-1/2}^+))\right] w_h(x_{j-1/2}^+)\\
 \end{aligned}
 \]</span></p>
 <p>对时间直接使用向前欧拉离散(实践中使用Runge-Kutta格式替代)，计算流程为：</p>
@@ -385,23 +392,50 @@ u_h(x_{j-1/2}^+)\right] w_h(x_{j-1/2}^+)\\
 <li>计算初值<span class="math inline">\(u_h^0\)</span>，n=0</li>
 <li>基于<span class="math inline">\(u_h^n\)</span>，计算修正量<span
 class="math inline">\(R_h^{e,n}\)</span>和<span
-class="math inline">\(R_h^{w,n}\)</span></li>
-<li>计算<span class="math inline">\(q_h^n = \mu \left[(u_h^n)_x +
-R^{w,n}_h + R^{e,n}_h \right]\)</span></li>
+class="math inline">\(R_h^{w,n}\)</span>，计算<span
+class="math inline">\(q_h^n = \mu \left[(u_h^n)_x + R^{w,n}_h +
+R^{e,n}_h \right]\)</span></li>
 <li>计算下一步的<span class="math inline">\(u_h^{n+1}\)</span>，<span
 class="math inline">\(n:=n+1\)</span>，回到第二步或者结束计算。</li>
 </ol>
 <p>剩下三个数值流通量的选取：</p>
 <ul>
 <li><span
-class="math inline">\(\widehat{u}_h^c(x^-,x^+)\)</span>：对流项的数值流通量，例如LF流通量；</li>
+class="math inline">\(\widehat{f}(u_h(x^-,x^+))\)</span>：对流项的数值流通量，例如LF流通量；</li>
 <li><span
-class="math inline">\(\widehat{u}_h(x^-,x^+)\)</span>：取作<span
-class="math inline">\(u_h(x^-)\)</span>；</li>
+class="math inline">\(\widehat{g}(u_h(x^-,x^+))\)</span>：取作<span
+class="math inline">\(\mu u_h(x^-)\)</span>；</li>
 <li><span
-class="math inline">\(\widehat{q}_h(x^-,x^+)\)</span>：取作<span
-class="math inline">\(q_h(x^+)\)</span>。(后两个也可以左右互换)</li>
+class="math inline">\(\widehat{h}(q_h(x^-,x^+))\)</span>：取作<span
+class="math inline">\(\mu q_h(x^+)\)</span>。(后两个也可以左右互换)</li>
 </ul>
+<p>时间步长的选取：如果使用<span class="math inline">\(\Delta
+t=\text{CFL} \Delta x\)</span> 可能不行，使用足够小的<span
+class="math inline">\(\Delta t=\text{CFL} \Delta
+x^2\)</span>可以保证稳定性。</p>
+<div class="note info"><p>参考文献： Y. Cheng and C.-W. Shu, Superconvergence of local
+discontinuous Galerkin methods for one-dimensional convection-diffusion
+equations , Computers and Structures, v87 (2009), pp.630-641.</p>
+</div>
+<h1 id="一维n-s方程组">一维N-S方程组</h1>
+<p>考虑一维的N-S方程组如下，</p>
+<p><span class="math display">\[
+U_t + F(U)_x = H(U,U_x)_x + S(U)
+\]</span></p>
+<p>其中<span class="math inline">\(F(U)_x\)</span>为对流项，<span
+class="math inline">\(H(U,U_x)_x\)</span>为黏性项，<span
+class="math inline">\(S(U)\)</span>为源项，默认取<span
+class="math inline">\(S(U)=0\)</span>。</p>
+<p>守恒型变量<span class="math inline">\(U=[\rho,\rho
+u,E]^T\)</span>，其中能量</p>
+<p><span class="math display">\[
+E = \frac{p}{\gamma-1} + \frac12 \rho u^2
+\]</span></p>
+<p>对流项</p>
+<p><span class="math display">\[
+F(U)=[\rho u,\rho u^2 + p,u(E+p)]^T
+\]</span></p>
+<p>以上都和一维可压缩理想气体相同，不同之处在于黏性项，</p>
 
     </div>
 
@@ -419,7 +453,7 @@ class="math inline">\(q_h(x^+)\)</span>。(后两个也可以左右互换)</li>
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://fenglielie.github.io/2022/06/27/code/code-convection-diffusion/" title="Fortran学习笔记——练习:对流扩散方程">https://fenglielie.github.io/2022/06/27/code/code-convection-diffusion/</a>
+      <a href="https://fenglielie.github.io/2022/06/27/code/code-ldg/" title="LDG——一维对流扩散方程，一维N-S方程组">https://fenglielie.github.io/2022/06/27/code/code-ldg/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -428,7 +462,7 @@ class="math inline">\(q_h(x^+)\)</span>。(后两个也可以左右互换)</li>
 </div>
 
           <div class="post-tags">
-              <a href="/tags/fortran/" rel="tag"><i class="fa fa-tag"></i> fortran</a>
+              <a href="/tags/LDG/" rel="tag"><i class="fa fa-tag"></i> LDG</a>
           </div>
 
         

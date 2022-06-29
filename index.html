@@ -170,7 +170,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -221,7 +221,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/27/code/code-convection-diffusion/">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/27/code/code-ldg/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
@@ -239,7 +239,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/27/code/code-convection-diffusion/" class="post-title-link" itemprop="url">Fortran学习笔记——练习:对流扩散方程</a>
+          <a href="/2022/06/27/code/code-ldg/" class="post-title-link" itemprop="url">LDG——一维对流扩散方程，一维N-S方程组</a>
         </h2>
 
         <div class="post-meta-container">
@@ -249,9 +249,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-27 11:37:14 / Modified: 12:56:10" itemprop="dateCreated datePublished" datetime="2022-06-27T11:37:14+08:00">2022-06-27</time>
+      <time title="Created: 2022-06-27 11:37:14" itemprop="dateCreated datePublished" datetime="2022-06-27T11:37:14+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-06-29 14:39:27" itemprop="dateModified" datetime="2022-06-29T14:39:27+08:00">2022-06-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,14 +276,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.2k</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
@@ -288,10 +294,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>之前的DG程序都是用C++写的，并且也积累了一些基础库和框架，不想用Fortran重写一遍，现在需要写一个对流扩散方程求解的代码，一维的比较简单，正好作为Fortran的练手。</p>
+          <p>LDG练习，一维对流扩散方程和一维可压缩N-S方程组。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/06/27/code/code-convection-diffusion/#more" rel="contents">
+              <a class="btn" href="/2022/06/27/code/code-ldg/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
