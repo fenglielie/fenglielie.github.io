@@ -31,7 +31,7 @@
 <meta property="og:description" content="LDG练习，一维对流扩散方程和一维可压缩N-S方程组。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-27T03:37:14.000Z">
-<meta property="article:modified_time" content="2022-06-29T06:39:27.867Z">
+<meta property="article:modified_time" content="2022-06-29T07:55:20.324Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="LDG">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">对流扩散方程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">一维N-S方程组</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">一维对流扩散方程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">一维N-S方程组</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-29 14:39:27" itemprop="dateModified" datetime="2022-06-29T14:39:27+08:00">2022-06-29</time>
+      <time title="Modified: 2022-06-29 15:55:20" itemprop="dateModified" datetime="2022-06-29T15:55:20+08:00">2022-06-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -283,14 +283,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.5k</span>
+      <span>4.6k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>5 mins.</span>
     </span>
 </div>
 
@@ -303,7 +303,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>LDG练习，一维对流扩散方程和一维可压缩N-S方程组。</p>
 <span id="more"></span>
-<h1 id="对流扩散方程">对流扩散方程</h1>
+<h1 id="一维对流扩散方程">一维对流扩散方程</h1>
 <p>考虑一维的对流扩散方程如下</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -433,9 +433,97 @@ E = \frac{p}{\gamma-1} + \frac12 \rho u^2
 \]</span></p>
 <p>对流项</p>
 <p><span class="math display">\[
-F(U)=[\rho u,\rho u^2 + p,u(E+p)]^T
+\begin{aligned}
+F(U)&amp;=[\rho u,\rho u^2 + p,u(E+p)]^T\\
+&amp;=[\rho u,\rho u^2 + p, u\left(\frac{\gamma}{\gamma-1}p + \frac12
+\rho u^2 \right)]^T
+\end{aligned}
 \]</span></p>
-<p>以上都和一维可压缩理想气体相同，不同之处在于黏性项，</p>
+<p>从原始变量<span
+class="math inline">\(\{\rho,u,p\}\)</span>转化到守恒型变量<span
+class="math inline">\(U=[\xi_1,\xi_2,\xi_3]^T\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\xi_1 &amp;= \rho \\
+\xi_2 &amp;= \rho u\\
+\xi_3 &amp;= \frac{p}{\gamma-1}+\frac12 \rho u^2
+\end{aligned}
+\]</span></p>
+<p>从守恒型变量<span
+class="math inline">\(U=[\xi_1,\xi_2,\xi_3]^T\)</span>转化到原始变量<span
+class="math inline">\(\{\rho,u,p\}\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho &amp;= \xi_1\\
+u &amp;= \frac{\xi_2}{\xi_1}\\
+p &amp;= (\gamma -1)\left(\xi_3 - \frac12 \frac{\xi_2^2}{\xi_1}\right)
+\end{aligned}
+\]</span></p>
+<p>以上都和一维可压缩理想气体相同，不同之处在于黏性项，黏性项具体为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+H(U,U_x) &amp;= [0, \tau_{xx},u\tau_{xx} +
+\frac{\mu}{Pr(\gamma-1)}(a^2)_x]^T\\
+&amp;= [0, \frac{4\mu}3 u_x, \frac{4\mu}3 u u_x + \frac{\mu
+\gamma}{Pr(\gamma-1)}\left(\frac{p_x \rho - p \rho_x}{\rho^2}\right)]^T
+\end{aligned}
+\]</span></p>
+<p>我们首先引入中间变量<span
+class="math inline">\(V=U_x\)</span>，得到方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+U_t + F(U)_x &amp;= H(U,V)_x + S(U)\\
+V &amp;= G(U)_x
+\end{aligned}
+\]</span></p>
+<p>其中<span class="math inline">\(G(U)=U\)</span>，记<span
+class="math inline">\(V=[\eta_1,\eta_2,\eta_3]^T\)</span>，从原始变量<span
+class="math inline">\(\{\rho,u,p\}\)</span>和<span
+class="math inline">\(\{\rho_x,u_x,p_x\}\)</span>转化到<span
+class="math inline">\(V=[\eta_1,\eta_2,\eta_3]^T\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\eta_1 &amp;= \rho_x \\
+\eta_2 &amp;= (\rho u)_x = \rho_x u + \rho u_x \\
+\eta_3 &amp;= E_x = \frac{p_x}{\gamma-1} + \frac12 \rho_x u^2 + \rho u
+u_x
+\end{aligned}
+\]</span></p>
+<p>从<span class="math inline">\(U=[\xi_1,\xi_2,\xi_3]^T\)</span>和<span
+class="math inline">\(V=[\eta_1,\eta_2,\eta_3]^T\)</span>转化到原始变量<span
+class="math inline">\(\{\rho_x,u_x,p_x\}\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho_x &amp;= \eta_1\\
+u_x &amp;= \frac{1}{\rho}(\eta_2 - \rho_x u)
+= \frac{1}{\xi_1}\left(\eta_2 - \eta_1 \frac{\xi_2}{\xi_1} \right)\\
+p_x &amp;= (\gamma-1)\left(\eta_3 - \frac12 \rho_x u^2 - \rho u
+u_x\right)\\
+&amp;= (\gamma-1)\left[\eta_3 - \frac12 \eta_1
+\left(\frac{\xi_2}{\xi_1}\right)^2 - \xi_2 \frac{1}{\xi_1}\left(\eta_2 -
+\eta_1 \frac{\xi_2}{\xi_1} \right) \right]
+\end{aligned}
+\]</span></p>
+<p>在一维均匀网格下，DG半离散格式变为：find <span
+class="math inline">\(U_h,V_h \in V_h^k\)</span>, s.t. <span
+class="math inline">\(\forall W_h, Y_h \in V_h^k\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{I_j} (U_h)_t W_h - \int_{I_j} F(U_h)(W_h)_x
++\widehat{F}(U_h(x_{i+1/2}))W_h(x_{i+1/2}^-)
+-\widehat{F}(U_h(x_{i-1/2}))W_h(x_{i-1/2}^+)\\
+=
+-\int_{I_j}H(U_h,V_h)(W_h)_x
++ \widehat{H}(U_h,V_h)(x_{i+1/2})W_h(x_{i+1/2}^-)
+- \widehat{H}(U_h,V_h)(x_{i-1/2})W_h(x_{i-1/2}^+)
++ \int_{I_j}S(U_h) W_h
+\\
+\int_{I_j} V_h Y_h =
+-\int_{I_j}G(U_h)(Y_h)_x
++ \widehat{G}(U_h)(x_{i+1/2})Y_h(x_{i+1/2}^-)
+- \widehat{G}(U_h)(x_{i-1/2})Y_h(x_{i-1/2}^+)
+\end{aligned}
+\]</span></p>
 
     </div>
 
