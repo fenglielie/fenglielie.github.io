@@ -31,7 +31,7 @@
 <meta property="og:description" content="LDG练习，一维对流扩散方程和一维可压缩N-S方程组。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-27T03:37:14.000Z">
-<meta property="article:modified_time" content="2022-06-29T07:55:20.324Z">
+<meta property="article:modified_time" content="2022-06-30T10:38:20.061Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="LDG">
 <meta name="twitter:card" content="summary">
@@ -165,7 +165,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-29 15:55:20" itemprop="dateModified" datetime="2022-06-29T15:55:20+08:00">2022-06-29</time>
+      <time title="Modified: 2022-06-30 18:38:20" itemprop="dateModified" datetime="2022-06-30T18:38:20+08:00">2022-06-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -418,7 +418,7 @@ discontinuous Galerkin methods for one-dimensional convection-diffusion
 equations , Computers and Structures, v87 (2009), pp.630-641.</p>
 </div>
 <h1 id="一维n-s方程组">一维N-S方程组</h1>
-<p>考虑一维的N-S方程组如下，</p>
+<p>考虑无量纲化的一维的N-S方程组如下，</p>
 <p><span class="math display">\[
 U_t + F(U)_x = H(U,U_x)_x + S(U)
 \]</span></p>
@@ -463,9 +463,10 @@ p &amp;= (\gamma -1)\left(\xi_3 - \frac12 \frac{\xi_2^2}{\xi_1}\right)
 <p><span class="math display">\[
 \begin{aligned}
 H(U,U_x) &amp;= [0, \tau_{xx},u\tau_{xx} +
-\frac{\mu}{Pr(\gamma-1)}(a^2)_x]^T\\
-&amp;= [0, \frac{4\mu}3 u_x, \frac{4\mu}3 u u_x + \frac{\mu
-\gamma}{Pr(\gamma-1)}\left(\frac{p_x \rho - p \rho_x}{\rho^2}\right)]^T
+\frac{1}{Re\,Pr(\gamma-1)}(a^2)_x]^T\\
+&amp;= [0, \frac{4}{3Re} u_x, \frac{4}{3Re} u u_x +
+\frac{\gamma}{Re\,Pr(\gamma-1)}\left(\frac{p_x \rho - p
+\rho_x}{\rho^2}\right)]^T
 \end{aligned}
 \]</span></p>
 <p>我们首先引入中间变量<span
@@ -562,6 +563,9 @@ class="math inline">\(\forall W_h, Y_h \in V_h^k\)</span></p>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/06/29/learn/learn-inse-simple/" rel="next" title="SIMPLE算法学习笔记">
+                  SIMPLE算法学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

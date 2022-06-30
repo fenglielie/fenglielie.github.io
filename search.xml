@@ -1,6 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SIMPLE算法学习笔记</title>
+    <url>/2022/06/29/learn/learn-inse-simple/</url>
+    <content><![CDATA[<p>SIMPLE算法全称是压力耦合方程组的半隐式方法,
+作为经典的算法在fluent等工业软件中被广泛应用。</p>
+<span id="more"></span>
+<p>我们考虑二维非定常的不可压流动，不考虑源项，方程组为</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial (\rho \mathbf{u})}{\partial t} + \nabla \cdot (\rho
+\mathbf{u} \mathbf{u}) &amp;= -\nabla p + \mu \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<h1 id="交错网格">交错网格</h1>
+<p>在使用有限差分/有限体积法的空间离散中，往往会采用交错网格来避免压力场的奇偶失联，因为对压强如果都使用中心差分，如下高度振荡的压强场梯度却全都是零:
+<span class="math display">\[
+p_{IJ} =
+\left\{
+\begin{aligned}
+&amp;p_1 &amp; I+J\text{为奇数}\\
+&amp;p_2 &amp; I+J\text{为偶数}\\
+\end{aligned}
+\right.
+\]</span>
+交错网格法对于有限差分法，把标量(压强，温度等)定义在整格点例如<span
+class="math inline">\((I,J)\)</span>，把速度向量的u分量定义在水平方向的半格点例如<span
+class="math inline">\((I+1/2,J)\)</span>，把v分量定义在竖直方向的半格点例如<span
+class="math inline">\((I,J+1/2)\)</span>。对于有限体积法把相应的控制体定义为以上述整格点或半格点为中心的矩形，如下图。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png"/></p>
+<p>在实线和整格点代表对应的<span
+class="math inline">\((I,J)\)</span>网格的基础上，对虚线以及半格点处，记<span
+class="math inline">\(i=I-\frac12\)</span>，<span
+class="math inline">\(j=J-\frac12\)</span>，得到如下的记号系统：</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png" width="60%"/></p>
+<div class="note info"><p>在接下来的推导中，我们尽量避免空间离散的具体细节，也未必使用了交错网格。</p>
+</div>
+<h1 id="定常流simple">定常流SIMPLE</h1>
+<p>我们首先考虑的是定常流，也就是没有时间项。</p>
+<h2 id="动量方程">动量方程</h2>
+<p>对于对流项的处理：在控制体上进行积分时，<span
+class="math inline">\(\nabla \cdot(\rho
+\mathbf{u}\mathbf{u})\)</span>会转换为一个边界的积分，但是关于<span
+class="math inline">\(\mathbf{u}\)</span>不是线性的，因此我们假定一个<strong>界面上的速度<span
+class="math inline">\(\mathbf{u}_f\)</span></strong>作为已知量！使得这一项仍然关于<span
+class="math inline">\(\mathbf{u}\)</span>是线性的，<strong>在不断迭代中使得<span
+class="math inline">\(\mathbf{u}_f\)</span>与<span
+class="math inline">\(\mathbf{u}\)</span>趋于一致</strong>。记</p>
+<p><span class="math display">\[
+\nabla \cdot(\rho \mathbf{u}\mathbf{u})\to
+\nabla \cdot(\rho \mathbf{u}_f\mathbf{u})
+\]</span></p>
+<p><span class="math display">\[
+\int_{\Omega} \nabla \cdot(\rho \mathbf{u}_f\,\mathbf{u})
+= \int_{\partial \Omega} \rho \mathbf{u}_f\, \mathbf{u}
+\]</span></p>
+<p>因此，对于任意一个控制体<span
+class="math inline">\(\Omega\)</span>对(定常的)动量方程进行积分，可以得到如下形式</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla \cdot (\rho \mathbf{u} \mathbf{u}) &amp;= -\nabla p + \mu
+\nabla^2 \mathbf{u}\\
+\int_{\partial \Omega} \rho \mathbf{u}_f\, \mathbf{u} &amp;=
+\int_{\Omega} \mu \nabla^2 \mathbf{u} - \int_{\Omega} \nabla p
+\end{aligned}
+\]</span></p>
+<p>最终可以得到如下形式，</p>
+<p><span class="math display">\[
+\begin{aligned}
+a_P \mathbf{u}_P + \sum_{P\text{周围}} a_{nb}\mathbf{u}_{nb} &amp;=
+\mathbf{R}(p)
+\end{aligned}
+\]</span></p>
+<p>其中<span class="math inline">\(P\)</span>是控制体对应的中心点，<span
+class="math inline">\(nb\)</span>取遍周围的有限多个邻居点，系数<span
+class="math inline">\(a_P,a_{nb}\)</span>已知(视<span
+class="math inline">\(\mathbf{u}_f\)</span>为已知量)，右端项<span
+class="math inline">\(\mathbf{R}_P(p)\)</span>是负的压强梯度积分离散后的简写。</p>
+<p>关于<span
+class="math inline">\(\mathbf{u}\)</span>是线性的，因此可以写成一个线性方程组的形式</p>
+<p><span class="math display">\[
+M U = R
+\]</span></p>
+<p>我们首先记预测值和修正值如下</p>
+<p><span class="math display">\[
+\begin{aligned}
+p &amp;= p^* + p&#39;\\
+\mathbf{u} &amp;= \mathbf{u}^* + \mathbf{u}&#39;\\
+\end{aligned}
+\]</span></p>
+<p>首先，我们有压强预测值<span
+class="math inline">\(p^*\)</span>，<strong>基于压强预测值<span
+class="math inline">\(p^*\)</span>计算速度预测值</strong><span
+class="math inline">\(\mathbf{u}^*\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+a_P \mathbf{u^*}_P + \sum_{P\text{周围}} a_{nb}\mathbf{u^*}_{nb} &amp;=
+\mathbf{R}_P(p^*)
+\end{aligned}
+\]</span></p>
+<p>或者写成矩阵的形式：</p>
+<p><span class="math display">\[
+\begin{aligned}
+M U^* &amp;= R^*\\
+U^* &amp;= M^{-1} R^*
+\end{aligned}
+\]</span></p>
+<div class="note info"><p>注意到由于对流项的存在，这里的系数<span
+class="math inline">\(a_P,a_{nb}\)</span>或者说<span
+class="math inline">\(M\)</span>的系数，是和面上的速度<span
+class="math inline">\(\mathbf{u}_f\)</span>有关的，而界面上的速度需要通过上一次迭代得到的<span
+class="math inline">\(\mathbf{u}\)</span>在界面处插值得到，在第一次迭代之前，需要提供初始速度场和初始压力场(这是定常流问题，不需要准确初值，初始值只是用于迭代的启动)</p>
+</div>
+<p>然后对于速度修正值，<strong>我们忽略邻居项的关联，基于压强修正值<span
+class="math inline">\(p&#39;\)</span>，计算速度修正值<span
+class="math inline">\(\mathbf{u}&#39;\)</span></strong>，亦即</p>
+<p><span class="math display">\[
+\begin{aligned}
+a_P \mathbf{u&#39;}_P +  \sum_{P\text{周围}} a_{nb}\mathbf{u&#39;}_{nb}
+&amp;= \mathbf{R}_P(p&#39;)\\
+\Rightarrow a_P \mathbf{u&#39;}_P  &amp;= \mathbf{R}_P(p&#39;)\\
+\mathbf{u&#39;}_P  &amp;= \frac{1}{a_P}\mathbf{R}_P(p&#39;)\\
+\end{aligned}
+\]</span></p>
+<p>或者从线性方程组的角度，就是由<span
+class="math inline">\(M\)</span>的对角元组成矩阵<span
+class="math inline">\(A\)</span>，得到 <span class="math display">\[
+\begin{aligned}
+M U&#39; &amp;= R&#39;\\
+\Rightarrow A U&#39; &amp;= R&#39;\\
+U&#39; &amp;= A^{-1} R&#39;
+\end{aligned}
+\]</span></p>
+<div class="note info"><p>这里的忽略是SIMPLE算法的一个关键点，它把对速度的修正完全寄托于压强场的影响，而忽略不同位置速度场的关联性。</p>
+</div>
+<p>从而有</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{u}_P = \mathbf{u}^*_P + \mathbf{u}&#39;_P = \mathbf{u}^*_P +
+\frac{1}{a_P} \mathbf{R}_P(p&#39;)
+\end{aligned}
+\]</span></p>
+<p>或者矩阵形式</p>
+<p><span class="math display">\[
+U = U^* + U&#39; = U^* + A^{-1}R&#39;
+\]</span></p>
+<h2 id="连续性方程">连续性方程</h2>
+<p>对上式取散度，要求<span class="math inline">\(\nabla \cdot
+\mathbf{u}=0\)</span>成立，有</p>
+<p><span class="math display">\[
+\begin{aligned}
+0 = \nabla \cdot \mathbf{u}|_P = \nabla \cdot\mathbf{u}^*|_P
++ \nabla \cdot (\frac{1}{a_P} \mathbf{R}_P(p&#39;))
+\end{aligned}
+\]</span></p>
+<p>因此，我们可以基于速度预测值<span
+class="math inline">\(\mathbf{u}^*\)</span>计算压强修正值<span
+class="math inline">\(p&#39;\)</span>。 因为上式关于<span
+class="math inline">\(\mathbf{u}^*\)</span>和<span
+class="math inline">\(p&#39;\)</span>都是线性的，离散后也可以写成一个线性方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+Q_1 S&#39; &amp;= Q_2 U^*\\
+S&#39; &amp;= Q_1^{-1} Q_2 U^*
+\end{aligned}
+\]</span></p>
+<p>这里为了避免符号歧义，用<span
+class="math inline">\(S\)</span>代表压强向量。连续性方程(不可压缩条件)对应得到上式，我们据此<strong>通过速度预测值<span
+class="math inline">\(\mathbf{u}^*\)</span>，计算压强修正值<span
+class="math inline">\(p&#39;\)</span>。</strong></p>
+<div class="note info"><p><span class="math inline">\(Q_1\)</span>和<span
+class="math inline">\(Q_2\)</span>几乎是常系数的矩阵，但是由于<span
+class="math inline">\(a_P\)</span>的存在，还是受到<span
+class="math inline">\(\mathbf{u}_f\)</span>的影响，进而在每一次迭代时需要重新计算。</p>
+</div>
+<h2 id="计算流程">计算流程</h2>
+<p>因为是稳态问题，我们使用上标代表迭代次数而非时间，首先，我们需要提供一个粗糙的速度场和压力场启动值<span
+class="math inline">\(\mathbf{u}^0,p^0\)</span>。(或者写成向量<span
+class="math inline">\(U^0,S^0\)</span>)</p>
+<p>对于第n次迭代之后得到的速度<span
+class="math inline">\(\mathbf{u}^n\)</span>和压强<span
+class="math inline">\(p^n\)</span>(或者写成<span
+class="math inline">\(U^n,S^n\)</span>)，进入下一轮迭代：</p>
+<ul>
+<li>首先通过插值得到界面上的速度<span
+class="math inline">\(\mathbf{u}^n_f\)</span>，计算系数<span
+class="math inline">\(a_P,a_{nb}\)</span>，亦即计算矩阵<span
+class="math inline">\(M\)</span>；</li>
+<li>直接取上一次的压强作为这一轮的压强预测值<span
+class="math inline">\(p^{n+1,*}=p^n\)</span>；</li>
+<li><strong>基于压强预测值<span
+class="math inline">\(p^{n+1,*}\)</span>计算速度预测值<span
+class="math inline">\(\mathbf{u}^{n+1,*}\)</span>；(动量方程)</strong></li>
+<li>计算连续性方程离散版需要的系数，亦即计算矩阵<span
+class="math inline">\(Q_1\)</span>，<span
+class="math inline">\(Q_2\)</span>；</li>
+<li><strong>基于速度预测值<span
+class="math inline">\(\mathbf{u}^{n+1,*}\)</span>，计算压强修正值<span
+class="math inline">\(p^{n+1,&#39;}\)</span>；(连续性方程)</strong></li>
+<li><strong>基于压强修正值<span
+class="math inline">\(p^{n+1,&#39;}\)</span>，计算速度修正值<span
+class="math inline">\(\mathbf{u}^{n+1,&#39;}\)</span>；</strong></li>
+<li>更新：<span class="math inline">\(\mathbf{u}^{n+1} =
+\mathbf{u}^{n+1,*}+\mathbf{u}^{n+1,&#39;}\)</span>，<span
+class="math inline">\(p^{n+1}=p^{n+1,*}+p^{n+1,&#39;}\)</span>。</li>
+</ul>
+<p>然后判断是否收敛，是否进入下一轮迭代。</p>
+<pre class="mermaid">graph TD
+  A0[提供速度初值和压强初值] --> A1[迭代开始]
+  A1 --> B1[利用上一步的速度计算界面上的速度]
+  B1 --> B2[将上一步的压强视作压强预测值]
+  B2 --> C[基于压强预测值计算速度预测值]
+  C --> D[基于速度预测值计算压强修正值]
+  D --> E[基于压强修正值计算速度修正值]
+  E --> F[得到新的速度和压强]
+  F --> G{判断是否收敛}
+  G -->|继续迭代| A1
+  G --> H[计算结束]</pre>
+<p>完全使用矩阵和线性方程组的形式，描述算法流程如下：
+首先，我们需要提供启动值<span
+class="math inline">\(U^0,P^0\)</span>。</p>
+<p>对于第n次迭代之后得到的速度和压强<span
+class="math inline">\(U^n,S^n\)</span>，进入下一轮迭代：</p>
+<ul>
+<li>首先通过插值得到界面上的速度，计算矩阵<span
+class="math inline">\(M=M(U^n)\)</span>；</li>
+<li>直接取上一次的压强作为这一轮的压强预测值<span
+class="math inline">\(S^{n+1,*}=S^n\)</span>，用压强预测值计算右端向量<span
+class="math inline">\(R^*=R^*(S^{n+1,*})\)</span>；</li>
+<li><strong>基于压强预测值<span
+class="math inline">\(S^{n+1,*}\)</span>计算速度预测值<span
+class="math inline">\(U^{n+1,*} = M^{-1}
+R^*\)</span>；(动量方程)</strong></li>
+<li>计算连续性方程需要的矩阵<span
+class="math inline">\(Q_1=Q_1(U^n)\)</span>，<span
+class="math inline">\(Q_2=Q_2(U^n)\)</span>；</li>
+<li><strong>基于速度预测值<span
+class="math inline">\(U^{n+1,*}\)</span>，计算压强修正值<span
+class="math inline">\(S^{n+1,&#39;}=Q_1^{-1}Q_2
+U^{n+1,*}\)</span>；(连续性方程)</strong></li>
+<li><strong>基于压强修正值<span
+class="math inline">\(S^{n+1,&#39;}\)</span>，计算速度修正值<span
+class="math inline">\(U^{n+1,&#39;}=A^{-1}R&#39;\)</span>；</strong>这里<span
+class="math inline">\(R&#39;=R&#39;(S^{n+1,*})\)</span></li>
+<li>更新：<span class="math inline">\(U^{n+1} =
+U^{n+1,*}+U^{n+1,&#39;}\)</span>，<span
+class="math inline">\(S^{n+1}=S^{n+1,*}+S^{n+1,&#39;}\)</span>。</li>
+</ul>
+<p>然后判断是否收敛，是否进入下一轮迭代。</p>
+<p>注：对于上述迭代中的压强，可以进行调整：<span
+class="math inline">\(p^{n+1} = p^{n+1,*} + \alpha
+p^{n+1,&#39;}\)</span>。</p>
+<h1 id="非定常流-simple">非定常流 SIMPLE</h1>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>learn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LDG——一维对流扩散方程，一维N-S方程组</title>
     <url>/2022/06/27/code/code-ldg/</url>
     <content><![CDATA[<p>LDG练习，一维对流扩散方程和一维可压缩N-S方程组。</p>
@@ -120,7 +381,7 @@ discontinuous Galerkin methods for one-dimensional convection-diffusion
 equations , Computers and Structures, v87 (2009), pp.630-641.</p>
 </div>
 <h1 id="一维n-s方程组">一维N-S方程组</h1>
-<p>考虑一维的N-S方程组如下，</p>
+<p>考虑无量纲化的一维的N-S方程组如下，</p>
 <p><span class="math display">\[
 U_t + F(U)_x = H(U,U_x)_x + S(U)
 \]</span></p>
@@ -165,9 +426,10 @@ p &amp;= (\gamma -1)\left(\xi_3 - \frac12 \frac{\xi_2^2}{\xi_1}\right)
 <p><span class="math display">\[
 \begin{aligned}
 H(U,U_x) &amp;= [0, \tau_{xx},u\tau_{xx} +
-\frac{\mu}{Pr(\gamma-1)}(a^2)_x]^T\\
-&amp;= [0, \frac{4\mu}3 u_x, \frac{4\mu}3 u u_x + \frac{\mu
-\gamma}{Pr(\gamma-1)}\left(\frac{p_x \rho - p \rho_x}{\rho^2}\right)]^T
+\frac{1}{Re\,Pr(\gamma-1)}(a^2)_x]^T\\
+&amp;= [0, \frac{4}{3Re} u_x, \frac{4}{3Re} u u_x +
+\frac{\gamma}{Re\,Pr(\gamma-1)}\left(\frac{p_x \rho - p
+\rho_x}{\rho^2}\right)]^T
 \end{aligned}
 \]</span></p>
 <p>我们首先引入中间变量<span
@@ -903,7 +1165,7 @@ class="math inline">\(p\)</span>，也就是作为Lagrange乘子被引入。</p>
 <p>不可压缩流解决速度压力耦合的算法从大的方面可以分为：</p>
 <ul>
 <li>耦合式算法，所有变量联立求解，方法直观，但是代数方程组具有很强的刚性，计算效率低；</li>
-<li>分离式算法，逐个求解速度和压强。</li>
+<li>分离式算法，逐个求解速度和压强。(采用有限体积法的商业软件都默认使用分离式算法，适合低马赫的不可压缩流或可压缩流)</li>
 </ul>
 <p>按照变量的类型也可以分为：</p>
 <ul>
@@ -1086,8 +1348,31 @@ p^{n+1} &amp;= p^n + \phi - \nu \nabla \cdot \mathbf{u}^*
 <p>分析表明这里对 <span class="math inline">\(\phi\)</span>
 给出了几乎正确的边界条件。</p>
 <h2 id="simple压力修正法">SIMPLE压力修正法</h2>
-<p>SIMPLE:压力耦合方程组的半隐式方法,
-SIMPLEC是它的改进。在工业软件中广泛应用。 ...</p>
+<p>SIMPLE: 压力耦合方程组的半隐式方法,
+SIMPLEC是它的改进。在工业软件中广泛应用。</p>
+<div class="note info"><p>在有限差分/有限体积法的空间离散中，往往会采用交错网格来避免压力场的奇偶失联，因为对压强如果都使用中心差分，如下高度振荡的压强场梯度却全都是零！
+<span class="math display">\[
+p_{i,j} =
+\left\{
+\begin{aligned}
+&amp;p_1 &amp; \text{i+j为奇数}\\
+&amp;p_2 &amp; \text{i+j为偶数}\\
+\end{aligned}
+\right.
+\]</span></p>
+</div>
+<p>通常给出的是有限差分或者有限体积的形式，但是我们可以尝试给出一个仅对时间离散，与空间离散无关的形式：</p>
+<p>对于稳态的不可压N-S方程写成如下形式：</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1} + \nu \nabla^2
+\mathbf{u}^n\\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0\\
+\end{align}
+\]</span></p>
+<p>为了启动SIMPLE算法，需要给出一个压力场的猜测值<span
+class="math inline">\(p^*\)</span>，</p>
 <h2 id="mac方法和smac方法">MAC方法和SMAC方法</h2>
 <p>MAC方法提出的时间很早，因为时间步长的约束，并没有太大吸引力，但是它开创性地提出了交错网格，并被用于之后的SIMPLE算法中。
 ...</p>
