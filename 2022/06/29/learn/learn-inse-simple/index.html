@@ -30,15 +30,15 @@
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
 <meta property="og:description" content="SIMPLE算法全称是压力耦合方程组的半隐式方法, 作为经典的算法在fluent等工业软件中被广泛应用。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_3.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_3.png">
 <meta property="article:published_time" content="2022-06-29T12:57:46.000Z">
-<meta property="article:modified_time" content="2022-07-01T08:29:43.680Z">
+<meta property="article:modified_time" content="2022-07-01T08:41:05.781Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="learn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_3.png">
 
 
 <link rel="canonical" href="https://fenglielie.github.io/2022/06/29/learn/learn-inse-simple/">
@@ -154,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E9%94%99%E7%BD%91%E6%A0%BC"><span class="nav-number">1.</span> <span class="nav-text">交错网格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#simple"><span class="nav-number">2.</span> <span class="nav-text">SIMPLE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%87%8F%E6%96%B9%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">动量方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E6%80%A7%E6%96%B9%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">连续性方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">计算流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%A1%A8%E8%BF%B0"><span class="nav-number">2.4.</span> <span class="nav-text">矩阵形式的表述</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E7%A6%BB%E6%95%A3"><span class="nav-number">3.</span> <span class="nav-text">空间离散</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#simple"><span class="nav-number">1.</span> <span class="nav-text">SIMPLE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%87%8F%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">动量方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E6%80%A7%E6%96%B9%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">连续性方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">计算流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%A1%A8%E8%BF%B0"><span class="nav-number">1.4.</span> <span class="nav-text">矩阵形式的表述</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E7%A6%BB%E6%95%A3"><span class="nav-number">2.</span> <span class="nav-text">空间离散</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E9%94%99%E7%BD%91%E6%A0%BC"><span class="nav-number">2.1.</span> <span class="nav-text">交错网格</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -268,7 +268,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-01 16:29:43" itemprop="dateModified" datetime="2022-07-01T16:29:43+08:00">2022-07-01</time>
+      <time title="Modified: 2022-07-01 16:41:05" itemprop="dateModified" datetime="2022-07-01T16:41:05+08:00">2022-07-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -317,29 +317,6 @@
 \nabla \cdot \mathbf{u} &amp;= 0\\
 \end{aligned}
 \]</span></p>
-<h1 id="交错网格">交错网格</h1>
-<p>在使用有限差分/有限体积法的空间离散中，往往会采用交错网格来避免压力场的奇偶失联，因为对压强如果都使用中心差分，如下高度振荡的压强场梯度却全都是零:
-<span class="math display">\[
-p_{IJ} =
-\left\{
-\begin{aligned}
-&amp;p_1 &amp; I+J\text{为奇数}\\
-&amp;p_2 &amp; I+J\text{为偶数}\\
-\end{aligned}
-\right.
-\]</span>
-交错网格法对于有限差分法，把标量(压强，温度等)定义在整格点例如<span
-class="math inline">\((I,J)\)</span>，把速度向量的u分量定义在水平方向的半格点例如<span
-class="math inline">\((I+1/2,J)\)</span>，把v分量定义在竖直方向的半格点例如<span
-class="math inline">\((I,J+1/2)\)</span>。对于有限体积法把相应的控制体定义为以上述整格点或半格点为中心的矩形，如下图。</p>
-<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png"/></p>
-<p>在实线和整格点代表对应的<span
-class="math inline">\((I,J)\)</span>网格的基础上，对虚线以及半格点处，记<span
-class="math inline">\(i=I-\frac12\)</span>，<span
-class="math inline">\(j=J-\frac12\)</span>，得到如下的记号系统：</p>
-<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png" width="60%"/></p>
-<div class="note info"><p>在接下来的推导中，我们尽量避免空间离散的具体细节，也未必使用了交错网格。</p>
-</div>
 <h1 id="simple">SIMPLE</h1>
 <h2 id="动量方程">动量方程</h2>
 <p>对于对流项的处理：在控制体上进行积分时，<span
@@ -664,7 +641,27 @@ class="math inline">\(U^{n+1}\)</span>。</li>
 </ul>
 <p>然后判断是否收敛，是否进入下一轮迭代。</p>
 <h1 id="空间离散">空间离散</h1>
-<p>...</p>
+<h2 id="交错网格">交错网格</h2>
+<p>在使用有限差分/有限体积法的空间离散中，往往会采用交错网格来避免压力场的奇偶失联，因为对压强如果都使用中心差分，如下高度振荡的压强场梯度却全都是零:
+<span class="math display">\[
+p_{IJ} =
+\left\{
+\begin{aligned}
+&amp;p_1 &amp; I+J\text{为奇数}\\
+&amp;p_2 &amp; I+J\text{为偶数}\\
+\end{aligned}
+\right.
+\]</span>
+交错网格法对于有限差分法，把标量(压强，温度等)定义在整格点例如<span
+class="math inline">\((I,J)\)</span>，把速度向量的u分量定义在水平方向的半格点例如<span
+class="math inline">\((I+1/2,J)\)</span>，把v分量定义在竖直方向的半格点例如<span
+class="math inline">\((I,J+1/2)\)</span>。对于有限体积法把相应的控制体定义为以上述整格点或半格点为中心的矩形，如下图。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png"/></p>
+<p>在实线和整格点代表对应的<span
+class="math inline">\((I,J)\)</span>网格的基础上，对虚线以及半格点处，记<span
+class="math inline">\(i=I-\frac12\)</span>，<span
+class="math inline">\(j=J-\frac12\)</span>，得到如下的记号系统：</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png" width="60%"/></p>
 
     </div>
 

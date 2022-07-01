@@ -15,29 +15,6 @@
 \nabla \cdot \mathbf{u} &amp;= 0\\
 \end{aligned}
 \]</span></p>
-<h1 id="交错网格">交错网格</h1>
-<p>在使用有限差分/有限体积法的空间离散中，往往会采用交错网格来避免压力场的奇偶失联，因为对压强如果都使用中心差分，如下高度振荡的压强场梯度却全都是零:
-<span class="math display">\[
-p_{IJ} =
-\left\{
-\begin{aligned}
-&amp;p_1 &amp; I+J\text{为奇数}\\
-&amp;p_2 &amp; I+J\text{为偶数}\\
-\end{aligned}
-\right.
-\]</span>
-交错网格法对于有限差分法，把标量(压强，温度等)定义在整格点例如<span
-class="math inline">\((I,J)\)</span>，把速度向量的u分量定义在水平方向的半格点例如<span
-class="math inline">\((I+1/2,J)\)</span>，把v分量定义在竖直方向的半格点例如<span
-class="math inline">\((I,J+1/2)\)</span>。对于有限体积法把相应的控制体定义为以上述整格点或半格点为中心的矩形，如下图。</p>
-<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png"/></p>
-<p>在实线和整格点代表对应的<span
-class="math inline">\((I,J)\)</span>网格的基础上，对虚线以及半格点处，记<span
-class="math inline">\(i=I-\frac12\)</span>，<span
-class="math inline">\(j=J-\frac12\)</span>，得到如下的记号系统：</p>
-<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png" width="60%"/></p>
-<div class="note info"><p>在接下来的推导中，我们尽量避免空间离散的具体细节，也未必使用了交错网格。</p>
-</div>
 <h1 id="simple">SIMPLE</h1>
 <h2 id="动量方程">动量方程</h2>
 <p>对于对流项的处理：在控制体上进行积分时，<span
@@ -362,7 +339,27 @@ class="math inline">\(U^{n+1}\)</span>。</li>
 </ul>
 <p>然后判断是否收敛，是否进入下一轮迭代。</p>
 <h1 id="空间离散">空间离散</h1>
-<p>...</p>
+<h2 id="交错网格">交错网格</h2>
+<p>在使用有限差分/有限体积法的空间离散中，往往会采用交错网格来避免压力场的奇偶失联，因为对压强如果都使用中心差分，如下高度振荡的压强场梯度却全都是零:
+<span class="math display">\[
+p_{IJ} =
+\left\{
+\begin{aligned}
+&amp;p_1 &amp; I+J\text{为奇数}\\
+&amp;p_2 &amp; I+J\text{为偶数}\\
+\end{aligned}
+\right.
+\]</span>
+交错网格法对于有限差分法，把标量(压强，温度等)定义在整格点例如<span
+class="math inline">\((I,J)\)</span>，把速度向量的u分量定义在水平方向的半格点例如<span
+class="math inline">\((I+1/2,J)\)</span>，把v分量定义在竖直方向的半格点例如<span
+class="math inline">\((I,J+1/2)\)</span>。对于有限体积法把相应的控制体定义为以上述整格点或半格点为中心的矩形，如下图。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png"/></p>
+<p>在实线和整格点代表对应的<span
+class="math inline">\((I,J)\)</span>网格的基础上，对虚线以及半格点处，记<span
+class="math inline">\(i=I-\frac12\)</span>，<span
+class="math inline">\(j=J-\frac12\)</span>，得到如下的记号系统：</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png" width="60%"/></p>
 ]]></content>
       <categories>
         <category>learn</category>
