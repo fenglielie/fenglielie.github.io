@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -212,6 +212,149 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/07/04/learn/learn-inse-mac/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
+      <meta itemprop="name" content="Fenglielie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/04/learn/learn-inse-mac/" class="post-title-link" itemprop="url">MAC方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-04 00:22:02 / Modified: 00:49:31" itemprop="dateCreated datePublished" datetime="2022-07-04T00:22:02+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Marker-and-Cell method，标记网格法，简称为MAC方法。</p>
+<p>(学习笔记基于一个网上的PDF，是使用有限体积法的，我们略去空间离散)
+(感觉完全没有体现标记网格的效果，而且和百度百科上的介绍对不上)</p>
+<p>考虑无量纲化的二维不可压缩方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>首先，时间离散得到下式</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + \left[(\mathbf{u}\cdot
+\nabla) \mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} &amp;=
+-\nabla p^{n+1}\\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>直接对动量方程取散度，得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\nabla\cdot \mathbf{u}^{n+1}-\nabla \cdot \mathbf{u}^n}{\Delta t}
++ \nabla \cdot \left[(\mathbf{u}\cdot \nabla) \mathbf{u} -
+\frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} &amp;= -\nabla^2 p^{n+1}\\
+\end{aligned}
+\]</span></p>
+<p>这里对两个时间层的速度散度：</p>
+<ul>
+<li><span class="math inline">\(\nabla \cdot
+\mathbf{u}^{n+1}=0\)</span>是方程组的要求，因此直接消去；</li>
+<li><span class="math inline">\(\nabla \cdot \mathbf{u}^{n}\)</span>
+是上一步的求解结果，在求解中不能严格成立，因此我们允许这种余量的存在，并体现在下一步计算压强的过程中。</li>
+</ul>
+<p>因此，粗略的计算流程如下：</p>
+<ul>
+<li>已知第n步的速度<span
+class="math inline">\(\mathbf{u}^n\)</span>；</li>
+<li>代入下式，计算第n+1步的压强 <span class="math display">\[
+-\frac{\nabla \cdot \mathbf{u}^n}{\Delta t} + \nabla \cdot
+\left[(\mathbf{u}\cdot \nabla) \mathbf{u} - \frac{1}{Re}\nabla^2
+\mathbf{u}\right]^{n} = -\nabla^2 p^{n+1}
+\]</span></li>
+<li>计算第n+1步的速度 <span class="math display">\[
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + \left[(\mathbf{u}\cdot
+\nabla) \mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} =
+-\nabla p^{n+1}
+\]</span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1161,115 +1304,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/20/learn/learn-inse/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
-      <meta itemprop="name" content="Fenglielie">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fenglielie's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Fenglielie's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/20/learn/learn-inse/" class="post-title-link" itemprop="url">不可压NS方程组的数值方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-20 20:35:46" itemprop="dateCreated datePublished" datetime="2022-06-20T20:35:46+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-29 20:57:10" itemprop="dateModified" datetime="2022-06-29T20:57:10+08:00">2022-06-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>5.4k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>主要是投影法等的学习笔记。(未完待续)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/20/learn/learn-inse/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

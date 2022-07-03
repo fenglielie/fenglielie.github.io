@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MAC方法</title>
+    <url>/2022/07/04/learn/learn-inse-mac/</url>
+    <content><![CDATA[<p>Marker-and-Cell method，标记网格法，简称为MAC方法。</p>
+<p>(学习笔记基于一个网上的PDF，是使用有限体积法的，我们略去空间离散)
+(感觉完全没有体现标记网格的效果，而且和百度百科上的介绍对不上)</p>
+<p>考虑无量纲化的二维不可压缩方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>首先，时间离散得到下式</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + \left[(\mathbf{u}\cdot
+\nabla) \mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} &amp;=
+-\nabla p^{n+1}\\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>直接对动量方程取散度，得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\nabla\cdot \mathbf{u}^{n+1}-\nabla \cdot \mathbf{u}^n}{\Delta t}
++ \nabla \cdot \left[(\mathbf{u}\cdot \nabla) \mathbf{u} -
+\frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} &amp;= -\nabla^2 p^{n+1}\\
+\end{aligned}
+\]</span></p>
+<p>这里对两个时间层的速度散度：</p>
+<ul>
+<li><span class="math inline">\(\nabla \cdot
+\mathbf{u}^{n+1}=0\)</span>是方程组的要求，因此直接消去；</li>
+<li><span class="math inline">\(\nabla \cdot \mathbf{u}^{n}\)</span>
+是上一步的求解结果，在求解中不能严格成立，因此我们允许这种余量的存在，并体现在下一步计算压强的过程中。</li>
+</ul>
+<p>因此，粗略的计算流程如下：</p>
+<ul>
+<li>已知第n步的速度<span
+class="math inline">\(\mathbf{u}^n\)</span>；</li>
+<li>代入下式，计算第n+1步的压强 <span class="math display">\[
+-\frac{\nabla \cdot \mathbf{u}^n}{\Delta t} + \nabla \cdot
+\left[(\mathbf{u}\cdot \nabla) \mathbf{u} - \frac{1}{Re}\nabla^2
+\mathbf{u}\right]^{n} = -\nabla^2 p^{n+1}
+\]</span></li>
+<li>计算第n+1步的速度 <span class="math display">\[
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + \left[(\mathbf{u}\cdot
+\nabla) \mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} =
+-\nabla p^{n+1}
+\]</span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>learn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SIMPLE算法</title>
     <url>/2022/07/03/learn/learn-inse-simple2/</url>
     <content><![CDATA[<p>SIMPLE算法全称是压力耦合方程组的半隐式方法,

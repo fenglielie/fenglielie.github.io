@@ -23,28 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="music   games catch the cat">
-<meta property="og:type" content="website">
-<meta property="og:title" content="share">
-<meta property="og:url" content="https://fenglielie.github.io/share/index.html">
+    <meta name="description" content="Marker-and-Cell method，标记网格法，简称为MAC方法。 (学习笔记基于一个网上的PDF，是使用有限体积法的，我们略去空间离散) (感觉完全没有体现标记网格的效果，而且和百度百科上的介绍对不上) 考虑无量纲化的二维不可压缩方程组 \[ \begin{aligned} \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAC方法">
+<meta property="og:url" content="https://fenglielie.github.io/2022/07/04/learn/learn-inse-mac/index.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
-<meta property="og:description" content="music   games catch the cat">
+<meta property="og:description" content="Marker-and-Cell method，标记网格法，简称为MAC方法。 (学习笔记基于一个网上的PDF，是使用有限体积法的，我们略去空间离散) (感觉完全没有体现标记网格的效果，而且和百度百科上的介绍对不上) 考虑无量纲化的二维不可压缩方程组 \[ \begin{aligned} \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-19T09:37:28.000Z">
-<meta property="article:modified_time" content="2022-06-20T09:10:41.208Z">
+<meta property="article:published_time" content="2022-07-03T16:22:02.000Z">
+<meta property="article:modified_time" content="2022-07-03T16:49:31.541Z">
 <meta property="article:author" content="Fenglielie">
+<meta property="article:tag" content="learn">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fenglielie.github.io/share/">
+<link rel="canonical" href="https://fenglielie.github.io/2022/07/04/learn/learn-inse-mac/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/share/index.html","path":"share/index.html","title":"share"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/07/04/learn/learn-inse-mac/","path":"2022/07/04/learn/learn-inse-mac/","title":"MAC方法"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>share | Fenglielie's Blog
-</title>
+<title>MAC方法 | Fenglielie's Blog</title>
   
 
 
@@ -137,7 +137,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -150,7 +150,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#music"><span class="nav-number">1.</span> <span class="nav-text">music</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#games"><span class="nav-number">2.</span> <span class="nav-text">games</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -217,40 +216,181 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="en"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">share
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/07/04/learn/learn-inse-mac/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
+      <meta itemprop="name" content="Fenglielie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MAC方法 | Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MAC方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-04 00:22:02 / Modified: 00:49:31" itemprop="dateCreated datePublished" datetime="2022-07-04T00:22:02+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          <h1 id="music">music</h1>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1488737309&amp;auto=1&amp;height=66">
-</iframe>
-<h1 id="games">games</h1>
-<p><a href="https://fenglielie.github.io/games/catchthecat/">catch the
-cat</a></p>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Marker-and-Cell method，标记网格法，简称为MAC方法。</p>
+<p>(学习笔记基于一个网上的PDF，是使用有限体积法的，我们略去空间离散)
+(感觉完全没有体现标记网格的效果，而且和百度百科上的介绍对不上)</p>
+<p>考虑无量纲化的二维不可压缩方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>首先，时间离散得到下式</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + \left[(\mathbf{u}\cdot
+\nabla) \mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} &amp;=
+-\nabla p^{n+1}\\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>直接对动量方程取散度，得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\nabla\cdot \mathbf{u}^{n+1}-\nabla \cdot \mathbf{u}^n}{\Delta t}
++ \nabla \cdot \left[(\mathbf{u}\cdot \nabla) \mathbf{u} -
+\frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} &amp;= -\nabla^2 p^{n+1}\\
+\end{aligned}
+\]</span></p>
+<p>这里对两个时间层的速度散度：</p>
+<ul>
+<li><span class="math inline">\(\nabla \cdot
+\mathbf{u}^{n+1}=0\)</span>是方程组的要求，因此直接消去；</li>
+<li><span class="math inline">\(\nabla \cdot \mathbf{u}^{n}\)</span>
+是上一步的求解结果，在求解中不能严格成立，因此我们允许这种余量的存在，并体现在下一步计算压强的过程中。</li>
+</ul>
+<p>因此，粗略的计算流程如下：</p>
+<ul>
+<li>已知第n步的速度<span
+class="math inline">\(\mathbf{u}^n\)</span>；</li>
+<li>代入下式，计算第n+1步的压强 <span class="math display">\[
+-\frac{\nabla \cdot \mathbf{u}^n}{\Delta t} + \nabla \cdot
+\left[(\mathbf{u}\cdot \nabla) \mathbf{u} - \frac{1}{Re}\nabla^2
+\mathbf{u}\right]^{n} = -\nabla^2 p^{n+1}
+\]</span></li>
+<li>计算第n+1步的速度 <span class="math display">\[
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + \left[(\mathbf{u}\cdot
+\nabla) \mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u}\right]^{n} =
+-\nabla p^{n+1}
+\]</span></li>
+</ul>
 
-      </div>
-      
-      
-      
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Fenglielie
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://fenglielie.github.io/2022/07/04/learn/learn-inse-mac/" title="MAC方法">https://fenglielie.github.io/2022/07/04/learn/learn-inse-mac/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/learn/" rel="tag"><i class="fa fa-tag"></i> learn</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/03/learn/learn-inse-simple2/" rel="prev" title="SIMPLE算法">
+                  <i class="fa fa-chevron-left"></i> SIMPLE算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>
