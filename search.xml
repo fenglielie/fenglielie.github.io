@@ -1,6 +1,548 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SIMPLE算法</title>
+    <url>/2022/07/03/learn/learn-inse-simple2/</url>
+    <content><![CDATA[<p>SIMPLE算法全称是压力耦合方程组的半隐式方法,
+作为经典的算法在fluent等工业软件中被广泛应用。</p>
+<span id="more"></span>
+<h2 id="simple算法推导过程">SIMPLE算法推导过程</h2>
+<p>考虑无量纲化的二维不可压缩方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>现在我们已有<span
+class="math inline">\(\mathbf{u}^n\)</span>，希望下一步的<span
+class="math inline">\(\mathbf{u}^{n+1},p^{n+1}\)</span>满足</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}\cdot\nabla
+\mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u})^{n+1} + \nabla p^{n+1}
+&amp;= 0\\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>我们把动量方程(不等价地)拆成两部分</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}\cdot\nabla
+\mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u})^{*} + \nabla p^{*} = 0\\
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^*}{\Delta t} + \nabla (p^{n+1}-p^*)
+&amp;= 0
+\end{aligned}
+\]</span></p>
+<p>其中记<span class="math inline">\(p^{n+1}=p^*+p&#39;\)</span>，<span
+class="math inline">\(p^*\)</span>是预测压强，<span
+class="math inline">\(p&#39;\)</span>是修正压强；记<span
+class="math inline">\(\mathbf{u}^{n+1}=\mathbf{u}^*+\mathbf{u}&#39;\)</span>，<span
+class="math inline">\(\mathbf{u}^*\)</span>是预测速度，<span
+class="math inline">\(\mathbf{u}&#39;\)</span>是修正速度。</p>
+<div class="note warning"><p>这里的过程与投影法相似，但是投影法只使用了预测速度，SIMPLE算法同时使用了预测速度和预测压强。</p>
+</div>
+<p>假设我们先给出了预测压强<span
+class="math inline">\(p^*\)</span>，可以通过下式计算预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span></p>
+<p><span class="math display">\[
+\frac{\mathbf{u}^*-\mathbf{u}^n}{\Delta t} + (\mathbf{u}\cdot\nabla
+\mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u})^* + \nabla p^* = 0
+\]</span></p>
+<div class="note info"><p>这里对<span
+class="math inline">\(\mathbf{u}^*\)</span>的求解仍然是隐式的，甚至关于<span
+class="math inline">\(\mathbf{u}^*\)</span>不是线性的，离散化后得到的问题可以使用迭代法求解直到收敛，对于定常流问题，由于时间推进是无意义的，在这里的求解中也可以不用迭代至收敛，只需要保证最终迭代的解是足够准确的即可。</p>
+</div>
+<p>由于<span
+class="math inline">\(\mathbf{u}^{n+1}\)</span>满足连续性方程，因此有</p>
+<p><span class="math display">\[
+\begin{aligned}
+0 &amp;=\nabla \cdot \mathbf{u}^{n+1} = \nabla \cdot (\mathbf{u}^* +
+\mathbf{u}&#39;)\\
+&amp;= \nabla \cdot \mathbf{u}^* -\Delta t \nabla^2 p&#39;
+\end{aligned}
+\]</span></p>
+<p>其中使用了<span class="math inline">\(\frac{\mathbf{u}&#39;}{\Delta
+t} + \nabla p&#39; =
+0\)</span>进行代换，得到修正压强需要满足的Poisson方程</p>
+<p><span class="math display">\[
+\nabla^2 p&#39; = \frac{1}{\Delta t} \nabla \cdot \mathbf{u}^*
+\]</span></p>
+<div class="note info"><p>这里离散化后得到关于<span
+class="math inline">\(p&#39;\)</span>的线性方程组的求解问题，也可以使用迭代法求解直到收敛，对于定常流问题，同样地，可以不用迭代至收敛，只需要保证最终迭代的解是足够准确的即可。</p>
+</div>
+<p>最终得到新一步的速度和压强</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{u}^{n+1}&amp; =\mathbf{u}^*+\mathbf{u}&#39; = \mathbf{u}^* -
+\Delta t \nabla p&#39;\\
+p^{n+1} &amp;= p^* + p&#39;
+\end{aligned}
+\]</span></p>
+<h2 id="计算流程">计算流程</h2>
+<p>一个粗略的计算流程如下：</p>
+<ul>
+<li>假设我们已有速度<span
+class="math inline">\(\mathbf{u}^n\)</span>，取一个合适的预测压强 <span
+class="math inline">\(p^{n+1,*}\)</span> (例如直接取 <span
+class="math inline">\(p^{n+1,*}=p^n\)</span>)</li>
+<li>基于预测压强<span
+class="math inline">\(p^{n+1,*}\)</span>，利用下式隐式求解<span
+class="math inline">\(\mathbf{u}^*\)</span>：(离散后是关于<span
+class="math inline">\(\mathbf{u}^*\)</span>的非线性方程组) <span
+class="math display">\[
+\frac{\mathbf{u}^*-\mathbf{u}^n}{\Delta t} + (\mathbf{u}\cdot\nabla
+\mathbf{u} - \frac{1}{Re}\nabla^2 \mathbf{u})^* + \nabla p^* = 0
+\]</span></li>
+<li>基于预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，利用下式求解<span
+class="math inline">\(p&#39;\)</span>：(离散后是关于<span
+class="math inline">\(p&#39;\)</span>的线性方程组) <span
+class="math display">\[
+\nabla^2 p&#39; = \frac{1}{\Delta t} \nabla \cdot \mathbf{u}^*
+\]</span></li>
+<li>更新速度和压强 <span class="math display">\[
+\begin{aligned}
+\mathbf{u}^{n+1}&amp; =\mathbf{u}^*+\mathbf{u}&#39; = \mathbf{u}^* -
+\Delta t \nabla p&#39;\\
+p^{n+1} &amp;= p^* + p&#39;
+\end{aligned}
+\]</span></li>
+</ul>
+<h3 id="定常流计算流程">定常流计算流程</h3>
+<p>对于定常流，迭代对应的时间推进是没有意义的，因此我们在两个离散求解过程中都可以很大程度地偷懒，只需要通过时间推进，最终达到需要的精度即可，尤其是求解<span
+class="math inline">\(\mathbf{u}^*\)</span>涉及的非线性方程组：例如可以把对流项中的一个用<span
+class="math inline">\(\mathbf{u}^n\)</span>代替，转化为关于<span
+class="math inline">\(\mathbf{u}^*\)</span>的线性方程组求解： <span
+class="math display">\[
+\frac{\mathbf{u}^*-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot\nabla
+\mathbf{u}^* - \frac{1}{Re}\nabla^2 \mathbf{u}^*) + \nabla p^* = 0
+\]</span> 甚至把对流项和黏性项完全使用<span
+class="math inline">\(\mathbf{u}^n\)</span>代替，显式计算<span
+class="math inline">\(\mathbf{u}^*\)</span>： <span
+class="math display">\[
+\frac{\mathbf{u}^*-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot\nabla
+\mathbf{u}^n - \frac{1}{Re}\nabla^2 \mathbf{u}^n) + \nabla p^* = 0
+\]</span></p>
+<h3 id="非定常流计算流程">非定常流计算流程</h3>
+<p>对于非定常流，迭代的每一步都是有意义的时间推进，需要保证两个离散求解过程都保持足够的精度，这里我们可以在预测速度和修正压强的隐式求解中分别进行内迭代，达到精确求解的目的，计算流程如下：</p>
+<p>更推荐的是，把两个过程合在一起，形成一个内迭代，计算流程如下：</p>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>learn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>涡量-流函数方法(二维)</title>
+    <url>/2022/07/03/learn/learn-inse-vortex/</url>
+    <content><![CDATA[<p>通过把原始变量(速度，压强)转化为导出变量(涡量，流函数)的方程组，可以避开处理压强时的困难，称为涡量-流函数方法。</p>
+<span id="more"></span>
+<h2 id="涡量-流函数代换">涡量-流函数代换</h2>
+<p>对于二维的流动，记速度<span
+class="math inline">\(\mathbf{u}=(u,v)^T\)</span>，则涡量<span
+class="math inline">\(w\)</span>只是一个标量，定义为</p>
+<p><span class="math display">\[
+w = \frac{\partial u}{\partial y}-\frac{\partial v}{\partial x}
+\]</span></p>
+<p>对于不可压缩流动，有流函数<span
+class="math inline">\(\phi\)</span>，满足：</p>
+<p><span class="math display">\[
+\begin{aligned}
+u &amp;= \frac{\partial \phi}{\partial y}\\
+v &amp;= -\frac{\partial \phi}{\partial x}
+\end{aligned}
+\]</span></p>
+<p>流函数的存在性其实就直接保证了不可压缩条件的成立：</p>
+<p><span class="math display">\[
+\nabla \cdot \mathbf{u} =
+\frac{\partial u}{\partial x} +
+\frac{\partial v}{\partial y}
+= \frac{\partial^2 \phi}{\partial x \partial y} -
+\frac{\partial^2 \phi}{\partial x \partial y}=0
+\]</span></p>
+<p><strong>流函数的等值线就是流线</strong>，亦即流体的速度场<span
+class="math inline">\((u,v)\)</span>与流函数的梯度场<span
+class="math inline">\((\phi_x,\phi_y)\)</span>处处垂直。</p>
+<p>流函数和涡量满足如下关系：</p>
+<p><span class="math display">\[
+w = \frac{\partial u}{\partial y}-\frac{\partial v}{\partial x}
+= \nabla^2 \phi
+\]</span></p>
+<h2 id="涡量-流函数方程组">涡量-流函数方程组</h2>
+<p>从无量纲化的二维不可压缩方程组出发</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>连续性方程直接被流函数<span
+class="math inline">\(\phi\)</span>的存在性取代，对动量方程按照分量形式有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial u}{\partial t} + u u_x + v u_y &amp;= -p_x +
+\frac{1}{Re}\nabla^2 u\\
+\frac{\partial v}{\partial t} + u v_x + v v_y &amp;= -p_y +
+\frac{1}{Re}\nabla^2 u\\
+\end{aligned}
+\]</span></p>
+<p>分别对y求导，对x求导，相减得到涡量方程</p>
+<p><span class="math display">\[
+\frac{\partial w}{\partial t} + u w_x + v w_y = \frac{1}{Re} \nabla^2 w
+\]</span></p>
+<p>压强消失了，不可压缩条件也消失了，得到如下方程组：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial w}{\partial t} + u w_x + v w_y = \frac{1}{Re} \nabla^2
+w\\
+w = \nabla^2 \phi
+\end{aligned}
+\]</span></p>
+<p>例如可以使用如下流程进行计算：</p>
+<ul>
+<li>已知<span class="math inline">\(w^n,\phi^n\)</span>，通过<span
+class="math inline">\(u = \phi_y, v=- \phi_x\)</span>得到速度<span
+class="math inline">\(u^n,v^n\)</span>；</li>
+<li>通过涡量方程计算得到<span
+class="math inline">\(w^{n+1}\)</span>；</li>
+<li>代入<span class="math inline">\(\nabla^2 \phi^{n+1} =
+w^{n+1}\)</span>，计算新时刻的流函数<span
+class="math inline">\(\phi^{n+1}\)</span>；</li>
+</ul>
+<p>如果需要计算压强，可以利用动量方程的分量形式，依次对x求导，对y求导，相加得</p>
+<p><span class="math display">\[
+\nabla^2 p = -\left[ (u_x)^2 + 2 u_y v_x + (v_y)^2 \right]^2
+\]</span></p>
+<p>上述涡量-流函数方法的优缺点都非常明显：</p>
+<ul>
+<li>优点：消去了压强项，消去了不可压缩条件，对方程组的处理更加容易；</li>
+<li>缺点：涡量<span
+class="math inline">\(w\)</span>的边界条件难以确定，不易从二维推广到三维。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>learn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>投影法</title>
+    <url>/2022/07/03/learn/learn-inse-projection/</url>
+    <content><![CDATA[<p>投影法也称为时间分裂法，分步法，按照思路分为两类：</p>
+<ul>
+<li>第一类基于N-S方程组的半离散格式，基于Helmholtz分解定理；</li>
+<li>第二类基于N-S方程组的全离散格式，采用近似算子分裂/近似矩阵分裂。</li>
+</ul>
+<p>下文只包括第一类投影法。</p>
+<span id="more"></span>
+<h2 id="helmholtz分解定理">Helmholtz分解定理</h2>
+<p>对于任意光滑的向量场<span
+class="math inline">\(V\)</span>可以唯一分解为一个无源场<span
+class="math inline">\(V^d\)</span>和一个无旋场<span
+class="math inline">\(\nabla \phi\)</span> 之和。 <span
+class="math display">\[
+V = V^d + \nabla \phi
+\]</span> 满足<span class="math inline">\(\nabla \cdot V^d = 0\)</span>,
+和<span class="math inline">\(\nabla \times \nabla \phi=0\)</span>。</p>
+<h2 id="投影法">投影法</h2>
+<p>考虑无量纲化的二维不可压缩方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<h3 id="无压力增量投影法">无压力增量投影法</h3>
+<p>我们介绍最早由Chorin和Temam提出的投影法，利用显式欧拉离散得到：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t}+ \left[(\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n - \frac{1}{Re} \nabla^2 \mathbf{u}^n \right] &amp;=
+-\nabla p^{n+1} \\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>在其中引入预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，把动量方程拆成两个部分：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t}+ \left[(\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n - \frac{1}{Re} \nabla^2 \mathbf{u}^n \right] = 0 \\
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^*}{\Delta t} = -\nabla p^{n+1}
+\end{aligned}
+\]</span></p>
+<p>对第二个式子取散度，得到</p>
+<p><span class="math display">\[
+\nabla^2 p^{n+1} = \frac{1}{\Delta t} \nabla \cdot \mathbf{u}^*
+\]</span></p>
+<p>因此，得到计算流程如下：</p>
+<ul>
+<li>从<span class="math inline">\(t^n\)</span>时刻的第n步 <span
+class="math inline">\(\mathbf{u}^n\)</span> 出发，</li>
+<li>基于<span
+class="math inline">\(\mathbf{u}^n\)</span>，计算预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>满足 <span
+class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t}+ \left[(\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n - \frac{1}{Re} \nabla^2 \mathbf{u}^n \right] = 0
+\end{aligned}
+\]</span></li>
+<li>基于<span class="math inline">\(\mathbf{u}^*\)</span>，计算压强<span
+class="math inline">\(p^{n+1}\)</span>满足 <span class="math display">\[
+\nabla^2 p^{n+1} = \frac{1}{\Delta t} \nabla \cdot \mathbf{u}^*
+\]</span></li>
+<li>得到第n+1步的速度<span
+class="math inline">\(\mathbf{u}^{n+1}\)</span> <span
+class="math display">\[
+\mathbf{u}^{n+1} = \mathbf{u}^* - \Delta t \nabla p^{n+1}
+\]</span></li>
+</ul>
+<p>最后一步体现了<strong>Helmholtz分解定理</strong>和<strong>投影</strong>：</p>
+<p><span class="math display">\[
+\mathbf{u}^{*} = \mathbf{u}^{n+1} + \Delta t \nabla p^{n+1}
+\]</span></p>
+<ul>
+<li>在利用 <span class="math inline">\(\mathbf{u}^n\)</span>
+计算预测速度 <span class="math inline">\(\mathbf{u}^*\)</span>
+时，直接忽视了压强场的约束作用；</li>
+<li>预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>根据Helmholtz分解定理被分解成无源场
+<span class="math inline">\(\mathbf{u}^{n+1}\)</span> 和无旋场 <span
+class="math inline">\(\Delta t \nabla p^{n+1}\)</span> ；</li>
+<li>通过预测速度 <span class="math inline">\(\mathbf{u}^*\)</span>
+和压强 <span class="math inline">\(p^{n+1}\)</span> 计算 <span
+class="math inline">\(\mathbf{u}^{n+1}\)</span>
+就是通过压强的约束作用，把速度重新投影到散度为零的子空间内：<span
+class="math inline">\(\mathbf{u}^{n+1}=P(\mathbf{u}^*)\)</span>，最终的速度严格满足<span
+class="math inline">\(\nabla \cdot \mathbf{u}^{n+1}=0\)</span>。</li>
+</ul>
+<div class="note info"><p>这种最早的投影法通常称作无压力增量投影法：因为计算中间层的预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>时，没有考虑压强梯度的影响。可以改成隐式的时间离散格式，可以在计算预测速度时考虑压强的影响，因此精度有限。有一系列衍生的投影法。</p>
+</div>
+<div class="note warning"><p>注意，实践中可能不是直接离散<span class="math inline">\(\nabla^2
+p^{n+1} = \frac{1}{\Delta t} \nabla \cdot
+\mathbf{u}^*\)</span>，而是离散下面两个式子，把离散后的结果进行合并：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^*}{\Delta t} = -\nabla p^{n+1}\\
+\nabla \cdot \mathbf{u}^{n+1} =0
+\end{aligned}
+\]</span></p>
+<p>这样可以保证离散的 <span class="math inline">\(\nabla \cdot
+\mathbf{u}^{n+1} =0\)</span> 严格成立。</p>
+</div>
+<h3 id="压力增量投影法">压力增量投影法</h3>
+<p>首先，时间上不使用显式Euler，而改用二阶向后差分格式 <span
+class="math display">\[
+\frac{\partial \mathbf{u}^{n+1}}{\partial t} \approx
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t}
+\]</span></p>
+<p>动量方程离散为 <span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^{n+1}\cdot \nabla) \mathbf{u}^{n+1} &amp;= -\nabla p^{n+1} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^{n+1}\\
+\end{align}
+\]</span></p>
+<p>(不等价地)拆为下面两个式子 <span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{*}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^{*}\cdot \nabla) \mathbf{u}^{*} &amp;= -\nabla p^{n} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^{*}\\
+\frac{3(\mathbf{u}^{n+1}-\mathbf{u}^*)}{2\Delta t} &amp;=
+-\nabla (p^{n+1}-p^n)
+\end{align}
+\]</span></p>
+<p>第一步，预测步计算中间速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，考虑压强梯度的影响(需要隐式求解<span
+class="math inline">\(\mathbf{u}^*\)</span>)</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{*}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^*\cdot \nabla) \mathbf{u}^* &amp;=  -\nabla p^{n} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^*
+\end{align}
+\]</span></p>
+<p>第二步，求解压强增量<span class="math inline">\(q =
+p^{n+1}-p^n\)</span>，对第二个式子求散度得</p>
+<p><span class="math display">\[
+\begin{align}
+\nabla^2 q &amp;=\frac{3}{2\Delta t} \nabla \cdot \mathbf{u}^*
+\end{align}
+\]</span></p>
+<p>第三步，更新<span class="math inline">\(\mathbf{u}^{n+1}\)</span>,
+<span class="math inline">\(p^{n+1}\)</span> <span
+class="math display">\[
+\begin{align}
+\mathbf{u}^{n+1} &amp;= \mathbf{u}^* - \frac{2\Delta t}{3} \nabla q\\
+p^{n+1} &amp;= p^n + q
+\end{align}
+\]</span></p>
+<h3 id="旋度型压力增量投影法">旋度型压力增量投影法</h3>
+<p>第一步，预测步, 计算中间速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，考虑压强梯度的影响(需要隐式求解<span
+class="math inline">\(\mathbf{u}^*\)</span>)</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{*}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^*\cdot \nabla) \mathbf{u}^* &amp;=  -\nabla p^{n} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^*\\
+\end{align}
+\]</span></p>
+<p>第二步，从求解压强增量<span
+class="math inline">\(q=p^{n+1}-p^n\)</span> 变成求解新的变量<span
+class="math inline">\(\phi\)</span> <span class="math display">\[
+\phi = p^{n+1}-p^n + \frac{1}{Re} \nabla \cdot \mathbf{u}^*
+\]</span></p>
+<p>满足如下方程组 <span class="math display">\[
+\begin{align}
+\nabla^2 \phi &amp;=\frac{3}{2\Delta t} \nabla \cdot \mathbf{u}^*
+\end{align}
+\]</span></p>
+<p>第三步，更新<span class="math inline">\(\mathbf{u}^{n+1}\)</span>,
+<span class="math inline">\(p^{n+1}\)</span> <span
+class="math display">\[
+\begin{align}
+\mathbf{u}^{n+1} &amp;= \mathbf{u}^* - \frac{2\Delta t}{3} \nabla \phi\\
+p^{n+1} &amp;= p^n + \phi - \frac{1}{Re} \nabla \cdot \mathbf{u}^*
+\end{align}
+\]</span></p>
+<p>这一种和压力增量型投影法相比，略有不同，可以视作对压力增量型投影方法的改进，因为如果不可压方程组对速度有第一类边界条件时，对<span
+class="math inline">\(\phi\)</span>的求解比对<span
+class="math inline">\(q\)</span>的求解可以给出更合理的边界条件，略。</p>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>learn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人工压缩性方法(ACM)</title>
+    <url>/2022/07/03/learn/learn-inse-acm/</url>
+    <content><![CDATA[<p>人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。</p>
+<span id="more"></span>
+<h2 id="人工压缩性方程">人工压缩性方程</h2>
+<p>考虑无量纲化的二维不可压缩方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>由于缺少<span class="math inline">\(\frac{\partial p}{\partial
+t}\)</span>，难以计算压强，因此引入人工压缩性因子<span
+class="math inline">\(\beta
+&gt;0\)</span>，使得连续性方程替换为人工压缩性方程：</p>
+<p><span class="math display">\[
+\frac{\partial p}{\partial t} + \beta \nabla \cdot \mathbf{u} = 0
+\]</span></p>
+<p>这里的人工压缩性因子<span class="math inline">\(\beta\)</span>
+相当于声速的平方<span
+class="math inline">\(c^2\)</span>，也可以从物理的角度进行理解，在<span
+class="math inline">\(\beta &gt;0\)</span>时：</p>
+<ul>
+<li>当流动在一点处压缩时，<span class="math inline">\(\nabla \cdot
+\mathbf{u} &lt; 0\)</span>，该点的压力会升高，<span
+class="math inline">\(\frac{\partial p}{\partial t}
+&gt;0\)</span>；</li>
+<li>当流动在一点处膨胀时，<span class="math inline">\(\nabla \cdot
+\mathbf{u} &gt; 0\)</span>，该点的压力会降低，<span
+class="math inline">\(\frac{\partial p}{\partial t} &lt;
+0\)</span>。</li>
+</ul>
+<p>从而得到方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\frac{\partial p}{\partial t} + \beta \nabla \cdot \mathbf{u} &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>这个方程组只有在达到定常态的时候，才满足<span
+class="math inline">\(\nabla \cdot
+\mathbf{u}=0\)</span>，因此适合求解定常流问题。增大<span
+class="math inline">\(\beta\)</span>可以使得压力的收敛更快，但是会增加方程的刚性，降低时间步长。</p>
+<h2 id="定常问题">定常问题</h2>
+<p>对于定常问题，我们不关心中间过程的计算精度，只需要迭代(时间推进)到满足收敛的判断条件，例如取定足够小的
+<span class="math inline">\(\epsilon &gt;0\)</span>，要求</p>
+<p><span class="math display">\[
+\max(\Vert \mathbf{u}^{n+1}-\mathbf{u}^n \Vert,\Vert p^{n+1}-p^n\Vert)
+\le \epsilon
+\]</span></p>
+<p>最终达到稳态，同时满足了不可压缩条件 <span
+class="math inline">\(\nabla \cdot \mathbf{u}=0\)</span>。</p>
+<h2 id="非定常问题">非定常问题</h2>
+<p>对于非定常问题，在时间推进之间，需要加入<strong>内迭代</strong>，计算效率较低，通常不建议使用ACM计算非定常问题。</p>
+<p>例如对方程组使用如下显式格式进行离散：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n &amp;= -\nabla p ^n+ \frac{1}{Re} \nabla^2
+\mathbf{u}^n\\
+\frac{p^{n+1}-p^n}{\Delta t} + \beta \nabla \cdot \mathbf{u}^n &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>则完整的求解需要使用如下步骤：</p>
+<ul>
+<li>从<span class="math inline">\(t^n\)</span>时刻的第n步<span
+class="math inline">\(\mathbf{u}^n\)</span>出发，</li>
+<li>进入内迭代：
+<ul>
+<li>记<span
+class="math inline">\(\mathbf{u}^{n+1,0}=\mathbf{u}^n\)</span>，记<span
+class="math inline">\(p^{n+1,0}=p^n\)</span>，(或者压强以一个猜测值开始迭代，应该也可以)</li>
+<li>计算<span
+class="math inline">\(\mathbf{u}^{n+1,k},\cdots\)</span>，以及<span
+class="math inline">\(p^{n+1,k},\cdots\)</span>满足下式 <span
+class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1,k+1}-\mathbf{u}^{n+1,k}}{\Delta t} +
+(\mathbf{u}^n\cdot \nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1,k}+
+\frac{1}{Re} \nabla^2 \mathbf{u}^n\\
+\frac{p^{n+1,k+1}-p^{n+1,k}}{\Delta t} + \beta \nabla \cdot
+\mathbf{u}^{n+1,k} &amp;= 0
+\end{aligned}
+\]</span></li>
+<li>不断迭代，直到满足类似定常流的收敛判断条件，记作<span
+class="math inline">\(\mathbf{u}^{n+1,k_N},p^{n+1,k_N}\)</span></li>
+</ul></li>
+<li>将内收敛得到的速度和压强作为<span
+class="math inline">\(t^{n+1}\)</span>时刻的速度和压强，<span
+class="math inline">\(\mathbf{u}^{n+1}=\mathbf{u}^{n+1,k_N}\)</span>，<span
+class="math inline">\(p^{n+1}=p^{n+1,k_N}\)</span>。</li>
+</ul>
+<div class="note info"><p>注：以上内迭代的公式来自李新亮的计算流体力学PPT，但是我觉得应该像下面这样是不是更合理？
+<span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1,k+1}-\mathbf{u}^{n}}{\Delta t} +
+(\mathbf{u}^n\cdot \nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1,k}+
+\frac{1}{Re} \nabla^2 \mathbf{u}^n\\
+\frac{p^{n+1,k+1}-p^{n+1,k}}{\Delta t} + \beta \nabla \cdot
+\mathbf{u}^{n+1,k} &amp;= 0
+\end{aligned}
+\]</span></p>
+</div>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>learn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SIMPLE算法学习笔记</title>
     <url>/2022/06/29/learn/learn-inse-simple/</url>
     <content><![CDATA[<p>SIMPLE算法全称是压力耦合方程组的半隐式方法,
@@ -217,7 +759,7 @@ class="math inline">\(p^{n+1}=p^{n+1,*}+p^{n+1,&#39;}\)</span>。</li>
   D --> E[基于压强修正值计算速度修正值]
   E --> F[得到新的速度和压强]
   F --> G{判断是否收敛}
-  G -->|继续迭代| A1
+  G -->|"继续迭代(时间推进)"| A1
   G --> H[计算结束]</pre>
 <h2 id="矩阵形式的表述">矩阵形式的表述</h2>
 <p>完全使用矩阵和线性方程组的形式，描述算法流程如下：

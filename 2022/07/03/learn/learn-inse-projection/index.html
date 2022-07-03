@@ -23,28 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="LDG练习，一维对流扩散方程和一维可压缩N-S方程组。">
+    <meta name="description" content="投影法也称为时间分裂法，分步法，按照思路分为两类：  第一类基于N-S方程组的半离散格式，基于Helmholtz分解定理； 第二类基于N-S方程组的全离散格式，采用近似算子分裂&#x2F;近似矩阵分裂。  下文只包括第一类投影法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LDG——一维对流扩散方程，一维N-S方程组">
-<meta property="og:url" content="https://fenglielie.github.io/2022/06/27/code/code-ldg/index.html">
+<meta property="og:title" content="投影法">
+<meta property="og:url" content="https://fenglielie.github.io/2022/07/03/learn/learn-inse-projection/index.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
-<meta property="og:description" content="LDG练习，一维对流扩散方程和一维可压缩N-S方程组。">
+<meta property="og:description" content="投影法也称为时间分裂法，分步法，按照思路分为两类：  第一类基于N-S方程组的半离散格式，基于Helmholtz分解定理； 第二类基于N-S方程组的全离散格式，采用近似算子分裂&#x2F;近似矩阵分裂。  下文只包括第一类投影法。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-27T03:37:14.000Z">
-<meta property="article:modified_time" content="2022-06-30T10:38:20.061Z">
+<meta property="article:published_time" content="2022-07-03T12:31:23.000Z">
+<meta property="article:modified_time" content="2022-07-03T13:36:58.676Z">
 <meta property="article:author" content="Fenglielie">
-<meta property="article:tag" content="LDG">
+<meta property="article:tag" content="learn">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fenglielie.github.io/2022/06/27/code/code-ldg/">
+<link rel="canonical" href="https://fenglielie.github.io/2022/07/03/learn/learn-inse-projection/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/06/27/code/code-ldg/","path":"2022/06/27/code/code-ldg/","title":"LDG——一维对流扩散方程，一维N-S方程组"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/2022/07/03/learn/learn-inse-projection/","path":"2022/07/03/learn/learn-inse-projection/","title":"投影法"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LDG——一维对流扩散方程，一维N-S方程组 | Fenglielie's Blog</title>
+<title>投影法 | Fenglielie's Blog</title>
   
 
 
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">一维对流扩散方程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">一维N-S方程组</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#helmholtz%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">Helmholtz分解定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">无压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6%E5%9E%8B%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">旋度型压力增量投影法</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,7 +228,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/06/27/code/code-ldg/">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/2022/07/03/learn/learn-inse-projection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
@@ -241,12 +241,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LDG——一维对流扩散方程，一维N-S方程组 | Fenglielie's Blog">
+      <meta itemprop="name" content="投影法 | Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LDG——一维对流扩散方程，一维N-S方程组
+          投影法
         </h1>
 
         <div class="post-meta-container">
@@ -256,15 +256,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-06-27 11:37:14" itemprop="dateCreated datePublished" datetime="2022-06-27T11:37:14+08:00">2022-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-30 18:38:20" itemprop="dateModified" datetime="2022-06-30T18:38:20+08:00">2022-06-30</time>
+      <time title="Created: 2022-07-03 20:31:23 / Modified: 21:36:58" itemprop="dateCreated datePublished" datetime="2022-07-03T20:31:23+08:00">2022-07-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,7 +266,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a>
+          <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
         </span>
     </span>
 
@@ -283,14 +277,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>4.6k</span>
+      <span>4.1k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
+      <span>4 mins.</span>
     </span>
 </div>
 
@@ -301,230 +295,190 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>LDG练习，一维对流扩散方程和一维可压缩N-S方程组。</p>
+        <p>投影法也称为时间分裂法，分步法，按照思路分为两类：</p>
+<ul>
+<li>第一类基于N-S方程组的半离散格式，基于Helmholtz分解定理；</li>
+<li>第二类基于N-S方程组的全离散格式，采用近似算子分裂/近似矩阵分裂。</li>
+</ul>
+<p>下文只包括第一类投影法。</p>
 <span id="more"></span>
-<h1 id="一维对流扩散方程">一维对流扩散方程</h1>
-<p>考虑一维的对流扩散方程如下</p>
+<h2 id="helmholtz分解定理">Helmholtz分解定理</h2>
+<p>对于任意光滑的向量场<span
+class="math inline">\(V\)</span>可以唯一分解为一个无源场<span
+class="math inline">\(V^d\)</span>和一个无旋场<span
+class="math inline">\(\nabla \phi\)</span> 之和。 <span
+class="math display">\[
+V = V^d + \nabla \phi
+\]</span> 满足<span class="math inline">\(\nabla \cdot V^d = 0\)</span>,
+和<span class="math inline">\(\nabla \times \nabla \phi=0\)</span>。</p>
+<h2 id="投影法">投影法</h2>
+<p>考虑无量纲化的二维不可压缩方程组</p>
 <p><span class="math display">\[
 \begin{aligned}
-u_t + f(u)_x &amp;= (b(u) u_x)_x\\
-u(x,0)&amp;=u_0(x)\\
-u(0,t)&amp;=u(2\pi,t)\\
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
 \end{aligned}
 \]</span></p>
-<p>其中初值<span class="math inline">\(u_0(x)\)</span>也是<span
-class="math inline">\(2\pi\)</span>周期的，<span
-class="math inline">\(b(u)\ge 0\)</span>。</p>
-<p>LDG方法使用中间变量把对流扩散方程中的高阶导转化为方程组：</p>
+<h3 id="无压力增量投影法">无压力增量投影法</h3>
+<p>我们介绍最早由Chorin和Temam提出的投影法，利用显式欧拉离散得到：</p>
 <p><span class="math display">\[
 \begin{aligned}
-u_t + f(u,x)_x &amp;= (a(u) q)_x\\
-q - g(u)_x &amp;= 0
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t}+ \left[(\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n - \frac{1}{Re} \nabla^2 \mathbf{u}^n \right] &amp;=
+-\nabla p^{n+1} \\
+\nabla \cdot \mathbf{u}^{n+1} &amp;= 0\\
 \end{aligned}
 \]</span></p>
-<p>其中<span class="math inline">\(a(u)=\sqrt{b(u)}\)</span>，<span
-class="math inline">\(g(u)\)</span>是<span
-class="math inline">\(a(u)\)</span>的原函数。</p>
-<p>首先给出文章中算例：</p>
+<p>在其中引入预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，把动量方程拆成两个部分：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t}+ \left[(\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n - \frac{1}{Re} \nabla^2 \mathbf{u}^n \right] = 0 \\
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^*}{\Delta t} = -\nabla p^{n+1}
+\end{aligned}
+\]</span></p>
+<p>对第二个式子取散度，得到</p>
+<p><span class="math display">\[
+\nabla^2 p^{n+1} = \frac{1}{\Delta t} \nabla \cdot \mathbf{u}^*
+\]</span></p>
+<p>因此，得到计算流程如下：</p>
 <ul>
-<li>算例一(热方程)：方程为<span
-class="math inline">\(u_t=u_{xx}\)</span>，精确解为<span
-class="math inline">\(u(x,t)=e^{-t}\sin(x)\)</span>；</li>
-<li>算例二：方程为<span
-class="math inline">\(u_t+u_x=u_{xx}\)</span>，精确解为<span
-class="math inline">\(u(x,t)=e^{-t}\sin(x-t)\)</span>。</li>
+<li>从<span class="math inline">\(t^n\)</span>时刻的第n步 <span
+class="math inline">\(\mathbf{u}^n\)</span> 出发，</li>
+<li>基于<span
+class="math inline">\(\mathbf{u}^n\)</span>，计算预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>满足 <span
+class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t}+ \left[(\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n - \frac{1}{Re} \nabla^2 \mathbf{u}^n \right] = 0
+\end{aligned}
+\]</span></li>
+<li>基于<span class="math inline">\(\mathbf{u}^*\)</span>，计算压强<span
+class="math inline">\(p^{n+1}\)</span>满足 <span class="math display">\[
+\nabla^2 p^{n+1} = \frac{1}{\Delta t} \nabla \cdot \mathbf{u}^*
+\]</span></li>
+<li>得到第n+1步的速度<span
+class="math inline">\(\mathbf{u}^{n+1}\)</span> <span
+class="math display">\[
+\mathbf{u}^{n+1} = \mathbf{u}^* - \Delta t \nabla p^{n+1}
+\]</span></li>
 </ul>
-<p>为了简化模型，我们使用下面形式的方程，其中常数<span
-class="math inline">\(\lambda,\mu^2\)</span>待定。<span
-class="math inline">\((\mu \ge 0)\)</span></p>
+<p>最后一步体现了<strong>Helmholtz分解定理</strong>和<strong>投影</strong>：</p>
 <p><span class="math display">\[
-u_t + \lambda u_x = \mu^2 u_{xx}
+\mathbf{u}^{*} = \mathbf{u}^{n+1} + \Delta t \nabla p^{n+1}
 \]</span></p>
-<p>加入中间变量后变成方程组</p>
-<p><span class="math display">\[
-\begin{aligned}
-u_t + f(u)_x &amp;= h(q)_x \\
-q - g(u)_x &amp;= 0
-\end{aligned}
-\]</span></p>
-<p>其中<span class="math inline">\(f(u)=\lambda u\)</span>，<span
-class="math inline">\(g(u)=\mu u\)</span>，<span
-class="math inline">\(h(q)=\mu
-q\)</span>。对应两个算例，分别取不同的常数<span
-class="math inline">\(\lambda,\mu\)</span>即可。</p>
-<p>在一维均匀网格下，DG半离散格式变为：find <span
-class="math inline">\(u_h,q_h \in V_h^k\)</span>, s.t. <span
-class="math inline">\(\forall v_h, w_h \in V_h^k\)</span></p>
-<p><span class="math display">\[
-\begin{aligned}
-\int_{I_j} (u_h)_t v_h - \int_{I_j} f(u_h) (v_h)_x +  \left[
-\widehat{f}(u_h(x_{j+1/2})) v_h(x_{j+1/2}^-) -
-\widehat{f}(u_h(x_{j-1/2})) v_h(x_{j-1/2}^+) \right]\\
-= - \int_{I_j} h(q_h) (v_h)_x + \left[
-\widehat{h}(q_h(x_{j+1/2}))v_h(x_{j+1/2}^-) -
-\widehat{h}(q_h(x_{j-1/2}))v_h(x_{j-1/2}^+) \right]\\
-\int_{I_j} q_h w_h =- \int_{I_j} g(u_h) (w_h)_x +
-\left[
-\widehat{g}(u_h(x_{j+1/2}))w_h(x_{j+1/2}^-)-\widehat{g}(u_h(x_{j-1/2}))w_h(x_{j-1/2}^+)
-\right]
-\end{aligned}
-\]</span></p>
-<p>为了兼容其他格式，我们也把第二个公式再次分部积分进行转化，在使用<span
-class="math inline">\(q_h \in V_h^k\)</span>近似<span
-class="math inline">\(g(u_h)_x \in V_h^{k-1}\)</span>时，记</p>
-<p><span class="math display">\[
-q_h = g(u_h)_x + R^w_h + R^e_h
-\]</span></p>
-<p>其中基于右边界的修正量<span
-class="math inline">\(R^e_h\)</span>和基于左边界的修正量<span
-class="math inline">\(R^w_h\)</span>分别满足：<span
-class="math inline">\(\forall w_h \in V_h^k\)</span></p>
-<p><span class="math display">\[
-\begin{aligned}
-\int_{I_j} R^e_h w_h &amp;= \left[\widehat{g}(u_h(x_{j+1/2})) -
-g(u_h(x_{j+1/2}^-))\right] w_h(x_{j+1/2}^-)\\
-\int_{I_j} R^w_h w_h &amp;= \left[\widehat{g}(u_h(x_{j-1/2})) -
-g(u_h(x_{j-1/2}^+))\right] w_h(x_{j-1/2}^+)\\
-\end{aligned}
-\]</span></p>
-<p>对时间直接使用向前欧拉离散(实践中使用Runge-Kutta格式替代)，计算流程为：</p>
-<ol type="1">
-<li>计算初值<span class="math inline">\(u_h^0\)</span>，n=0</li>
-<li>基于<span class="math inline">\(u_h^n\)</span>，计算修正量<span
-class="math inline">\(R_h^{e,n}\)</span>和<span
-class="math inline">\(R_h^{w,n}\)</span>，计算<span
-class="math inline">\(q_h^n = \mu \left[(u_h^n)_x + R^{w,n}_h +
-R^{e,n}_h \right]\)</span></li>
-<li>计算下一步的<span class="math inline">\(u_h^{n+1}\)</span>，<span
-class="math inline">\(n:=n+1\)</span>，回到第二步或者结束计算。</li>
-</ol>
-<p>剩下三个数值流通量的选取：</p>
 <ul>
-<li><span
-class="math inline">\(\widehat{f}(u_h(x^-,x^+))\)</span>：对流项的数值流通量，例如LF流通量；</li>
-<li><span
-class="math inline">\(\widehat{g}(u_h(x^-,x^+))\)</span>：取作<span
-class="math inline">\(\mu u_h(x^-)\)</span>；</li>
-<li><span
-class="math inline">\(\widehat{h}(q_h(x^-,x^+))\)</span>：取作<span
-class="math inline">\(\mu q_h(x^+)\)</span>。(后两个也可以左右互换)</li>
+<li>在利用 <span class="math inline">\(\mathbf{u}^n\)</span>
+计算预测速度 <span class="math inline">\(\mathbf{u}^*\)</span>
+时，直接忽视了压强场的约束作用；</li>
+<li>预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>根据Helmholtz分解定理被分解成无源场
+<span class="math inline">\(\mathbf{u}^{n+1}\)</span> 和无旋场 <span
+class="math inline">\(\Delta t \nabla p^{n+1}\)</span> ；</li>
+<li>通过预测速度 <span class="math inline">\(\mathbf{u}^*\)</span>
+和压强 <span class="math inline">\(p^{n+1}\)</span> 计算 <span
+class="math inline">\(\mathbf{u}^{n+1}\)</span>
+就是通过压强的约束作用，把速度重新投影到散度为零的子空间内：<span
+class="math inline">\(\mathbf{u}^{n+1}=P(\mathbf{u}^*)\)</span>，最终的速度严格满足<span
+class="math inline">\(\nabla \cdot \mathbf{u}^{n+1}=0\)</span>。</li>
 </ul>
-<p>时间步长的选取：如果使用<span class="math inline">\(\Delta
-t=\text{CFL} \Delta x\)</span> 可能不行，使用足够小的<span
-class="math inline">\(\Delta t=\text{CFL} \Delta
-x^2\)</span>可以保证稳定性。</p>
-<div class="note info"><p>参考文献： Y. Cheng and C.-W. Shu, Superconvergence of local
-discontinuous Galerkin methods for one-dimensional convection-diffusion
-equations , Computers and Structures, v87 (2009), pp.630-641.</p>
+<div class="note info"><p>这种最早的投影法通常称作无压力增量投影法：因为计算中间层的预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>时，没有考虑压强梯度的影响。可以改成隐式的时间离散格式，可以在计算预测速度时考虑压强的影响，因此精度有限。有一系列衍生的投影法。</p>
 </div>
-<h1 id="一维n-s方程组">一维N-S方程组</h1>
-<p>考虑无量纲化的一维的N-S方程组如下，</p>
-<p><span class="math display">\[
-U_t + F(U)_x = H(U,U_x)_x + S(U)
-\]</span></p>
-<p>其中<span class="math inline">\(F(U)_x\)</span>为对流项，<span
-class="math inline">\(H(U,U_x)_x\)</span>为黏性项，<span
-class="math inline">\(S(U)\)</span>为源项，默认取<span
-class="math inline">\(S(U)=0\)</span>。</p>
-<p>守恒型变量<span class="math inline">\(U=[\rho,\rho
-u,E]^T\)</span>，其中能量</p>
-<p><span class="math display">\[
-E = \frac{p}{\gamma-1} + \frac12 \rho u^2
-\]</span></p>
-<p>对流项</p>
+<div class="note warning"><p>注意，实践中可能不是直接离散<span class="math inline">\(\nabla^2
+p^{n+1} = \frac{1}{\Delta t} \nabla \cdot
+\mathbf{u}^*\)</span>，而是离散下面两个式子，把离散后的结果进行合并：</p>
 <p><span class="math display">\[
 \begin{aligned}
-F(U)&amp;=[\rho u,\rho u^2 + p,u(E+p)]^T\\
-&amp;=[\rho u,\rho u^2 + p, u\left(\frac{\gamma}{\gamma-1}p + \frac12
-\rho u^2 \right)]^T
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^*}{\Delta t} = -\nabla p^{n+1}\\
+\nabla \cdot \mathbf{u}^{n+1} =0
 \end{aligned}
 \]</span></p>
-<p>从原始变量<span
-class="math inline">\(\{\rho,u,p\}\)</span>转化到守恒型变量<span
-class="math inline">\(U=[\xi_1,\xi_2,\xi_3]^T\)</span>：</p>
+<p>这样可以保证离散的 <span class="math inline">\(\nabla \cdot
+\mathbf{u}^{n+1} =0\)</span> 严格成立。</p>
+</div>
+<h3 id="压力增量投影法">压力增量投影法</h3>
+<p>首先，时间上不使用显式Euler，而改用二阶向后差分格式 <span
+class="math display">\[
+\frac{\partial \mathbf{u}^{n+1}}{\partial t} \approx
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t}
+\]</span></p>
+<p>动量方程离散为 <span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{n+1}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^{n+1}\cdot \nabla) \mathbf{u}^{n+1} &amp;= -\nabla p^{n+1} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^{n+1}\\
+\end{align}
+\]</span></p>
+<p>(不等价地)拆为下面两个式子 <span class="math display">\[
+\begin{align}
+\frac{3\mathbf{u}^{*}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^{*}\cdot \nabla) \mathbf{u}^{*} &amp;= -\nabla p^{n} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^{*}\\
+\frac{3(\mathbf{u}^{n+1}-\mathbf{u}^*)}{2\Delta t} &amp;=
+-\nabla (p^{n+1}-p^n)
+\end{align}
+\]</span></p>
+<p>第一步，预测步计算中间速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，考虑压强梯度的影响(需要隐式求解<span
+class="math inline">\(\mathbf{u}^*\)</span>)</p>
 <p><span class="math display">\[
-\begin{aligned}
-\xi_1 &amp;= \rho \\
-\xi_2 &amp;= \rho u\\
-\xi_3 &amp;= \frac{p}{\gamma-1}+\frac12 \rho u^2
-\end{aligned}
+\begin{align}
+\frac{3\mathbf{u}^{*}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^*\cdot \nabla) \mathbf{u}^* &amp;=  -\nabla p^{n} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^*
+\end{align}
 \]</span></p>
-<p>从守恒型变量<span
-class="math inline">\(U=[\xi_1,\xi_2,\xi_3]^T\)</span>转化到原始变量<span
-class="math inline">\(\{\rho,u,p\}\)</span>：</p>
+<p>第二步，求解压强增量<span class="math inline">\(q =
+p^{n+1}-p^n\)</span>，对第二个式子求散度得</p>
 <p><span class="math display">\[
-\begin{aligned}
-\rho &amp;= \xi_1\\
-u &amp;= \frac{\xi_2}{\xi_1}\\
-p &amp;= (\gamma -1)\left(\xi_3 - \frac12 \frac{\xi_2^2}{\xi_1}\right)
-\end{aligned}
+\begin{align}
+\nabla^2 q &amp;=\frac{3}{2\Delta t} \nabla \cdot \mathbf{u}^*
+\end{align}
 \]</span></p>
-<p>以上都和一维可压缩理想气体相同，不同之处在于黏性项，黏性项具体为：</p>
+<p>第三步，更新<span class="math inline">\(\mathbf{u}^{n+1}\)</span>,
+<span class="math inline">\(p^{n+1}\)</span> <span
+class="math display">\[
+\begin{align}
+\mathbf{u}^{n+1} &amp;= \mathbf{u}^* - \frac{2\Delta t}{3} \nabla q\\
+p^{n+1} &amp;= p^n + q
+\end{align}
+\]</span></p>
+<h3 id="旋度型压力增量投影法">旋度型压力增量投影法</h3>
+<p>第一步，预测步, 计算中间速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，考虑压强梯度的影响(需要隐式求解<span
+class="math inline">\(\mathbf{u}^*\)</span>)</p>
 <p><span class="math display">\[
-\begin{aligned}
-H(U,U_x) &amp;= [0, \tau_{xx},u\tau_{xx} +
-\frac{1}{Re\,Pr(\gamma-1)}(a^2)_x]^T\\
-&amp;= [0, \frac{4}{3Re} u_x, \frac{4}{3Re} u u_x +
-\frac{\gamma}{Re\,Pr(\gamma-1)}\left(\frac{p_x \rho - p
-\rho_x}{\rho^2}\right)]^T
-\end{aligned}
+\begin{align}
+\frac{3\mathbf{u}^{*}-4\mathbf{u}^n + \mathbf{u}^{n-1}}{2\Delta t} +
+(\mathbf{u}^*\cdot \nabla) \mathbf{u}^* &amp;=  -\nabla p^{n} +
+\frac{1}{Re} \nabla^2 \mathbf{u}^*\\
+\end{align}
 \]</span></p>
-<p>我们首先引入中间变量<span
-class="math inline">\(V=U_x\)</span>，得到方程组</p>
-<p><span class="math display">\[
-\begin{aligned}
-U_t + F(U)_x &amp;= H(U,V)_x + S(U)\\
-V &amp;= G(U)_x
-\end{aligned}
+<p>第二步，从求解压强增量<span
+class="math inline">\(q=p^{n+1}-p^n\)</span> 变成求解新的变量<span
+class="math inline">\(\phi\)</span> <span class="math display">\[
+\phi = p^{n+1}-p^n + \frac{1}{Re} \nabla \cdot \mathbf{u}^*
 \]</span></p>
-<p>其中<span class="math inline">\(G(U)=U\)</span>，记<span
-class="math inline">\(V=[\eta_1,\eta_2,\eta_3]^T\)</span>，从原始变量<span
-class="math inline">\(\{\rho,u,p\}\)</span>和<span
-class="math inline">\(\{\rho_x,u_x,p_x\}\)</span>转化到<span
-class="math inline">\(V=[\eta_1,\eta_2,\eta_3]^T\)</span>：</p>
-<p><span class="math display">\[
-\begin{aligned}
-\eta_1 &amp;= \rho_x \\
-\eta_2 &amp;= (\rho u)_x = \rho_x u + \rho u_x \\
-\eta_3 &amp;= E_x = \frac{p_x}{\gamma-1} + \frac12 \rho_x u^2 + \rho u
-u_x
-\end{aligned}
+<p>满足如下方程组 <span class="math display">\[
+\begin{align}
+\nabla^2 \phi &amp;=\frac{3}{2\Delta t} \nabla \cdot \mathbf{u}^*
+\end{align}
 \]</span></p>
-<p>从<span class="math inline">\(U=[\xi_1,\xi_2,\xi_3]^T\)</span>和<span
-class="math inline">\(V=[\eta_1,\eta_2,\eta_3]^T\)</span>转化到原始变量<span
-class="math inline">\(\{\rho_x,u_x,p_x\}\)</span>：</p>
-<p><span class="math display">\[
-\begin{aligned}
-\rho_x &amp;= \eta_1\\
-u_x &amp;= \frac{1}{\rho}(\eta_2 - \rho_x u)
-= \frac{1}{\xi_1}\left(\eta_2 - \eta_1 \frac{\xi_2}{\xi_1} \right)\\
-p_x &amp;= (\gamma-1)\left(\eta_3 - \frac12 \rho_x u^2 - \rho u
-u_x\right)\\
-&amp;= (\gamma-1)\left[\eta_3 - \frac12 \eta_1
-\left(\frac{\xi_2}{\xi_1}\right)^2 - \xi_2 \frac{1}{\xi_1}\left(\eta_2 -
-\eta_1 \frac{\xi_2}{\xi_1} \right) \right]
-\end{aligned}
+<p>第三步，更新<span class="math inline">\(\mathbf{u}^{n+1}\)</span>,
+<span class="math inline">\(p^{n+1}\)</span> <span
+class="math display">\[
+\begin{align}
+\mathbf{u}^{n+1} &amp;= \mathbf{u}^* - \frac{2\Delta t}{3} \nabla \phi\\
+p^{n+1} &amp;= p^n + \phi - \frac{1}{Re} \nabla \cdot \mathbf{u}^*
+\end{align}
 \]</span></p>
-<p>在一维均匀网格下，DG半离散格式变为：find <span
-class="math inline">\(U_h,V_h \in V_h^k\)</span>, s.t. <span
-class="math inline">\(\forall W_h, Y_h \in V_h^k\)</span></p>
-<p><span class="math display">\[
-\begin{aligned}
-\int_{I_j} (U_h)_t W_h - \int_{I_j} F(U_h)(W_h)_x
-+\widehat{F}(U_h(x_{i+1/2}))W_h(x_{i+1/2}^-)
--\widehat{F}(U_h(x_{i-1/2}))W_h(x_{i-1/2}^+)\\
-=
--\int_{I_j}H(U_h,V_h)(W_h)_x
-+ \widehat{H}(U_h,V_h)(x_{i+1/2})W_h(x_{i+1/2}^-)
-- \widehat{H}(U_h,V_h)(x_{i-1/2})W_h(x_{i-1/2}^+)
-+ \int_{I_j}S(U_h) W_h
-\\
-\int_{I_j} V_h Y_h =
--\int_{I_j}G(U_h)(Y_h)_x
-+ \widehat{G}(U_h)(x_{i+1/2})Y_h(x_{i+1/2}^-)
-- \widehat{G}(U_h)(x_{i-1/2})Y_h(x_{i-1/2}^+)
-\end{aligned}
-\]</span></p>
+<p>这一种和压力增量型投影法相比，略有不同，可以视作对压力增量型投影方法的改进，因为如果不可压方程组对速度有第一类边界条件时，对<span
+class="math inline">\(\phi\)</span>的求解比对<span
+class="math inline">\(q\)</span>的求解可以给出更合理的边界条件，略。</p>
 
     </div>
 
@@ -542,7 +496,7 @@ class="math inline">\(\forall W_h, Y_h \in V_h^k\)</span></p>
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://fenglielie.github.io/2022/06/27/code/code-ldg/" title="LDG——一维对流扩散方程，一维N-S方程组">https://fenglielie.github.io/2022/06/27/code/code-ldg/</a>
+      <a href="https://fenglielie.github.io/2022/07/03/learn/learn-inse-projection/" title="投影法">https://fenglielie.github.io/2022/07/03/learn/learn-inse-projection/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -551,20 +505,20 @@ class="math inline">\(\forall W_h, Y_h \in V_h^k\)</span></p>
 </div>
 
           <div class="post-tags">
-              <a href="/tags/LDG/" rel="tag"><i class="fa fa-tag"></i> LDG</a>
+              <a href="/tags/learn/" rel="tag"><i class="fa fa-tag"></i> learn</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/24/sth/sth-12138/" rel="prev" title="something-12138">
-                  <i class="fa fa-chevron-left"></i> something-12138
+                <a href="/2022/07/03/learn/learn-inse-acm/" rel="prev" title="人工压缩性方法(ACM)">
+                  <i class="fa fa-chevron-left"></i> 人工压缩性方法(ACM)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/29/learn/learn-inse-simple/" rel="next" title="SIMPLE算法学习笔记">
-                  SIMPLE算法学习笔记 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/07/03/learn/learn-inse-vortex/" rel="next" title="涡量-流函数方法(二维)">
+                  涡量-流函数方法(二维) <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
