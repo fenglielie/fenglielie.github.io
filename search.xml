@@ -308,7 +308,7 @@ class="math inline">\(\mathbf{u}^{n+1}=\mathbf{u}^{n+1,k_N},p^{n+1}=p^{n+1,k_N}\
     <title>SIMPLE算法</title>
     <url>/learn/learn-inse-simple.html</url>
     <content><![CDATA[<p>SIMPLE算法全称是压力耦合方程组的半隐式方法,
-作为经典的算法在Fluent等工业软件中被广泛应用。</p>
+作为经典的压力修正算法在Fluent等工业软件中被广泛应用。</p>
 <span id="more"></span>
 <p>不可压缩N-S方程的求解算法学习笔记，由以下笔记组成：</p>
 <ul>
