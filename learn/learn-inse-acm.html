@@ -23,26 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://fenglielie.github.io/tags/index.html">
+    <meta name="description" content="人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人工压缩性方法(ACM)">
+<meta property="og:url" content="https://fenglielie.github.io/learn/learn-inse-acm.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
+<meta property="og:description" content="人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-18T04:10:17.000Z">
-<meta property="article:modified_time" content="2022-06-18T04:28:50.894Z">
+<meta property="article:published_time" content="2022-07-03T11:54:56.000Z">
+<meta property="article:modified_time" content="2022-07-04T07:11:52.231Z">
 <meta property="article:author" content="Fenglielie">
+<meta property="article:tag" content="learn">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fenglielie.github.io/tags/">
+<link rel="canonical" href="https://fenglielie.github.io/learn/learn-inse-acm.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/tags/index.html","path":"tags/index.html","title":"tags"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/learn/learn-inse-acm.html","path":"learn/learn-inse-acm.html","title":"人工压缩性方法(ACM)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>tags | Fenglielie's Blog
-</title>
+<title>人工压缩性方法(ACM) | Fenglielie's Blog</title>
   
 
 
@@ -135,7 +137,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -148,6 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%BA%E5%B7%A5%E5%8E%8B%E7%BC%A9%E6%80%A7%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">人工压缩性方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E5%B8%B8%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">定常问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%AE%9A%E5%B8%B8%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">非定常问题</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -214,41 +217,244 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="en"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">tags
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/learn/learn-inse-acm.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
+      <meta itemprop="name" content="Fenglielie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="人工压缩性方法(ACM) | Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          人工压缩性方法(ACM)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-07-03 19:54:56" itemprop="dateCreated datePublished" datetime="2022-07-03T19:54:56+08:00">2022-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-04 15:11:52" itemprop="dateModified" datetime="2022-07-04T15:11:52+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body"><div class="tag-cloud">
-  <div class="tag-cloud-title">
-    6 tags in total
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/LDG/" style="font-size: 12px;" class="tag-cloud-0">LDG</a> <a href="/tags/cpp/" style="font-size: 12px;" class="tag-cloud-0">cpp</a> <a href="/tags/fortran/" style="font-size: 24px;" class="tag-cloud-7">fortran</a> <a href="/tags/inse/" style="font-size: 30px;" class="tag-cloud-10">inse</a> <a href="/tags/learn/" style="font-size: 12px;" class="tag-cloud-0">learn</a> <a href="/tags/test/" style="font-size: 18px;" class="tag-cloud-3">test</a>
-  </div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。</p>
+<span id="more"></span>
+<h2 id="人工压缩性方程">人工压缩性方程</h2>
+<p>考虑无量纲化的二维不可压缩方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>由于缺少<span class="math inline">\(\frac{\partial p}{\partial
+t}\)</span>，难以计算压强，因此引入人工压缩性因子<span
+class="math inline">\(\beta
+&gt;0\)</span>，使得连续性方程替换为人工压缩性方程：</p>
+<p><span class="math display">\[
+\frac{\partial p}{\partial t} + \beta \nabla \cdot \mathbf{u} = 0
+\]</span></p>
+<p>这里的人工压缩性因子<span class="math inline">\(\beta\)</span>
+相当于声速的平方<span
+class="math inline">\(c^2\)</span>，也可以从物理的角度进行理解，在<span
+class="math inline">\(\beta &gt;0\)</span>时：</p>
+<ul>
+<li>当流动在一点处压缩时，<span class="math inline">\(\nabla \cdot
+\mathbf{u} &lt; 0\)</span>，该点的压力会升高，<span
+class="math inline">\(\frac{\partial p}{\partial t}
+&gt;0\)</span>；</li>
+<li>当流动在一点处膨胀时，<span class="math inline">\(\nabla \cdot
+\mathbf{u} &gt; 0\)</span>，该点的压力会降低，<span
+class="math inline">\(\frac{\partial p}{\partial t} &lt;
+0\)</span>。</li>
+</ul>
+<p>从而得到方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\frac{\partial p}{\partial t} + \beta \nabla \cdot \mathbf{u} &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>这个方程组只有在达到定常态的时候，才满足<span
+class="math inline">\(\nabla \cdot
+\mathbf{u}=0\)</span>，因此适合求解定常流问题。增大<span
+class="math inline">\(\beta\)</span>可以使得压力的收敛更快，但是会增加方程的刚性，降低时间步长。</p>
+<h2 id="定常问题">定常问题</h2>
+<p>对于定常问题，我们不关心中间过程的计算精度，只需要迭代(时间推进)到满足收敛的判断条件，例如取定足够小的
+<span class="math inline">\(\epsilon &gt;0\)</span>，要求</p>
+<p><span class="math display">\[
+\max(\Vert \mathbf{u}^{n+1}-\mathbf{u}^n \Vert,\Vert p^{n+1}-p^n\Vert)
+\le \epsilon
+\]</span></p>
+<p>最终达到稳态，同时满足了不可压缩条件 <span
+class="math inline">\(\nabla \cdot \mathbf{u}=0\)</span>。</p>
+<h2 id="非定常问题">非定常问题</h2>
+<p>对于非定常问题，在时间推进之间，需要加入<strong>内迭代</strong>，计算效率较低，通常不建议使用ACM计算非定常问题。</p>
+<p>例如对方程组使用如下显式格式进行离散：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot
+\nabla) \mathbf{u}^n &amp;= -\nabla p ^n+ \frac{1}{Re} \nabla^2
+\mathbf{u}^n\\
+\frac{p^{n+1}-p^n}{\Delta t} + \beta \nabla \cdot \mathbf{u}^n &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>则完整的求解需要使用如下步骤：</p>
+<ul>
+<li>从<span class="math inline">\(t^n\)</span>时刻的第n步<span
+class="math inline">\(\mathbf{u}^n\)</span>出发，</li>
+<li>进入内迭代：
+<ul>
+<li>记<span
+class="math inline">\(\mathbf{u}^{n+1,0}=\mathbf{u}^n\)</span>，记<span
+class="math inline">\(p^{n+1,0}=p^n\)</span>，(或者压强以一个猜测值开始迭代，应该也可以)</li>
+<li>计算<span
+class="math inline">\(\mathbf{u}^{n+1,k},\cdots\)</span>，以及<span
+class="math inline">\(p^{n+1,k},\cdots\)</span>满足下式 <span
+class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1,k+1}-\mathbf{u}^{n+1,k}}{\Delta t} +
+(\mathbf{u}^n\cdot \nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1,k}+
+\frac{1}{Re} \nabla^2 \mathbf{u}^n\\
+\frac{p^{n+1,k+1}-p^{n+1,k}}{\Delta t} + \beta \nabla \cdot
+\mathbf{u}^{n+1,k} &amp;= 0
+\end{aligned}
+\]</span></li>
+<li>不断迭代，直到满足类似定常流的收敛判断条件，记作<span
+class="math inline">\(\mathbf{u}^{n+1,k_N},p^{n+1,k_N}\)</span></li>
+</ul></li>
+<li>将内收敛得到的速度和压强作为<span
+class="math inline">\(t^{n+1}\)</span>时刻的速度和压强，<span
+class="math inline">\(\mathbf{u}^{n+1}=\mathbf{u}^{n+1,k_N}\)</span>，<span
+class="math inline">\(p^{n+1}=p^{n+1,k_N}\)</span>。</li>
+</ul>
+<div class="note info"><p>注：以上内迭代的公式来自李新亮的计算流体力学PPT，但是似乎应该像下面这样更合理？
+<span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{n+1,k+1}-\mathbf{u}^{n}}{\Delta t} +
+(\mathbf{u}^n\cdot \nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1,k}+
+\frac{1}{Re} \nabla^2 \mathbf{u}^n\\
+\frac{p^{n+1,k+1}-p^{n+1,k}}{\Delta t} + \beta \nabla \cdot
+\mathbf{u}^{n+1,k} &amp;= 0
+\end{aligned}
+\]</span></p>
 </div>
 
-      </div>
-      
-      
-      
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Fenglielie
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://fenglielie.github.io/learn/learn-inse-acm.html" title="人工压缩性方法(ACM)">https://fenglielie.github.io/learn/learn-inse-acm.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/learn/" rel="tag"><i class="fa fa-tag"></i> learn</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/code/code-ldg.html" rel="prev" title="LDG——一维对流扩散方程，一维N-S方程组">
+                  <i class="fa fa-chevron-left"></i> LDG——一维对流扩散方程，一维N-S方程组
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/learn/learn-inse-projection.html" rel="next" title="投影法">
+                  投影法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#0593d3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#0593d3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不可压NS方程中压强的数学意义">
+<meta property="og:url" content="https://fenglielie.github.io/learn/learn-inse-lagrange.html">
+<meta property="og:site_name" content="Fenglielie&#39;s Blog">
+<meta property="og:description" content="为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png">
+<meta property="article:published_time" content="2022-06-21T07:21:36.000Z">
+<meta property="article:modified_time" content="2022-07-04T09:03:56.405Z">
+<meta property="article:author" content="Fenglielie">
+<meta property="article:tag" content="inse">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png">
+
+
+<link rel="canonical" href="https://fenglielie.github.io/learn/learn-inse-lagrange.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/learn/learn-inse-lagrange.html","path":"learn/learn-inse-lagrange.html","title":"不可压NS方程中压强的数学意义"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>不可压NS方程中压强的数学意义 | Fenglielie's Blog</title>
+  
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Fenglielie's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-share"><a href="/share/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Share</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84lagrange%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">经典的Lagrange乘子法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%9A%84%E5%91%BD%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">主要的命题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%85%B7%E4%BD%93%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">更具体的形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">两个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%B8%80"><span class="nav-number">3.1.</span> <span class="nav-text">例一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E4%BA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">例二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stokes%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">Stokes方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">三种形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%B8%80"><span class="nav-number">4.2.</span> <span class="nav-text">等价性证明一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%85%B7%E4%BD%93%E5%8C%96"><span class="nav-number">4.3.</span> <span class="nav-text">抽象模型的具体化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E8%AF%81%E6%98%8E%E4%BA%8C"><span class="nav-number">4.4.</span> <span class="nav-text">等价性证明二</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fenglielie"
+      src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
+  <p class="site-author-name" itemprop="name">Fenglielie</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fenglielie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fenglielie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fenglielie@qq.com" title="E-Mail → mailto:fenglielie@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/mu-zi-chuan-ye-61" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;mu-zi-chuan-ye-61" rel="noopener" target="_blank">Zhihu</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/fenglielie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/learn/learn-inse-lagrange.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/avatar.gif">
+      <meta itemprop="name" content="Fenglielie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="不可压NS方程中压强的数学意义 | Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          不可压NS方程中压强的数学意义
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-06-21 15:21:36" itemprop="dateCreated datePublished" datetime="2022-06-21T15:21:36+08:00">2022-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-04 17:03:56" itemprop="dateModified" datetime="2022-07-04T17:03:56+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>7.3k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>7 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。</p>
+<span id="more"></span>
+<!--toc-->
+<h2 id="经典的lagrange乘子法">经典的Lagrange乘子法</h2>
+<p>经典的Lagrange乘子法是针对等式约束下的非线性方程最优化问题，将其转化为一个方程组的求解问题，具体形式如下：</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+&amp;\max f(\mathbf{x})\\
+&amp;s.t. g(\mathbf{x})=0
+\end{aligned}
+\right.
+\]</span></p>
+<p>其中<span class="math inline">\(\mathbf{x}\in R^N\)</span>，<span
+class="math inline">\(f,g:R^N \to
+R\)</span>，对于上述最优化问题引入Lagrange乘子<span
+class="math inline">\(\lambda \in R\)</span>，定义Lagrange函数<span
+class="math inline">\(L(\mathbf{x},\lambda)\)</span>：</p>
+<p><span class="math display">\[
+L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda \,g(\mathbf{x})
+\]</span></p>
+<p>则<span
+class="math inline">\(\mathbf{x}\)</span>取到最优解的<strong>必要条件</strong>为<span
+class="math inline">\((\mathbf{x}, \lambda)\)</span>满足如下方程组：</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+\nabla_{\mathbf{x}}L(\mathbf{x},\lambda) &amp;= \nabla f - \lambda
+\nabla g = 0\\
+\nabla_{\lambda} L(\mathbf{x},\lambda) &amp;= g(\mathbf{x}) = 0
+\end{aligned}
+\right.
+\]</span></p>
+<p>注意这只是必要条件，解出的<span
+class="math inline">\(\mathbf{x}\)</span>只能保证是一个驻点，需要继续验证是否取到唯一的最值。(如果<span
+class="math inline">\(f\)</span>是上凸函数，则显然<span
+class="math inline">\(\mathbf{x}\)</span>是唯一的)</p>
+<p>几何意义：取<span
+class="math inline">\(R^N=R^2\)</span>的情形，如图所示，<span
+class="math inline">\(w=f(\mathbf{x})=f(x,y)\)</span>等值线如下图，<span
+class="math inline">\(g(\mathbf{x})=g(x,y)=0\)</span>
+限制子空间为一个圆，<span
+class="math inline">\(P\)</span>点是一个满足的解，但方程组的解可能不唯一。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png" width="50%"  /></p>
+<p>对于上述简单情形，可以基于反证法给出证明：</p>
+<p>如果最值点<span
+class="math inline">\(\mathbf{x}_0=(x_0,y_0)\)</span>不能找到一个<span
+class="math inline">\(\lambda\)</span>使得方程组成立，换言之，<span
+class="math inline">\(\nabla f\)</span>与<span
+class="math inline">\(\nabla g\)</span>向量不平行，在<span
+class="math inline">\(\mathbf{x}_0\)</span>附近不妨记<span
+class="math inline">\(g(x,y)=0\)</span>的曲线方程为<span
+class="math inline">\(y=y(x)\)</span>，由于<span
+class="math inline">\((1,y&#39;(x_0))\)</span>与<span
+class="math inline">\(\nabla g\)</span>垂直，<span
+class="math inline">\(f\)</span>的等值线切线方向与<span
+class="math inline">\(\nabla f\)</span>垂直，因此<span
+class="math inline">\((1,y&#39;(x_0))\)</span>与<span
+class="math inline">\(f\)</span>的等值线不平行，在<span
+class="math inline">\((x_0,y(x_0))\)</span>附近仍然存在一个点<span
+class="math inline">\((x_1,y(x_1))\)</span>，使得<span
+class="math inline">\(f(x_1,y(x_1)) &gt;
+f(x_0,y(x_0))\)</span>，矛盾。</p>
+<h2 id="基本概念">基本概念</h2>
+<div class="note info"><p>上述Lagrange乘子法可以在线性规划，最优化方面进行推广，但是我们需要的是关于函数的Lagrange乘子法，因此需要从泛函的角度讨论，在讨论更一般的问题时，我们需要引入泛函分析中相关的概念。</p>
+</div>
+<p>对于Hilbert空间<span class="math inline">\(H\)</span>，<span
+class="math inline">\(J\)</span>是定义在<span
+class="math inline">\(H\)</span>上的一个下凸的Frechet可微的泛函<span
+class="math inline">\(J:H\to
+R\)</span>。这里Frechet可微的含义为：对于<span
+class="math inline">\(\forall v \in H\)</span>，存在<span
+class="math inline">\(f_v \in H^*\)</span>使得下式成立：</p>
+<p><span class="math display">\[
+J(v+w) = J(v) + \langle f_v,w \rangle + o(\Vert w \Vert)
+\]</span></p>
+<p>其中<span class="math inline">\(\langle f_v,
+w\rangle\)</span>表示有界线性泛函<span class="math inline">\(f_v \in
+H^*\)</span>作用到元素<span class="math inline">\(w \in
+H\)</span>上，余项的范数是关于<span class="math inline">\(\Vert w
+\Vert\)</span>的高阶无穷小。此时记作<span class="math inline">\(\nabla
+J(v) = f_v \in H^*\)</span>，视作<span
+class="math inline">\(J\)</span>在<span
+class="math inline">\(v\)</span>处的"导数"：</p>
+<p><span class="math display">\[
+J(v+w) = J(v) + \langle \nabla J(v),w \rangle + o(\Vert w \Vert)
+\]</span></p>
+<p>对于子集<span class="math inline">\(V \subset H\)</span>，记<span
+class="math inline">\(^{\perp}V\)</span>定义如下，</p>
+<p><span class="math display">\[
+^{\perp}V = \{u^* \in H^*\,|\, \langle u^*,v\rangle =0, \forall v \in V
+\} \subset H^*
+\]</span></p>
+<p>对于子集<span class="math inline">\(W \subset H^*\)</span>，记<span
+class="math inline">\(W^\perp\)</span>定义如下，</p>
+<p><span class="math display">\[
+W^\perp = \{ v \in H \,|\, \langle u^*,v \rangle = 0, \forall u^* \in
+H^* \} \subset H
+\]</span></p>
+<h3 id="主要的命题">主要的命题</h3>
+<p>有以下命题成立，在约束空间<span
+class="math inline">\(V\)</span>的最优化问题转化为"导数"落在<span
+class="math inline">\(^{\perp}V\)</span>内需要满足的方程组，</p>
+<p><span class="math display">\[
+J(u) = \min_{v \in V} J(v) \iff \nabla J(u) \in ^{\perp}V
+\]</span></p>
+<p>证明如下： 如果在<span
+class="math inline">\(u_0\)</span>处取到最小值，则易知</p>
+<p><span class="math display">\[
+\langle \nabla J(u_0),v\rangle = 0,\, \forall v \in V
+\]</span></p>
+<p>因此<span class="math inline">\(\nabla J(u_0) \in
+^{\perp}V\)</span>。 反过来，利用下凸的性质，任取<span
+class="math inline">\(v \in V\)</span>，<span class="math inline">\(t
+&gt; 0\)</span>，有</p>
+<p><span class="math display">\[
+J(v)-J(u) \ge \frac{1}{t}\left( J(u+t(v-u)) - J(u)\right)
+\overset{t \to 0^+}\to 0
+\]</span></p>
+<p>因此<span class="math inline">\(J(u) \le
+J(v)\)</span>取到最小值，命题得证。 (如果<span
+class="math inline">\(J\)</span>可微但没有下凸性质，则右侧只是必要条件而非充分条件)</p>
+<h3 id="更具体的形式">更具体的形式</h3>
+<p>假设有另一个Hilbert空间<span
+class="math inline">\(M\)</span>，对于子集<span
+class="math inline">\(V\)</span>我们取作一个有界线性算子<span
+class="math inline">\(T:H\to M^*\)</span>的Kernel，即</p>
+<p><span class="math display">\[
+V = Ker(T) = \{ v \in H \,|\, Tv = 0 \in M^*\}
+\]</span></p>
+<p>需要<span class="math inline">\(T\)</span>的对偶算子<span
+class="math inline">\(T^*:M \to H^*\)</span>，即对于任意<span
+class="math inline">\(u\in H,w\in M\)</span>下式都成立</p>
+<p><span class="math display">\[
+\langle Tu,w\rangle = \langle T^* w,u\rangle
+\]</span> 有</p>
+<p><span class="math display">\[
+Im(T^*) = \{ u^* \in H^* \,|\, u^* = T^* w,\, \exists\, w \in M\}
+\]</span></p>
+<p>断言有<span
+class="math inline">\(^{\perp}V=Im(T^*)\)</span>的闭包，(如果 <span
+class="math inline">\(T^*\)</span>
+是闭值域算子，则闭包等于自身)，验证一下：</p>
+<ul>
+<li>若<span class="math inline">\(u^* = T^* w \in Im(T^*)\)</span>，则有
+<span class="math display">\[
+\langle u^*, v\rangle = \langle T^* w, v\rangle = \langle w,T v\rangle =
+0, \,\, \forall v \in V=Ker(T)
+\]</span></li>
+<li>若<span class="math inline">\(u^* \in H^*\)</span>满足 <span
+class="math inline">\(u^* \in ^{\perp}Ker(T) \subset
+^{\perp}(Im(T^*)^\perp)\)</span>，根据HBT定理的推论可证明<span
+class="math inline">\(u^* \in
+Im(T^*)\)</span>的闭包。(见张恭庆的泛函分析上册)</li>
+</ul>
+<p>此时上述命题变成</p>
+<p><span class="math display">\[
+J(u) = \min_{v \in Ker(T)} J(v) \iff \nabla J(u) \in
+\overline{Im(T^*)}\text{的闭包}
+\]</span></p>
+<p>如果<span
+class="math inline">\(T^*\)</span>是单射的闭算子，则存在更直接的结论：</p>
+<p><span class="math display">\[
+J(u) = \min_{v \in Ker(T)} J(v) \iff \nabla J(u) = T^* w
+\in Im(T^*)
+\]</span></p>
+<p>其中的<span class="math inline">\(w \in M\)</span>若存在则唯一，<span
+class="math inline">\(w\)</span>就是我们需要的Lagrange乘子。</p>
+<p>假设算子<span class="math inline">\(T\)</span>满足条件：存在<span
+class="math inline">\(C &gt; 0\)</span>使得</p>
+<p><span class="math display">\[
+\Vert T^* w\Vert_{H^*} \ge C \Vert w \Vert_M, \forall w \in M
+\]</span></p>
+<p>则我们可以据此推出<span
+class="math inline">\(T^*\)</span>是单射的闭算子，从而满足需要。</p>
+<h2 id="两个例子">两个例子</h2>
+<h3 id="例一">例一</h3>
+<p>对于Hilbert空间<span
+class="math inline">\(H\)</span>，取一组单位正交向量<span
+class="math inline">\(a_1,a_2,\cdots,a_M\)</span>张成子空间<span
+class="math inline">\(V\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+V &amp;= \{v \in H | (a_i,v) =0, \forall i=1,\cdots,M\}\\
+^{\perp}V &amp;= \text{span}\{a_1,\cdots,a_M\}
+\end{aligned}
+\]</span></p>
+<p>子空间<span
+class="math inline">\(V\)</span>相当于一组超平面的交集，考虑最优化问题：寻找<span
+class="math inline">\(u \in V\)</span>使得</p>
+<p><span class="math display">\[
+J(u) = \min_{v \in V} J(v)
+\]</span></p>
+<p>其中<span
+class="math inline">\(J\)</span>是一个下凸的可微的泛函。根据之前的命题，最优化问题转化为了：存在系数<span
+class="math inline">\(\{\lambda_i\}_{i=1}^M\)</span>，使得</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla J(u) &amp;= \sum_{i=1}^M \lambda_i a_i \in ^{\perp}V
+\end{aligned}
+\]</span></p>
+<h3 id="例二">例二</h3>
+<p>对于对称正定方阵<span class="math inline">\(A \in R^{N\times
+N}\)</span>，<span class="math inline">\(b \in R^N\)</span>，列向量<span
+class="math inline">\(b \in R^N\)</span>，矩阵<span
+class="math inline">\(C \in R^{M\times N}\)</span>是行满秩的，<span
+class="math inline">\(M &lt; N\)</span>，<span
+class="math inline">\(Cx=0\)</span>作为限制条件。考虑如下最优化问题：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\min_{x \in Ker(C)} J(x)
+\end{aligned}
+\]</span></p>
+<p>其中<span
+class="math inline">\(J(x)=\frac12(x,Ax)-(b,x)\)</span>，<span
+class="math inline">\(Ker(C) = \{x\,|\, C x = 0\}\)</span>。
+其实例二是例一的特殊情形，取<span
+class="math inline">\(H=R^N\)</span>，<span
+class="math inline">\(C=[a_1,\cdots,a_M]^T\)</span>。因此有</p>
+<p><span class="math display">\[
+\nabla J(x) = \sum_{i=1}^M \lambda_i a_i
+\]</span></p>
+<p>(也可以引入<span class="math inline">\(T,T^*\)</span>的记号：<span
+class="math inline">\(H=R^N,M=R^M\)</span>， <span
+class="math inline">\(T(x)=Cx\)</span>，<span
+class="math inline">\(T^*(y)=C^Ty\)</span> )</p>
+<p>对于上述具体的<span class="math inline">\(J(x)\)</span>，有<span
+class="math inline">\(\nabla J(x) = A x-b\)</span>，因此</p>
+<p><span class="math display">\[
+Ax-b = \nabla J(x) =\sum_{i=1}^M \lambda_i a_i = C^T \Lambda
+\]</span></p>
+<p>其中<span class="math inline">\(\Lambda =
+[\lambda_1,\cdots,\lambda_M]^T\)</span>即为Lagrange乘子，起到了一个余量的作用。从而问题变成下列线性方程组的求解，这里左边的方阵是满秩的，因此存在唯一解。</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+A &amp; -C^T\\
+C &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x\\
+\Lambda
+\end{bmatrix}
+=
+\begin{bmatrix}
+b\\
+0
+\end{bmatrix}
+\]</span></p>
+<h2 id="stokes方程组">Stokes方程组</h2>
+<h3 id="三种形式">三种形式</h3>
+<p>不可压NS方程组含有时间项不易处理，因此考虑与时间无关的Stokes方程组(第一种形式)</p>
+<p><span class="math display">\[
+\begin{aligned}
+-\Delta u + \nabla p &amp;= f\\
+\nabla \cdot u &amp;= 0\\
+u|_{\partial \Omega} &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>其中<span
+class="math inline">\(\Omega\)</span>是有界区域，我们定义如下空间</p>
+<p><span class="math display">\[
+\begin{aligned}
+V &amp;= \{v \in H_0^1(\Omega)| \nabla \cdot v = 0\}\\
+L_0^2(\Omega) &amp;= \{q \in L^2(\Omega)| \int_{\Omega} q = 0\}
+\end{aligned}
+\]</span></p>
+<p>将Stokes方程组转化为第二种形式：寻找<span class="math inline">\(u \in
+V\)</span>，<span class="math inline">\(p \in L^2_0\)</span>使得</p>
+<p><span class="math display">\[
+(\nabla u,\nabla v) - (p,\nabla \cdot v) = (f,v) ,\,\, \forall v \in
+H_0^1(\Omega)
+\]</span></p>
+<p>并且我们断言Stokes方程组有第三种形式：寻找<span
+class="math inline">\(u \in V\)</span>取到<span
+class="math inline">\(J(u)\)</span>的最值</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in V} J(v)
+\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[
+J(v)=\frac12 (\nabla v,\nabla v)-(f,v)
+\]</span></p>
+<p>注意到这个泛函<span class="math inline">\(J(v)\)</span>不含有<span
+class="math inline">\(p\)</span>，我们希望证明<span
+class="math inline">\(p\)</span>作为这个问题的Lagrange乘子而出现。</p>
+<p>验证一下<span class="math inline">\(J(u)\)</span>是下凸的，任取<span
+class="math inline">\(u,v \in V\)</span>，取<span
+class="math inline">\(t\in (0,1)\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;t J(u) + (1-t) J(v) - J(v+(t(u-v)))\\
+=&amp;
+\frac{t}2 (\nabla u,\nabla u)-t(f,u) +
+\frac{1-t}2 (\nabla v,\nabla v) - (1-t)(f,v)\\
+&amp;- \frac12 (\nabla (v+t(u-v)),\nabla (v+t(u-v))) + (f,v+t(u-v))\\
+=&amp;
+\frac{t-t^2}2 (\nabla u,\nabla u) + \frac{(1-t)-(1-t)^2}2 (\nabla
+v,\nabla v)
+- (1-t)t(\nabla u,\nabla v)\\
+=&amp; \frac{t-t^2}2 \left\{\Vert \nabla u\Vert^2 + \Vert \nabla
+v\Vert^2 - 2(\nabla u,\nabla v) \right\} \ge 0
+\end{aligned}
+\]</span></p>
+<h3 id="等价性证明一">等价性证明一</h3>
+<p>我们首先证明第二种形式可以推出第三种形式，(第三种形式推出第二种形式的证明留到最后)</p>
+<p>如果<span
+class="math inline">\(u,p\)</span>满足第二种形式的方程，则任取增量<span
+class="math inline">\(v \in V\)</span>，<span
+class="math inline">\(t&gt;0\)</span>，定义<span
+class="math inline">\(g(t)=J(u+t v)\)</span>，关于<span
+class="math inline">\(t\)</span>求导，注意到<span
+class="math inline">\(v \in V\)</span>意味着<span
+class="math inline">\(\nabla \cdot v=0\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+g(t)=J(u+t v) &amp;= \frac12(\nabla u,\nabla u) + t(\nabla u,\nabla v) +
+t^2 (\nabla v,\nabla v) - (f,u)- t(f,v)\\
+&amp;= J(u) + t(\nabla u,\nabla v) + t^2 (\nabla v,\nabla v)- t(f,v)\\
+\frac{d g}{d t}|_{t = 0} &amp;=
+(\nabla u,\nabla v) - (f,v) = (p,\nabla \cdot v) = 0
+\end{aligned}
+\]</span></p>
+<p>因此<span class="math inline">\(J(u)\)</span>在<span
+class="math inline">\(u\)</span>处至少是一个驻点，由于<span
+class="math inline">\(J\)</span>是下凸的，因此<span
+class="math inline">\(J\)</span>在<span
+class="math inline">\(u\)</span>取到最小值。</p>
+<h3 id="抽象模型的具体化">抽象模型的具体化</h3>
+<p>我们取<span class="math inline">\(H=H_0^1(\Omega)\)</span>，<span
+class="math inline">\(M=L_0^2(\Omega)\)</span>，首先明确一下<span
+class="math inline">\(\nabla J(u) \in H^*\)</span>的具体形式，取<span
+class="math inline">\(v \in H\)</span>满足<span
+class="math inline">\(\Vert v \Vert = 1\)</span>，<span
+class="math inline">\(t \ge 0\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+J(u+tv) &amp;= J(u) + t(\nabla u,\nabla v)+ \frac{t^2}2 (\nabla v,\nabla
+v) - t(f,v)\\
+&amp;= J(u) + (\nabla u, t \nabla v) - (f,t \nabla v) + o(t)\\
+&amp;= J(u) + \langle \nabla J(u), t \nabla v\rangle + o(t)
+\end{aligned}
+\]</span></p>
+<p>因此</p>
+<p><span class="math display">\[
+\nabla J(v) = (\nabla v, \nabla (\cdot))-(f,\cdot) \in H^*
+\]</span></p>
+<p>上述记号的含义为，<span class="math inline">\(\forall w\in
+H\)</span>，</p>
+<p><span class="math display">\[
+\langle \nabla J(v),w\rangle = (\nabla v, \nabla w)-(f,w) \in R
+\]</span></p>
+<p>然后明确<span class="math inline">\(T:H=H_0^1 \to M^*\)</span>和<span
+class="math inline">\(T^*: M=L_0^2 \to
+H^*\)</span>的定义并验证它们的性质。</p>
+<p>定义<span class="math inline">\(T:H \to M^*\)</span>，对于<span
+class="math inline">\(v \in H\)</span>，<span class="math inline">\(Tv
+\in M^*\)</span>满足</p>
+<p><span class="math display">\[
+\langle Tv,q \rangle = (\nabla \cdot v,q), \,\forall q \in M
+\]</span></p>
+<p>显然限制子空间<span
+class="math inline">\(V=Ker\,T\)</span>，定义<span
+class="math inline">\(T^*:M\to H^*\)</span>，对于<span
+class="math inline">\(q\in M\)</span>，<span class="math inline">\(T^* q
+\in H^*\)</span>满足</p>
+<p><span class="math display">\[
+\langle T^*q, v\rangle = -(\nabla q,v), \,\forall v \in H
+\]</span></p>
+<p>验证一下它们确实是对偶的，由于<span class="math inline">\(V \subset
+H_0^1\)</span>分部积分没有边界项，</p>
+<p><span class="math display">\[
+\langle Tv,q\rangle = (\nabla \cdot v,q) = -(v,\nabla q)
+= \langle T^*q,v \rangle
+\]</span></p>
+<p><span
+class="math inline">\(T^*\)</span>需要满足的条件即Poincare不等式，</p>
+<p><span class="math display">\[
+\Vert T^*q \Vert_{H^{-1}} =
+\Vert \nabla q \Vert_{H^{-1}}
+\ge C \Vert q \Vert_{L^2},\,
+\forall q \in L_0^2
+\]</span></p>
+<p>因此满足命题需要的所有条件。</p>
+<h3 id="等价性证明二">等价性证明二</h3>
+<p>基于上述抽象模型的命题，可知最优化问题</p>
+<p><span class="math display">\[
+J(u) = \min_{v\in V} J(v) = \min_{v \in Ker\,T} J(v)
+\]</span></p>
+<p>等价于存在<span class="math inline">\(u\in H=H_0^1\)</span>，<span
+class="math inline">\(p \in M = L_0^2\)</span>，使得</p>
+<p><span class="math display">\[
+\nabla J(u) = T^* p
+\]</span></p>
+<p>并且<span class="math inline">\(p\)</span>如果存在，也是唯一的。</p>
+<p>我们把<span class="math inline">\(T^* p = \nabla
+J(u)\)</span>乘以测试函数<span class="math inline">\(v \in
+H\)</span>，得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\nabla u, \nabla v)-(f,v)
+=
+\langle \nabla J(u),v\rangle = \langle T^* p,v\rangle
+=
+\langle T v,p\rangle = (\nabla\cdot v,p)
+\end{aligned}
+\]</span></p>
+<p>因此我们从求最值的第三种形式推出了第二种形式</p>
+<p><span class="math display">\[
+(\nabla u,\nabla v) - (p,\nabla \cdot v) = (f,v) ,\,\forall v \in
+H=H_0^1
+\]</span></p>
+<p>得证两种形式是等价的，在Stokes方程组中<span
+class="math inline">\(p\)</span>确实是作为Lagrange乘子而存在。</p>
+<div class="note info"><p>由于第三种形式不含压强<span
+class="math inline">\(p\)</span>，因此从第三种形式推出第二种形式必须以合适的方式产生<span
+class="math inline">\(p\)</span>，也就是作为Lagrange乘子被引入。</p>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Fenglielie
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://fenglielie.github.io/learn/learn-inse-lagrange.html" title="不可压NS方程中压强的数学意义">https://fenglielie.github.io/learn/learn-inse-lagrange.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/inse/" rel="tag"><i class="fa fa-tag"></i> inse</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/learn/learn-inse-hemodynamics.html" rel="prev" title="血流动力学学习">
+                  <i class="fa fa-chevron-left"></i> 血流动力学学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/cpp/learn-bxjs-1.html" rel="next" title="并行计算学习笔记——1.MPI">
+                  并行计算学习笔记——1.MPI <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fenglielie</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.1/mermaid.min.js","integrity":"sha256-8L3O8tirFUa8Va4NSTAyIbHJeLd6OnlcxgupV9F77e0="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+</body>
+</html>
