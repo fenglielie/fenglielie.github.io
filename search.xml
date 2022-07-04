@@ -307,7 +307,8 @@ class="math inline">\(\mathbf{u}^{n+1}=\mathbf{u}^{n+1,k_N},p^{n+1}=p^{n+1,k_N}\
   <entry>
     <title>SIMPLE算法</title>
     <url>/learn/learn-inse-simple.html</url>
-    <content><![CDATA[<p>SIMPLE算法全称是压力耦合方程组的半隐式方法,
+    <content><![CDATA[<p>SIMPLE算法全称是压力耦合方程组的半隐式方法(Semi-Implicit Method for
+Pressure Linked Equations),
 作为经典的压力修正算法在Fluent等工业软件中被广泛应用。</p>
 <span id="more"></span>
 <p>不可压缩N-S方程的求解算法学习笔记，由以下笔记组成：</p>
@@ -423,7 +424,7 @@ p^{n+1} &amp;= p^* + p&#39;
 \end{aligned}
 \]</span></li>
 </ul>
-<h3 id="定常流计算流程">定常流计算流程</h3>
+<h3 id="定常流">定常流</h3>
 <p>对于定常流，迭代对应的时间推进是没有意义的，因此我们在两个离散求解过程中都可以很大程度地偷懒，只需要通过时间推进，最终达到需要的精度即可，尤其是求解<span
 class="math inline">\(\mathbf{u}^*\)</span>涉及的非线性方程组，它的原始形式是
 <span class="math display">\[
@@ -460,7 +461,7 @@ class="math display">\[
 \nabla^2 p&#39; = \frac{1}{\Delta t} \nabla \cdot \mathbf{u}^*
 \]</span>
 离散得到的线性方程组，也可以通过G-S迭代等进行固定步数的迭代，近似求解。</p>
-<h3 id="非定常流计算流程">非定常流计算流程</h3>
+<h3 id="非定常流">非定常流</h3>
 <p>对于非定常流，迭代的每一步都是有意义的时间推进，两个离散求解过程都需要保持足够的精度，这里我们可以在预测速度和修正压强的隐式求解中分别进行内迭代，达到精确求解的目的，例如一种可选的计算流程如下：</p>
 <ul>
 <li>假设我们已有速度<span
