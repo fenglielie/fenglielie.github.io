@@ -31,7 +31,7 @@
 <meta property="og:description" content="SIMPLE算法全称是压力耦合方程组的半隐式方法(Semi-Implicit Method for Pressure Linked Equations), 作为经典的压力修正算法在Fluent等工业软件中被广泛应用。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-03T13:49:15.000Z">
-<meta property="article:modified_time" content="2022-07-04T11:06:53.470Z">
+<meta property="article:modified_time" content="2022-07-04T11:09:44.735Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="inse">
 <meta name="twitter:card" content="summary">
@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-04 19:06:53" itemprop="dateModified" datetime="2022-07-04T19:06:53+08:00">2022-07-04</time>
+      <time title="Modified: 2022-07-04 19:09:44" itemprop="dateModified" datetime="2022-07-04T19:09:44+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -283,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>4.7k</span>
+      <span>4.9k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -351,6 +351,11 @@ class="math inline">\(\mathbf{u}^*\)</span>是预测速度，<span
 class="math inline">\(\mathbf{u}&#39;\)</span>是修正速度。</p>
 <div class="note warning"><p>这里的过程与投影法相似，但是投影法只使用了预测速度，SIMPLE算法同时使用了预测速度和预测压强。</p>
 </div>
+<p>第二个式子可以写成</p>
+<p><span class="math display">\[
+\frac{\mathbf{u}&#39;}{\Delta t} + \nabla p&#39; = 0
+\]</span></p>
+<p>可以理解为：在修正速度的计算中，只考虑了当前位置压强的影响，没有考虑相邻单元相互之间的影响，这是SIMPLE算法的假设，也是它的一大特点。</p>
 <p>假设我们先给出了预测压强<span
 class="math inline">\(p^*\)</span>，可以通过下式计算预测速度<span
 class="math inline">\(\mathbf{u}^*\)</span></p>

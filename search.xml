@@ -357,6 +357,11 @@ class="math inline">\(\mathbf{u}^*\)</span>是预测速度，<span
 class="math inline">\(\mathbf{u}&#39;\)</span>是修正速度。</p>
 <div class="note warning"><p>这里的过程与投影法相似，但是投影法只使用了预测速度，SIMPLE算法同时使用了预测速度和预测压强。</p>
 </div>
+<p>第二个式子可以写成</p>
+<p><span class="math display">\[
+\frac{\mathbf{u}&#39;}{\Delta t} + \nabla p&#39; = 0
+\]</span></p>
+<p>可以理解为：在修正速度的计算中，只考虑了当前位置压强的影响，没有考虑相邻单元相互之间的影响，这是SIMPLE算法的假设，也是它的一大特点。</p>
 <p>假设我们先给出了预测压强<span
 class="math inline">\(p^*\)</span>，可以通过下式计算预测速度<span
 class="math inline">\(\mathbf{u}^*\)</span></p>
