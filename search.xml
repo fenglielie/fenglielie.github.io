@@ -24,7 +24,7 @@
 \]</span></p>
 <p>与可压缩流动相比,不可压缩流动有如下特点:</p>
 <ul>
-<li>压强只出现在动量方程中，从数学上只是起到了一个Lagrange乘子的作用，失去了热力学意义。</li>
+<li>压强只出现在动量方程中，从数学上只是起到了一个Lagrange乘子的作用，失去了热力学意义。另见<a href="/learn/learn-inse-lagrange.html" title="不可压NS方程中压强的数学意义">不可压NS方程中压强的数学意义</a></li>
 <li>不可压缩条件，使得方程组呈现椭圆型特点。</li>
 <li>不含有压强的时间导数项 <span class="math inline">\(\frac{\partial
 p}{\partial t}\)</span> ，压强<span
