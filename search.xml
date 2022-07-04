@@ -1227,7 +1227,7 @@ class="math inline">\(\forall W_h, Y_h \in V_h^k\)</span></p>
 <script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
   </entry>
   <entry>
-    <title>并行计算学习笔记——1.MPI</title>
+    <title>并行计算学习笔记——MPI</title>
     <url>/cpp/learn-bxjs-1.html</url>
     <content><![CDATA[<p>本文是关于并行计算的学习，根据具体的实现方式不同，计划有以下两部分笔记：</p>
 <ul>
