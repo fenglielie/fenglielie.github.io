@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png">
 <meta property="article:published_time" content="2022-07-04T06:23:35.000Z">
-<meta property="article:modified_time" content="2022-07-04T10:44:34.777Z">
+<meta property="article:modified_time" content="2022-07-04T11:24:03.907Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="inse">
 <meta name="twitter:card" content="summary">
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">常见算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%8E%9F%E5%A7%8B%E5%8F%98%E9%87%8F%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">非原始变量法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E5%8F%98%E9%87%8F%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">原始变量法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E9%94%99%E7%BD%91%E6%A0%BC"><span class="nav-number">3.</span> <span class="nav-text">交错网格</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">常见算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%8E%9F%E5%A7%8B%E5%8F%98%E9%87%8F%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">非原始变量法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E5%8F%98%E9%87%8F%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">原始变量法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E9%94%99%E7%BD%91%E6%A0%BC"><span class="nav-number">3.</span> <span class="nav-text">交错网格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fluent%E7%9A%84%E6%B1%82%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Fluent的求解算法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -261,7 +261,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-07-04 14:23:35 / Modified: 18:44:34" itemprop="dateCreated datePublished" datetime="2022-07-04T14:23:35+08:00">2022-07-04</time>
+      <time title="Created: 2022-07-04 14:23:35 / Modified: 19:24:03" itemprop="dateCreated datePublished" datetime="2022-07-04T14:23:35+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,7 +280,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>1.6k</span>
+      <span>1.8k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -390,6 +390,15 @@ class="math inline">\((I,J)\)</span>网格的基础上，对虚线以及半格�
 class="math inline">\(i=I-\frac12\)</span>，<span
 class="math inline">\(j=J-\frac12\)</span>，得到如下的记号系统：</p>
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/simple_2.png" width="60%"/></p>
+<h2 id="fluent的求解算法">Fluent的求解算法</h2>
+<p>在Fluent软件里，默认提供了四种算法，包括一种耦合式算法和三种分离式算法。</p>
+<ul>
+<li>SIMPLE算法</li>
+<li>SIMPLEC算法</li>
+<li>PISO算法</li>
+<li>Coupled算法(耦合式算法)</li>
+</ul>
+<p>Fluent建议，在非定常流动(瞬态流动)问题中选择PISO算法，在定常流动问题中选择SIMPLE或SIMPLEC算法；在高速可压缩流动中使用耦合式算法。</p>
 
     </div>
 
