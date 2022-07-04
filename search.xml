@@ -1217,6 +1217,228 @@ class="math inline">\(\forall W_h, Y_h \in V_h^k\)</span></p>
 - \widehat{G}(U_h)(x_{i-1/2})Y_h(x_{i-1/2}^+)
 \end{aligned}
 \]</span></p>
+<h2 id="一维的线性算例">一维的线性算例</h2>
+<p>我们需要一个简单的算例进行精度测试，直接改造原本的Euler方程组的算例，计算区域<span
+class="math inline">\([0,2]\)</span>，周期边界。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho(x,0)&amp;= 1+ 0.2 \sin(\pi x)\\
+u(x,0)&amp;= u_0=0.7\\
+p(x,0)&amp;= p_0=1
+\end{aligned}
+\]</span></p>
+<p>取常数<span class="math inline">\(\gamma =
+1.4\)</span>，此时对于Euler方程组，恰好时间项和对流项抵消，退化为线性方程，精确解为</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho(x,0)&amp;= 1+ 0.2 \sin(\pi (x-0.7t))\\
+u(x,0)&amp;= u_0 =0.7\\
+p(x,0)&amp;= p_0 =1
+\end{aligned}
+\]</span></p>
+<p>因此，我们加上源项，直接和黏性项抵消。对于黏性项，取<span
+class="math inline">\(Re=1000\)</span>，<span
+class="math inline">\(Pr=0.72\)</span>，则黏性项为</p>
+<p><span class="math display">\[
+\begin{aligned}
+H(U,U_x) =
+\begin{pmatrix}
+0\\
+\frac{4}{3Re} u_x \\
+\frac{4}{3Re} u u_x
++ \frac{\gamma}{Re\,Pr(\gamma-1)}\left(\frac{p}{\rho}\right)_x
+\end{pmatrix}
+=
+\begin{pmatrix}
+-T_1(t)\\
+-T_2(t)\\
+-T_3(t)
+\end{pmatrix}
+\end{aligned}
+\]</span></p>
+<p>记源项<span
+class="math inline">\(S(x,t)=[S_1(x,t),S_2(x,t),S_3(x,t)]^T\)</span>，满足<span
+class="math inline">\(S_i(x,t) = T_i(x,t)_x\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+T_1(x,t) &amp;= 0\\
+T_2(x,t) &amp;=
+-\frac{4}{3Re} u u_x = 0\\
+\end{aligned}
+\]</span></p>
+<p>仅仅剩下<span class="math inline">\(T_3(x,t)\)</span>非零</p>
+<p><span class="math display">\[
+\begin{aligned}
+T_3(x,t) &amp;=
+\frac{ -\gamma}{Re\,Pr(\gamma-1)}
+\left\{ \frac{- p \rho_x}{\rho^2}\right\}\\
+&amp;= \frac{\gamma}{Re\,Pr(\gamma-1)}
+\left\{ \frac{p_0 \times 0.2\pi \cos(\pi (x-u_0 t))}{[1 + 0.2\sin(\pi
+(x-u_0 t))]^2} \right\}
+\end{aligned}
+\]</span></p>
+<p>因此有</p>
+<p><span class="math display">\[
+\begin{aligned}
+S_3(x,t)=&amp;T_3(x,t)_x = \frac{\gamma}{Re\,Pr(\gamma-1)}
+\left\{ \frac{p_0 \times 0.2\pi \cos(\pi (x-u_0 t))}{[1 + 0.2\sin(\pi
+(x-u_0 t))]^2} \right\}_x\\
+=&amp;
+\frac{\gamma p_0 \times 0.2\pi}{Re\,Pr(\gamma-1)}
+\frac{1}{[1 + 0.2\sin(\pi (x-u_0 t))]^4}\\
+&amp;\times  \left\{ -\pi \sin(\pi (x-u_0 t))
+[1 + 0.2\sin(\pi (x-u_0 t))]^2 - \cos(\pi (x-u_0 t)) \times
+2[1+0.2\sin(\pi (x-u_0 t))]\times 0.2\pi \cos(\pi (x-u_0 t))  \right\}
+\end{aligned}
+\]</span></p>
+<h1 id="二维n-s方程组">二维N-S方程组</h1>
+<div class="note info"><p>二维和一维没有本质区别，只是计算更繁琐了。</p>
+</div>
+<p>考虑无量纲化的二维(可压缩)的N-S方程组如下，</p>
+<p><span class="math display">\[
+U_t + F_1(U)_x + F_2(U)_y = H_1(U,U_x,U_y)_x + H_2(U,U_x,U_y)_y
++ S(U)
+\]</span></p>
+<p>其中<span
+class="math inline">\(F_1(U)_x,F_2(U)_y\)</span>为对流项，<span
+class="math inline">\(H_1(U,U_x,U_y)_x,H_2(U,U_x,U_y)_y\)</span>为黏性项，<span
+class="math inline">\(S(U)\)</span>为源项，默认取<span
+class="math inline">\(S(U)=0\)</span>。</p>
+<p>守恒型变量<span class="math inline">\(U=[\rho,\rho u ,\rho v
+,E]^T\)</span>，其中能量</p>
+<p><span class="math display">\[
+E = \frac{p}{\gamma-1} + \frac12 \rho(u^2+v^2)
+\]</span></p>
+<p>对流项</p>
+<p><span class="math display">\[
+\begin{aligned}
+F_1(U) &amp;= [\rho u ,\rho u^2 + p,\rho u v, u(E+p)]^T\\
+&amp;= [\rho u,\rho u^2 + p ,\rho u v, u(\frac{\gamma}{\gamma-1} p +
+\frac12 \rho(u^2+v^2))]^T\\
+F_2(U) &amp;= [\rho v ,\rho u v,\rho v^2+ p, v(E+p)]^T\\
+&amp;= [\rho v,\rho u v  ,\rho v^2 + p, v(\frac{\gamma}{\gamma-1} p +
+\frac12 \rho(u^2+v^2))]^T
+\end{aligned}
+\]</span></p>
+<p>从原始变量<span
+class="math inline">\(\{\rho,u,v,p\}\)</span>转化到守恒型变量<span
+class="math inline">\(U=[\xi_1,\xi_2,\xi_3,\xi_4]^T\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\xi_1 &amp;= \rho \\
+\xi_2 &amp;= \rho u\\
+\xi_3 &amp;= \rho v\\
+\xi_4 &amp;= \frac{p}{\gamma-1} + \frac12 \rho(u^2+v^2)
+\end{aligned}
+\]</span></p>
+<p>从守恒型变量<span
+class="math inline">\(U=[\xi_1,\xi_2,\xi_3,\xi_4]^T\)</span>转化到原始变量<span
+class="math inline">\(\{\rho,u,v,p\}\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho &amp;= \xi_1\\
+u &amp;= \frac{\xi_2}{\xi_1}\\
+v &amp;= \frac{\xi_3}{\xi_1}\\
+p &amp;= (\gamma-1)\left(\xi_4 - \frac12 \frac{\xi_2^2 + \xi_3^2}{\xi_1}
+\right)
+\end{aligned}
+\]</span></p>
+<p>以上都和二维可压缩理想气体相同，不同之处在于黏性项，黏性项具体为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+H_1(U,U_x,U_y) &amp;=
+[0,\frac{1}{Re}\tau_{xx},\frac{1}{Re}\tau_{xy},\frac{1}{Re}\epsilon_1 +
+\frac{1}{Re\,Pr(\gamma-1)} \left(\frac{\gamma p}{\rho}\right)_x ]^T\\
+H_2(U,U_x,U_y) &amp;=
+[0,\frac{1}{Re}\tau_{xy},\frac{1}{Re}\tau_{yy},\frac{1}{Re}\epsilon_2 +
+\frac{1}{Re\,Pr(\gamma-1)} \left(\frac{\gamma p}{\rho}\right)_y ]^T
+\end{aligned}
+\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[
+\begin{aligned}
+\tau_{xx} &amp;= \frac43 u_x - \frac23 v_y \\
+\tau_{xy} &amp;= u_y + v_x\\
+\tau_{yy} &amp;= \frac43 v_y - \frac23 u_x\\
+\end{aligned}
+\]</span></p>
+<p>还有</p>
+<p><span class="math display">\[
+\begin{aligned}
+\epsilon_1 &amp;= u \tau_{xx} + v \tau_{xy}\\
+&amp;= u\left(\frac43 u_x - \frac23 v_y\right)
++ v\left(u_y + v_x\right)\\
+\epsilon_2 &amp;= u \tau_{xy} + v \tau_{yy}\\
+&amp;= u \left(u_y + v_x\right)
++ v\left(\frac43 v_y - \frac23 u_x\right)
+\end{aligned}
+\]</span></p>
+<p>引入中间变量<span class="math inline">\(V_1 = U_x,V_2 =
+U_y\)</span>，得到方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+U_t + F_1(U)_x +F_2(U)_y &amp;= H_1(U,V_1,V_2)_x
++ H_2(U,V_1,V_2)_y  + S(U)\\
+V_1 &amp;= G_1(U)_x\\
+V_2 &amp;= G_2(U)_y\\
+\end{aligned}
+\]</span></p>
+<p>其中<span class="math inline">\(G_1(U)=G_2(U)=U\)</span>。</p>
+<p>记<span
+class="math inline">\(V_1=[\eta_1,\eta_2,\eta_3,\eta_4]^T\)</span>，<span
+class="math inline">\(V_2=[\zeta_1,\zeta_2,\zeta_3,\zeta_4]^T\)</span>，</p>
+<p>对x方向，从原始变量转化到守恒型变量</p>
+<p><span class="math display">\[
+\begin{aligned}
+\eta_1 &amp;= \rho_x \\
+\eta_2 &amp;= (\rho u)_x = \rho_x u + \rho u_x\\
+\eta_3 &amp;= (\rho v)_x = \rho_x v + \rho v_x\\
+\eta_4 &amp;= E_x = \frac{p_x}{\gamma-1} + \frac12 \rho_x(u^2+v^2) +
+\rho(u u_x + v v_x)
+\end{aligned}
+\]</span></p>
+<p>从守恒型变量转化到原始变量</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho_x &amp;= \eta_1 \\
+u_x &amp;= \frac{1}{\rho}(\eta_2 - \rho_x u) = \frac{1}{\xi_1}(\eta_2 -
+\eta_1 \frac{\xi_2}{\xi_1})\\
+v_x &amp;= \frac{1}{\rho}(\eta_3 - \rho_x v) = \frac{1}{\xi_1}(\eta_3 -
+\eta_1 \frac{\xi_3}{\xi_1})\\
+p_x &amp;= (\gamma-1)\left( \eta_4 - \frac12 \rho_x(u^2+v^2) - \rho(u
+u_x + v v_x) \right)\\
+&amp;= (\gamma-1)\left\{\eta_4 - \frac12 \eta_1
+\left(\frac{\xi_2^2}{\xi_1^2} +\frac{\xi_3^2}{\xi_1^2}\right) - \xi_2
+\frac{1}{\xi_1}(\eta_2 - \eta_1 \frac{\xi_2}{\xi_1})
+- \xi_3 \frac{1}{\xi_1}(\eta_3 - \eta_1 \frac{\xi_3}{\xi_1}) \right\}
+\end{aligned}
+\]</span></p>
+<p>对y方向完全类似，从原始变量转化到守恒型变量</p>
+<p><span class="math display">\[
+\begin{aligned}
+\zeta_1 &amp;= \rho_y \\
+\zeta_2 &amp;= (\rho u)_y = \rho_y u + \rho u_y\\
+\zeta_3 &amp;= (\rho v)_y = \rho_y v + \rho v_y\\
+\zeta_4 &amp;= E_y = \frac{p_y}{\gamma-1} + \frac12 \rho_y(u^2+v^2) +
+\rho(u u_y + v v_y)
+\end{aligned}
+\]</span></p>
+<p>从守恒型变量转化到原始变量</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho_y &amp;= \zeta_1 \\
+u_y &amp;= \frac{1}{\rho}(\zeta_2 - \rho_y u) = \frac{1}{\xi_1}(\zeta_2
+- \zeta_1 \frac{\xi_2}{\xi_1})\\
+v_y &amp;= \frac{1}{\rho}(\zeta_3 - \rho_y v) = \frac{1}{\xi_1}(\zeta_3
+- \zeta_1 \frac{\xi_3}{\xi_1})\\
+p_y &amp;= (\gamma-1)\left( \zeta_4 - \frac12 \rho_y(u^2+v^2) - \rho(u
+u_y + v v_y) \right)\\
+&amp;= (\gamma-1)\left\{\zeta_4 - \frac12 \zeta_1
+\left(\frac{\xi_2^2}{\xi_1^2} +\frac{\xi_3^2}{\xi_1^2}\right) - \xi_2
+\frac{1}{\xi_1}(\zeta_2 - \zeta_1 \frac{\xi_2}{\xi_1})
+- \xi_3 \frac{1}{\xi_1}(\zeta_3 - \zeta_1 \frac{\xi_3}{\xi_1}) \right\}
+\end{aligned}
+\]</span></p>
 ]]></content>
       <categories>
         <category>code</category>
