@@ -31,7 +31,7 @@
 <meta property="og:description" content="第一部分基本内容包括了变量的声明，输入输出语句，接下来是条件语句和循环语句等运算的流程控制。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-20T08:09:20.000Z">
-<meta property="article:modified_time" content="2022-06-20T11:32:08.613Z">
+<meta property="article:modified_time" content="2022-07-04T09:37:35.396Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="fortran">
 <meta name="twitter:card" content="summary">
@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-20 16:09:20 / Modified: 19:32:08" itemprop="dateCreated datePublished" datetime="2022-06-20T16:09:20+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 16:09:20" itemprop="dateCreated datePublished" datetime="2022-06-20T16:09:20+08:00">2022-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-04 17:37:35" itemprop="dateModified" datetime="2022-07-04T17:37:35+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>1.2k</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -297,6 +303,14 @@
     <div class="post-body" itemprop="articleBody">
         <p>第一部分基本内容包括了变量的声明，输入输出语句，接下来是条件语句和循环语句等运算的流程控制。</p>
 <span id="more"></span>
+<p>Fortran学习笔记由以下笔记组成：</p>
+<ul>
+<li><a href="/fortran/fortran-note-1.html" title="Fortran学习笔记——1.基本内容">Fortran学习笔记——1.基本内容</a></li>
+<li><a href="/fortran/fortran-note-2.html" title="Fortran学习笔记——2.流程控制">Fortran学习笔记——2.流程控制</a></li>
+<li><a href="/fortran/fortran-note-3.html" title="Fortran学习笔记——3.子程序, 函数与模块">Fortran学习笔记——3.子程序, 函数与模块</a></li>
+<li><a href="/fortran/fortran-note-4.html" title="Fortran学习笔记——4.数组，指针与数值计算">Fortran学习笔记——4.数组，指针与数值计算</a></li>
+<li><a href="/fortran/fortran-note-5.html" title="Fortran学习笔记——5.其他">Fortran学习笔记——5.其他</a></li>
+</ul>
 <h2 id="if条件语句">if条件语句</h2>
 <p>无需多言，例子即可： <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do something</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 1</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(a &gt; <span class="number">5</span>) <span class="keyword">then</span></span><br><span class="line">    <span class="comment">! do 2</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment">! do 3</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure> 在if后面必须接then，if 和 end if
 构成一个标准的条件结构。支持if结构的嵌套。</p>

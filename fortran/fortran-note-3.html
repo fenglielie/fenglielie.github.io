@@ -31,7 +31,7 @@
 <meta property="og:description" content="与c语言只有函数不同，Fortran提供了子程序subroutine，函数function，模块module等多种结构。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-20T08:10:20.000Z">
-<meta property="article:modified_time" content="2022-06-20T11:32:38.735Z">
+<meta property="article:modified_time" content="2022-07-04T09:37:43.904Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="fortran">
 <meta name="twitter:card" content="summary">
@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-20 16:10:20 / Modified: 19:32:38" itemprop="dateCreated datePublished" datetime="2022-06-20T16:10:20+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 16:10:20" itemprop="dateCreated datePublished" datetime="2022-06-20T16:10:20+08:00">2022-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-04 17:37:43" itemprop="dateModified" datetime="2022-07-04T17:37:43+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>6.3k</span>
+      <span>6.5k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -297,6 +303,14 @@
     <div class="post-body" itemprop="articleBody">
         <p>与c语言只有函数不同，Fortran提供了子程序subroutine，函数function，模块module等多种结构。</p>
 <span id="more"></span>
+<p>Fortran学习笔记由以下笔记组成：</p>
+<ul>
+<li><a href="/fortran/fortran-note-1.html" title="Fortran学习笔记——1.基本内容">Fortran学习笔记——1.基本内容</a></li>
+<li><a href="/fortran/fortran-note-2.html" title="Fortran学习笔记——2.流程控制">Fortran学习笔记——2.流程控制</a></li>
+<li><a href="/fortran/fortran-note-3.html" title="Fortran学习笔记——3.子程序, 函数与模块">Fortran学习笔记——3.子程序, 函数与模块</a></li>
+<li><a href="/fortran/fortran-note-4.html" title="Fortran学习笔记——4.数组，指针与数值计算">Fortran学习笔记——4.数组，指针与数值计算</a></li>
+<li><a href="/fortran/fortran-note-5.html" title="Fortran学习笔记——5.其他">Fortran学习笔记——5.其他</a></li>
+</ul>
 <h2 id="子程序subroutine">子程序subroutine</h2>
 <p>首先，回顾之前的HelloWorld <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;hello,world!&quot;</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
 其中使用了名称为main的主程序program，一个可执行程序只允许有一个program，为了分离和复用某个功能，可以使用子程序subroutine。</p>

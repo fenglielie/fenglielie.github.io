@@ -31,7 +31,7 @@
 <meta property="og:description" content="在前三篇笔记，学习了Fortran作为一个编程语言，最基本的内容：变量，输入输出，流程控制和程序结构。接下来是Fortran的数组以及基于数组的数值计算，我认为这是Fortran语言最有价值的精华部分，因此特意放在了学习笔记靠后的部分，在学习了基本的语法和子程序等之后。注意，Fortran的字符集不包括中括号[]，因此与c语言的风格不同，Fortran对数组分量的操作全都是使用小括号()的。 因">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-20T08:11:20.000Z">
-<meta property="article:modified_time" content="2022-06-20T15:59:42.599Z">
+<meta property="article:modified_time" content="2022-07-04T09:37:48.003Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="fortran">
 <meta name="twitter:card" content="summary">
@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-20 16:11:20 / Modified: 23:59:42" itemprop="dateCreated datePublished" datetime="2022-06-20T16:11:20+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 16:11:20" itemprop="dateCreated datePublished" datetime="2022-06-20T16:11:20+08:00">2022-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-04 17:37:48" itemprop="dateModified" datetime="2022-07-04T17:37:48+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>6k</span>
+      <span>6.1k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -299,6 +305,14 @@
 <p>因为这部分内容比较重要，不像前几篇对Fortran
 77的上古语法大部分进行了忽略，这一篇对于Fortran 77的语法也进行介绍。</p>
 <span id="more"></span>
+<p>Fortran学习笔记由以下笔记组成：</p>
+<ul>
+<li><a href="/fortran/fortran-note-1.html" title="Fortran学习笔记——1.基本内容">Fortran学习笔记——1.基本内容</a></li>
+<li><a href="/fortran/fortran-note-2.html" title="Fortran学习笔记——2.流程控制">Fortran学习笔记——2.流程控制</a></li>
+<li><a href="/fortran/fortran-note-3.html" title="Fortran学习笔记——3.子程序, 函数与模块">Fortran学习笔记——3.子程序, 函数与模块</a></li>
+<li><a href="/fortran/fortran-note-4.html" title="Fortran学习笔记——4.数组，指针与数值计算">Fortran学习笔记——4.数组，指针与数值计算</a></li>
+<li><a href="/fortran/fortran-note-5.html" title="Fortran学习笔记——5.其他">Fortran学习笔记——5.其他</a></li>
+</ul>
 <h2 id="一维数组">一维数组</h2>
 <p>最基本的一维数组声明如下</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">integer</span> :: nums(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: len = <span class="number">20</span></span><br><span class="line"><span class="keyword">real</span> :: datas(len)</span><br></pre></td></tr></table></figure>
