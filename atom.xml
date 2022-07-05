@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Fenglielie&#39;s Blog</title>
+  <icon>https://fenglielie.github.io/icon.png</icon>
+  
+  <link href="https://fenglielie.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://fenglielie.github.io/"/>
+  <updated>2022-07-04T11:24:03.907Z</updated>
+  <id>https://fenglielie.github.io/</id>
+  
+  <author>
+    <name>Fenglielie</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不可压N-S方程的数值算法</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse.html</id>
+    <published>2022-07-04T06:23:35.000Z</published>
+    <updated>2022-07-04T11:24:03.907Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;不可压缩N-S方程的求解算法学习笔记，由以下笔记组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/learn/learn-inse.html&quot; title=&quot;不可压N-S方程的数值算法&quot;&gt;不可压N-S方程的数值算法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/learn/learn-inse-vortex.html&quot; title=&quot;涡量—流函数方法&quot;&gt;涡量—流函数方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/learn/learn-inse-acm.html&quot; title=&quot;人工压缩性方法(ACM)&quot;&gt;人工压缩性方法(ACM)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/learn/learn-inse-mac.html&quot; title=&quot;MAC方法&quot;&gt;MAC方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/learn/learn-inse-projection.html&quot; title=&quot;投影法&quot;&gt;投影法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/learn/learn-inse-simple.html&quot; title=&quot;SIMPLE算法&quot;&gt;SIMPLE算法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MAC方法</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-mac.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-mac.html</id>
+    <published>2022-07-03T16:22:02.000Z</published>
+    <updated>2022-07-04T09:25:57.591Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;标记网格法(Marker-and-Cell
+method，MAC)，是一种求解压力Poisson方程算法，最初被设计用于求解含自由面的不可压缩流动。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SIMPLE算法</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-simple.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-simple.html</id>
+    <published>2022-07-03T13:49:15.000Z</published>
+    <updated>2022-07-05T09:47:28.447Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;SIMPLE算法全称是压力耦合方程组的半隐式方法(Semi-Implicit Method for
+Pressure Linked Equations),
+作为经典的压力修正算法在Fluent等工业软件中被广泛应用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>涡量—流函数方法</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-vortex.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-vortex.html</id>
+    <published>2022-07-03T13:22:52.000Z</published>
+    <updated>2022-07-04T09:25:44.361Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;通过把原始变量(速度，压强)转化为导出变量(涡量，流函数)的方程组，可以避开处理压强时的困难，称为涡量-流函数方法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>投影法</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-projection.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-projection.html</id>
+    <published>2022-07-03T12:31:23.000Z</published>
+    <updated>2022-07-04T09:25:53.857Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;投影法也称为时间分裂法，分步法，按照思路分为两类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一类基于N-S方程组的半离散格式，基于Helmholtz分解定理；&lt;/li&gt;
+&lt;li&gt;第二类基于N-S方程组的全离散格式，采用近似算子分裂/近似矩阵分裂。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下文只包括第一类投影法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人工压缩性方法(ACM)</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-acm.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-acm.html</id>
+    <published>2022-07-03T11:54:56.000Z</published>
+    <updated>2022-07-05T11:13:12.524Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LDG——一维对流扩散方程，一维N-S方程组</title>
+    <link href="https://fenglielie.github.io/code/code-ldg.html"/>
+    <id>https://fenglielie.github.io/code/code-ldg.html</id>
+    <published>2022-06-27T03:37:14.000Z</published>
+    <updated>2022-07-04T16:22:30.389Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;LDG练习，一维对流扩散方程和一维可压缩N-S方程组。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="code" scheme="https://fenglielie.github.io/categories/code/"/>
+    
+    
+    <category term="LDG" scheme="https://fenglielie.github.io/tags/LDG/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>something-12138</title>
+    <link href="https://fenglielie.github.io/sth/sth-12138.html"/>
+    <id>https://fenglielie.github.io/sth/sth-12138.html</id>
+    <published>2022-06-24T06:24:02.000Z</published>
+    <updated>2022-06-27T03:41:16.872Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>并行计算学习笔记——MPI</title>
+    <link href="https://fenglielie.github.io/cpp/learn-bxjs-1.html"/>
+    <id>https://fenglielie.github.io/cpp/learn-bxjs-1.html</id>
+    <published>2022-06-23T13:00:57.000Z</published>
+    <updated>2022-07-04T09:42:04.216Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本文是关于并行计算的学习，根据具体的实现方式不同，计划有以下两部分笔记：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MPI 多进程，不共享内存，进程之间通过消息传递机制进行通信；&lt;/li&gt;
+&lt;li&gt;OpenMP 多线程，共享内存；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;后续还可能有专门的C++多线程库&lt;code&gt;std::thread&lt;/code&gt;的学习。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="cpp" scheme="https://fenglielie.github.io/categories/cpp/"/>
+    
+    
+    <category term="cpp" scheme="https://fenglielie.github.io/tags/cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>不可压NS方程中压强的数学意义</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-lagrange.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-lagrange.html</id>
+    <published>2022-06-21T07:21:36.000Z</published>
+    <updated>2022-07-04T09:34:50.571Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;为了理解这样一句话：不可压NS方程中的压强项是作为Lagrange乘子存在的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>血流动力学学习</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-hemodynamics.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-hemodynamics.html</id>
+    <published>2022-06-20T12:32:49.000Z</published>
+    <updated>2022-07-04T09:03:51.641Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;主要是血液流动的特点。(未完待续)</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fortran学习笔记——5.其他</title>
+    <link href="https://fenglielie.github.io/fortran/fortran-note-5.html"/>
+    <id>https://fenglielie.github.io/fortran/fortran-note-5.html</id>
+    <published>2022-06-20T08:12:20.000Z</published>
+    <updated>2022-07-04T09:37:51.811Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;一些琐碎的小部分，放在最后。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/categories/fortran/"/>
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/tags/fortran/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fortran学习笔记——4.数组，指针与数值计算</title>
+    <link href="https://fenglielie.github.io/fortran/fortran-note-4.html"/>
+    <id>https://fenglielie.github.io/fortran/fortran-note-4.html</id>
+    <published>2022-06-20T08:11:20.000Z</published>
+    <updated>2022-07-04T09:37:48.003Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在前三篇笔记，学习了Fortran作为一个编程语言，最基本的内容：变量，输入输出，流程控制和程序结构。接下来是Fortran的数组以及基于数组的数值计算，我认为这是Fortran语言最有价值的精华部分，因此特意放在了学习笔记靠后的部分，在学习了基本的语法和子程序等之后。注意，Fortran的字符集不包括中括号[]，因此与c语言的风格不同，Fortran对数组分量的操作全都是使用小括号()的。&lt;/p&gt;
+&lt;p&gt;因为这部分内容比较重要，不像前几篇对Fortran
+77的上古语法大部分进行了忽略，这一篇对于Fortran 77的语法也进行介绍。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/categories/fortran/"/>
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/tags/fortran/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fortran学习笔记——3.子程序, 函数与模块</title>
+    <link href="https://fenglielie.github.io/fortran/fortran-note-3.html"/>
+    <id>https://fenglielie.github.io/fortran/fortran-note-3.html</id>
+    <published>2022-06-20T08:10:20.000Z</published>
+    <updated>2022-07-04T09:37:43.904Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;与c语言只有函数不同，Fortran提供了子程序subroutine，函数function，模块module等多种结构。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/categories/fortran/"/>
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/tags/fortran/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fortran学习笔记——2.流程控制</title>
+    <link href="https://fenglielie.github.io/fortran/fortran-note-2.html"/>
+    <id>https://fenglielie.github.io/fortran/fortran-note-2.html</id>
+    <published>2022-06-20T08:09:20.000Z</published>
+    <updated>2022-07-04T09:37:35.396Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;第一部分基本内容包括了变量的声明，输入输出语句，接下来是条件语句和循环语句等运算的流程控制。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/categories/fortran/"/>
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/tags/fortran/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fortran学习笔记——1.基本内容</title>
+    <link href="https://fenglielie.github.io/fortran/fortran-note-1.html"/>
+    <id>https://fenglielie.github.io/fortran/fortran-note-1.html</id>
+    <published>2022-06-20T08:08:20.000Z</published>
+    <updated>2022-07-04T09:37:31.622Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本系列笔记假定读者具有基础的计算机知识，以及c/c++,
+Java等至少一门现代编程语言，只学习Fortran的核心应用——数值计算需要的部分，对于其他的部分比如鸡肋的Fortran面向对象等，直接忽略（c++，Java不香么）。
+我们使用vscode+mingw(gfortran)的编程环境和编译器，环境配置过程见前文。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/categories/fortran/"/>
+    
+    
+    <category term="fortran" scheme="https://fenglielie.github.io/tags/fortran/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>加密测试博客</title>
+    <link href="https://fenglielie.github.io/test/test-encrypt-blog.html"/>
+    <id>https://fenglielie.github.io/test/test-encrypt-blog.html</id>
+    <published>2022-06-19T09:15:02.000Z</published>
+    <updated>2022-06-20T09:25:56.888Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+    <category term="test" scheme="https://fenglielie.github.io/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>测试博客</title>
+    <link href="https://fenglielie.github.io/test/test-blog.html"/>
+    <id>https://fenglielie.github.io/test/test-blog.html</id>
+    <published>2022-06-19T08:31:23.000Z</published>
+    <updated>2022-06-26T07:45:43.149Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;这是用于测试hexo对markdown支持效果的博客。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="test" scheme="https://fenglielie.github.io/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fenglielie</title>
+    <link href="https://fenglielie.github.io/fenglielie.html"/>
+    <id>https://fenglielie.github.io/fenglielie.html</id>
+    <published>2022-06-18T08:22:39.000Z</published>
+    <updated>2022-06-20T12:38:19.778Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to Fenglielie&#39;s</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://fenglielie.github.io/hello-world.html"/>
+    <id>https://fenglielie.github.io/hello-world.html</id>
+    <published>2022-06-17T17:11:45.723Z</published>
+    <updated>2022-06-20T08:21:21.356Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very
+first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for
+more info. If you get any problems when using Hexo, you can find the
+answer in &lt;a
+href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or
+you can ask me on &lt;a
+href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+</feed>
