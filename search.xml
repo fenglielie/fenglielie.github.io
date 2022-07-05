@@ -415,9 +415,9 @@ p^{n+1} &amp;= p^* + p&#39;
 class="math inline">\(\mathbf{u}^n\)</span>，取一个合适的预测压强 <span
 class="math inline">\(p^*\)</span> (例如直接取 <span
 class="math inline">\(p^*=p^n\)</span>)</li>
-<li>基于预测压强<span
-class="math inline">\(p^*\)</span>，利用下式隐式求解<span
-class="math inline">\(\mathbf{u}^{*}\)</span>：(离散后是关于<span
+<li>基于预测压强 <span
+class="math inline">\(p^*\)</span>，利用下式隐式求解 <span
+class="math inline">\(\mathbf{u}^{*}\)</span> ：(离散后是关于<span
 class="math inline">\(\mathbf{u}^*\)</span>的非线性方程组) <span
 class="math display">\[
 \frac{\mathbf{u}^{*}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}\cdot\nabla
@@ -546,7 +546,8 @@ p^{n+1} &amp;= p^{n+1,k_N}
 </ul>
 <h2 id="其他">其他</h2>
 <p>强烈推荐<a
-href="https://www.bilibili.com/video/BV1jE411E73A?p=21&amp;share_source=copy_web">李新亮的计算流体力学视频</a>，讲得SIMPLE比网上的其他各种教程都透彻详细。</p>
+href="https://www.bilibili.com/video/BV1jE411E73A?p=21&amp;share_source=copy_web">李新亮的计算流体力学视频</a>，
+讲得SIMPLE比网上的其他各种教程都透彻详细。</p>
 <p>SIMPLE算法的改进包括SIMPLEC算法，PISO算法等，它们的改进主要是在迭代过程，以及系数上的小改动，以期望更快地达到收敛。</p>
 ]]></content>
       <categories>
