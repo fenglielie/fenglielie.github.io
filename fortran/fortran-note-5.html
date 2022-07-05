@@ -176,7 +176,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -344,7 +344,7 @@
 <p>最基本的文件写入例子</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a=<span class="number">2</span></span><br><span class="line">    <span class="keyword">integer</span> :: b=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">    open(<span class="keyword">unit</span>=<span class="number">10</span>,<span class="keyword">file</span>=<span class="string">&#x27;hello.txt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">write</span>(<span class="number">10</span>,*) <span class="string">&quot;a/b=&quot;</span>, a/b</span><br><span class="line">    <span class="built_in">write</span>(<span class="number">10</span>,*) <span class="string">&quot;a*1.0/b=&quot;</span>, a*<span class="number">1.0</span>/b</span><br><span class="line"></span><br><span class="line">    close(<span class="keyword">file</span>)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
 <p>首先通过open命令打开一个hello.txt文件，并且编号记录为10，运行时会在当前目录下的hello.txt文件中写入如下内容</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">a</span>/b=           <span class="number">0</span></span><br><span class="line"><span class="attribute">a</span>*<span class="number">1</span>.<span class="number">0</span>/b=  <span class="number">0</span>.<span class="number">666666687</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a/b=           0</span><br><span class="line">a*1.0/b=  0.666666687</span><br></pre></td></tr></table></figure>
 <p>文件读写和c语言类似，有非常多的选项，包括打开方式，二进制文件或文本文件等，略。</p>
 
     </div>
