@@ -529,10 +529,13 @@ class="math inline">\(\mathbf{u}^{*,k}\)</span>；</li>
 class="math inline">\(\mathbf{u}^{*,k}\)</span>和<span
 class="math inline">\(p^{&#39;,k-1}\)</span>，近似求解<span
 class="math inline">\(p^{&#39;,k}\)</span>；</li>
-<li>更新<span class="math inline">\(\mathbf{u}^{n+1,k}
-=\mathbf{u}^{*,k}+\mathbf{u}^{&#39;,k} = \mathbf{u}^{*,k} - \Delta t
-\nabla p^{&#39;,k}\)</span>，<span class="math inline">\(p^{n+1,k} =
-p^{*,k} + p^{&#39;,k}\)</span>；</li>
+<li>更新 <span class="math display">\[
+\begin{aligned}
+\mathbf{u}^{n+1,k} &amp;=\mathbf{u}^{*,k}+\mathbf{u}^{&#39;,k} =
+\mathbf{u}^{*,k} - \Delta t \nabla p^{&#39;,k}\\
+p^{n+1,k} &amp;= p^{*,k} + p^{&#39;,k}\\
+\end{aligned}
+\]</span></li>
 <li>直到 <span
 class="math inline">\(\mathbf{u}^{n+1,k_N},p^{n+1,k_N}\)</span>
 满足收敛条件，退出内迭代；</li>
