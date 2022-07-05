@@ -50,7 +50,7 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/injector/main.css" /><link rel="preload" as="style" href="css/injector/light.css" /><link rel="preload" as="style" href="css/injector/dark.css" />
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -386,7 +386,7 @@ a+bi其实就是一个实数对(a,b)，也分为单精度和双精度。Fortran�
 <p>最基本的输入输出的例子如下：</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">program</span></span> main</span><br><span class="line">    <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">integer</span> :: a</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;please input a:&quot;</span></span><br><span class="line">    read(*,*) a</span><br><span class="line">    <span class="built_in">write</span>(*,*) <span class="string">&quot;a=&quot;</span>,a</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span> main</span><br></pre></td></tr></table></figure>
 <p>运行效果为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> please input a:</span><br><span class="line">8</span><br><span class="line"> a=           8</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> please <span class="selector-tag">input</span> <span class="selector-tag">a</span>:</span><br><span class="line"><span class="number">8</span></span><br><span class="line"> a=           <span class="number">8</span></span><br></pre></td></tr></table></figure>
 <p>write是标准的输出语句，read是标准的输入语句。
 其中的(*,*)：第一个*指的是默认的输入/输出设备，第二个*是默认的输入/输出格式，可以改成其他的参数，先不管这些细节，(*,*)将就着总是可以用的。
 print语句也可以用来输出，但是局限于向屏幕输出，建议使用write完全替代。</p>
@@ -533,6 +533,6 @@ print语句也可以用来输出，但是局限于向屏幕输出，建议使用
       <div class="moon-menu-text"></div>
     </div>
   </div>
-</div><script src="js/injector.js"></script>
+</div><script src="/js/injector.js"></script>
 </body>
 </html>
