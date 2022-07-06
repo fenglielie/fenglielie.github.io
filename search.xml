@@ -1280,6 +1280,16 @@ class="math inline">\(\Phi(x,t)_x\)</span>具体为</p>
 \frac{\rho_{xx}}{\rho^2}  \right)
 \end{aligned}
 \]</span></p>
+<h2 id="计算结果-1">计算结果</h2>
+<p>对于k=0,1,2，都达到了预期的精度，注意对于k=0,1,2，使用了<span
+class="math inline">\(\Delta t = \frac{0.5}{2k+3} {\frac{\Delta
+x}{\alpha}}^2\)</span>，终止时间<span
+class="math inline">\(t=0.5\)</span>。</p>
+<p>如下图：</p>
+<p><img data-src="/code_image/ldg/ldg_1d_ns_k=0.png" width="60%"/>
+<img data-src="/code_image/ldg/ldg_1d_ns_k=1.png" width="60%"/>
+<img data-src="/code_image/ldg/ldg_1d_ns_k=2.png" width="60%"/></p>
+<p>(这里只给出了对流方程的，热方程结果类似)</p>
 <h1 id="二维n-s方程组">二维N-S方程组</h1>
 <div class="note info"><p>二维和一维没有本质区别，只是计算更繁琐了。</p>
 </div>

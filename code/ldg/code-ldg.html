@@ -33,8 +33,11 @@
 <meta property="og:image" content="https://fenglielie.github.io/code_image/ldg/ldg_1d_cf_k=0.png">
 <meta property="og:image" content="https://fenglielie.github.io/code_image/ldg/ldg_1d_cf_k=1.png">
 <meta property="og:image" content="https://fenglielie.github.io/code_image/ldg/ldg_1d_cf_k=2.png">
+<meta property="og:image" content="https://fenglielie.github.io/code_image/ldg/ldg_1d_ns_k=0.png">
+<meta property="og:image" content="https://fenglielie.github.io/code_image/ldg/ldg_1d_ns_k=1.png">
+<meta property="og:image" content="https://fenglielie.github.io/code_image/ldg/ldg_1d_ns_k=2.png">
 <meta property="article:published_time" content="2022-06-27T03:37:14.000Z">
-<meta property="article:modified_time" content="2022-07-06T07:53:56.123Z">
+<meta property="article:modified_time" content="2022-07-06T08:00:35.690Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="LDG">
 <meta name="twitter:card" content="summary">
@@ -155,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8B"><span class="nav-text">一维对流扩散方程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%BB%93%E6%9E%9C"><span class="nav-text">计算结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-text">一维N-S方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E7%9A%84%E7%BA%BF%E6%80%A7%E7%AE%97%E4%BE%8B"><span class="nav-text">一维的线性算例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-text">二维N-S方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%9A%84%E7%BA%BF%E6%80%A7%E7%AE%97%E4%BE%8B"><span class="nav-text">二维的线性算例</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8B"><span class="nav-text">一维对流扩散方程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%BB%93%E6%9E%9C"><span class="nav-text">计算结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-text">一维N-S方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E7%9A%84%E7%BA%BF%E6%80%A7%E7%AE%97%E4%BE%8B"><span class="nav-text">一维的线性算例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%BB%93%E6%9E%9C-1"><span class="nav-text">计算结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4n-s%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-text">二维N-S方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%9A%84%E7%BA%BF%E6%80%A7%E7%AE%97%E4%BE%8B"><span class="nav-text">二维的线性算例</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -298,7 +301,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-06 15:53:56" itemprop="dateModified" datetime="2022-07-06T15:53:56+08:00">2022-07-06</time>
+      <time title="Modified: 2022-07-06 16:00:35" itemprop="dateModified" datetime="2022-07-06T16:00:35+08:00">2022-07-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -618,6 +621,16 @@ class="math inline">\(\Phi(x,t)_x\)</span>具体为</p>
 \frac{\rho_{xx}}{\rho^2}  \right)
 \end{aligned}
 \]</span></p>
+<h2 id="计算结果-1">计算结果</h2>
+<p>对于k=0,1,2，都达到了预期的精度，注意对于k=0,1,2，使用了<span
+class="math inline">\(\Delta t = \frac{0.5}{2k+3} {\frac{\Delta
+x}{\alpha}}^2\)</span>，终止时间<span
+class="math inline">\(t=0.5\)</span>。</p>
+<p>如下图：</p>
+<p><img data-src="/code_image/ldg/ldg_1d_ns_k=0.png" width="60%"/>
+<img data-src="/code_image/ldg/ldg_1d_ns_k=1.png" width="60%"/>
+<img data-src="/code_image/ldg/ldg_1d_ns_k=2.png" width="60%"/></p>
+<p>(这里只给出了对流方程的，热方程结果类似)</p>
 <h1 id="二维n-s方程组">二维N-S方程组</h1>
 <div class="note info"><p>二维和一维没有本质区别，只是计算更繁琐了。</p>
 </div>
