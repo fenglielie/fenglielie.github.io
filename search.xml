@@ -1120,9 +1120,10 @@ x^2\)</span>，对于<span
 class="math inline">\(k=2\)</span>，因为不稳定，使用了更小的<span
 class="math inline">\(\Delta t = \frac{0.1}{2k+3} \Delta
 x^2\)</span>，终止时间都是<span class="math inline">\(t=1\)</span>。</p>
-<p><img data-src="code_image/ldg/ldg_1d_cf_k=0.png" width="60%"/>
-<img data-src="code_image/ldg/ldg_1d_cf_k=1.png" width="60%"/>
-<img data-src="code_image/ldg/ldg_1d_cf_k=2.png" width="60%"/></p>
+<p>如下图：</p>
+<p><img data-src="/code_image/ldg/ldg_1d_cf_k=0.png" width="60%"/>
+<img data-src="/code_image/ldg/ldg_1d_cf_k=1.png" width="60%"/>
+<img data-src="/code_image/ldg/ldg_1d_cf_k=2.png" width="60%"/></p>
 <h1 id="一维n-s方程组">一维N-S方程组</h1>
 <p>考虑无量纲化的一维的N-S方程组如下，</p>
 <p><span class="math display">\[
