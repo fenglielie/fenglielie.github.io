@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>泛函分析——基本概念</title>
+    <url>/review/review-analysis-1.html</url>
+    <content><![CDATA[<p>泛函分析的复习，基于之前的笔记，参考张恭庆的《泛函分析讲义(上册)》，主要内容是基本的空间概念。</p>
+<span id="more"></span>
+<h2 id="度量空间metric-space">度量空间(metric space)</h2>
+<p>定义(度量空间)：对于非空集合<span
+class="math inline">\(X\)</span>，在<span
+class="math inline">\(X\)</span>定义了实值的二元函数<span
+class="math inline">\(d:X\times X \to R\)</span>，满足</p>
+<ul>
+<li>非负性，<span class="math inline">\(d(x,y)\ge 0\)</span>;</li>
+<li>分离性，<span class="math inline">\(d(x,y)=0 \iff x=y\)</span>;</li>
+<li>对称性，<span class="math inline">\(d(x,y)=d(y,x)\)</span>;</li>
+<li>三角不等式，<span class="math inline">\(d(x,y)\le
+d(x,z)+d(z,y)\)</span>。</li>
+</ul>
+<p>此时称<span class="math inline">\(d\)</span>为<span
+class="math inline">\(X\)</span>上的一个度量(距离)，二元组<span
+class="math inline">\((X,d)\)</span>称为度量空间(距离空间)。</p>
+<p>定义(收敛列)：度量空间<span
+class="math inline">\((X,d)\)</span>的点列<span
+class="math inline">\(\{x_n\}\)</span>称为收敛到<span
+class="math inline">\(x_0 \in X\)</span>，若满足</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} d(x_n,x_0) = 0
+\]</span></p>
+<p>此时称<span class="math inline">\(x_0\)</span>是<span
+class="math inline">\(\{x_n\}\)</span>在此度量空间中的极限，称<span
+class="math inline">\(\{x_n\}\)</span>是收敛列。</p>
+<p>定义(Cauchy列)：度量空间<span
+class="math inline">\((X,d)\)</span>的点列<span
+class="math inline">\(\{x_n\}\)</span>称为Cauchy列，如果满足：任意<span
+class="math inline">\(\epsilon &gt;0\)</span>，存在<span
+class="math inline">\(N=N(\epsilon)\)</span>，对于任意<span
+class="math inline">\(m,n\ge N(\epsilon)\)</span>，都有<span
+class="math inline">\(d(x_n,x_m) &lt; \epsilon\)</span>。</p>
+<p>定义(完备)：如果度量空间<span
+class="math inline">\((X,d)\)</span>这的任意Cauchy列都是收敛列，亦即都在<span
+class="math inline">\(X\)</span>中存在一个极限，那么称度量空间<span
+class="math inline">\((X,d)\)</span>是完备的。</p>
+<p>定义(连续映射)：对于定义在两个度量空间之间的映射<span
+class="math inline">\(T:(X_1,d_1)\to
+(X_2,d_2)\)</span>，称它是连续映射，如果对于<span
+class="math inline">\((X,d)\)</span>中的任意收敛列<span
+class="math inline">\(\{x_n\}\to x_0 \in X\)</span>，都有</p>
+<p><span class="math display">\[
+d_1(x_n,x_0)\to 0 \Rightarrow d_2(Tx_n,Tx_0) \to 0
+\]</span></p>
+]]></content>
+      <categories>
+        <category>review</category>
+        <category>functional analysis</category>
+      </categories>
+  </entry>
+  <entry>
     <title>不可压N-S方程的数值算法</title>
     <url>/learn/learn-inse.html</url>
     <content><![CDATA[<p>不可压缩N-S方程的求解算法学习笔记，由以下笔记组成：</p>
@@ -2832,7 +2887,24 @@ href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
 <p>代码如下，可以去网易云网页版复制外链播放器。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=1488737309&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="视频">视频</h2>
-<p>暂时不需要，跳过。</p>
+<p>可以嵌入b站的视频播放</p>
+<iframe src="//player.bilibili.com/player.html?aid=938539117&amp;bvid=BV1JT4y1r74p&amp;cid=587958621&amp;page=10" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+</iframe>
+<p>代码如下，可以去b站分享中选择代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=938539117&amp;bvid=BV1JT4y1r74p&amp;cid=587958621&amp;page=10&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="自定义样式">自定义样式</h1>
+<h2 id="css">CSS</h2>
+<p>例如效果：<span id="inline-green"> 这里输入文字 </span></p>
+<p>源代码 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;span id=&quot;inline-green&quot;&gt; 这里输入文字 &lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
+<p>需要在styles.styl里添加对应的样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 颜色块-黄</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-id">#inline-yellow</span> &#123;</span><br><span class="line"><span class="attribute">display</span>:inline;</span><br><span class="line"><span class="attribute">padding</span>:.<span class="number">2em</span> .<span class="number">6em</span> .<span class="number">3em</span>;</span><br><span class="line"><span class="attribute">font-size</span>:<span class="number">100%</span>;</span><br><span class="line"><span class="attribute">font-weight</span>:bold;</span><br><span class="line"><span class="attribute">line-height</span>:<span class="number">1</span>;</span><br><span class="line"><span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line"><span class="attribute">text-align</span>:center;</span><br><span class="line"><span class="attribute">white-space</span>:nowrap;</span><br><span class="line"><span class="attribute">vertical-align</span>:baseline;</span><br><span class="line"><span class="attribute">border-radius</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">background-color</span>: <span class="number">#f0ad4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="通过标签插件调用">通过标签插件调用</h2>
+<p>例如效果：<span id="inline-blue">定义</span> 效果：<span id="inline-yellow">例子</span>
+效果：<span id="inline-green">证明</span></p>
+<p>源代码 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% def 定义 %&#125;</span><br><span class="line">&#123;% eg 例子 %&#125;</span><br><span class="line">&#123;% pf 证明 %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先需要CSS在styles,styl里面定义好样式，然后通过在hexo-theme-next/scripts/tags里面新建一个文件mytag.js，其中加入如下代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">my_def</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-blue&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;def&#x27;</span>, my_def);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">my_eg</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-yellow&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;eg&#x27;</span>, my_eg);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">my_pf</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-green&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;pf&#x27;</span>, my_pf);</span><br></pre></td></tr></table></figure>
+<p>这两个功能以后学过CSS+JS后可以进一步利用，但是现在样式还是太丑了，不如不用。</p>
 ]]></content>
       <tags>
         <tag>test</tag>
