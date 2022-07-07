@@ -6,7 +6,7 @@
   <link href="https://fenglielie.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenglielie.github.io/"/>
-  <updated>2022-07-07T08:29:49.947Z</updated>
+  <updated>2022-07-04T11:24:03.907Z</updated>
   <id>https://fenglielie.github.io/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>泛函分析——基本概念</title>
-    <link href="https://fenglielie.github.io/review/review-analysis-1.html"/>
-    <id>https://fenglielie.github.io/review/review-analysis-1.html</id>
-    <published>2022-07-07T07:20:30.000Z</published>
-    <updated>2022-07-07T08:29:49.947Z</updated>
-    
-    <content type="html"><![CDATA[<p>泛函分析的复习，基于之前的笔记，参考张恭庆的《泛函分析讲义(上册)》，主要内容是基本的空间概念。</p><span id="more"></span><h2 id="度量空间metric-space">度量空间(metric space)</h2><p>定义(度量空间)：对于非空集合<spanclass="math inline">\(X\)</span>，在<spanclass="math inline">\(X\)</span>定义了实值的二元函数<spanclass="math inline">\(d:X\times X \to R\)</span>，满足</p><ul><li>非负性，<span class="math inline">\(d(x,y)\ge 0\)</span>;</li><li>分离性，<span class="math inline">\(d(x,y)=0 \iff x=y\)</span>;</li><li>对称性，<span class="math inline">\(d(x,y)=d(y,x)\)</span>;</li><li>三角不等式，<span class="math inline">\(d(x,y)\led(x,z)+d(z,y)\)</span>。</li></ul><p>此时称<span class="math inline">\(d\)</span>为<spanclass="math inline">\(X\)</span>上的一个度量(距离)，二元组<spanclass="math inline">\((X,d)\)</span>称为度量空间(距离空间)。</p><p>定义(收敛列)：度量空间<spanclass="math inline">\((X,d)\)</span>的点列<spanclass="math inline">\(\{x_n\}\)</span>称为收敛到<spanclass="math inline">\(x_0 \in X\)</span>，若满足</p><p><span class="math display">\[\lim_{n \to \infty} d(x_n,x_0) = 0\]</span></p><p>此时称<span class="math inline">\(x_0\)</span>是<spanclass="math inline">\(\{x_n\}\)</span>在此度量空间中的极限，称<spanclass="math inline">\(\{x_n\}\)</span>是收敛列。</p><p>定义(Cauchy列)：度量空间<spanclass="math inline">\((X,d)\)</span>的点列<spanclass="math inline">\(\{x_n\}\)</span>称为Cauchy列，如果满足：任意<spanclass="math inline">\(\epsilon &gt;0\)</span>，存在<spanclass="math inline">\(N=N(\epsilon)\)</span>，对于任意<spanclass="math inline">\(m,n\ge N(\epsilon)\)</span>，都有<spanclass="math inline">\(d(x_n,x_m) &lt; \epsilon\)</span>。</p><p>定义(完备)：如果度量空间<spanclass="math inline">\((X,d)\)</span>这的任意Cauchy列都是收敛列，亦即都在<spanclass="math inline">\(X\)</span>中存在一个极限，那么称度量空间<spanclass="math inline">\((X,d)\)</span>是完备的。</p><p>定义(连续映射)：对于定义在两个度量空间之间的映射<spanclass="math inline">\(T:(X_1,d_1)\to(X_2,d_2)\)</span>，称它是连续映射，如果对于<spanclass="math inline">\((X,d)\)</span>中的任意收敛列<spanclass="math inline">\(\{x_n\}\to x_0 \in X\)</span>，都有</p><p><span class="math display">\[d_1(x_n,x_0)\to 0 \Rightarrow d_2(Tx_n,Tx_0) \to 0\]</span></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;泛函分析的复习，基于之前的笔记，参考张恭庆的《泛函分析讲义(上册)》，主要内容是基本的空间概念。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="review" scheme="https://fenglielie.github.io/categories/review/"/>
-    
-    <category term="functional analysis" scheme="https://fenglielie.github.io/categories/review/functional-analysis/"/>
-    
-    
-  </entry>
   
   <entry>
     <title>不可压N-S方程的数值算法</title>
@@ -447,6 +426,29 @@ Java等至少一门现代编程语言，只学习Fortran的核心应用——数
     <summary type="html">&lt;p&gt;Welcome to Fenglielie&#39;s blog.&lt;/p&gt;
 </summary>
       
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://fenglielie.github.io/hello-world.html"/>
+    <id>https://fenglielie.github.io/hello-world.html</id>
+    <published>2022-06-17T17:11:45.723Z</published>
+    <updated>2022-06-20T08:21:21.356Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your veryfirst post. Check <a href="https://hexo.io/docs/">documentation</a> formore info. If you get any problems when using Hexo, you can find theanswer in <ahref="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> oryou can ask me on <ahref="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><span id="more"></span><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very
+first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for
+more info. If you get any problems when using Hexo, you can find the
+answer in &lt;a
+href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or
+you can ask me on &lt;a
+href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
     
     
     

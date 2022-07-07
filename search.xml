@@ -1,61 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>泛函分析——基本概念</title>
-    <url>/review/review-analysis-1.html</url>
-    <content><![CDATA[<p>泛函分析的复习，基于之前的笔记，参考张恭庆的《泛函分析讲义(上册)》，主要内容是基本的空间概念。</p>
-<span id="more"></span>
-<h2 id="度量空间metric-space">度量空间(metric space)</h2>
-<p>定义(度量空间)：对于非空集合<span
-class="math inline">\(X\)</span>，在<span
-class="math inline">\(X\)</span>定义了实值的二元函数<span
-class="math inline">\(d:X\times X \to R\)</span>，满足</p>
-<ul>
-<li>非负性，<span class="math inline">\(d(x,y)\ge 0\)</span>;</li>
-<li>分离性，<span class="math inline">\(d(x,y)=0 \iff x=y\)</span>;</li>
-<li>对称性，<span class="math inline">\(d(x,y)=d(y,x)\)</span>;</li>
-<li>三角不等式，<span class="math inline">\(d(x,y)\le
-d(x,z)+d(z,y)\)</span>。</li>
-</ul>
-<p>此时称<span class="math inline">\(d\)</span>为<span
-class="math inline">\(X\)</span>上的一个度量(距离)，二元组<span
-class="math inline">\((X,d)\)</span>称为度量空间(距离空间)。</p>
-<p>定义(收敛列)：度量空间<span
-class="math inline">\((X,d)\)</span>的点列<span
-class="math inline">\(\{x_n\}\)</span>称为收敛到<span
-class="math inline">\(x_0 \in X\)</span>，若满足</p>
-<p><span class="math display">\[
-\lim_{n \to \infty} d(x_n,x_0) = 0
-\]</span></p>
-<p>此时称<span class="math inline">\(x_0\)</span>是<span
-class="math inline">\(\{x_n\}\)</span>在此度量空间中的极限，称<span
-class="math inline">\(\{x_n\}\)</span>是收敛列。</p>
-<p>定义(Cauchy列)：度量空间<span
-class="math inline">\((X,d)\)</span>的点列<span
-class="math inline">\(\{x_n\}\)</span>称为Cauchy列，如果满足：任意<span
-class="math inline">\(\epsilon &gt;0\)</span>，存在<span
-class="math inline">\(N=N(\epsilon)\)</span>，对于任意<span
-class="math inline">\(m,n\ge N(\epsilon)\)</span>，都有<span
-class="math inline">\(d(x_n,x_m) &lt; \epsilon\)</span>。</p>
-<p>定义(完备)：如果度量空间<span
-class="math inline">\((X,d)\)</span>这的任意Cauchy列都是收敛列，亦即都在<span
-class="math inline">\(X\)</span>中存在一个极限，那么称度量空间<span
-class="math inline">\((X,d)\)</span>是完备的。</p>
-<p>定义(连续映射)：对于定义在两个度量空间之间的映射<span
-class="math inline">\(T:(X_1,d_1)\to
-(X_2,d_2)\)</span>，称它是连续映射，如果对于<span
-class="math inline">\((X,d)\)</span>中的任意收敛列<span
-class="math inline">\(\{x_n\}\to x_0 \in X\)</span>，都有</p>
-<p><span class="math display">\[
-d_1(x_n,x_0)\to 0 \Rightarrow d_2(Tx_n,Tx_0) \to 0
-\]</span></p>
-]]></content>
-      <categories>
-        <category>review</category>
-        <category>functional analysis</category>
-      </categories>
-  </entry>
-  <entry>
     <title>不可压N-S方程的数值算法</title>
     <url>/learn/learn-inse.html</url>
     <content><![CDATA[<p>不可压缩N-S方程的求解算法学习笔记，由以下笔记组成：</p>
@@ -2944,5 +2889,225 @@ href="https://hexo.io/docs/generating.html">Generating</a></p>
 <p>More info: <a
 href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>泛函分析——基本概念</title>
+    <url>/review/review-analysis-1.html</url>
+    <content><![CDATA[<p>泛函分析的复习，基于之前的笔记，参考张恭庆的《泛函分析讲义(上册)》，主要内容是基本的空间概念。</p>
+<span id="more"></span>
+<h2 id="度量空间">度量空间</h2>
+<p>定义(度量空间,metric space)：对于非空集合<span
+class="math inline">\(X\)</span>，在<span
+class="math inline">\(X\)</span>定义了实值的二元函数<span
+class="math inline">\(d:X\times X \to R\)</span>，满足</p>
+<ul>
+<li>非负性，<span class="math inline">\(d(x,y)\ge 0\)</span>;</li>
+<li>分离性，<span class="math inline">\(d(x,y)=0 \iff x=y\)</span>;</li>
+<li>对称性，<span class="math inline">\(d(x,y)=d(y,x)\)</span>;</li>
+<li>三角不等式，<span class="math inline">\(d(x,y)\le
+d(x,z)+d(z,y)\)</span>。</li>
+</ul>
+<p>此时称<span class="math inline">\(d\)</span>为<span
+class="math inline">\(X\)</span>上的一个度量(距离)，二元组<span
+class="math inline">\((X,d)\)</span>称为度量空间(距离空间)。(正定性=非负性+分离性)</p>
+<p>定义(收敛列)：度量空间<span
+class="math inline">\((X,d)\)</span>的点列<span
+class="math inline">\(\{x_n\}\)</span>称为收敛到<span
+class="math inline">\(x_0 \in X\)</span>，若满足</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} d(x_n,x_0) = 0
+\]</span></p>
+<p>此时称<span class="math inline">\(x_0\)</span>是<span
+class="math inline">\(\{x_n\}\)</span>在此度量空间中的极限，称<span
+class="math inline">\(\{x_n\}\)</span>是收敛列，记作<span
+class="math inline">\(x_n \to x_0\)</span>。</p>
+<p>定义(Cauchy列)：度量空间<span
+class="math inline">\((X,d)\)</span>的点列<span
+class="math inline">\(\{x_n\}\)</span>称为Cauchy列，如果满足：任意<span
+class="math inline">\(\epsilon &gt;0\)</span>，存在<span
+class="math inline">\(N=N(\epsilon)\)</span>，对于任意<span
+class="math inline">\(m,n\ge N(\epsilon)\)</span>，都有<span
+class="math inline">\(d(x_n,x_m) &lt; \epsilon\)</span>。</p>
+<p>定义(完备)：如果度量空间<span
+class="math inline">\((X,d)\)</span>中的任意Cauchy列都是收敛列，亦即都在<span
+class="math inline">\(X\)</span>中存在一个极限，那么称度量空间<span
+class="math inline">\((X,d)\)</span>是完备的。</p>
+<h2 id="连续映射">连续映射</h2>
+<p>定义(连续映射)：对于定义在两个度量空间之间的映射<span
+class="math inline">\(T:(X_1,d_1)\to
+(X_2,d_2)\)</span>，称它是连续映射，如果对于<span
+class="math inline">\((X,d)\)</span>中的任意收敛列<span
+class="math inline">\(\{x_n\}\to x_0 \in X\)</span>，都有</p>
+<p><span class="math display">\[
+d_1(x_n,x_0)\to 0 \Rightarrow d_2(Tx_n,Tx_0) \to 0
+\]</span></p>
+<p>命题：对于定义在两个度量空间之间的映射<span
+class="math inline">\(T:(X_1,d_1)\to (X_2,d_2)\)</span>，<span
+class="math inline">\(T\)</span>是连续映射等价于：对于任意<span
+class="math inline">\(\epsilon&gt;0\)</span>，任意<span
+class="math inline">\(x_0 \in X\)</span>，存在<span
+class="math inline">\(\delta = \delta(x_0,\epsilon)\)</span>，使得</p>
+<p><span class="math display">\[
+d_1(x,x_0) &lt;\delta \Rightarrow d_2(Tx,T x_0) &lt;\epsilon\, \forall x
+\in X
+\]</span></p>
+<h2 id="压缩映射与不动点定理">压缩映射与不动点定理</h2>
+<p>定义(压缩映射)：对于定义在<span
+class="math inline">\((X,d)\)</span>的映射<span
+class="math inline">\(T:(X,d)\to
+(X,d)\)</span>，称它是压缩映射，如果存在<span
+class="math inline">\(0&lt; \alpha &lt; 1\)</span>，使得</p>
+<p><span class="math display">\[
+d(Tx,Ty) \le \alpha\, d(x,y) \,\forall x,y \in X
+\]</span></p>
+<p>定义(不动点)：对于定义在<span
+class="math inline">\((X,d)\)</span>的映射<span
+class="math inline">\(T:(X,d)\to (X,d)\)</span>，称<span
+class="math inline">\(x_0 \in X\)</span>是<span
+class="math inline">\(T\)</span>的不动点，如果<span
+class="math inline">\(T(x_0)=x_0\)</span>。</p>
+<p>定理(Banach不动点定理，压缩映像原理)：对于完备的度量空间<span
+class="math inline">\((X,d)\)</span>，若<span
+class="math inline">\(T\)</span>是定义在<span
+class="math inline">\((X,d)\)</span>的一个压缩映射，则<span
+class="math inline">\(T\)</span>在<span
+class="math inline">\(X\)</span>上存在唯一的不动点。</p>
+<p>证明：构造序列<span class="math inline">\(\{x_n\}\)</span>，其中<span
+class="math inline">\(x_{n+1}=T x_n\)</span>，则由压缩映射可以保证<span
+class="math inline">\(\{x_n\}\)</span>是收敛列，由定义有</p>
+<p><span class="math display">\[
+d(x_{n+1},x_n) = d(T x_n,T x_{n-1}) \le \alpha\, d(x_n,x_{n-1})\le
+\cdots \le \alpha^{n} d(x_1,x_0)
+\]</span></p>
+<p>然后证明它是基本列，<span class="math inline">\(\forall m &gt;
+n\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+d(x_m,x_n) &amp;\le d(x_m,x_{m-1}) + \cdots d(x_{n+1},x_n) \\
+&amp;\le (\alpha^{m-1} + \cdots + \alpha^n) d(x_1,x_0)\\
+&amp;\le (\alpha^{m-n-1} + \cdots + 1)d(x_1,x_0) \alpha^n \le
+\frac{\alpha^n}{1-\alpha} d(x_1,x_0) \to 0
+\end{aligned}
+\]</span></p>
+<p>因此<span class="math inline">\(\{x_n\}\)</span>是Cauchy列，由于<span
+class="math inline">\(X\)</span>是完备的，<span
+class="math inline">\(\{x_n\}\)</span>有极限记作<span
+class="math inline">\(y \in X\)</span>，再证明<span
+class="math inline">\(y\)</span>是不动点，</p>
+<p><span class="math display">\[
+\begin{aligned}
+d(Ty,y) &amp;\le d(Ty,T x_n) + d(T x_n,x_n) + d(x_n,y)\\
+&amp;\le (\alpha+1)d(x_n,y) + \alpha^n d(x_1,x_0) \to 0, (n \to \infty)
+\end{aligned}
+\]</span></p>
+<p>由于<span class="math inline">\(T\)</span>是压缩映射，易知<span
+class="math inline">\(y\)</span>是唯一的不动点，得证。</p>
+<h2 id="完备化">完备化</h2>
+<p>定义(等距同构)：对于两个度量空间<span
+class="math inline">\((X_1,d_1),(X_2,d_2)\)</span>，如果存在映射<span
+class="math inline">\(\phi:X_1\to X_2\)</span>，满足</p>
+<ul>
+<li><span class="math inline">\(\phi\)</span>是满射；</li>
+<li><span class="math inline">\(d_1(x,y) =
+d_2(\phi(x),\phi(y))\)</span>，<span class="math inline">\(\forall x,y
+\in X_1\)</span>，(可以由度量的正定性导出<span
+class="math inline">\(\phi\)</span>是单射，进而<span
+class="math inline">\(\phi\)</span>是双射)</li>
+</ul>
+<p>则称<span class="math inline">\(\phi\)</span>是<span
+class="math inline">\((X_1,d_1)\)</span>与<span
+class="math inline">\((X_2,d_2)\)</span>之间的等距同构映射，称两个度量空间是等距同构的。</p>
+<blockquote>
+<p>在等距同构的意义下，两个度量空间可以不加区分地视作同一个空间。若一个空间<span
+class="math inline">\((X_1,d_1)\)</span>可以与另一个空间<span
+class="math inline">\((X_2,d_2)\)</span>的子空间<span
+class="math inline">\((\widehat{X}_2,d_2)\)</span>等距同构，则称<span
+class="math inline">\((X_1,d_1)\)</span>可以嵌入<span
+class="math inline">\((X_2,d_2)\)</span>中，并且直接视作它的一个子空间，记作<span
+class="math inline">\((X_1,d_1) \subset (X_2,d_2)\)</span>。</p>
+</blockquote>
+<p>定义(稠密)：对于度量空间<span
+class="math inline">\((X,d)\)</span>，集合<span
+class="math inline">\(E\subset X\)</span>称为<span
+class="math inline">\(X\)</span>的稠密子集，如果满足：任意<span
+class="math inline">\(x_0 \in X\)</span>，存在<span
+class="math inline">\(\{x_n\} \subset E\)</span>，使得<span
+class="math inline">\(x_n \to x_0 \in X\)</span>。</p>
+<p>定义(完备化空间)：对于空间<span
+class="math inline">\((X,d)\)</span>，(等距同构意义下)包含<span
+class="math inline">\((X,d)\)</span>的最小的完备度量空间称为<span
+class="math inline">\((X,d)\)</span>的完备化空间。</p>
+<blockquote>
+<p>如果<span
+class="math inline">\((X,d)\)</span>是完备的，按照定义，它的完备化空间是它自身。</p>
+</blockquote>
+<p>命题：如果<span
+class="math inline">\((X,d)\)</span>可以嵌入一个完备空间<span
+class="math inline">\((Y,\rho)\)</span>，并且(等距同构意义下)<span
+class="math inline">\(X\)</span>是<span
+class="math inline">\(Y\)</span>的稠密子集，则<span
+class="math inline">\((Y,\rho)\)</span>就是<span
+class="math inline">\((X,d)\)</span>的完备化空间。</p>
+<p>证明：只需证明极小性，也就是说如果<span
+class="math inline">\((X,d)\)</span>可以嵌入另一个完备空间<span
+class="math inline">\((Y_2,\rho_2)\)</span>，那么<span
+class="math inline">\((Y,\rho)\)</span>也可以嵌入<span
+class="math inline">\((Y_2,\rho_2)\)</span>。</p>
+<p>任取<span class="math inline">\(y \in Y\)</span>，存在<span
+class="math inline">\(\{x_n\}\subset X\)</span>，<span
+class="math inline">\(x_n \to y\)</span>。(稠密性) 显然<span
+class="math inline">\(\{x_n\}\)</span>是<span
+class="math inline">\((X,d)\)</span>上的基本列，也是<span
+class="math inline">\((Y,\rho),(Y_2,\rho_2)\)</span>的基本列，在<span
+class="math inline">\(X_2\)</span>中存在极限<span
+class="math inline">\(z \in X_2\)</span>。 因此取遍<span
+class="math inline">\(y \in Y\)</span>，我们可以定义映射<span
+class="math inline">\(T: (Y,\rho) \to (Y_2,\rho_2)\)</span>，满足<span
+class="math inline">\(T y = z\)</span>。</p>
+<p>再证明<span class="math inline">\(T\)</span>是<span
+class="math inline">\((Y,\rho)\)</span>到<span
+class="math inline">\((Y_2,\rho_2)\)</span>的等距嵌入：任取<span
+class="math inline">\(y_2 \in Y\)</span>，存在<span
+class="math inline">\(\{x&#39;_n\}\subset X\)</span>，使得<span
+class="math inline">\(x&#39;_n \to y_2\)</span>，因此</p>
+<p><span class="math display">\[
+\rho(y,y_2) = \lim \rho(x_n,x&#39;_n) = \lim \rho_2(x_n,x&#39;_n) =
+\rho_2(Ty,Ty_2)
+\]</span></p>
+<p>得证。</p>
+<blockquote>
+<p>为了简化记号，我们省略了同构映射，认为在集合意义上<span
+class="math inline">\(X \subset Y\)</span>，<span
+class="math inline">\(X \subset Y_2\)</span>。我们其实还需要证明<span
+class="math inline">\(T\)</span>的良定义，与收敛列的选取无关，略。</p>
+</blockquote>
+<p>定理(完备化空间的存在性)：每一个度量空间都有一个完备化空间。</p>
+<p>证明：证明比较繁琐，但是思路是明确的：</p>
+<ul>
+<li>获取<span
+class="math inline">\((X,d)\)</span>的所有基本列，在如下意义下称两个基本列是等价的，进而获得等价类；
+<span class="math display">\[
+\{x_n\} = \{ y_n\} \iff \lim_{n \to \infty} d(x_n,y_n)=0
+\]</span></li>
+<li>基于等价类全体构造一个度量空间<span
+class="math inline">\((Y,\rho)\)</span>，其中<span
+class="math inline">\(\rho\)</span>定义如下，证明它是度量空间，证明它是完备的；
+<span class="math display">\[
+\rho(\{x_n\},\{y_n\}) = \lim d(x_n,y_n)
+\]</span></li>
+<li>将<span
+class="math inline">\((X,d)\)</span>中的元素视作常数列，从而嵌入<span
+class="math inline">\((Y,\rho)\)</span>作为子空间，可以验证<span
+class="math inline">\((X,d)\)</span>在<span
+class="math inline">\((Y,\rho)\)</span>中是稠密的。</li>
+<li>由之前的命题可知，<span
+class="math inline">\((Y,rho)\)</span>是<span
+class="math inline">\((X,d)\)</span>的完备化空间，并且在等距同构意义下唯一。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>review</category>
+        <category>functional analysis</category>
+      </categories>
   </entry>
 </search>
