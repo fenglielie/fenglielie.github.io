@@ -3101,7 +3101,7 @@ class="math inline">\((Y,\rho)\)</span>作为子空间，可以验证<span
 class="math inline">\((X,d)\)</span>在<span
 class="math inline">\((Y,\rho)\)</span>中是稠密的。</li>
 <li>由之前的命题可知，<span
-class="math inline">\((Y,rho)\)</span>是<span
+class="math inline">\((Y,\rho)\)</span>是<span
 class="math inline">\((X,d)\)</span>的完备化空间，并且在等距同构意义下唯一。</li>
 </ul>
 ]]></content>
