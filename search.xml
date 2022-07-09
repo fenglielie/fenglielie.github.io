@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>web自学——CSS</title>
+    <url>/web/web-css.html</url>
+    <content><![CDATA[<p>在简单学习了HTML之后，可以得到一个简单的静态网页</p>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+  </entry>
+  <entry>
     <title>web自学——HTML</title>
     <url>/web/web-html.html</url>
     <content><![CDATA[<p>众所周知，web前端主要包括HTML+CSS+JavaScript三部分组成，其中HTML是超文本标记语言，CSS是层叠样式表，JavaScript是脚本语言。</p>

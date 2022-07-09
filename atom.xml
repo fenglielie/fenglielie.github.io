@@ -6,7 +6,7 @@
   <link href="https://fenglielie.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenglielie.github.io/"/>
-  <updated>2022-07-09T13:04:52.827Z</updated>
+  <updated>2022-07-09T13:07:48.880Z</updated>
   <id>https://fenglielie.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>web自学——CSS</title>
+    <link href="https://fenglielie.github.io/web/web-css.html"/>
+    <id>https://fenglielie.github.io/web/web-css.html</id>
+    <published>2022-07-09T05:59:30.000Z</published>
+    <updated>2022-07-09T13:07:48.880Z</updated>
+    
+    <content type="html"><![CDATA[<p>在简单学习了HTML之后，可以得到一个简单的静态网页</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在简单学习了HTML之后，可以得到一个简单的静态网页&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="web" scheme="https://fenglielie.github.io/categories/web/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>web自学——HTML</title>
@@ -429,27 +452,6 @@ Java等至少一门现代编程语言，只学习Fortran的核心应用——数
     
     
     <category term="test" scheme="https://fenglielie.github.io/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fenglielie</title>
-    <link href="https://fenglielie.github.io/fenglielie.html"/>
-    <id>https://fenglielie.github.io/fenglielie.html</id>
-    <published>2022-06-18T08:22:39.000Z</published>
-    <updated>2022-06-20T12:38:19.778Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to Fenglielie's blog.</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Welcome to Fenglielie&#39;s blog.&lt;/p&gt;
-</summary>
-      
-    
-    
-    
     
   </entry>
   
