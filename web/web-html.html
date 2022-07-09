@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#0593d3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#0593d3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="众所周知，web前端主要包括HTML+CSS+JavaScript三部分组成，其中HTML是超文本标记语言，CSS是层叠样式表，JavaScript是脚本语言。 以下学习的内容都是静态网页而非动态网页，不涉及服务器数据库之类的知识，目标之一是了解最基本的网页知识，例如可以写出几个简单的静态网页，并且利用Hexo+Github Pages部署，目的之二是看懂Hexo搭建博客的样式配置等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web自学——HTML">
+<meta property="og:url" content="https://fenglielie.github.io/web/web-html.html">
+<meta property="og:site_name" content="Fenglielie&#39;s Blog">
+<meta property="og:description" content="众所周知，web前端主要包括HTML+CSS+JavaScript三部分组成，其中HTML是超文本标记语言，CSS是层叠样式表，JavaScript是脚本语言。 以下学习的内容都是静态网页而非动态网页，不涉及服务器数据库之类的知识，目标之一是了解最基本的网页知识，例如可以写出几个简单的静态网页，并且利用Hexo+Github Pages部署，目的之二是看懂Hexo搭建博客的样式配置等。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-09T05:59:12.000Z">
+<meta property="article:modified_time" content="2022-07-09T09:20:16.458Z">
+<meta property="article:author" content="Fenglielie">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fenglielie.github.io/web/web-html.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/web/web-html.html","path":"web/web-html.html","title":"web自学——HTML"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>web自学——HTML | Fenglielie's Blog</title>
+  
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="Fenglielie's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Fenglielie's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-share"><a href="/share/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Share</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#html"><span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%B4%A0"><span class="nav-text">1. 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="nav-text">2. 基本框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head%E9%83%A8%E5%88%86"><span class="nav-text">3. head部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E7%9A%84%E5%85%83%E7%B4%A0"><span class="nav-text">4. 典型的元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%85%83%E7%B4%A0"><span class="nav-text">图像元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E9%93%BE%E6%8E%A5%E5%85%83%E7%B4%A0"><span class="nav-text">超链接元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%85%83%E7%B4%A0"><span class="nav-text">5. 文本类元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%A2%98"><span class="nav-text">标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AE%B5%E8%90%BD"><span class="nav-text">段落</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%A1%A8"><span class="nav-text">列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E8%B0%83%E7%B2%97%E4%BD%93%E6%96%9C%E4%BD%93"><span class="nav-text">强调(粗体，斜体)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC"><span class="nav-text">表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#section"><span class="nav-text"></span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fenglielie"
+      src="/code_image/avatar.gif">
+  <p class="site-author-name" itemprop="name">Fenglielie</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fenglielie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fenglielie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fenglielie@qq.com" title="E-Mail → mailto:fenglielie@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/mu-zi-chuan-ye-61" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;mu-zi-chuan-ye-61" rel="noopener" target="_blank"><i class="fab fa-quora fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      Recent posts
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/web/web-html.html" title="web&#x2F;web-html.html">web自学——HTML</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/test/test-blog.html" title="test&#x2F;test-blog.html">测试博客</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/code/ldg/code-ldg.html" title="code&#x2F;ldg&#x2F;code-ldg.html">LDG——一维对流扩散方程，一维N-S方程组</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/learn/learn-inse-acm.html" title="learn&#x2F;learn-inse-acm.html">人工压缩性方法(ACM)</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/learn/learn-inse-simple.html" title="learn&#x2F;learn-inse-simple.html">SIMPLE算法</a>
+        </li>
+    </ul>
+  </div>
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1383011136&auto=1&height=66">    </iframe>
+</div>
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/web/web-html.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/code_image/avatar.gif">
+      <meta itemprop="name" content="Fenglielie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="web自学——HTML | Fenglielie's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          web自学——HTML
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-09 13:59:12 / Modified: 17:20:16" itemprop="dateCreated datePublished" datetime="2022-07-09T13:59:12+08:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>4.1k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>4 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>众所周知，web前端主要包括HTML+CSS+JavaScript三部分组成，其中HTML是超文本标记语言，CSS是层叠样式表，JavaScript是脚本语言。</p>
+<p>以下学习的内容都是静态网页而非动态网页，不涉及服务器数据库之类的知识，目标之一是了解最基本的网页知识，例如可以写出几个简单的静态网页，并且利用Hexo+Github
+Pages部署，目的之二是看懂Hexo搭建博客的样式配置等。</p>
+<span id="more"></span>
+<h1 id="html">HTML</h1>
+<h2 id="元素">1. 元素</h2>
+<p>一个典型的html元素如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;note&quot;</span>&gt;</span>content<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>&lt;p&gt;</code>是开始标签，<code>&lt;/p&gt;</code>是结束标签，中间的<code>content</code>是元素的内容，<code>class="note"</code>是标签的属性。</p>
+<p>上述元素是成对的，包括开始标签和结束标签，元素可以相互嵌套，例如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>My cat is <span class="tag">&lt;<span class="name">strong</span>&gt;</span>very<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> grumpy.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>嵌套时注意结束标签的顺序，否则可能出现显示的异常。</p>
+<p>除了上述类型的元素之外，还有不含内容不成对的元素，例如典型的<code>&lt;img&gt;</code>元素，用于在网页中嵌入一个图像：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url-to-image&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>元素按照呈现效果大体上分成两类：块级元素和内联元素：</p>
+<ul>
+<li>块级元素在页面中以块的形式展现——相对于其前面的内容它会出现在新的一行，其后的内容也会被挤到下一行展现。块级元素通常用于展示页面上结构化的内容，例如段落、列表、导航菜单、页脚等等。一个以
+block
+形式展现的块级元素不会被嵌套进内联元素中，但可以嵌套在其它块级元素中。</li>
+<li>内联元素通常出现在块级元素中并环绕文档内容的一小部分，而不是一整个段落或者一组内容。内联元素不会导致文本换行：它通常出现在一堆文字之间例如超链接元素<code>&lt;a&gt;</code>或者斜体强调元素<code>&lt;em&gt;</code>和粗体强调元素<code>&lt;strong&gt;</code>。</li>
+</ul>
+<p>注：</p>
+<ul>
+<li>HTML元素不区分大小写，但是建议全部使用小写字符；</li>
+<li>解析HTML元素时使用了若干个特殊符号，包括：<code>" ' &lt; &gt; &amp;</code>，如果在文本中希望直接使用这些符号，则需要特殊处理，使用下面的<code>&amp;lt;</code>等作为替代，注意结尾包括分号；</li>
+<li>浏览器解析HTML文本的时候使用的是宽松模式——对于简单的语法错误会尝试进行修复，尽量呈现正确的效果；</li>
+<li>HTML支持注释，形如<code>&lt;!--comments--&gt;</code>。</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">原义字符</th>
+<th style="text-align: center;">等价字符引用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;"><code>&amp;lt;</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&gt;</td>
+<td style="text-align: center;"><code>&amp;gt;</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">"</td>
+<td style="text-align: center;"><code>&amp;quot;</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">'</td>
+<td style="text-align: center;"><code>&amp;apos;</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&amp;</td>
+<td style="text-align: center;"><code>&amp;amp;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="属性">属性</h3>
+<p>以超链接元素 <code>&lt;a&gt;</code> 为例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.baidu.com&quot;</span> <span class="attr">title</span>=<span class="string">&quot;baidu&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性名="属性值"，这里属性值使用单引号或双引号包裹(有时不用引号也可以正确解析)，多个属性之间以空格分开。上述元素包括三个属性：</p>
+<ul>
+<li>href 超文本链接地址，也就是超链接指向的url；</li>
+<li>title 标题，当鼠标移动到超链接上时会呈现；</li>
+<li>target
+表明如何打开这个链接，默认在当前标签页，"_blank"指的是在新标签页打开。</li>
+</ul>
+<p>效果如下：
+<a href="https://www.baidu.com" title="baidu" target="_blank">百度一下</a>
+(在元素内容"百度一下"下方增加下划线，点击这部分跳转到指定网页)</p>
+<p>有的属性是没有特定值的，只有开关两种状态，例如下面的disabled属性含义为禁止输入，只能选择开启或关闭，属性值与属性名相同，此类属性称为布尔属性，可以简写</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">disabled</span>=<span class="string">&quot;disabled&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">disabled</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下面是两个输入框的例子作为直观对比，第二个是开启了disabled属性的，无法输入：</p>
+<p><input type="text"> <input type="text" disabled></p>
+<h2 id="基本框架">2. 基本框架</h2>
+<p>如下是一个最基本的HTML文件结构，包括</p>
+<ul>
+<li>文档类型 <code>&lt;!DOCTYPE html&gt;</code>；</li>
+<li>根元素 <code>&lt;html&gt; &lt;/html&gt;</code>
+包括整个页面的内容，可以使用lang属性声明整个网页的语言，例如"zh-CN"或"en"，包括以下两部分：
+<ul>
+<li>头部 <code>&lt;head&gt; &lt;/head&gt;</code>
+不可见的内容，包括页面数据的描述等；</li>
+<li>主体 <code>&lt;body&gt; &lt;/body&gt;</code>
+可见的内容，包括主要的数据。</li>
+</ul></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>My Test Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url-to-image&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;My Test Image&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="head部分">3. head部分</h2>
+<p>head部分通常包括如下内容：</p>
+<ul>
+<li>文档字符集，使用utf-8即可，<code>&lt;meta charset="utf-8"&gt;</code></li>
+<li>页面标题，会在浏览器标签页上显示(而不是正文中)，<code>&lt;title&gt; &lt;/title&gt;</code></li>
+</ul>
+<p>还可以包括其他内容，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--字符集 charset--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--页面标题 title--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>The Page Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--页面图标 icon--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://developer.mozilla.org/static/img/favicon32.png&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--网页作者 author--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span> <span class="attr">content</span>=<span class="string">&quot;Chris Mills&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--网页描述 description 可能出现在搜索引擎的页面中--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;The MDN Web Docs Learning Area aims to provide</span></span></span><br><span class="line"><span class="string"><span class="tag">complete beginners to the Web with all they need to know to get</span></span></span><br><span class="line"><span class="string"><span class="tag">started with developing web sites and applications.&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="典型的元素">4. 典型的元素</h2>
+<p>除了纯文本信息，在网页内容中最常见的元素就是图片和超链接，因此首先关注这两种元素的用法和属性。</p>
+<h3 id="图像元素">图像元素</h3>
+<p>图像元素最简单的用法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url-to-image&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中必要的属性：</p>
+<ul>
+<li>src: 图片源文件的url；</li>
+<li>alt: 替代文本，通常是图片的描述，在图片加载失败时会显示出来。</li>
+</ul>
+<p>可选的属性：</p>
+<ul>
+<li>height: 图片的高度；</li>
+<li>width: 宽度；</li>
+<li>loading:
+加载选项，包括立刻加载eager和延迟加载lazy，延迟加载会推迟加载处于屏幕外的图像。</li>
+</ul>
+<h3 id="超链接元素">超链接元素</h3>
+<p>超链接元素典型的用法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.baidu.com&quot;</span> <span class="attr">title</span>=<span class="string">&quot;baidu&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="文本类元素">5. 文本类元素</h2>
+<p>和Markdown语法一样，HTML的文本也包括常见的多级标题，有序无序列表等组成。(处理Markdown时通常首先整理为HTML格式)</p>
+<h3 id="标题">标题</h3>
+<p>有六个标题元素标签——<code>&lt;h1&gt;、&lt;h2&gt;、&lt;h3&gt;、&lt;h4&gt;、&lt;h5&gt;、&lt;h6&gt;</code>。每个元素代表文档中不同级别的内容;
+<code>&lt;h1&gt;</code> 表示主标题，<code>&lt;h2&gt;</code>
+表示二级子标题，<code>&lt;h3&gt;</code> 表示三级子标题等。
+建议一个文本中只使用一个<code>&lt;h1&gt;</code>主标题。</p>
+<h3 id="段落">段落</h3>
+<p>使用<code>&lt;p&gt;</code>标签代表段落，浏览器会使用默认的样式进行处理，自动换行，将段落展示为独立的块。</p>
+<h3 id="列表">列表</h3>
+<p>分为无序列表<code>&lt;ul&gt;</code>和有序列表<code>&lt;ol&gt;</code>，效果如下：</p>
+<ul>
+<li>
+豆浆
+</li>
+<li>
+油条
+</li>
+<li>
+豆汁
+</li>
+<li>
+焦圈
+</li>
+</ul>
+<ol>
+<li>
+沿着条路走到头
+</li>
+<li>
+右转
+</li>
+<li>
+直行穿过第一个十字路口
+</li>
+<li>
+在第三个十字路口处左转
+</li>
+<li>
+继续走 300 米，学校就在你的右手边
+</li>
+</ol>
+<p>直接上代码即可，可以相互嵌套形成多级的列表。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆浆<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>油条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆汁<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>焦圈<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>沿着条路走到头<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>右转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>直行穿过第一个十字路口<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>在第三个十字路口处左转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>继续走 300 米，学校就在你的右手边<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="强调粗体斜体">强调(粗体，斜体)</h3>
+<h3 id="表格">表格</h3>
+<h3 id="section"></h3>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Fenglielie
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://fenglielie.github.io/web/web-html.html" title="web自学——HTML">https://fenglielie.github.io/web/web-html.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/learn/learn-inse.html" rel="prev" title="不可压N-S方程的数值算法">
+                  <i class="fa fa-chevron-left"></i> 不可压N-S方程的数值算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-bolt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fenglielie</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.1/mermaid.min.js","integrity":"sha256-8L3O8tirFUa8Va4NSTAyIbHJeLd6OnlcxgupV9F77e0="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+</body>
+</html>

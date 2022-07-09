@@ -1,6 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>web自学——HTML</title>
+    <url>/web/web-html.html</url>
+    <content><![CDATA[<p>众所周知，web前端主要包括HTML+CSS+JavaScript三部分组成，其中HTML是超文本标记语言，CSS是层叠样式表，JavaScript是脚本语言。</p>
+<p>以下学习的内容都是静态网页而非动态网页，不涉及服务器数据库之类的知识，目标之一是了解最基本的网页知识，例如可以写出几个简单的静态网页，并且利用Hexo+Github
+Pages部署，目的之二是看懂Hexo搭建博客的样式配置等。</p>
+<span id="more"></span>
+<h1 id="html">HTML</h1>
+<h2 id="元素">1. 元素</h2>
+<p>一个典型的html元素如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;note&quot;</span>&gt;</span>content<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>&lt;p&gt;</code>是开始标签，<code>&lt;/p&gt;</code>是结束标签，中间的<code>content</code>是元素的内容，<code>class="note"</code>是标签的属性。</p>
+<p>上述元素是成对的，包括开始标签和结束标签，元素可以相互嵌套，例如</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>My cat is <span class="tag">&lt;<span class="name">strong</span>&gt;</span>very<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> grumpy.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>嵌套时注意结束标签的顺序，否则可能出现显示的异常。</p>
+<p>除了上述类型的元素之外，还有不含内容不成对的元素，例如典型的<code>&lt;img&gt;</code>元素，用于在网页中嵌入一个图像：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url-to-image&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>元素按照呈现效果大体上分成两类：块级元素和内联元素：</p>
+<ul>
+<li>块级元素在页面中以块的形式展现——相对于其前面的内容它会出现在新的一行，其后的内容也会被挤到下一行展现。块级元素通常用于展示页面上结构化的内容，例如段落、列表、导航菜单、页脚等等。一个以
+block
+形式展现的块级元素不会被嵌套进内联元素中，但可以嵌套在其它块级元素中。</li>
+<li>内联元素通常出现在块级元素中并环绕文档内容的一小部分，而不是一整个段落或者一组内容。内联元素不会导致文本换行：它通常出现在一堆文字之间例如超链接元素<code>&lt;a&gt;</code>或者斜体强调元素<code>&lt;em&gt;</code>和粗体强调元素<code>&lt;strong&gt;</code>。</li>
+</ul>
+<p>注：</p>
+<ul>
+<li>HTML元素不区分大小写，但是建议全部使用小写字符；</li>
+<li>解析HTML元素时使用了若干个特殊符号，包括：<code>" ' &lt; &gt; &amp;</code>，如果在文本中希望直接使用这些符号，则需要特殊处理，使用下面的<code>&amp;lt;</code>等作为替代，注意结尾包括分号；</li>
+<li>浏览器解析HTML文本的时候使用的是宽松模式——对于简单的语法错误会尝试进行修复，尽量呈现正确的效果；</li>
+<li>HTML支持注释，形如<code>&lt;!--comments--&gt;</code>。</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">原义字符</th>
+<th style="text-align: center;">等价字符引用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;"><code>&amp;lt;</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&gt;</td>
+<td style="text-align: center;"><code>&amp;gt;</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">"</td>
+<td style="text-align: center;"><code>&amp;quot;</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">'</td>
+<td style="text-align: center;"><code>&amp;apos;</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&amp;</td>
+<td style="text-align: center;"><code>&amp;amp;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="属性">属性</h3>
+<p>以超链接元素 <code>&lt;a&gt;</code> 为例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.baidu.com&quot;</span> <span class="attr">title</span>=<span class="string">&quot;baidu&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性名="属性值"，这里属性值使用单引号或双引号包裹(有时不用引号也可以正确解析)，多个属性之间以空格分开。上述元素包括三个属性：</p>
+<ul>
+<li>href 超文本链接地址，也就是超链接指向的url；</li>
+<li>title 标题，当鼠标移动到超链接上时会呈现；</li>
+<li>target
+表明如何打开这个链接，默认在当前标签页，"_blank"指的是在新标签页打开。</li>
+</ul>
+<p>效果如下：
+<a href="https://www.baidu.com" title="baidu" target="_blank">百度一下</a>
+(在元素内容"百度一下"下方增加下划线，点击这部分跳转到指定网页)</p>
+<p>有的属性是没有特定值的，只有开关两种状态，例如下面的disabled属性含义为禁止输入，只能选择开启或关闭，属性值与属性名相同，此类属性称为布尔属性，可以简写</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">disabled</span>=<span class="string">&quot;disabled&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">disabled</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下面是两个输入框的例子作为直观对比，第二个是开启了disabled属性的，无法输入：</p>
+<p><input type="text"> <input type="text" disabled></p>
+<h2 id="基本框架">2. 基本框架</h2>
+<p>如下是一个最基本的HTML文件结构，包括</p>
+<ul>
+<li>文档类型 <code>&lt;!DOCTYPE html&gt;</code>；</li>
+<li>根元素 <code>&lt;html&gt; &lt;/html&gt;</code>
+包括整个页面的内容，可以使用lang属性声明整个网页的语言，例如"zh-CN"或"en"，包括以下两部分：
+<ul>
+<li>头部 <code>&lt;head&gt; &lt;/head&gt;</code>
+不可见的内容，包括页面数据的描述等；</li>
+<li>主体 <code>&lt;body&gt; &lt;/body&gt;</code>
+可见的内容，包括主要的数据。</li>
+</ul></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>My Test Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url-to-image&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;My Test Image&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="head部分">3. head部分</h2>
+<p>head部分通常包括如下内容：</p>
+<ul>
+<li>文档字符集，使用utf-8即可，<code>&lt;meta charset="utf-8"&gt;</code></li>
+<li>页面标题，会在浏览器标签页上显示(而不是正文中)，<code>&lt;title&gt; &lt;/title&gt;</code></li>
+</ul>
+<p>还可以包括其他内容，例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--字符集 charset--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--页面标题 title--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>The Page Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--页面图标 icon--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://developer.mozilla.org/static/img/favicon32.png&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--网页作者 author--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span> <span class="attr">content</span>=<span class="string">&quot;Chris Mills&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--网页描述 description 可能出现在搜索引擎的页面中--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;The MDN Web Docs Learning Area aims to provide</span></span></span><br><span class="line"><span class="string"><span class="tag">complete beginners to the Web with all they need to know to get</span></span></span><br><span class="line"><span class="string"><span class="tag">started with developing web sites and applications.&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="典型的元素">4. 典型的元素</h2>
+<p>除了纯文本信息，在网页内容中最常见的元素就是图片和超链接，因此首先关注这两种元素的用法和属性。</p>
+<h3 id="图像元素">图像元素</h3>
+<p>图像元素最简单的用法如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url-to-image&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中必要的属性：</p>
+<ul>
+<li>src: 图片源文件的url；</li>
+<li>alt: 替代文本，通常是图片的描述，在图片加载失败时会显示出来。</li>
+</ul>
+<p>可选的属性：</p>
+<ul>
+<li>height: 图片的高度；</li>
+<li>width: 宽度；</li>
+<li>loading:
+加载选项，包括立刻加载eager和延迟加载lazy，延迟加载会推迟加载处于屏幕外的图像。</li>
+</ul>
+<h3 id="超链接元素">超链接元素</h3>
+<p>超链接元素典型的用法如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.baidu.com&quot;</span> <span class="attr">title</span>=<span class="string">&quot;baidu&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="文本类元素">5. 文本类元素</h2>
+<p>和Markdown语法一样，HTML的文本也包括常见的多级标题，有序无序列表等组成。(处理Markdown时通常首先整理为HTML格式)</p>
+<h3 id="标题">标题</h3>
+<p>有六个标题元素标签——<code>&lt;h1&gt;、&lt;h2&gt;、&lt;h3&gt;、&lt;h4&gt;、&lt;h5&gt;、&lt;h6&gt;</code>。每个元素代表文档中不同级别的内容;
+<code>&lt;h1&gt;</code> 表示主标题，<code>&lt;h2&gt;</code>
+表示二级子标题，<code>&lt;h3&gt;</code> 表示三级子标题等。
+建议一个文本中只使用一个<code>&lt;h1&gt;</code>主标题。</p>
+<h3 id="段落">段落</h3>
+<p>使用<code>&lt;p&gt;</code>标签代表段落，浏览器会使用默认的样式进行处理，自动换行，将段落展示为独立的块。</p>
+<h3 id="列表">列表</h3>
+<p>分为无序列表<code>&lt;ul&gt;</code>和有序列表<code>&lt;ol&gt;</code>，效果如下：</p>
+<ul>
+<li>
+豆浆
+</li>
+<li>
+油条
+</li>
+<li>
+豆汁
+</li>
+<li>
+焦圈
+</li>
+</ul>
+<ol>
+<li>
+沿着条路走到头
+</li>
+<li>
+右转
+</li>
+<li>
+直行穿过第一个十字路口
+</li>
+<li>
+在第三个十字路口处左转
+</li>
+<li>
+继续走 300 米，学校就在你的右手边
+</li>
+</ol>
+<p>直接上代码即可，可以相互嵌套形成多级的列表。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆浆<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>油条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆汁<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>焦圈<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>沿着条路走到头<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>右转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>直行穿过第一个十字路口<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>在第三个十字路口处左转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>继续走 300 米，学校就在你的右手边<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="强调粗体斜体">强调(粗体，斜体)</h3>
+<h3 id="表格">表格</h3>
+<h3 id="section"></h3>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+  </entry>
+  <entry>
     <title>不可压N-S方程的数值算法</title>
     <url>/learn/learn-inse.html</url>
     <content><![CDATA[<p>不可压缩N-S方程的求解算法学习笔记，由以下笔记组成：</p>
