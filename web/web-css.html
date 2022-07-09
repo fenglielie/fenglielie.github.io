@@ -30,10 +30,12 @@
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
 <meta property="og:description" content="在简单学习了HTML之后，可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，我们把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，从而更便利地组织一个网页。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/web-css-1.png">
 <meta property="article:published_time" content="2022-07-09T05:59:30.000Z">
-<meta property="article:modified_time" content="2022-07-09T13:09:32.479Z">
+<meta property="article:modified_time" content="2022-07-09T14:39:47.866Z">
 <meta property="article:author" content="Fenglielie">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/web-css-1.png">
 
 
 <link rel="canonical" href="https://fenglielie.github.io/web/web-css.html">
@@ -137,7 +139,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -150,6 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#css"><span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8html%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%A0%B7%E5%BC%8F"><span class="nav-text">1. 在HTML中使用样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#style%E5%B1%9E%E6%80%A7"><span class="nav-text">style属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5css%E8%AF%AD%E5%8F%A5"><span class="nav-text">嵌入CSS语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5css%E6%96%87%E4%BB%B6"><span class="nav-text">链接CSS文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css%E8%AF%AD%E6%B3%95"><span class="nav-text">2. CSS语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-text">选择器</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -286,7 +289,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-07-09 13:59:30 / Modified: 21:09:32" itemprop="dateCreated datePublished" datetime="2022-07-09T13:59:30+08:00">2022-07-09</time>
+      <time title="Created: 2022-07-09 13:59:30 / Modified: 22:39:47" itemprop="dateCreated datePublished" datetime="2022-07-09T13:59:30+08:00">2022-07-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -305,14 +308,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>94</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
@@ -324,6 +327,143 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>在简单学习了HTML之后，可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，我们把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，从而更便利地组织一个网页。</p>
+<span id="more"></span>
+<h1 id="css">CSS</h1>
+<h2 id="在html中使用样式">1. 在HTML中使用样式</h2>
+<p>我们最终的目标是把CSS文件和HTML文件结合起来，但是在此之前，还有一些方法可以直接在HTML文件中使用简单的样式：</p>
+<h3 id="style属性">style属性</h3>
+例如添加背景色background-color，
+<p style="background-color: #00BFFF">
+可以直接使用元素的style属性定义的样式
+</p>
+<p>源代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;background-color: #00BFFF&quot;</span>&gt;</span>可以直接使用元素的style属性定义的样式<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="嵌入css语句">嵌入CSS语句</h3>
+<p>我们使用如下简单的html文件，在头部使用<code>&lt;style type="text/css"&gt; &lt;/style&gt;</code>包含一段CSS文件，缺点是只能在当前文件中使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>静夜思<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-id">#author</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">64</span>);</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>静夜思<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;author&quot;</span>&gt;</span>李白<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        床前明月光，疑是地上霜。<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        举头望明月，低头思故乡。</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果如下，只修改了作者的颜色，其余均为默认样式。
+<img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/web-css-1.png" width="60%"/></p>
+<h3 id="链接css文件">链接CSS文件</h3>
+<p>在HTML头部使用<code>&lt;link&gt;</code>元素，其中</p>
+<ul>
+<li>href是CSS文件的URL；</li>
+<li>type是链接文档的类型，选择"text/css"即可；</li>
+<li>rel定义链接外部文件的关联类型，让浏览器明白需要按照样式表进行渲染，选择"stylesheet"即可。</li>
+</ul>
+<p>可以链接多个CSS文件，这种方式是网站使用最多的方式，可以把HTML文件和CSS文件完全分离，CSS可以同上作用于多个HTML文件中。</p>
+<p>源代码如下，其中CSS文件略。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>静夜思<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;lianjie.css&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;lianjie2.css&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>静夜思<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;author&quot;</span>&gt;</span>李白<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        床前明月光，疑是地上霜。<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        举头望明月，低头思故乡。</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>还有一种<code>@import</code>的语法，似乎类似于C语言的include，可以在头部的style元素内首先使用，也可以在CSS文件中首先使用，略。</p>
+<h2 id="css语法">2. CSS语法</h2>
+<p>一个简单的CSS语句如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">h1,li &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    font-size: 5em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>语句的作用是选择所有的h1元素和列表项元素，设置文字的颜色和大小。
+首先需要包括一个<strong>选择器</strong>明确这个语句作用的范围，然后是大括号，大括号的内部使用键值对的形式设置样式属性，以分号分隔各个属性，不同语句之间不需要以分号分隔，可以用空格区分显得更加直观。</p>
+<h3 id="选择器">选择器</h3>
+<p>我们首先关注的是选择器，如何筛选处一些元素，对它们赋予专门的样式？这部分语法看起来有点奇怪。</p>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">描述</th>
+<th style="text-align: center;">选择器</th>
+<th style="text-align: center;">示例</th>
+<th style="text-align: left;">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">全选</td>
+<td style="text-align: center;"><code>*</code></td>
+<td style="text-align: center;">*</td>
+<td style="text-align: left;">选择所有元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">按照id选择</td>
+<td style="text-align: center;"><code>#id</code></td>
+<td style="text-align: center;">#firstname</td>
+<td style="text-align: left;">选择id="firstname"的元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">按照元素选择</td>
+<td style="text-align: center;"><code>element</code></td>
+<td style="text-align: center;">p</td>
+<td style="text-align: left;">选择<code>&lt;p&gt;</code>元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">按照类名选择</td>
+<td style="text-align: center;"><code>.class</code></td>
+<td style="text-align: center;">.intro</td>
+<td style="text-align: left;">选择class="intro"的元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">按照元素和类名混合选择</td>
+<td style="text-align: center;"><code>element.class</code></td>
+<td style="text-align: center;">p.intro</td>
+<td
+style="text-align: left;">选择<code>&lt;p&gt;</code>中class="intro"的元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">按照继承关系选择</td>
+<td style="text-align: center;"><code>element1 element2</code></td>
+<td style="text-align: center;">div p</td>
+<td
+style="text-align: left;">选择包含在<code>&lt;div&gt;</code>中的<code>&lt;p&gt;</code>元素(不要求div是p的直接上一层)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">按照直接继承关系选择</td>
+<td style="text-align: center;"><code>element1&gt;element2</code></td>
+<td style="text-align: center;">div&gt;p</td>
+<td
+style="text-align: left;">选择上一层的父元素为<code>&lt;div&gt;</code>的<code>&lt;p&gt;</code>元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">按照同层前方邻居选择</td>
+<td style="text-align: center;"><code>element1+element2</code></td>
+<td style="text-align: center;">div+p</td>
+<td
+style="text-align: left;">选择同一层的前方邻居为<code>&lt;div&gt;</code>的<code>&lt;p&gt;</code>元素(选的是p)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">按照状态选择</td>
+<td style="text-align: center;"><code>:status</code></td>
+<td style="text-align: center;">a:link</td>
+<td style="text-align: left;">选择状态为未点击的所有超链接元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">按照属性选择</td>
+<td style="text-align: center;"><code>[attr]</code></td>
+<td style="text-align: center;">[target]</td>
+<td style="text-align: left;">选择含有target属性的元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">按照属性的值选择</td>
+<td style="text-align: center;"><code>[attr=value]</code></td>
+<td style="text-align: center;">[target=-blank]</td>
+<td style="text-align: left;">选择target="-blank"的元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">使用逗号并列选择</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">p,div</td>
+<td
+style="text-align: left;">选择所有的<code>&lt;p&gt;</code>和<code>&lt;div&gt;</code>元素</td>
+</tr>
+</tbody>
+</table>
+<p>例如下面的代码选择的是在<code>&lt;body&gt;</code>之内，紧接在<code>&lt;h1&gt;</code>后面的<code>&lt;p&gt;</code>元素的内部，类名为
+special的元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> <span class="selector-tag">h1</span> + <span class="selector-tag">p</span> <span class="selector-class">.special</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: yellow;</span><br><span class="line">  <span class="attribute">background-color</span>: black;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li>如果选择器无效，或者使用的属性无效，则会被忽略。</li>
+<li>对于英式英语和美式英语中拼写不同的，以美式为准，典型的是color。</li>
+</ul>
 
     </div>
 
