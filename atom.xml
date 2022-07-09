@@ -6,7 +6,7 @@
   <link href="https://fenglielie.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenglielie.github.io/"/>
-  <updated>2022-07-09T13:07:48.880Z</updated>
+  <updated>2022-07-09T13:09:32.479Z</updated>
   <id>https://fenglielie.github.io/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="https://fenglielie.github.io/web/web-css.html"/>
     <id>https://fenglielie.github.io/web/web-css.html</id>
     <published>2022-07-09T05:59:30.000Z</published>
-    <updated>2022-07-09T13:07:48.880Z</updated>
+    <updated>2022-07-09T13:09:32.479Z</updated>
     
-    <content type="html"><![CDATA[<p>在简单学习了HTML之后，可以得到一个简单的静态网页</p>]]></content>
+    <content type="html"><![CDATA[<p>在简单学习了HTML之后，可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，我们把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，从而更便利地组织一个网页。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;在简单学习了HTML之后，可以得到一个简单的静态网页&lt;/p&gt;
+    <summary type="html">&lt;p&gt;在简单学习了HTML之后，可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，我们把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，从而更便利地组织一个网页。&lt;/p&gt;
 </summary>
       
     
