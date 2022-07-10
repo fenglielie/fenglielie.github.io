@@ -23,16 +23,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="在简单学习了HTML之后，可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，我们把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，从而更便利地组织一个网页。">
+    <meta name="description" content="在简单学习了HTML之后，我们可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，一个明智的做法把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，完成一个网页的组织分离，接下来是CSS的简单学习。  HTML 定义了网页的内容 CSS 描述了网页的布局 JavaScript 控制了网页的行为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web自学——CSS">
 <meta property="og:url" content="https://fenglielie.github.io/web/web-css.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
-<meta property="og:description" content="在简单学习了HTML之后，可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，我们把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，从而更便利地组织一个网页。">
+<meta property="og:description" content="在简单学习了HTML之后，我们可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，一个明智的做法把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，完成一个网页的组织分离，接下来是CSS的简单学习。  HTML 定义了网页的内容 CSS 描述了网页的布局 JavaScript 控制了网页的行为">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/web-css-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/web-css-2.png">
+<meta property="og:image" content="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png">
+<meta property="og:image" content="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png">
 <meta property="article:published_time" content="2022-07-09T05:59:30.000Z">
-<meta property="article:modified_time" content="2022-07-09T14:39:47.866Z">
+<meta property="article:modified_time" content="2022-07-10T15:37:01.629Z">
 <meta property="article:author" content="Fenglielie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/web-css-1.png">
@@ -152,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#css"><span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8html%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%A0%B7%E5%BC%8F"><span class="nav-text">1. 在HTML中使用样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#style%E5%B1%9E%E6%80%A7"><span class="nav-text">style属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5css%E8%AF%AD%E5%8F%A5"><span class="nav-text">嵌入CSS语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5css%E6%96%87%E4%BB%B6"><span class="nav-text">链接CSS文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css%E8%AF%AD%E6%B3%95"><span class="nav-text">2. CSS语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-text">选择器</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#css"><span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8html%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%A0%B7%E5%BC%8F"><span class="nav-text">1. 在HTML中使用样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#style%E5%B1%9E%E6%80%A7"><span class="nav-text">style属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5css%E8%AF%AD%E5%8F%A5"><span class="nav-text">嵌入CSS语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5css%E6%96%87%E4%BB%B6"><span class="nav-text">链接CSS文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css%E8%AF%AD%E6%B3%95"><span class="nav-text">2. CSS语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E5%86%B2%E7%AA%81"><span class="nav-text">语法冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-text">继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#box%E6%A8%A1%E5%9E%8B"><span class="nav-text">3. Box模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E6%A0%B7%E5%BC%8F"><span class="nav-text">4. 典型样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-text">5. 杂项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2"><span class="nav-text">颜色</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -167,7 +170,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +210,9 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/web/web-javascript.html" title="web&#x2F;web-javascript.html">web自学——JavaScript</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/web/web-css.html" title="web&#x2F;web-css.html">web自学——CSS</a>
         </li>
         <li class="links-of-recent-posts-item">
@@ -217,9 +223,6 @@
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/code/ldg/code-ldg.html" title="code&#x2F;ldg&#x2F;code-ldg.html">LDG——一维对流扩散方程，一维N-S方程组</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/learn/learn-inse-acm.html" title="learn&#x2F;learn-inse-acm.html">人工压缩性方法(ACM)</a>
         </li>
     </ul>
   </div>
@@ -287,9 +290,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-07-09 13:59:30 / Modified: 22:39:47" itemprop="dateCreated datePublished" datetime="2022-07-09T13:59:30+08:00">2022-07-09</time>
+      <time title="Created: 2022-07-09 13:59:30" itemprop="dateCreated datePublished" datetime="2022-07-09T13:59:30+08:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-10 23:37:01" itemprop="dateModified" datetime="2022-07-10T23:37:01+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -308,14 +317,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.6k</span>
+      <span>5.4k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>5 mins.</span>
     </span>
 </div>
 
@@ -326,7 +335,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>在简单学习了HTML之后，可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，我们把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，从而更便利地组织一个网页。</p>
+        <p>在简单学习了HTML之后，我们可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，一个明智的做法把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，完成一个网页的组织分离，接下来是CSS的简单学习。</p>
+<ul>
+<li>HTML 定义了网页的内容</li>
+<li>CSS 描述了网页的布局</li>
+<li>JavaScript 控制了网页的行为</li>
+</ul>
 <span id="more"></span>
 <h1 id="css">CSS</h1>
 <h2 id="在html中使用样式">1. 在HTML中使用样式</h2>
@@ -357,8 +371,13 @@
 <h2 id="css语法">2. CSS语法</h2>
 <p>一个简单的CSS语句如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">h1,li &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    font-size: 5em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>语句的作用是选择所有的h1元素和列表项元素，设置文字的颜色和大小。
-首先需要包括一个<strong>选择器</strong>明确这个语句作用的范围，然后是大括号，大括号的内部使用键值对的形式设置样式属性，以分号分隔各个属性，不同语句之间不需要以分号分隔，可以用空格区分显得更加直观。</p>
+<p>语句的作用是选择所有的h1元素和列表项元素，设置文字的颜色和大小。</p>
+<ul>
+<li>首先需要包括一个<strong>选择器</strong>明确这个语句作用的范围；</li>
+<li>然后是大括号，大括号的内部使用键值对的形式设置样式属性，以分号分隔各个属性，不同语句块之间不需要以分号分隔，可以用空行区分显得更加直观；</li>
+<li>属性值通常不需要使用引号，属性值和单位之间不要使用空格，属性值如果是多个词组成，需要用空格区分；</li>
+<li>CSS支持简单的注释，使用<code>/*comment*/</code>，注释可以多行，注意不支持C语言风格的<code>//</code>，注释不支持嵌套。</li>
+</ul>
 <h3 id="选择器">选择器</h3>
 <p>我们首先关注的是选择器，如何筛选处一些元素，对它们赋予专门的样式？这部分语法看起来有点奇怪。</p>
 <table>
@@ -459,11 +478,86 @@ style="text-align: left;">选择所有的<code>&lt;p&gt;</code>和<code>&lt;div&
 <p>例如下面的代码选择的是在<code>&lt;body&gt;</code>之内，紧接在<code>&lt;h1&gt;</code>后面的<code>&lt;p&gt;</code>元素的内部，类名为
 special的元素。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> <span class="selector-tag">h1</span> + <span class="selector-tag">p</span> <span class="selector-class">.special</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: yellow;</span><br><span class="line">  <span class="attribute">background-color</span>: black;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：</p>
+<p>注意：对于英式英语和美式英语中拼写不同的，以美式为准，典型的是color；</p>
+<h3 id="语法冲突">语法冲突</h3>
+<p>关于CSS的语法冲突，有以下的规则：</p>
 <ul>
-<li>如果选择器无效，或者使用的属性无效，则会被忽略。</li>
-<li>对于英式英语和美式英语中拼写不同的，以美式为准，典型的是color。</li>
+<li>如果选择器无效，或者使用的属性无效，或者有语法错误，则整个语句块会被忽略；</li>
+<li>如果有相同级别的样式属性设置作用到同一个元素，则后面的设置会覆盖前面的设置；</li>
+<li>如果有不同级别的样式属性设置作用到同一个元素，则<strong>更具体的选择器有更高的优先级</strong>；</li>
 </ul>
+<p>常见的优先级：元素的style属性&gt;id选择器&gt;类选择器&gt;元素选择器，文件内的样式表&gt;外部样式表，其实还有很复杂的优先级定义关系，略。</p>
+<p>如果不清楚这些优先级，还有一个<code>!important</code>声明，可以附在属性值后，则相对于把当前属性设置提升到了最高优先级。
+(这里的最高优先级也不是绝对的，因为还可以套娃——在后面用一个相同选择器的属性设置加上<code>!important</code>声明覆盖掉它)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 语法正确 */</span></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue <span class="meta">!important</span>; <span class="comment">/* !important 声明 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择器语法错误 语法块无效 */</span></span><br><span class="line">.<span class="selector-class">.special</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 其中一个选择器语法错误 语法块无效 */</span></span><br><span class="line"><span class="selector-tag">h1</span>, .<span class="selector-class">.special</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="继承">继承</h3>
+<p>众多的HTML元素形成了树型架构，或者说层级架构，父元素的样式属性有的会被子元素继承下来(自然继承)，有的不会被继承，典型的关于空间的布局属性不会被继承，例如:
+width,margins,padding,和borders等。(否则空间布局会非常麻烦)</p>
+<p>我们可以明确控制一个样式属性是否继承自它的父元素，有三个值可以达到控制继承的效果：</p>
+<ul>
+<li>inherit 开启继承，明确要求继承自它的父元素；</li>
+<li>initial
+遵从浏览器的默认设置，如果浏览器没有设置并且应该是自然继承的，那么会继承；</li>
+<li>unset 如果属性应该是自然继承的，则继承；否则遵从浏览器的设置。</li>
+</ul>
+<p>例子如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-class-1</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: inherit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-class-2</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: initial;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-class-3</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: unset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Default <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span> color<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;my-class-1&quot;</span>&gt;</span>Inherit the <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span> color<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;my-class-2&quot;</span>&gt;</span>Reset the <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span> color<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;my-class-3&quot;</span>&gt;</span>Unset the <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span> color<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果如下，呈现了好几种颜色：
+<img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/web-css-2.png" width="60%"/></p>
+<h2 id="box模型">3. Box模型</h2>
+<p>在CSS的样式中，所有的元素都被一个个盒子Box包裹着，包括两类盒子：块级盒子和内联盒子。(和HTML的块级元素以及内联元素没有必然的对应关系)</p>
+<p>标准的盒子模型如下：</p>
+<p><img data-src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="盒子示例" width="70%"></p>
+<ul>
+<li>Margin(外边距)：清除边框外的区域，外边距是透明的；</li>
+<li>Border(边框)：围绕在内边距和内容外的边框；(图中的黑线)</li>
+<li>Padding(内边距)：清除内容周围的区域，内边距是透明的；</li>
+<li>Content(内容)：盒子的内容，显示文本和图像。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">350px</span>; <span class="comment">/*内容宽度*/</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>; <span class="comment">/*内容高度*/</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">25px</span>; <span class="comment">/*外边距*/</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">25px</span>; <span class="comment">/*内边距*/</span></span><br><span class="line">  <span class="attribute">border</span>: <span class="number">5px</span> solid black; <span class="comment">/*边框*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" width="70%"></p>
+<p>margin通常被视作盒子之外的部分，盒子(可见部分)的高度宽度不是height和width设置的，因为边界通常也是可见的。
+除了标准盒模型，还有IE使用的盒模型，它对于高度宽度的理解不太一样，是包含边框宽度的。</p>
+<p>我们既可以使用margin统一设置上下左右的外边距，也可以分开使用margin-top等进行详细设置，对于边框等同理。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">4em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="典型样式">4. 典型样式</h2>
+<p>CSS里面的花样简直太多了，没必要学它们，只了解一下最简单的几个：</p>
+<ul>
+<li>字体颜色，例如<code>color=red;</code></li>
+<li>背景色，例如<code>background-color: #567895;</code></li>
+<li>背景图片，例如<code>background-image: url(abc.jpg);</code>
+<ul>
+<li>背景图片是否平铺重复等，例如<code>background-repeat: no-repeat;</code>(不重复)</li>
+<li>背景图片定位，例如<code>background-position: top center;</code></li>
+</ul></li>
+<li>边框，可以统一使用例如<code>border: 1px solid black;</code>，也可以分开使用
+<ul>
+<li>边框宽度，例如<code>border-width: 1px;</code></li>
+<li>边框样式，例如<code>border-style: solid;</code></li>
+<li>边框颜色，例如<code>border-color: black;</code></li>
+<li>圆角，例如<code>border-radius: 10px;</code></li>
+</ul></li>
+<li>内容溢出
+<ul>
+<li>默认会把数据错版地显示出来，尽可能避免文本数据的丢失，<code>overflow: visible;</code></li>
+<li>可以设置把溢出内容隐藏，<code>overflow: hidden;</code></li>
+<li>可以设置把溢出内容形成滚动条，<code>overflow: scroll;</code>，还可以指定x轴或者y轴滚动等。</li>
+</ul></li>
+</ul>
+<h2 id="杂项">5. 杂项</h2>
+<h3 id="颜色">颜色</h3>
+<p>颜色通常可以用三类语句设置：</p>
+<ul>
+<li>常见的固定颜色名称，例如"red"；</li>
+<li>RGB值，例如<code>rgb(255,0,0)</code>；</li>
+<li>十六进制，例如<code>#ff0000</code>，由上面的三个分量值转换16进制后拼接而成。</li>
+</ul>
+<p>CSS的内容对我来说没有什么用，学习笔记的目的只是能看懂最基本的.css文件在干什么，不需要自己写复杂的样式，因此简单学习到这里为止。</p>
+<div class="note info"><p>参考教程：<a
+target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn">Here</a></p>
+</div>
 
     </div>
 
@@ -499,6 +593,9 @@ special的元素。</p>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/web/web-javascript.html" rel="next" title="web自学——JavaScript">
+                  web自学——JavaScript <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
