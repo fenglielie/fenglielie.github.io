@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <h1>Online Clock</h1>
+        <h1>Online Clock <span id="temp"></span></h1>
     </header>
     <div class="clocks">
         <canvas id="canvas" width="500" height="500"></canvas>
@@ -104,6 +104,9 @@
             ctx.restore();
 
             ctx.restore();
+
+            // text
+            document.getElementById("temp").innerHTML = date.toLocaleTimeString();
         }
 
         // initialization

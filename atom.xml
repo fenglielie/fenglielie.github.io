@@ -6,7 +6,7 @@
   <link href="https://fenglielie.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenglielie.github.io/"/>
-  <updated>2022-07-11T07:06:24.673Z</updated>
+  <updated>2022-07-11T08:55:53.323Z</updated>
   <id>https://fenglielie.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不可压N-S方程的间断有限元数值算法</title>
+    <link href="https://fenglielie.github.io/learn/learn-inse-dg.html"/>
+    <id>https://fenglielie.github.io/learn/learn-inse-dg.html</id>
+    <published>2022-07-11T08:48:44.000Z</published>
+    <updated>2022-07-11T08:55:53.323Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前学习的数值算法绝大多数在空间离散上，都采用了有限体积/有限差分法，而较少地使用有限元以及间断有限元进行求解，下面的内容是对近期的相关文章进行的整理分析，对于每一篇文章都附上了URL和本地地址(本地地址在网页上不可用)。</p><span id="more"></span>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;之前学习的数值算法绝大多数在空间离散上，都采用了有限体积/有限差分法，而较少地使用有限元以及间断有限元进行求解，
+下面的内容是对近期的相关文章进行的整理分析，对于每一篇文章都附上了URL和本地地址(本地地址在网页上不可用)。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="learn" scheme="https://fenglielie.github.io/categories/learn/"/>
+    
+    
+    <category term="inse" scheme="https://fenglielie.github.io/tags/inse/"/>
+    
+  </entry>
   
   <entry>
     <title>web自学——JavaScript</title>
@@ -444,25 +466,6 @@ Java等至少一门现代编程语言，只学习Fortran的核心应用——数
     
     
     <category term="fortran" scheme="https://fenglielie.github.io/tags/fortran/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>加密测试博客</title>
-    <link href="https://fenglielie.github.io/test/test-encrypt-blog.html"/>
-    <id>https://fenglielie.github.io/test/test-encrypt-blog.html</id>
-    <published>2022-06-19T09:15:02.000Z</published>
-    <updated>2022-06-20T09:25:56.888Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="e2581393a492f15eca9ebd6a714a755ead8cf6c23c52d78a8204c9e2dd3da0d0">1b693c4938223286468132b2f7068bf6eeb3a4c33651624a93cee180f807df59968100ccd211fe0508eceb67acc624765ee91f6d90f48d1542b1f84cc2e5715418b81ef0a6778681b070ddaf38d9007af4c92479becb117fb6f7c4cd286c03d9fcda7a7ea6a5467ed28655647eb20ed7a4cb6232e6b01a16ecc556972b93a58fb60850267bf876cdbfdfcf3b2656237d96166ded288dd61f0887ae3d757d8ae1f51ab80ba2456a43c156a31a6e3f3ce5dea1b93aa4b6da0d070ba4c004ca30731b45466327b53f60eae6881c301d79cc8d1588c36161bcdb4e1ee226ab32fc8630708bc5b6d9f06f074c7123239e81b9929fa0b6df2db7450b34fe4e984524eae0def8005c094effade981c01f4f72736a4915d42cf0c9742f79ac0fa98d63f75e1ba334f4d2d41b56a4b7b28c14c96e56b0912f76cf8fa0b7f40c6c7bbb626f70b70ac89a91e06daa9ea9b669a0481b4d197cb1dd8005e5df1c221ea788dfde6a19bc7ea042c52f594b75b1bb29bc1075be973a0e99a2d4745e7210a66054c35a40482cc57cdb63bc382ef0aef826bca1d0d392e74b10c700a3d87c16d9a8ab0ad8fb2ed261a0594c818f056fa737b243732ce5540948ed4b4041759cd0db5c07c56ee9515d3ff927d8b0d2a1cdeb76986c24dad16f0334c86bb61b22413ad5b3eb7edad911bd9b79c7c4c232f109d473ffdec4ef24b8b3700cab2e4ca1871a9e3a5fdf170c159c12e5ede82ef9e5b69e2a463f3fe7b36f099c2659758b91039eeff1a25bfb7184ae2476ae06eee1b44a9b5b87725750e35113c5592247017b7e14a3506b885522cb2942b98449031ae2ad8815dae72aa542acee1d1c8f8cd143e9d435e759b2369c2eddf6d52b29674766da311a05bb36b4ad02313093e3c519e218d95a608ca0a5140af0dcb78b35416661e7a6f56cb07ed6233bac66408484e47bdfa47fb07e6dcbbbf204c68667a01fce0758836c8e51e3b623d62c47295905b56deda846d364028a26fc4ae474255170958f72da8a404363cb8e73b48105fd8bfde97fca2f1d0df8801d09175436f3426615d93f6b3b3355980e6d378b3ec94b529b9bb1cd426adfc84df9aa0d9b324c39459663907d5fb1981d61a56491f66ae760958efa38be9ec8e0d570475bc5ecdb707f929919ae7f8308ce1138eff2682474f123963f67df8eaf59149aef775da0d227f234133fe1dcf510c71679db696140e825c637c8a0d77f7cd33e8d6350a417fd6ed9979a7d4e0c1767e108eb208aae91d3d22332929fad6f0c71ef279127c77314dc9e92bfe037a72dd464f260905b74ec178c8c228bc7259de85c072a685464a1935210fd3b5e6de8e2e1b79d86784ea6ae05d9ba5ece052f9e797982865f22d9b0a583306ffca4633e533892b46441b3e4ed0c4b74f7cbe978145f213b018402aefedc6aa8eeb583933d32c2b37968e735c23b673130af0e40db8565feaa8be27365be1bb1979bbc2ac37f4c1de8cb7bc1724142e849425006c3b801baddd62d791522081537ed36871a5ab00674a6c81d07cfd4961adf20cc45c2b3e5da8bef5e60ac62f56ebb05646ba1f31efc846e6e5b71e8b0fb7b9fe819916dd232fa83158894744da479c1f8e5918ce8f52807a5686681baa95d5b3dc26bb29ce22bddf3110255f1e0880a2c0cc783776f8316562b35034fe11e6fe726cfc51f22c01fcf84d88499b807ddafb0255da156ffef174f9c86b31d24c49741adb796b9edcb6fc30dcebde20c149f4461e46928d0f478513ff220f7f0875633e45fae11dd9ea1bd866053bb869c25971e1c7355662a9100ae95f05c2bb083a8f75c746ad7494cb24420dbfffa4c3e9321d3fd4e36214bb8d0e0fe506ebfe1be08f83f6fbaa10e5769f984cb186aed782bfe89326829b759718cf376f295d363173942dbc8b9eb237a2f8ace2cd475d5d508d9f3dd3f4c048f4cbb741b9a7d0ac07f40e0c2547ab85d1e703610cfad</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    
-    <category term="test" scheme="https://fenglielie.github.io/tags/test/"/>
     
   </entry>
   

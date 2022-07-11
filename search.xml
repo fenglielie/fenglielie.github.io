@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>不可压N-S方程的间断有限元数值算法</title>
+    <url>/learn/learn-inse-dg.html</url>
+    <content><![CDATA[<p>之前学习的数值算法绝大多数在空间离散上，都采用了有限体积/有限差分法，而较少地使用有限元以及间断有限元进行求解，
+下面的内容是对近期的相关文章进行的整理分析，对于每一篇文章都附上了URL和本地地址(本地地址在网页上不可用)。</p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>inse</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>web自学——JavaScript</title>
     <url>/web/web-javascript.html</url>
     <content><![CDATA[<p>在简单学习了HTML和CSS之后，接下来是JavaScript的学习，学习的重点不是JavaScript作为一个脚本语言的语法内容，而是JavaScript对于网页的控制。</p>
