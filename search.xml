@@ -9,6 +9,7 @@
 <li>CSS 描述了网页的布局</li>
 <li>JavaScript 控制了网页的行为</li>
 </ul>
+<span id="more"></span>
 <h1 id="javascript">JavaScript</h1>
 <h2 id="在html中使用js">1. 在HTML中使用JS</h2>
 <p>在HTML和CSS一起组装成一个网页之后，浏览器的
