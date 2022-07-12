@@ -3677,7 +3677,7 @@ href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
 href="https://orimi.com/pdf-test.pdf">pdf-test</a>，浏览器会直接缓存并在新页面打开它。
 对于手机端和iPad也是一样。</p>
 <p>也可以使用GitHub存放的文档，使用URL，例如：<a
-href="https://github.com/fenglielie/notes_image/blob/main/README.md">README</a></p>
+href="https://github.com/fenglielie/notes_image/raw/main/README.md">README</a>，注意如果希望在Github网站打开，是仓库名+blob+分支名+文件名，如果以纯文件的形式打开，是仓库名+raw+分支名+文件名。</p>
 <h2 id="基于百度云分享资源">基于百度云分享资源</h2>
 <p>基于百度云网盘分享资源，必须要提取码，有点麻烦。例如</p>
 <p><a
@@ -3693,6 +3693,7 @@ href="https://pan.baidu.com/s/19iRH50TKVHaCq2MhYDA4yQ?pwd=nggj">一个小视频
 <p><a
 href="https://mailustceducn-my.sharepoint.com/:f:/g/personal/lishun_mail_ustc_edu_cn/Elbx5zdcuepMoRQlx7CV4XoBGmXQgPLQlt6LZqq8xvBZLA?e=JwWWxK">测试一下吧，流体力学的课程文件夹</a></p>
 <p>这个和百度云不一样，直接共享了一个文件夹的查看/编辑权限。</p>
+<p>需求并没有完美解决，未完待续。</p>
 <h1 id="自定义样式">8.自定义样式</h1>
 <h2 id="css">CSS</h2>
 <p>例如效果：<span id="inline-green"> 这里输入文字 </span></p>
