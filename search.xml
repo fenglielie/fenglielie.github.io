@@ -3671,12 +3671,16 @@ href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
 <p>代码如下，可以去b站分享中选择代码。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=938539117&amp;bvid=BV1JT4y1r74p&amp;cid=587958621&amp;page=10&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
 <h1 id="pdf文档">7.PDF文档</h1>
-<p>需要考虑两个问题，本地文档的索引和网上文档的索引管理。</p>
-<h2 id="使用url">使用URL</h2>
+<p>如何方便地管理和查看PDF文档？需要考虑两个问题，本地文档的索引和网上文档的索引管理。</p>
+<h2 id="方式一">方式一</h2>
 <p>对于网上的PDF，直接使用原始URL，例如：<a
 href="https://orimi.com/pdf-test.pdf">pdf-test</a>，浏览器会直接缓存并在新页面打开它。</p>
-<p>也可以在Hexo博客中打开它，会把文档嵌入当前网页，而非在新标签页打开：</p>
-<div class="pdf-container" data-target="https://orimi.com/pdf-test.pdf" data-height="500px"></div>
+<h2 id="方式二">方式二</h2>
+<p>对于网上的PDF，也可以在Hexo博客中打开它，会把文档嵌入当前网页，而非在新标签页打开：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% pdf https://orimi.com/pdf-test.pdf %&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式有很大的问题，手机端和iPad均无法正常显示PDF，而会嵌入博客页面自身。</p>
+<h2 id="方式三">方式三</h2>
+<p>对于本地的PDF，可以</p>
 <h1 id="自定义样式">8.自定义样式</h1>
 <h2 id="css">CSS</h2>
 <p>例如效果：<span id="inline-green"> 这里输入文字 </span></p>
