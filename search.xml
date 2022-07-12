@@ -3555,7 +3555,7 @@ print语句也可以用来输出，但是局限于向屏幕输出，建议使用
     <content><![CDATA[<p>这是用于测试hexo对markdown支持效果的博客。</p>
 <span id="more"></span>
 <!-- toc -->
-<h1 id="文本测试">文本测试</h1>
+<h1 id="文本测试">1.文本测试</h1>
 <h2 id="摘要">摘要</h2>
 <p>使用下列代码可以将前文截断为文章的摘要 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure></p>
 <h2 id="无序列表">无序列表</h2>
@@ -3609,7 +3609,7 @@ print语句也可以用来输出，但是局限于向屏幕输出，建议使用
 </tr>
 </tbody>
 </table>
-<h1 id="图片测试">图片测试</h1>
+<h1 id="图片测试">2.图片测试</h1>
 <p>不使用本地图片，使用基于GitHub搭建的图床，效果如下。</p>
 <figure>
 <img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/%E4%B8%8D%E5%8F%AF%E5%8E%8B%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB.png"
@@ -3619,10 +3619,10 @@ alt="这是一个图片的标题" />
 <p>除了标准的markdown语法的图片，还支持html语法的图片，这种方式可以指定图片比例(如果同时设置了宽度和高度，以宽度缩放为准)</p>
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png" width="50%"  /></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://raw.githubusercontent.com/fenglielie/notes_image/main/img/lagrange.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;50%&quot;</span>  /&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="代码测试">代码测试</h1>
+<h1 id="代码测试">3.代码测试</h1>
 <p>注意标明编程语言，用于语法高亮。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello,world!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="latex测试">Latex测试</h1>
+<h1 id="latex测试">4.Latex测试</h1>
 <p>轻量级的Latex语法支持。</p>
 <h2 id="行内公式">行内公式</h2>
 <p>行内的分式支持<span class="math inline">\(\frac12\)</span>，<span
@@ -3650,14 +3650,48 @@ g(x)=
 \mathbf{u}|_{t=0} &amp;= \mathbf{u}_0
 \end{aligned}
 \]</span></p>
-<h1 id="引用测试">引用测试</h1>
+<h1 id="引用测试">5.引用测试</h1>
 <h2 id="本博客内的其他文章">本博客内的其他文章</h2>
 <p>语法为 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% post_link my-first-blog %&#125;</span><br></pre></td></tr></table></figure></p>
 <p>例如这是hexo自带的第一篇博客<a href="/hello-world.html" title="Hello World">Hello World</a></p>
 <h2 id="外部的链接">外部的链接</h2>
 <p>使用标准的markdown语法。 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这是一个链接 [显示文本](https://baidu.com &quot;浮动文本&quot;)。</span><br></pre></td></tr></table></figure> 效果为： 这是一个链接 <a
 href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
-<h1 id="提示块">提示块</h1>
+<h1 id="音乐与视频">6.音乐与视频</h1>
+<h2 id="音乐">音乐</h2>
+<p>可以在文章中嵌入一个网易云播放器(不能是会员歌曲)</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1488737309&amp;auto=1&amp;height=66">
+</iframe>
+<p>代码如下，可以去网易云网页版复制外链播放器。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=1488737309&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="视频">视频</h2>
+<p>可以嵌入b站的视频播放</p>
+<iframe src="//player.bilibili.com/player.html?aid=938539117&amp;bvid=BV1JT4y1r74p&amp;cid=587958621&amp;page=10" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+</iframe>
+<p>代码如下，可以去b站分享中选择代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=938539117&amp;bvid=BV1JT4y1r74p&amp;cid=587958621&amp;page=10&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="pdf文档">7.PDF文档</h1>
+<p>需要考虑两个问题，本地文档的索引和网上文档的索引管理。</p>
+<h2 id="使用url">使用URL</h2>
+<p>对于网上的PDF，直接使用原始URL，例如：<a
+href="https://orimi.com/pdf-test.pdf">pdf-test</a>，浏览器会直接缓存并在新页面打开它。</p>
+<p>也可以在Hexo博客中打开它，会把文档嵌入当前网页，而非在新标签页打开：</p>
+<div class="pdf-container" data-target="https://orimi.com/pdf-test.pdf" data-height="500px"></div>
+<h1 id="自定义样式">8.自定义样式</h1>
+<h2 id="css">CSS</h2>
+<p>例如效果：<span id="inline-green"> 这里输入文字 </span></p>
+<p>源代码 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;span id=&quot;inline-green&quot;&gt; 这里输入文字 &lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
+<p>需要在styles.styl里添加对应的样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 颜色块-黄</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-id">#inline-yellow</span> &#123;</span><br><span class="line"><span class="attribute">display</span>:inline;</span><br><span class="line"><span class="attribute">padding</span>:.<span class="number">2em</span> .<span class="number">6em</span> .<span class="number">3em</span>;</span><br><span class="line"><span class="attribute">font-size</span>:<span class="number">100%</span>;</span><br><span class="line"><span class="attribute">font-weight</span>:bold;</span><br><span class="line"><span class="attribute">line-height</span>:<span class="number">1</span>;</span><br><span class="line"><span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line"><span class="attribute">text-align</span>:center;</span><br><span class="line"><span class="attribute">white-space</span>:nowrap;</span><br><span class="line"><span class="attribute">vertical-align</span>:baseline;</span><br><span class="line"><span class="attribute">border-radius</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">background-color</span>: <span class="number">#f0ad4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="通过标签插件调用">通过标签插件调用</h2>
+<p>例如效果：<span id="inline-blue">定义</span> 效果：<span id="inline-yellow">例子</span>
+效果：<span id="inline-green">证明</span></p>
+<p>源代码 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% def 定义 %&#125;</span><br><span class="line">&#123;% eg 例子 %&#125;</span><br><span class="line">&#123;% pf 证明 %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先需要CSS在styles,styl里面定义好样式，然后通过在hexo-theme-next/scripts/tags里面新建一个文件mytag.js，其中加入如下代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">my_def</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-blue&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;def&#x27;</span>, my_def);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">my_eg</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-yellow&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;eg&#x27;</span>, my_eg);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">my_pf</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-green&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;pf&#x27;</span>, my_pf);</span><br></pre></td></tr></table></figure>
+<p>这两个功能以后学过CSS+JS后可以进一步利用，但是现在样式还是太丑了，不如不用。</p>
+<h1 id="杂项">9.杂项</h1>
+<h2 id="提示块">提示块</h2>
 <p>hexo-next在markdown语法之外，额外支持一些提示块，效果如下，需要在主题配置文件中note部分修改。</p>
 <div class="note default"><p>default 提示块标签</p>
 </div>
@@ -3673,12 +3707,12 @@ href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
 </div>
 <p>语法如下，</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="选项卡">选项卡</h1>
+<h2 id="选项卡">选项卡</h2>
 <p>除了简单的表格，hexo-next还支持很高级的选项卡效果，可以切换内容，效果如下：</p>
 <div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">tab 1</a></li><li class="tab"><a href="#tab-2">tab 2</a></li><li class="tab"><a href="#tab-3">A</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p><strong>选项卡 1</strong></p></div><div class="tab-pane" id="tab-2"><p><strong>选项卡 2</strong></p></div><div class="tab-pane" id="tab-3"><p><strong>选项卡 3</strong> 名字为A</p></div></div></div>
 <p>代码如下</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% tabs tab,1 %&#125; 名字为tab，默认在第1个选项卡，如果是-1则隐藏</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">**选项卡 1**</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">**选项卡 2**</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab A --&gt;</span><br><span class="line">**选项卡 3** 名字为A</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="流程图">流程图</h1>
+<h2 id="流程图">流程图</h2>
 <p>基于<code>hexo-filter-mermaid-diagrams</code>插件的支持，</p>
 <pre class="mermaid">graph TD
   A[Christmas] -->|Get money| B(Go shopping)
@@ -3686,7 +3720,7 @@ href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
   C -->|One| D[Laptop]
   C -->|Two| E[iPhone]
   C -->|Three| F[fa:fa-car Car]</pre>
-<h1 id="一些有趣的图标">一些有趣的图标</h1>
+<h2 id="有趣的图标">有趣的图标</h2>
 <p>直接复制可用，vscode也支持显示。</p>
 <ul>
 <li>💥</li>
@@ -3697,32 +3731,6 @@ href="https://baidu.com" title="浮动文本">显示文本</a>。</p>
 <li>📖</li>
 <li>🌀</li>
 </ul>
-<h1 id="音乐与视频">音乐与视频</h1>
-<h2 id="音乐">音乐</h2>
-<p>可以在文章中嵌入一个网易云播放器(不能是会员歌曲)</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1488737309&amp;auto=1&amp;height=66">
-</iframe>
-<p>代码如下，可以去网易云网页版复制外链播放器。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=1488737309&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="视频">视频</h2>
-<p>可以嵌入b站的视频播放</p>
-<iframe src="//player.bilibili.com/player.html?aid=938539117&amp;bvid=BV1JT4y1r74p&amp;cid=587958621&amp;page=10" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
-</iframe>
-<p>代码如下，可以去b站分享中选择代码。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=938539117&amp;bvid=BV1JT4y1r74p&amp;cid=587958621&amp;page=10&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="自定义样式">自定义样式</h1>
-<h2 id="css">CSS</h2>
-<p>例如效果：<span id="inline-green"> 这里输入文字 </span></p>
-<p>源代码 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;span id=&quot;inline-green&quot;&gt; 这里输入文字 &lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
-<p>需要在styles.styl里添加对应的样式</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 颜色块-黄</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-id">#inline-yellow</span> &#123;</span><br><span class="line"><span class="attribute">display</span>:inline;</span><br><span class="line"><span class="attribute">padding</span>:.<span class="number">2em</span> .<span class="number">6em</span> .<span class="number">3em</span>;</span><br><span class="line"><span class="attribute">font-size</span>:<span class="number">100%</span>;</span><br><span class="line"><span class="attribute">font-weight</span>:bold;</span><br><span class="line"><span class="attribute">line-height</span>:<span class="number">1</span>;</span><br><span class="line"><span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line"><span class="attribute">text-align</span>:center;</span><br><span class="line"><span class="attribute">white-space</span>:nowrap;</span><br><span class="line"><span class="attribute">vertical-align</span>:baseline;</span><br><span class="line"><span class="attribute">border-radius</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">background-color</span>: <span class="number">#f0ad4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="通过标签插件调用">通过标签插件调用</h2>
-<p>例如效果：<span id="inline-blue">定义</span> 效果：<span id="inline-yellow">例子</span>
-效果：<span id="inline-green">证明</span></p>
-<p>源代码 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% def 定义 %&#125;</span><br><span class="line">&#123;% eg 例子 %&#125;</span><br><span class="line">&#123;% pf 证明 %&#125;</span><br></pre></td></tr></table></figure></p>
-<p>首先需要CSS在styles,styl里面定义好样式，然后通过在hexo-theme-next/scripts/tags里面新建一个文件mytag.js，其中加入如下代码</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">my_def</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-blue&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;def&#x27;</span>, my_def);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">my_eg</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-yellow&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;eg&#x27;</span>, my_eg);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">my_pf</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> html = <span class="string">&#x27;&lt;span id=&quot;inline-green&quot;&gt;&#x27;</span>+name+<span class="string">&#x27;&lt;/span&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//+是连接符</span></span><br><span class="line">    <span class="keyword">return</span> html;</span><br><span class="line">&#125;</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">tag</span>.<span class="title function_">register</span>(<span class="string">&#x27;pf&#x27;</span>, my_pf);</span><br></pre></td></tr></table></figure>
-<p>这两个功能以后学过CSS+JS后可以进一步利用，但是现在样式还是太丑了，不如不用。</p>
 ]]></content>
       <tags>
         <tag>test</tag>
