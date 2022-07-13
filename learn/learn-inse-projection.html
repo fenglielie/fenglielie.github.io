@@ -31,7 +31,7 @@
 <meta property="og:description" content="投影法也称为时间分裂法，分步法，按照思路分为两类：  第一类基于N-S方程组的半离散格式，基于Helmholtz分解定理； 第二类基于N-S方程组的全离散格式，采用近似算子分裂&#x2F;近似矩阵分裂。  下文只包括第一类投影法。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-03T12:31:23.000Z">
-<meta property="article:modified_time" content="2022-07-04T09:25:53.857Z">
+<meta property="article:modified_time" content="2022-07-12T16:44:50.784Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="inse">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#helmholtz%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86"><span class="nav-text">Helmholtz分解定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">无压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6%E5%9E%8B%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">旋度型压力增量投影法</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#helmholtz%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86"><span class="nav-text">Helmholtz分解定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">1.无压力增量投影法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">2.压力增量投影法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6%E5%9E%8B%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">3.旋度型压力增量投影法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E4%B8%8E%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">投影法与边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#helmholtz%E5%88%86%E8%A7%A3"><span class="nav-text">Helmholtz分解</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,6 +206,9 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/learn/learn-inse-projection.html" title="learn&#x2F;learn-inse-projection.html">投影法</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/learn/learn-inse-dg.html" title="learn&#x2F;learn-inse-dg.html">不可压N-S方程的间断有限元数值算法</a>
         </li>
         <li class="links-of-recent-posts-item">
@@ -216,9 +219,6 @@
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/web/web-css.html" title="web&#x2F;web-css.html">web自学——CSS</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/web/web-html.html" title="web&#x2F;web-html.html">web自学——HTML</a>
         </li>
     </ul>
   </div>
@@ -294,7 +294,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-04 17:25:53" itemprop="dateModified" datetime="2022-07-04T17:25:53+08:00">2022-07-04</time>
+      <time title="Modified: 2022-07-13 00:44:50" itemprop="dateModified" datetime="2022-07-13T00:44:50+08:00">2022-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -313,14 +313,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>4.2k</span>
+      <span>6.3k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>4 mins.</span>
+      <span>6 mins.</span>
     </span>
 </div>
 
@@ -347,7 +347,7 @@
 <li><a href="/learn/learn-inse-projection.html" title="投影法">投影法</a></li>
 <li><a href="/learn/learn-inse-simple.html" title="SIMPLE算法">SIMPLE算法</a></li>
 </ul>
-<h2 id="helmholtz分解定理">Helmholtz分解定理</h2>
+<h1 id="helmholtz分解定理">Helmholtz分解定理</h1>
 <p>对于任意光滑的向量场<span
 class="math inline">\(V\)</span>可以唯一分解为一个无源场<span
 class="math inline">\(V^d\)</span>和一个无旋场<span
@@ -356,7 +356,8 @@ class="math display">\[
 V = V^d + \nabla \phi
 \]</span> 满足<span class="math inline">\(\nabla \cdot V^d = 0\)</span>,
 和<span class="math inline">\(\nabla \times \nabla \phi=0\)</span>。</p>
-<h2 id="投影法">投影法</h2>
+<p>(这一说法是不严谨的，因为唯一性需要向量场满足一定的边界条件，暂时略过边界的考虑)</p>
+<h1 id="投影法">投影法</h1>
 <p>考虑无量纲化的二维不可压缩方程组</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -365,7 +366,7 @@ V = V^d + \nabla \phi
 \nabla \cdot \mathbf{u} &amp;= 0\\
 \end{aligned}
 \]</span></p>
-<h3 id="无压力增量投影法">无压力增量投影法</h3>
+<h2 id="无压力增量投影法">1.无压力增量投影法</h2>
 <p>我们介绍最早由Chorin和Temam提出的投影法，利用显式欧拉离散得到：</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -445,7 +446,7 @@ p^{n+1} = \frac{1}{\Delta t} \nabla \cdot
 <p>这样可以保证离散的 <span class="math inline">\(\nabla \cdot
 \mathbf{u}^{n+1} =0\)</span> 严格成立。</p>
 </div>
-<h3 id="压力增量投影法">压力增量投影法</h3>
+<h2 id="压力增量投影法">2.压力增量投影法</h2>
 <p>首先，时间上不使用显式Euler，而改用二阶向后差分格式 <span
 class="math display">\[
 \frac{\partial \mathbf{u}^{n+1}}{\partial t} \approx
@@ -492,7 +493,7 @@ class="math display">\[
 p^{n+1} &amp;= p^n + q
 \end{align}
 \]</span></p>
-<h3 id="旋度型压力增量投影法">旋度型压力增量投影法</h3>
+<h2 id="旋度型压力增量投影法">3.旋度型压力增量投影法</h2>
 <p>第一步，预测步, 计算中间速度<span
 class="math inline">\(\mathbf{u}^*\)</span>，考虑压强梯度的影响(需要隐式求解<span
 class="math inline">\(\mathbf{u}^*\)</span>)</p>
@@ -524,6 +525,107 @@ p^{n+1} &amp;= p^n + \phi - \frac{1}{Re} \nabla \cdot \mathbf{u}^*
 <p>这一种和压力增量型投影法相比，略有不同，可以视作对压力增量型投影方法的改进，因为如果不可压方程组对速度有第一类边界条件时，对<span
 class="math inline">\(\phi\)</span>的求解比对<span
 class="math inline">\(q\)</span>的求解可以给出更合理的边界条件，略。</p>
+<h1 id="投影法与边界处理">投影法与边界处理</h1>
+<div class="note info"><p>参考 Numerical Simulations of Incompressible Flows 中的 Accuracy of
+Projection Methods for the Incompressible Navier-Stokes Equations (David
+L. Brown)</p>
+</div>
+<p>考虑含边界条件的无量纲化的二维不可压缩方程组：</p>
+<p>在区域<span class="math inline">\(\Omega\)</span>内成立： <span
+class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
+\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\nabla \cdot \mathbf{u} &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>在区域边界<span class="math inline">\(\partial
+\Omega\)</span>成立<span
+class="math inline">\(B(\mathbf{u},p)=0\)</span>，这里<span
+class="math inline">\(B(\mathbf{u},p)=0\)</span>的具体形式可能是</p>
+<ul>
+<li>关于速度:
+<ul>
+<li>无穿透边界条件(no flow) <span
+class="math inline">\(\mathbf{u}\cdot\mathbf{n}=0\)</span>;</li>
+<li>无滑移边界条件(no slip) <span
+class="math inline">\(\mathbf{u}\cdot\mathbf{\tau}=0\)</span>;</li>
+</ul></li>
+<li>关于压强:
+<ul>
+<li>例如混合边界条件 <span class="math inline">\(\alpha p + \beta
+\mathbf{n} \cdot \nabla p = g\)</span>.</li>
+</ul></li>
+</ul>
+<h2 id="helmholtz分解">Helmholtz分解</h2>
+<p>在区域<span class="math inline">\(\Omega\)</span>中，向量场<span
+class="math inline">\(\mathbf{v}\)</span>总是可以分解为</p>
+<p><span class="math display">\[
+\mathbf{v} = \mathbf{u} + \nabla \phi
+\]</span></p>
+<p>其中<span class="math inline">\(\mathbf{u}\)</span>满足散度为零<span
+class="math inline">\(\nabla \cdot
+\mathbf{u}=0\)</span>，为了确保分解的唯一性，需要加上一定的条件，我们采用如下边界条件</p>
+<p><span class="math display">\[
+\mathbf{u}\cdot \mathbf{n} = u_b
+\]</span></p>
+<p>也就是边界处的法向分量已知。</p>
+<p>我们不妨记<span
+class="math inline">\(\mathbf{u}=P(\mathbf{v})\)</span>，这里<span
+class="math inline">\(P\)</span>定义为向散度为零的子空间做投影，<span
+class="math inline">\(\mathbf{v}-P(\mathbf{v})\)</span>是与之正交的分量，一定是某个标量场的梯度场，因此记作<span
+class="math inline">\(\nabla \phi\)</span>。</p>
+<p>投影法的主要想法是：先根据动量方程算出一个预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>，然后利用投影算子<span
+class="math inline">\(P\)</span>，得到无散度的速度<span
+class="math inline">\(\mathbf{u}=P(\mathbf{u}^*)\)</span>。</p>
+<p>让预测速度满足如下的半离散方程</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{u}^*_t + (\mathbf{u} \cdot \nabla)\mathbf{u} - \frac{1}{Re}
+\nabla^2 \mathbf{u}^* + \nabla q = 0
+\end{aligned}
+\]</span></p>
+<p>这里<span class="math inline">\(q\)</span>可以看作<span
+class="math inline">\(p\)</span>的某种近似，如果把<span
+class="math inline">\(\mathbf{u}^*=\mathbf{u} + \nabla
+\phi\)</span>代入上式，即可得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{u}_t + (\nabla \phi)_t + (\mathbf{u} \cdot \nabla)\mathbf{u} -
+\frac{1}{Re} \nabla^2 \mathbf{u} - \frac{1}{Re}\nabla^2 (\nabla \phi) +
+\nabla q &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>这样可以得到<span class="math inline">\(p\)</span>,<span
+class="math inline">\(q\)</span>和<span
+class="math inline">\(\phi\)</span>的关系</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\nabla \phi)_t- \frac{1}{Re}\nabla^2 (\nabla \phi) + \nabla q  = \nabla
+p
+\end{aligned}
+\]</span></p>
+<p>利用投影得到速度<span
+class="math inline">\(\mathbf{u}=P(\mathbf{u}^*)\)</span>的过程等价于如下关于<span
+class="math inline">\(\phi\)</span>的椭圆方程的求解：</p>
+<p><span class="math display">\[
+\nabla^2 \phi = \nabla \cdot \mathbf{u}^*
+\]</span></p>
+<p>然后计算<span class="math inline">\(\mathbf{u}=\mathbf{u}^* - \nabla
+\phi\)</span>即可。</p>
+<p>最终我们得到这样的一个框架，现在没有做任何的近似：</p>
+<p><span
+class="math inline">\(\mathbf{u},p\)</span>满足动量方程和连续性方程，等价于四个变量<span
+class="math inline">\(\mathbf{u},\mathbf{u}^*,q,\phi\)</span>满足如下方程组</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{u}^*_t + (\mathbf{u} \cdot \nabla)\mathbf{u} - \frac{1}{Re}
+\nabla^2 \mathbf{u}^* + \nabla q &amp;= 0\\
+\nabla^2 \phi &amp;= \nabla \cdot \mathbf{u}^*\\
+\mathbf{u}^* &amp;= \mathbf{u} + \nabla \phi\\
+\end{aligned}
+\]</span></p>
 
     </div>
 
