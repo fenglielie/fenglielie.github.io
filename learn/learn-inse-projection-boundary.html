@@ -31,7 +31,7 @@
 <meta property="og:description" content="投影法的框架与边界处理，以及数值精度的学习。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-14T12:31:23.000Z">
-<meta property="article:modified_time" content="2022-07-14T17:14:04.796Z">
+<meta property="article:modified_time" content="2022-07-15T11:57:03.236Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="inse">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E4%B8%8E%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">投影法与边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">问题模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-text">向量场的分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="nav-text">唯一性定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E6%A1%86%E6%9E%B6"><span class="nav-text">投影法框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%AE%97%E5%AD%90p"><span class="nav-text">投影算子\(P\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E9%80%9F%E5%BA%A6%E7%9A%84%E5%8A%A8%E9%87%8F%E6%96%B9%E7%A8%8B"><span class="nav-text">预测速度的动量方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%AA%A4"><span class="nav-text">主要步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E5%87%A0%E7%B1%BB%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">具体的几类投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">无压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6%E5%9E%8B%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">旋度型压力增量投影法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gauge-methods"><span class="nav-text">Gauge Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Ec-n%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">基于C-N格式的投影法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8Ec-n%E7%B1%BB%E7%9A%84%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">对于C-N类的投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8Egauge%E7%B1%BB%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">对于Gauge类投影法</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E4%B8%8E%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">投影法与边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">问题模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-text">向量场的分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="nav-text">唯一性定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="nav-text">投影法的框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%AE%97%E5%AD%90p"><span class="nav-text">投影算子P</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E9%80%9F%E5%BA%A6%E7%9A%84%E5%8A%A8%E9%87%8F%E6%96%B9%E7%A8%8B"><span class="nav-text">预测速度的动量方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%AA%A4"><span class="nav-text">主要步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E5%87%A0%E7%B1%BB%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">具体的几类投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">无压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6%E5%9E%8B%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">旋度型压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Ec-n%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">基于C-N格式的投影法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gauge-methods"><span class="nav-text">Gauge Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="nav-text">方式一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="nav-text">方式二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89"><span class="nav-text">方式三</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -290,7 +290,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-15 01:14:04" itemprop="dateModified" datetime="2022-07-15T01:14:04+08:00">2022-07-15</time>
+      <time title="Modified: 2022-07-15 19:57:03" itemprop="dateModified" datetime="2022-07-15T19:57:03+08:00">2022-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -355,7 +355,7 @@ class="math inline">\(B(\mathbf{u},p)=0\)</span>的具体形式可能是</p>
 class="math inline">\(\mathbf{u}\cdot\mathbf{n}=u_b\)</span>; (<span
 class="math inline">\(\mathbf{n}\)</span> 为边界法向量)</li>
 <li>固壁无滑移边界条件(no slip) <span
-class="math inline">\(\mathbf{u}\cdot\mathbf{\tau}=0\)</span>; (<span
+class="math inline">\(\mathbf{u}\cdot\mathbf{\tau}=v_b\)</span>; (<span
 class="math inline">\(\mathbf{\tau}\)</span> 为边界切向量)</li>
 </ul></li>
 <li>关于压强:
@@ -419,7 +419,7 @@ class="math inline">\(V \cdot n|_{\partial
 class="math inline">\(\Delta\)</span>和旋度场<span
 class="math inline">\(W\)</span>，那么<span
 class="math inline">\(V\)</span>被唯一确定。</p>
-<h2 id="投影法框架">投影法框架</h2>
+<h2 id="投影法的框架">投影法的框架</h2>
 <p>在区域<span class="math inline">\(\Omega\)</span>中，任意向量场<span
 class="math inline">\(\mathbf{v}\)</span>总是可以分解为</p>
 <p><span class="math display">\[
@@ -427,7 +427,7 @@ class="math inline">\(\mathbf{v}\)</span>总是可以分解为</p>
 \]</span></p>
 <p>其中<span class="math inline">\(\mathbf{u}\)</span>满足散度为零<span
 class="math inline">\(\nabla \cdot \mathbf{u}=0\)</span>。</p>
-<h3 id="投影算子p">投影算子<span class="math inline">\(P\)</span></h3>
+<h3 id="投影算子p">投影算子P</h3>
 <div class="note info"><p>在这一部分，我们采用速度边界条件为<span
 class="math inline">\(\mathbf{u}\cdot
 \mathbf{n}=u_b\)</span>，这里边界的法向速度<span
@@ -483,7 +483,7 @@ class="math inline">\(q\)</span>可以理解为压强的近似，或者说压强
 class="math inline">\(q\)</span>的同时也加入了一个方程，因此没有影响。</p>
 </div>
 <p>从而预测速度<span
-class="math inline">\(\mathbf{u}^*\)</span>满足如下的"伪动量方程"</p>
+class="math inline">\(\mathbf{u}^*\)</span>满足如下的"动量方程"</p>
 <p><span class="math display">\[
 \begin{aligned}
 \mathbf{u}^*_t + (P(\mathbf{u}^*) \cdot \nabla)P(\mathbf{u}^*) -
@@ -539,7 +539,7 @@ class="math display">\[
 \mathbf{u}^n = \mathbf{u}^{*,n} - \nabla \phi^n
 \]</span></li>
 </ul></li>
-<li>对于"伪动量方程"中的<span class="math inline">\(\nabla
+<li>对于"动量方程"中的<span class="math inline">\(\nabla
 q\)</span>，不妨记作<span class="math inline">\(\nabla q^{n+1}\)</span>
 <ul>
 <li>需要添加一个方程基于<span
@@ -547,9 +547,9 @@ class="math inline">\(\mathbf{u}^{*,n},\phi^n\)</span>计算<span
 class="math inline">\(\nabla q^{n+1}\)</span>；</li>
 <li>或者需要添加一个关于<span
 class="math inline">\(\mathbf{u}^{*,n+1},\phi^{n+1},\nabla
-q^{n+1}\)</span>的方程与"伪动量方程"联列求解；</li>
+q^{n+1}\)</span>的方程与"动量方程"联列求解；</li>
 </ul></li>
-<li>对"伪动量方程"进行离散：
+<li>对"动量方程"进行离散：
 <ul>
 <li>时间项和黏性项采用显式或隐式离散；</li>
 <li>对流项可能使用线性化近似，比如<span
@@ -588,7 +588,7 @@ q\)</span>的处理，它添加的方程取</p>
 <p><span class="math display">\[
 \nabla q^{n+1} = \frac{1}{\Delta t}\nabla \phi^n
 \]</span></p>
-<p>对"伪动量方程" <span class="math display">\[
+<p>对"动量方程" <span class="math display">\[
 \begin{aligned}
 \mathbf{u}^*_t + (P(\mathbf{u}^*) \cdot \nabla)P(\mathbf{u}^*) -
 \frac{1}{Re} \nabla^2 \mathbf{u}^* +\nabla q &amp;= 0\\
@@ -614,7 +614,7 @@ class="math display">\[
 t}\nabla \phi^n
 \end{aligned}
 \]</span></p>
-<p>不妨直接取<span class="math inline">\(p^n=\frac{1}{\Delta t}\nabla
+<p>不妨直接取<span class="math inline">\(p^n=\frac{1}{\Delta t}
 \phi^n\)</span>，从而<span
 class="math inline">\(q^{n+1}=p^n\)</span>。</p>
 <h3 id="压力增量投影法">压力增量投影法</h3>
@@ -631,7 +631,7 @@ q\)</span>的处理，它添加的方程令其为</p>
 \nabla q^{n+1} = \nabla p^n + \frac{4 \nabla \phi^n - \nabla
 \phi^{n-1}}{2\Delta t}
 \]</span></p>
-<p>对"伪动量方程"采用了如下的思路进行半离散： <span
+<p>对"动量方程"采用了如下的思路进行半离散： <span
 class="math display">\[
 \begin{aligned}
 \mathbf{u}^*_t + (P(\mathbf{u}^*) \cdot \nabla)P(\mathbf{u}^*) -
@@ -724,64 +724,10 @@ t}\phi^n - \frac{1}{Re} (\nabla \cdot\mathbf{u}^{*,n})\)</span>。</p>
 \nabla(\nabla \cdot \mathbf{u}^{*})
 \end{aligned}
 \]</span></p>
-<h2 id="gauge-methods">Gauge Methods</h2>
-<p>这可以看作一类主要使用<span
-class="math inline">\(\mathbf{u}^*\)</span>进行计算的投影法，在上述框架中直接令<span
-class="math inline">\(q=0\)</span>。</p>
-<p>对于投影<span class="math inline">\(P\)</span>的计算不变： <span
-class="math display">\[
-\begin{aligned}
-\nabla^2 \phi^n &amp;= \nabla \cdot \mathbf{u}^{*,n}\\
-\mathbf{u}^n &amp;= \mathbf{u}^{*,n} - \nabla \phi^n
-\end{aligned}
-\]</span></p>
-<p>对于 <span class="math inline">\(\nabla q\)</span>
-的处理，它添加的方程直接令其为零</p>
-<p><span class="math display">\[
-\nabla q^{n+1} = 0
-\]</span></p>
-<p>(之前选取<span class="math inline">\(\nabla q^{n+1}\)</span>
-的效果之一，就是把"伪动量方程"时间离散时已知时间层的预测速度变成速度，现在相当于放弃了这个修正)</p>
-<p>对"伪动量方程" <span class="math display">\[
-\begin{aligned}
-\mathbf{u}^*_t + (P(\mathbf{u}^*) \cdot \nabla)P(\mathbf{u}^*) -
-\frac{1}{Re} \nabla^2 \mathbf{u}^* +\nabla q &amp;= 0\\
-\end{aligned}
-\]</span></p>
-<p>采用半隐式的时间离散，对于对流项使用显式</p>
-<p><span class="math display">\[
-\begin{aligned}
-\frac{\mathbf{u}^{*,n+1}-\mathbf{u}^{*,n}}{\Delta t} +
-(P(\mathbf{u}^{*,n}) \cdot \nabla)P(\mathbf{u}^{*,n}) - \frac{1}{Re}
-\nabla^2 \mathbf{u}^{*,n}  &amp;= 0\\
-\frac{\mathbf{u}^{*,n+1}-\mathbf{u}^{*,n}}{\Delta t} + (\mathbf{u}^{n}
-\cdot \nabla)\mathbf{u}^{n} - \frac{1}{Re} \nabla^2 \mathbf{u}^{*,n}
-&amp;= 0
-\end{aligned}
-\]</span></p>
-<p>注意到，投影得到的速度<span
-class="math inline">\(\mathbf{u}=P(\mathbf{u}^*)\)</span>只是用于计算对流项，主要还是使用预测速度<span
-class="math inline">\(\mathbf{u}^*\)</span>进行计算和更新。</p>
-<p>对于压强的计算，在过程中并不需要，除非涉及了压强的边界条件，对于最终的压强同样使用下式进行近似计算，例如</p>
-<p><span class="math display">\[
-\begin{aligned}
-\nabla p &amp;=
-\nabla q  +(\nabla \phi)_t  - \frac{1}{Re}\nabla^2 (\nabla \phi)=(\nabla
-\phi)_t  - \frac{1}{Re}\nabla^2 (\nabla \phi)\\
-\Rightarrow \nabla p^n &amp;= \frac{\nabla \phi^{n}-\nabla
-\phi^{n-1}}{\Delta t}
--\frac{1}{Re} \nabla(\nabla \cdot \mathbf{u}^{*,n})
-\end{aligned}
-\]</span></p>
-<p>不妨直接取</p>
-<p><span class="math display">\[
-p^n = \frac{\phi^{n}- \phi^{n-1}}{\Delta t}
--\frac{1}{Re} \nabla^2 \phi^n
-\]</span></p>
-<h2 id="基于c-n格式的投影法">基于C-N格式的投影法</h2>
+<h3 id="基于c-n格式的投影法">基于C-N格式的投影法</h3>
 <p>基于C-N格式，我们选择引入中间时间步在 <span
 class="math inline">\(t^{n+1/2}\)</span>
-时刻展开，首先对于预测速度的"伪动量方程"，</p>
+时刻展开，首先对于预测速度的"动量方程"，</p>
 <p><span class="math display">\[
 \begin{aligned}
 \mathbf{u}^*_t + (P(\mathbf{u}^*) \cdot \nabla)P(\mathbf{u}^*) -
@@ -849,6 +795,62 @@ p^{n+1/2} = p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1} - \frac{1}{2Re}
 p^{n+1/2} = p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1}
 \]</span> 这会导致压强掉到一阶，但是速度仍然是二阶的。</p>
 </div>
+<h2 id="gauge-methods">Gauge Methods</h2>
+<p>在上述框架中直接令<span
+class="math inline">\(q=0\)</span>，可以得到Gauge
+Methods，相对于之前的投影法，它主要使用<span
+class="math inline">\(\mathbf{u}^*\)</span>进行计算更新，仅在对流项中使用<span
+class="math inline">\(\mathbf{u}\)</span>仅。</p>
+<p>对于投影<span class="math inline">\(P\)</span>的计算不变： <span
+class="math display">\[
+\begin{aligned}
+\nabla^2 \phi^n &amp;= \nabla \cdot \mathbf{u}^{*,n}\\
+\mathbf{u}^n &amp;= \mathbf{u}^{*,n} - \nabla \phi^n
+\end{aligned}
+\]</span></p>
+<p>对于 <span class="math inline">\(\nabla q\)</span>
+的处理，它添加的方程直接令其为零</p>
+<p><span class="math display">\[
+\nabla q^{n+1} = 0
+\]</span></p>
+<p>(之前选取<span class="math inline">\(\nabla q^{n+1}\)</span>
+的效果之一，就是把"动量方程"时间离散时已知时间层的预测速度变成速度，现在相当于放弃了这个修正)</p>
+<p>对"动量方程" <span class="math display">\[
+\begin{aligned}
+\mathbf{u}^*_t + (P(\mathbf{u}^*) \cdot \nabla)P(\mathbf{u}^*) -
+\frac{1}{Re} \nabla^2 \mathbf{u}^* +\nabla q &amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>采用半隐式的时间离散，对于对流项使用显式</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^{*,n+1}-\mathbf{u}^{*,n}}{\Delta t} +
+(P(\mathbf{u}^{*,n}) \cdot \nabla)P(\mathbf{u}^{*,n}) - \frac{1}{Re}
+\nabla^2 \mathbf{u}^{*,n}  &amp;= 0\\
+\frac{\mathbf{u}^{*,n+1}-\mathbf{u}^{*,n}}{\Delta t} + (\mathbf{u}^{n}
+\cdot \nabla)\mathbf{u}^{n} - \frac{1}{Re} \nabla^2 \mathbf{u}^{*,n}
+&amp;= 0
+\end{aligned}
+\]</span></p>
+<p>注意到，投影得到的速度<span
+class="math inline">\(\mathbf{u}=P(\mathbf{u}^*)\)</span>只是用于计算对流项，主要还是使用预测速度<span
+class="math inline">\(\mathbf{u}^*\)</span>进行计算和更新。</p>
+<p>对于压强的计算，在过程中并不需要(除非涉及了压强的边界条件)，对于最终的压强同样使用下式进行近似计算，例如</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla p &amp;=
+\nabla q  +(\nabla \phi)_t  - \frac{1}{Re}\nabla^2 (\nabla \phi)=(\nabla
+\phi)_t  - \frac{1}{Re}\nabla^2 (\nabla \phi)\\
+\Rightarrow \nabla p^n &amp;= \frac{\nabla \phi^{n}-\nabla
+\phi^{n-1}}{\Delta t}
+-\frac{1}{Re} \nabla(\nabla \cdot \mathbf{u}^{*,n})
+\end{aligned}
+\]</span></p>
+<p>不妨直接取</p>
+<p><span class="math display">\[
+p^n = \frac{\phi^{n}- \phi^{n-1}}{\Delta t}
+-\frac{1}{Re} \nabla^2 \phi^n
+\]</span></p>
 <h2 id="边界处理">边界处理</h2>
 <p>我们假定NS方程组采用的是如下速度边值条件：</p>
 <ul>
@@ -857,6 +859,8 @@ p^{n+1/2} = p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1}
 <li>速度无滑移 <span class="math inline">\(\mathbf{\tau}\cdot
 \mathbf{u}|_{\partial \Omega} = v_b\)</span>;</li>
 </ul>
+<p>换言之明确了边界的速度值 <span
+class="math inline">\(\mathbf{u}|_{\partial\Omega}=\mathbf{u}_b\)</span>.</p>
 <p>当我们把同一时间层中的投影<span
 class="math inline">\(\mathbf{u}^n=P(\mathbf{u}^{*,n})\)</span>拆解为如下的计算过程：</p>
 <ol type="1">
@@ -871,7 +875,7 @@ class="math display">\[
 \mathbf{u}^n = \mathbf{u}^{*,n} - \nabla \phi^n
 \]</span></li>
 </ol>
-<p>会遇到处理边界条件的困难：</p>
+<p>会遇到处理边界条件的问题：</p>
 <ul>
 <li>首先，求解<span
 class="math inline">\(\phi\)</span>的泊松方程需要<span
@@ -882,19 +886,7 @@ class="math inline">\(\mathbf{\tau}\cdot
 \mathbf{u}=v_b\)</span>，但是用不上，无法确定得到的<span
 class="math inline">\(\mathbf{u}\)</span>是否满足边界条件。</li>
 </ul>
-<p>对于"伪动量方程"，如果采用隐式离散，则预测速度的边界条件也是需要的。</p>
-<p>回顾投影算子<span class="math inline">\(P\)</span>的定义，<span
-class="math inline">\(\mathbf{u}\)</span>在边界的法向分量是需要明确的，基于此可以给出唯一性定理说明<span
-class="math inline">\(P\)</span>的良定义，但是<span
-class="math inline">\(P\)</span>并不涉及<span
-class="math inline">\(\mathbf{u}\)</span>在边界的切向分量。</p>
-<p>换言之，如果给出了切向分量的边界条件，那么<strong>并不是所有的<span
-class="math inline">\(\mathbf{u}^*\)</span>都是可以接收的</strong>，只有满足如下条件的<span
-class="math inline">\(\mathbf{u}^*\)</span>才能经过投影得到满足边界条件的速度<span
-class="math inline">\(\mathbf{u}\)</span> <span class="math display">\[
-\mathbf{\tau}\cdot \mathbf{u}^*|_{\partial \Omega} = \mathbf{\tau}\cdot
-(\mathbf{u} + \nabla \phi)|_{\partial \Omega}
-\]</span></p>
+<p>对于"动量方程"，如果采用隐式离散，则预测速度的边界条件也是需要的。</p>
 <p>我们需要保证 <span class="math display">\[
 \begin{aligned}
 \mathbf{n}\cdot(\mathbf{u}^* - \nabla \phi)|_{\partial \Omega} &amp;=
@@ -903,16 +895,27 @@ class="math inline">\(\mathbf{u}\)</span> <span class="math display">\[
 \mathbf{\tau}\cdot \mathbf{u} = v_b\\
 \end{aligned}
 \]</span></p>
+<p>因此，计算<span
+class="math inline">\(\mathbf{u}^{*,n}\)</span>时需要<span
+class="math inline">\(\phi^n\)</span>在边界的值，计算<span
+class="math inline">\(\phi^n\)</span>时也需要<span
+class="math inline">\(\mathbf{u}^{*,n}\)</span>在边界的值。</p>
+<h3 id="方式一">方式一</h3>
 <p>由于<span class="math inline">\(\phi^n\)</span>的计算顺序在<span
-class="math inline">\(\mathbf{u}^{*,n}\)</span>之后，我们可以对泊松方程自然地给出如下的边界条件</p>
+class="math inline">\(\mathbf{u}^{*,n}\)</span>之后，我们可以先算<span
+class="math inline">\(\mathbf{u}^{*,n}\)</span>，再对<span
+class="math inline">\(\phi\)</span>给出如下的边界条件</p>
 <p><span class="math display">\[
 \begin{aligned}
 \nabla^2 \phi^n &amp;= \nabla \cdot \mathbf{u}^{*,n}\\
 \mathbf{n} \cdot \nabla \phi^n|_{\partial \Omega} &amp;=
-(\mathbf{n}\cdot \mathbf{u}^{*,n} - u_b^n)|_{\partial \Omega}
+(\mathbf{n}\cdot \mathbf{u}^{*,n} - u_b^n)|_{\partial \Omega}\\
+\mathbf{\tau} \cdot \nabla \phi^n|_{\partial \Omega} &amp;=
+(\mathbf{\tau}\cdot \mathbf{u}^{*,n} - u_b^n)|_{\partial \Omega}
 \end{aligned}
 \]</span></p>
-<p>因此需要确定的是，在隐式计算预测速度<span
+<p>(这个条件好像给多了？只需要法向分量即可?)</p>
+<p>需要确定的是，在隐式计算预测速度<span
 class="math inline">\(\mathbf{u}^{*,n}\)</span>时采用的边界条件。最自然的想法是，直接采用对应时间层的速度边界条件</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -924,54 +927,58 @@ class="math inline">\(\mathbf{u}^{*,n}\)</span>时采用的边界条件。最自
 \]</span></p>
 <p>此时<span class="math inline">\(\phi\)</span>对应的边界条件是</p>
 <p><span class="math display">\[
-\mathbf{n}\cdot \nabla \phi^{n} |_{\partial \Omega} = 0
-\]</span></p>
-<h3 id="对于c-n类的投影法">对于C-N类的投影法</h3>
-<p>直接的做法是，对预测速度直接采用速度的边界条件，<span
-class="math inline">\(\phi\)</span>的边界条件被动确定，由于对压强的计算不同，至少有两种选择：</p>
-<ol type="1">
-<li>隐式计算预测速度<span
-class="math inline">\(\mathbf{u}^{*,n}\)</span>时，取<span
-class="math inline">\(\mathbf{n}\cdot \mathbf{u}^{*,n}=
-u_b^{n}\)</span>，<span class="math inline">\(\mathbf{\tau}\cdot
-\mathbf{u}^{*,n}= v_b^n\)</span>，对于<span
-class="math inline">\(\phi^n\)</span>的边界条件取<span
-class="math inline">\(\mathbf{n}\cdot \nabla
-\phi^n=0\)</span>，压强更新采用 <span class="math display">\[
-p^{n+1/2} = p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1}
-\]</span></li>
-<li>隐式计算预测速度<span
-class="math inline">\(\mathbf{u}^{*,n}\)</span>时，取<span
-class="math inline">\(\mathbf{n}\cdot \mathbf{u}^{*,n}=
-u_b^{n}\)</span>，<span class="math inline">\(\mathbf{\tau}\cdot
-\mathbf{u}^{*,n}= v_b^n\)</span>，对于<span
-class="math inline">\(\phi^n\)</span>的边界条件取<span
-class="math inline">\(\mathbf{n}\cdot \nabla
-\phi^n=0\)</span>，压强更新采用 <span class="math display">\[
-p^{n+1/2} = p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1}- \frac{1}{2Re}
-\nabla^2 \phi^{n+1}
-\]</span></li>
-</ol>
-<p>这两种方法中：第一种方法<strong>速度2阶，压强1阶</strong>，第二种方法<strong>速度2阶，压强2阶</strong>。</p>
-<h3 id="对于gauge类投影法">对于Gauge类投影法</h3>
-<p>例如前文中的一个具体方法：</p>
-<p><span class="math display">\[
 \begin{aligned}
-\frac{\mathbf{u}^{*,n+1}-\mathbf{u}^{*,n}}{\Delta t} + (\mathbf{u}^{n}
-\cdot \nabla)\mathbf{u}^{n} - \frac{1}{Re} \nabla^2 \mathbf{u}^{*,n} =
-0\\
-p^n = \frac{\phi^{n}- \phi^{n-1}}{\Delta t}
--\frac{1}{Re} \nabla^2 \phi^n
+\mathbf{n}\cdot \nabla \phi^{n} |_{\partial \Omega} = 0\\
+\mathbf{\tau}\cdot \nabla \phi^{n} |_{\partial \Omega} = 0
 \end{aligned}
 \]</span></p>
-<p>我们需要</p>
-<ul>
-<li>隐式计算预测速度<span
-class="math inline">\(\mathbf{u}^{*,n}\)</span>需要的速度边界条件；</li>
-<li>基于<span
-class="math inline">\(\mathbf{u}^{*,n},\phi^n\)</span>计算<span
-class="math inline">\(\phi^n\)</span>需要的边界条件。</li>
-</ul>
+<p>如果使用C-N类的投影法，对于压强的更新有两种选择</p>
+<p><span class="math display">\[
+\begin{aligned}
+p^{n+1/2} &amp;= p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1} \\
+p^{n+1/2} &amp;= p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1} -
+\frac{1}{2Re} \nabla^2 \phi^{n+1}
+\end{aligned}
+\]</span></p>
+<p>第一种可以达到速度二阶，压强一阶，第二种可以达到速度和压强均为二阶。</p>
+<h3 id="方式二">方式二</h3>
+<p>对<span
+class="math inline">\(\mathbf{u}^{*,n}\)</span>的隐式计算时，采用如下的边界条件</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{n}\cdot \mathbf{u}^{*,n}|_{\partial \Omega} &amp;= u_b^n\\
+\mathbf{\tau}\cdot \mathbf{u}^{*,n}|_{\partial \Omega} &amp;=
+v_n^n + \tau \cdot \nabla \widetilde{\phi}^n|_{\partial \Omega} =
+v_n^n + \tau \cdot \nabla \phi^{n-1}|_{\partial \Omega}
+\end{aligned}
+\]</span></p>
+<p>其中<span class="math inline">\(\widetilde{\phi}^n\)</span>作为<span
+class="math inline">\(\phi^n\)</span>的近似，但是尚未算出来，因此用<span
+class="math inline">\(\phi^{n-1}\)</span>替代。</p>
+<p>对于<span
+class="math inline">\(\phi^n\)</span>的计算，采用如下边界条件</p>
+<p><span class="math display">\[
+\mathbf{n}\cdot \nabla \phi^n|_{\partial \Omega} = 0
+\]</span></p>
+<p>但是数值实验表明，这样的做法只能保证速度二阶，压强一阶精度。</p>
+<h3 id="方式三">方式三</h3>
+<p>对于<span class="math inline">\(\nabla
+\phi^n\)</span>的计算不采用齐次Neumann边界，而是采用</p>
+<p><span class="math display">\[
+\mathbf{n}\cdot \nabla \phi^n|_{\partial \Omega} = \mathbf{n}\cdot
+\mathbf{u}^{*,n}|_{\partial \Omega} - u_b^n
+\]</span></p>
+<p>而<span
+class="math inline">\(\mathbf{u}^{*,n}\)</span>的计算采用如下边界条件</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\mathbf{n}\cdot \mathbf{u}^{*,n})|_{\partial \Omega} &amp;= 0\\
+\mathbf{\tau}\cdot \mathbf{u}^{*,n}|_{\partial \Omega} &amp;=
+v_n^n + \tau \cdot \nabla \phi^{n-1}|_{\partial \Omega}
+\end{aligned}
+\]</span></p>
+<p>对<span
+class="math inline">\(\phi\)</span>采用非齐次边界计算，可以让结果保持速度和压强均为二阶精度。</p>
 
     </div>
 
