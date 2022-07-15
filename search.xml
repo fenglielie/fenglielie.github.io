@@ -476,7 +476,7 @@ p^{n+1/2} = p^{n-1/2} + \frac{1}{\Delta t} \phi^{n+1}
 class="math inline">\(q=0\)</span>，可以得到Gauge
 Methods，相对于之前的投影法，它主要使用<span
 class="math inline">\(\mathbf{u}^*\)</span>进行计算更新，仅在对流项中使用<span
-class="math inline">\(\mathbf{u}\)</span>仅。</p>
+class="math inline">\(\mathbf{u}\)</span>。</p>
 <p>对于投影<span class="math inline">\(P\)</span>的计算不变： <span
 class="math display">\[
 \begin{aligned}
