@@ -3,7 +3,10 @@
   <entry>
     <title>投影法与边界处理</title>
     <url>/learn/learn-inse-projection-boundary.html</url>
-    <content><![CDATA[<p>投影法的框架与边界处理，以及数值精度的学习。</p>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>投影法的框架与边界处理，以及数值精度的学习。</p>
+
+</blockquote>
 <span id="more"></span>
 <h1 id="投影法与边界处理">投影法与边界处理</h1>
 <div class="note info"><p>参考 Numerical Simulations of Incompressible Flows 中的 Accuracy of

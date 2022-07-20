@@ -3034,3 +3034,14 @@ span#inline-blue {
   border-radius: 0;
   background-color: #2780e3;
 }
+body {
+  background: url("/code_image/bg.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+}
