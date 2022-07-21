@@ -23,15 +23,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"buttons","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="投影法的框架与边界处理，以及数值精度的学习。">
+    <meta name="description" content="投影法的框架与边界处理，以及数值精度的学习。 (待整理)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="投影法与边界处理">
 <meta property="og:url" content="https://fenglielie.github.io/learn/learn-inse-projection-boundary.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
-<meta property="og:description" content="投影法的框架与边界处理，以及数值精度的学习。">
+<meta property="og:description" content="投影法的框架与边界处理，以及数值精度的学习。 (待整理)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-14T12:31:23.000Z">
-<meta property="article:modified_time" content="2022-07-20T13:41:28.792Z">
+<meta property="article:modified_time" content="2022-07-21T05:23:42.340Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="inse">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E4%B8%8E%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">投影法与边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">问题模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-text">向量场的分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="nav-text">唯一性定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="nav-text">投影法的框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%AE%97%E5%AD%90p"><span class="nav-text">投影算子P</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E9%80%9F%E5%BA%A6%E7%9A%84%E5%8A%A8%E9%87%8F%E6%96%B9%E7%A8%8B"><span class="nav-text">预测速度的动量方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%AA%A4"><span class="nav-text">主要步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E5%87%A0%E7%B1%BB%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">具体的几类投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">无压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6%E5%9E%8B%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">旋度型压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Ec-n%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">基于C-N格式的投影法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gauge-methods"><span class="nav-text">Gauge Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="nav-text">方式一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="nav-text">方式二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89"><span class="nav-text">方式三</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E4%B8%8E%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">投影法与边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">问题模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#helmholtz%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86"><span class="nav-text">Helmholtz分解定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-text">向量场的分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="nav-text">唯一性定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%B3%95%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="nav-text">投影法的框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%AE%97%E5%AD%90p"><span class="nav-text">投影算子P</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E9%80%9F%E5%BA%A6%E7%9A%84%E5%8A%A8%E9%87%8F%E6%96%B9%E7%A8%8B"><span class="nav-text">预测速度的动量方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%AA%A4"><span class="nav-text">主要步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E5%87%A0%E7%B1%BB%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">具体的几类投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">无压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6%E5%9E%8B%E5%8E%8B%E5%8A%9B%E5%A2%9E%E9%87%8F%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">旋度型压力增量投影法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Ec-n%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%8A%95%E5%BD%B1%E6%B3%95"><span class="nav-text">基于C-N格式的投影法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gauge-methods"><span class="nav-text">Gauge Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-text">边界处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="nav-text">方式一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="nav-text">方式二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89"><span class="nav-text">方式三</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,6 +206,9 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/learn/learn-inse-dg.html" title="learn&#x2F;learn-inse-dg.html">不可压N-S方程的间断有限元数值算法</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/learn/learn-inse-projection-boundary.html" title="learn&#x2F;learn-inse-projection-boundary.html">投影法与边界处理</a>
         </li>
         <li class="links-of-recent-posts-item">
@@ -213,9 +216,6 @@
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/learn/learn-inse-vortex.html" title="learn&#x2F;learn-inse-vortex.html">涡量—流函数方法</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/learn/learn-inse-dg.html" title="learn&#x2F;learn-inse-dg.html">不可压N-S方程的间断有限元数值算法</a>
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/test/test-blog.html" title="test&#x2F;test-blog.html">测试博客</a>
@@ -286,7 +286,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-20 21:41:28" itemprop="dateModified" datetime="2022-07-20T21:41:28+08:00">2022-07-20</time>
+      <time title="Modified: 2022-07-21 13:23:42" itemprop="dateModified" datetime="2022-07-21T13:23:42+08:00">2022-07-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -324,7 +324,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote class="blockquote-center">
-<p>投影法的框架与边界处理，以及数值精度的学习。</p>
+<p>投影法的框架与边界处理，以及数值精度的学习。 (待整理)</p>
 
 </blockquote>
 <span id="more"></span>
@@ -350,28 +350,26 @@ class="math inline">\(B(\mathbf{u},p)=0\)</span>的具体形式可能是</p>
 <ul>
 <li>关于速度:
 <ul>
-<li>固壁无穿透边界条件(no flow) <span
+<li>(固壁)切向无穿透(no flow) <span
 class="math inline">\(\mathbf{u}\cdot\mathbf{n}=u_b\)</span>; (<span
 class="math inline">\(\mathbf{n}\)</span> 为边界法向量)</li>
-<li>固壁无滑移边界条件(no slip) <span
+<li>(固壁)法向无滑移(no slip) <span
 class="math inline">\(\mathbf{u}\cdot\mathbf{\tau}=v_b\)</span>; (<span
 class="math inline">\(\mathbf{\tau}\)</span> 为边界切向量)</li>
 </ul></li>
 <li>关于压强:
 <ul>
 <li>例如混合边界条件 <span class="math inline">\(\alpha p + \beta
-\mathbf{n} \cdot \nabla p = g\)</span>.</li>
+\mathbf{n} \cdot \nabla p = g\)</span>.(下文不涉及压强的边界条件)</li>
 </ul></li>
 </ul>
-<p>还可能要求<span
-class="math inline">\(\int_{\Omega}p=0\)</span>等。</p>
-<p>对于初边值问题，给定的条件可以是：</p>
-<ul>
-<li>速度初值<span class="math inline">\(\mathbf{u}_0\)</span>;</li>
-<li>速度无穿透<span
-class="math inline">\(\mathbf{u}\cdot\mathbf{n}=u_b\)</span>;</li>
-<li>压强<span class="math inline">\(\int_{\Omega}p=0\)</span>。</li>
-</ul>
+<p>下文对于速度采用无滑移边界条件： <span class="math display">\[
+\begin{aligned}
+\mathbf{u}&amp;=\mathbf{u}_b,&amp;\text{on}\,\,\partial \Omega
+\end{aligned}
+\]</span></p>
+<p>对压强不提初值条件和边值条件。</p>
+<h2 id="helmholtz分解定理">Helmholtz分解定理</h2>
 <h2 id="向量场的分解">向量场的分解</h2>
 <p>由矢量分析理论可知，任何三维空间的矢量场<span
 class="math inline">\(V\)</span>都可以分解为三个部分之和</p>

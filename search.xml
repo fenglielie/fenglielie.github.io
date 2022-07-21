@@ -4,7 +4,7 @@
     <title>投影法与边界处理</title>
     <url>/learn/learn-inse-projection-boundary.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
-<p>投影法的框架与边界处理，以及数值精度的学习。</p>
+<p>投影法的框架与边界处理，以及数值精度的学习。 (待整理)</p>
 
 </blockquote>
 <span id="more"></span>
@@ -30,28 +30,26 @@ class="math inline">\(B(\mathbf{u},p)=0\)</span>的具体形式可能是</p>
 <ul>
 <li>关于速度:
 <ul>
-<li>固壁无穿透边界条件(no flow) <span
+<li>(固壁)切向无穿透(no flow) <span
 class="math inline">\(\mathbf{u}\cdot\mathbf{n}=u_b\)</span>; (<span
 class="math inline">\(\mathbf{n}\)</span> 为边界法向量)</li>
-<li>固壁无滑移边界条件(no slip) <span
+<li>(固壁)法向无滑移(no slip) <span
 class="math inline">\(\mathbf{u}\cdot\mathbf{\tau}=v_b\)</span>; (<span
 class="math inline">\(\mathbf{\tau}\)</span> 为边界切向量)</li>
 </ul></li>
 <li>关于压强:
 <ul>
 <li>例如混合边界条件 <span class="math inline">\(\alpha p + \beta
-\mathbf{n} \cdot \nabla p = g\)</span>.</li>
+\mathbf{n} \cdot \nabla p = g\)</span>.(下文不涉及压强的边界条件)</li>
 </ul></li>
 </ul>
-<p>还可能要求<span
-class="math inline">\(\int_{\Omega}p=0\)</span>等。</p>
-<p>对于初边值问题，给定的条件可以是：</p>
-<ul>
-<li>速度初值<span class="math inline">\(\mathbf{u}_0\)</span>;</li>
-<li>速度无穿透<span
-class="math inline">\(\mathbf{u}\cdot\mathbf{n}=u_b\)</span>;</li>
-<li>压强<span class="math inline">\(\int_{\Omega}p=0\)</span>。</li>
-</ul>
+<p>下文对于速度采用无滑移边界条件： <span class="math display">\[
+\begin{aligned}
+\mathbf{u}&amp;=\mathbf{u}_b,&amp;\text{on}\,\,\partial \Omega
+\end{aligned}
+\]</span></p>
+<p>对压强不提初值条件和边值条件。</p>
+<h2 id="helmholtz分解定理">Helmholtz分解定理</h2>
 <h2 id="向量场的分解">向量场的分解</h2>
 <p>由矢量分析理论可知，任何三维空间的矢量场<span
 class="math inline">\(V\)</span>都可以分解为三个部分之和</p>
@@ -669,9 +667,202 @@ class="math inline">\(\phi\)</span>采用非齐次边界计算，可以让结果
   <entry>
     <title>不可压N-S方程的间断有限元数值算法</title>
     <url>/learn/learn-inse-dg.html</url>
-    <content><![CDATA[<p>之前学习的数值算法绝大多数在空间离散上，都采用了有限体积/有限差分法，而较少地使用有限元以及间断有限元进行求解，
-下面的内容是对近期的相关文章进行的整理分析。</p>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>之前学习的数值算法绝大多数在空间离散上，都采用了有限体积/有限差分法，而较少地使用有限元以及间断有限元进行求解，下面的内容是关于不可压N-S方程采用DG方法求解。</p>
+
+</blockquote>
 <span id="more"></span>
+<!--
+**Title:**
+**Author:**
+**Abstract:**
+**Conclusion:**
+-->
+<h2 id="dg投影法的稳定性和收敛证明">1.DG投影法的稳定性和收敛证明</h2>
+<p><strong>Title:</strong> A discontinuous Galerkin pressure correction
+scheme for the incompressible navier-stokes equations: stability and
+convergence(2021)</p>
+<p><strong>Author:</strong> RAMI MASRI, CHEN LIU, AND BEATRICE
+RIVIERE</p>
+<p><strong>Abstract:</strong> A discontinuous Galerkin pressure
+correction numerical method for solving the incompressible Navier–Stokes
+equations is formulated and analyzed. We prove unconditional stability
+of the proposed scheme. Convergence of the discrete velocity is
+established by deriving a priori error estimates. Numerical results
+verify the convergence rates.</p>
+<p><strong>Conclusion:</strong> The main contribution of this work is a
+theoretical error analysis of a dG pressure correction scheme for
+solving the incompressible Navier-Stokes equations. We establish
+stability of the method and derive a priori error estimates for the
+discrete velocity that are optimal in the broken gradient norm. The
+convergence analysis is technical and relies on lift operators and
+appropriate local approximations. Future work will consist of deriving
+error bounds for the pressure and optimal error estimates for the
+discrete velocity in the L2 norm.</p>
+<p>考虑的边值条件是速度无滑移(边界为0)，任意时刻压强积分为零。</p>
+<p>采用的是旋度型压力增量投影法：</p>
+<ul>
+<li>首先隐式求解<span class="math inline">\(\mathbf{u}^*\)</span> <span
+class="math display">\[
+\begin{aligned}
+\frac{\mathbf{u}^*-\mathbf{u}^{n-1}}{\Delta t} + \mathbf{u}^{n-1}\cdot
+\nabla \mathbf{u}^* + \nabla p^{n-1} &amp;= \mathbf{f}^n\\
+\mathbf{u}^*|_{\partial \Omega} &amp;=0
+\end{aligned}
+\]</span></li>
+<li>然后求解压力增量<span class="math inline">\(\phi^n\)</span> <span
+class="math display">\[
+\begin{aligned}
+\nabla^2 \phi^n &amp;= \frac{1}{\Delta t}\nabla \cdot \mathbf{u}^*\\
+\mathbf{n}\cdot \nabla \phi^n|_{\partial \Omega} &amp;= 0\\
+\int_{\Omega} \phi^n &amp;=0
+\end{aligned}
+\]</span></li>
+<li>修正速度和压强，其中有一个可选参数<span
+class="math inline">\(\delta&gt;0\)</span> <span class="math display">\[
+\begin{aligned}
+p^n &amp;= p^{n-1} +\phi^n - \delta \left(\frac{1}{Re}\nabla \cdot
+\mathbf{u}^*\right)\\
+\mathbf{u}^n &amp;= \mathbf{u}^* - \Delta t \nabla \phi^n
+\end{aligned}
+\]</span></li>
+</ul>
+<p>DG空间： 速度取<span
+class="math inline">\(k_1\)</span>次多项式空间<span
+class="math inline">\(\mathbf{X}_h\)</span>，压强取<span
+class="math inline">\(k_2\)</span>次多项式空间<span
+class="math inline">\(M_h\)</span>，以及积分为零的子空间<span
+class="math inline">\(M_h^0\)</span>。 为了便于分析，假设<span
+class="math inline">\(k_1,k_2\)</span>满足 <span class="math display">\[
+k_1-1\le k_2 \le k_1 +1
+\]</span></p>
+<p>DG格式：
+上述投影法中的两个求解方程和两个修正公式全部乘以对应的速度/压强测试函数，取遍所有测试函数，在积分意义下成立。
+(可以证明在这里的计算会自动保持<span class="math inline">\(p_h^n\in
+M_h^0\)</span>，即积分为零)</p>
+<h2 id="dgtr-bdf2时间离散">2.DG+TR-BDF2时间离散</h2>
+<p><strong>Title:</strong> An efficient and accurate implicit DG solver
+for the incompressible Navier-Stokes equations(2021)</p>
+<p><strong>Author:</strong> Giuseppe Orlando(1), Alessandro Della
+Rocca(2) Paolo Francesco Barbante(1), Luca Bonaventura(1), Nicola
+Parolini(1)</p>
+<p><strong>Abstract:</strong> We propose an efficient, accurate and
+robust implicit solver for the incompressible Navier-Stokes equations,
+based on a DG spatial discretization and on the TR-BDF2 method for time
+discretization. The effectiveness of the method is demonstrated in a
+number of classical benchmarks, which highlight its superior efficiency
+with respect to other widely used implicit approaches. The parallel
+implementation of the proposed method in the framework of the deal.II
+software package allows for accurate and efficient adaptive simulations
+in complex geometries, which makes the proposed solver attractive for
+large scale industrial applications.</p>
+<p><strong>Conclusion:</strong> Building on the experience of [47], we
+have proposed an accurate, efficient and robust projection method, based
+on the TR-BDF2 method. While time discretizations of the incompressible
+Navier-Stokes equations based on accurate implicit solvers have been
+proposed in many other papers, the specific combination of techniques
+presented in this work appears to be optimal under several viewpoints
+for the development of a second order adaptive flow solver. The proposed
+fully implicit method has been implemented using discontinuous finite
+elements in the framework of the numerical library deal.II, with the aim
+of building a reliable, flexible and easily accessible tool for
+industrial applications that can ultimately be competitive with more
+conventional finite volume techniques. We have shown that the method has
+superior accuracy and efficiency with respect to some well known
+alternative schemes on a number of classical benchmarks. In future work,
+besides application of the proposed approach to significant industrial
+applications and extensions to fully compressible and multiphase flow,
+an interesting development will be represented by the integration of
+more sophisticated a posteriori error estimation techniques [27, 34, 42]
+to obtain optimal adaptive approaches. Furthermore, the multirate time
+integration version of the TR-BDF2 method [11] could also be integrated
+in the discretization approach, so as to obtain a fully space-time
+adaptive technique based on a robust and unconditionally stable
+method.</p>
+<p>这里的时间离散TR-BDF2格式，相当于Trapezoidal Rule (or Crank-Nicolson)
+method 和 Backward Differ- entiation Formula method of order
+2的结合。</p>
+<p>对于<span
+class="math inline">\(u&#39;=N(u)\)</span>，TR-BDF2引入中间步<span
+class="math inline">\(t^{n+\gamma}\)</span>，其中<span
+class="math inline">\(\gamma=2-\sqrt{2}\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{u^{n+\gamma}-u^n}{\gamma \Delta t} &amp;= \frac12
+\left(N(u^{n+\gamma}) + N(u^n)\right)\\
+\frac{u^{n+1}-u^{n+\gamma}}{(1-\gamma) \Delta t} &amp;=
+\frac{1}{2-\gamma}N(u^{n+1}) +
+\frac{1-\gamma}{2(2-\gamma)}N(u^{n+\gamma}) +
+\frac{1-\gamma}{2(2-\gamma)}N(u^n)\\
+\end{aligned}
+\]</span></p>
+<p>然后把(旋度型压力增量)投影法和上述TR-BDF2结合。</p>
+<p>DG空间： 速度采用<span
+class="math inline">\(Q_k\)</span>多项式空间，压强采用<span
+class="math inline">\(Q_{k-1} \cup L_0^2(\Omega)\)</span>。</p>
+<p>DG格式：
+求解过程都乘以测试函数，在积分意义下成立。修正过程则直接计算。</p>
+<h2 id="dg三角网格交错网格">3.DG+三角网格+交错网格</h2>
+<p><strong>Title:</strong> A novel staggered semi–implicit space–time
+discontinuous Galerkin method for the incompressible Navier-Stokes
+equations(2019)</p>
+<p><strong>Author:</strong> F. L. Romeo · M. Dumbser · M. Tavelli</p>
+<p><strong>Abstract:</strong> A new high order accurate staggered
+semi-implicit space–time discontinuous Galerkin (DG) method is presented
+for the simulation of viscous incompressible flows on unstructured
+triangular grids in two space dimensions. The staggered DG scheme
+defines the discrete pressure on the primal triangular mesh, while the
+discrete velocity is defined on a staggered edge-based dual
+quadrilateral mesh. In this paper, a new pair of
+equal-order-interpolation velocity-pressure finite elements is proposed.
+On the primary triangular mesh (the pressure elements) the basis
+functions are piecewise polynomials of degree N and are allowed to jump
+on the boundaries of each triangle. On the dual mesh instead (the
+velocity elements), the basis functions consist in the union of
+piecewise polynomials of degree N on the two subtriangles that compose
+each quadrilateral and are allowed to jump only on the dual element
+boundaries, while they are continuous inside. In other words, the basis
+functions on the dual mesh are built by continuous finite elements on
+the subtriangles. This choice allows the construction of an efficient,
+quadraturefree and memory saving algorithm. In our coupled space-time
+pressure correction formulation for the incompressible Navier-Stokes
+equations, arbitrary high order of accuracy in time is achieved through
+the use of time-dependent test and basis functions, in combination with
+simple and efficient Picard iterations. Several numerical tests on
+classical benchmarks confirm that the proposed method outperforms
+existing staggered semi-implicit space-time DG schemes, not only from a
+computer memory point of view, but also concerning the computational
+time.</p>
+<p><strong>Conclusion:</strong> In this article, we have presented a new
+high order accurate staggered semi-implicit space–time discontinuous
+Galerkin method for the two dimensional incompressible Navier-Stokes
+equations. The numerical scheme is based on the work proposed in
+[116,117,119], but is oriented towards the Arbitrary Lagragian Eulerian
+framework thanks to the use of a suitable pair of velocity-pressure
+finite elements. The same polynomial degree N is employed for
+representing both the pressure and the velocity, therefore it is named
+an equal-order-interpolation finite element method. The new scheme has
+been verified through several benchmarks in fluid dynamics, from the
+Couette flow to the cavity flow and the Blasius boundary layer. The
+numerical results agree very well to the reference solutions in all the
+numerical tests that we have performed. The high order of accuracy has
+been verified in the Taylor-Green vortex test, up to N = 3 and pγ = 3.
+The consistency in the Eulerian limit has been assessed by comparing the
+results obtained with the staggered space–time DG algorithm proposed in
+[117]. Compared to the Eulerian implementation, the new ALE
+implementation proposed here is not only computationally more efficient,
+but also less memory consuming, since all universal matrices are
+precomputed before runtime, once and for all, on a reference element.
+Indeed, all local matrices in the Galerkin formulation can be updated,
+with their geometric information, at every time-step n, by a cheap
+tensor-reduction operation.</p>
+<p>交错网格：
+压强定义在原始的三角网格中，而速度定义在对偶的四边形网格中。</p>
+<p>如下图，黑线是压强元的三角网格，蓝线是速度元的四边形网格。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/dg-inse-staggering.png"/></p>
+<p>压强元采用的是分片多项式，在蓝线保持连续，在黑线允许间断。速度元采用的是定义在两个小三角形上的分片多项式拼接而成，并且在黑线必须保持连续，在蓝线允许间断。</p>
+<p>DG格式：
+耦合式算法，把两个方程分别乘以测试函数联列。后面又加入了类似于SIMPLE或压力修正的过程。</p>
 ]]></content>
       <categories>
         <category>learn</category>
