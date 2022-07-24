@@ -23,28 +23,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"buttons","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。">
+    <meta name="description" content="交错网格的DG格式求解不可压N-S方程组。   参考: Tavelli M, Dumbser M. A staggered semi-implicit discontinuous Galerkin method for the two dimensional incompressible Navier–Stokes equations[J]. Applied Mathematics a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="人工压缩性方法(ACM)">
-<meta property="og:url" content="https://fenglielie.github.io/learn/learn-inse-acm.html">
+<meta property="og:title" content="交错网格上的DG格式2">
+<meta property="og:url" content="https://fenglielie.github.io/learn/learn-inse-sdg.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
-<meta property="og:description" content="人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。">
+<meta property="og:description" content="交错网格的DG格式求解不可压N-S方程组。   参考: Tavelli M, Dumbser M. A staggered semi-implicit discontinuous Galerkin method for the two dimensional incompressible Navier–Stokes equations[J]. Applied Mathematics a">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-07-03T11:54:56.000Z">
-<meta property="article:modified_time" content="2022-07-21T17:53:24.650Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/inse-sdg-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/inse-sdg-2.png">
+<meta property="article:published_time" content="2022-07-24T17:32:41.000Z">
+<meta property="article:modified_time" content="2022-07-24T20:11:58.156Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="inse">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/inse-sdg-1.png">
 
 
-<link rel="canonical" href="https://fenglielie.github.io/learn/learn-inse-acm.html">
+<link rel="canonical" href="https://fenglielie.github.io/learn/learn-inse-sdg.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/learn/learn-inse-acm.html","path":"learn/learn-inse-acm.html","title":"人工压缩性方法(ACM)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/learn/learn-inse-sdg.html","path":"learn/learn-inse-sdg.html","title":"交错网格上的DG格式2"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>人工压缩性方法(ACM) | Fenglielie's Blog</title>
+<title>交错网格上的DG格式2 | Fenglielie's Blog</title>
   
 
 
@@ -151,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%BA%E5%B7%A5%E5%8E%8B%E7%BC%A9%E6%80%A7%E6%96%B9%E7%A8%8B"><span class="nav-text">人工压缩性方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E5%B8%B8%E9%97%AE%E9%A2%98"><span class="nav-text">定常问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%AE%9A%E5%B8%B8%E9%97%AE%E9%A2%98"><span class="nav-text">非定常问题</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E7%A8%8B"><span class="nav-text">1.控制方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E7%A6%BB%E6%95%A3%E4%BA%A4%E9%94%99%E7%BD%91%E6%A0%BC"><span class="nav-text">2.空间离散——交错网格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E5%87%BD%E6%95%B0"><span class="nav-text">基函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dg%E6%A0%BC%E5%BC%8F"><span class="nav-text">3.DG格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%A6%BB%E6%95%A3"><span class="nav-text">时间离散</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -250,7 +253,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/learn/learn-inse-acm.html">
+    <link itemprop="mainEntityOfPage" href="https://fenglielie.github.io/learn/learn-inse-sdg.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/code_image/avatar.gif">
@@ -263,12 +266,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="人工压缩性方法(ACM) | Fenglielie's Blog">
+      <meta itemprop="name" content="交错网格上的DG格式2 | Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          人工压缩性方法(ACM)
+          交错网格上的DG格式2
         </h1>
 
         <div class="post-meta-container">
@@ -278,15 +281,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-07-03 19:54:56" itemprop="dateCreated datePublished" datetime="2022-07-03T19:54:56+08:00">2022-07-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-22 01:53:24" itemprop="dateModified" datetime="2022-07-22T01:53:24+08:00">2022-07-22</time>
+      <time title="Created: 2022-07-25 01:32:41 / Modified: 04:11:58" itemprop="dateCreated datePublished" datetime="2022-07-25T01:32:41+08:00">2022-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -305,14 +302,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.4k</span>
+      <span>6.9k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>7 mins.</span>
     </span>
 </div>
 
@@ -323,119 +320,304 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>人工压缩性方法(ACM)，主要用于求解不可压缩定常流问题。</p>
-<span id="more"></span>
-<p>不可压缩N-S方程的求解算法学习笔记，由以下笔记组成：</p>
-<ul>
-<li><a href="/learn/learn-inse.html" title="不可压N-S方程的数值算法">不可压N-S方程的数值算法</a></li>
-<li><a href="/learn/learn-inse-vortex.html" title="涡量—流函数方法">涡量—流函数方法</a></li>
-<li><a href="/learn/learn-inse-acm.html" title="人工压缩性方法(ACM)">人工压缩性方法(ACM)</a></li>
-<li><a href="/learn/learn-inse-mac.html" title="MAC方法">MAC方法</a></li>
-<li><a href="/learn/learn-inse-projection.html" title="投影法">投影法</a></li>
-<li><a href="/learn/learn-inse-simple.html" title="SIMPLE算法">SIMPLE算法</a></li>
-</ul>
-<h2 id="人工压缩性方程">人工压缩性方程</h2>
-<p>考虑无量纲化的二维不可压缩方程组</p>
+        <blockquote class="blockquote-center">
+<p>交错网格的DG格式求解不可压N-S方程组。</p>
+
+</blockquote>
+<div class="note info"><p>参考:</p>
+<p>Tavelli M, Dumbser M. A staggered semi-implicit discontinuous
+Galerkin method for the two dimensional incompressible Navier–Stokes
+equations[J]. Applied Mathematics and Computation, 2014, 248: 70-92.</p>
+<p>Tavelli M, Dumbser M. A staggered space–time discontinuous Galerkin
+method for the incompressible Navier–Stokes equations on two-dimensional
+triangular meshes[J]. Computers &amp; Fluids, 2015, 119: 235-249.</p>
+</div>
+<h2 id="控制方程">1.控制方程</h2>
+<p>考虑二维不可压N-S方程组如下：</p>
 <p><span class="math display">\[
 \begin{aligned}
 \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
-\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
+\mathbf{u} &amp;= -\nabla p + \nu \nabla^2 \mathbf{u}\\
 \nabla \cdot \mathbf{u} &amp;= 0\\
 \end{aligned}
 \]</span></p>
-<p>由于缺少<span class="math inline">\(\frac{\partial p}{\partial
-t}\)</span>，难以计算压强，因此引入人工压缩性因子<span
-class="math inline">\(\beta
-&gt;0\)</span>，使得连续性方程替换为人工压缩性方程：</p>
-<p><span class="math display">\[
-\frac{\partial p}{\partial t} + \beta \nabla \cdot \mathbf{u} = 0
-\]</span></p>
-<p>这里的人工压缩性因子<span class="math inline">\(\beta\)</span>
-相当于声速的平方<span
-class="math inline">\(c^2\)</span>，也可以从物理的角度进行理解，在<span
-class="math inline">\(\beta &gt;0\)</span>时：</p>
-<ul>
-<li>当流动在一点处压缩时，<span class="math inline">\(\nabla \cdot
-\mathbf{u} &lt; 0\)</span>，该点的压力会升高，<span
-class="math inline">\(\frac{\partial p}{\partial t}
-&gt;0\)</span>；</li>
-<li>当流动在一点处膨胀时，<span class="math inline">\(\nabla \cdot
-\mathbf{u} &gt; 0\)</span>，该点的压力会降低，<span
-class="math inline">\(\frac{\partial p}{\partial t} &lt;
-0\)</span>。</li>
-</ul>
-<p>从而得到方程组</p>
+<p>记<span class="math inline">\(\mathbf{F}_c\)</span>和<span
+class="math inline">\(\mathbf{F}\)</span>如下</p>
 <p><span class="math display">\[
 \begin{aligned}
-\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot \nabla)
-\mathbf{u} &amp;= -\nabla p + \frac{1}{Re} \nabla^2 \mathbf{u}\\
-\frac{\partial p}{\partial t} + \beta \nabla \cdot \mathbf{u} &amp;= 0
+\mathbf{F}_c &amp;= \mathbf{F}_c(\mathbf{u}) = \mathbf{u} \otimes
+\mathbf{u} =
+\begin{pmatrix}
+u^2 &amp; uv\\
+uv &amp; v^2
+\end{pmatrix}\\
+\mathbf{F} &amp;= \mathbf{F}(\mathbf{u},\nabla \mathbf{u}) =
+\mathbf{F}_c(\mathbf{u})- \nu \nabla \mathbf{u}=
+\begin{pmatrix}
+u^2 - \nu u_x &amp; uv - \nu u_y \\
+u v - \nu v_x &amp; v^2 - \nu v_y
+\end{pmatrix}
 \end{aligned}
 \]</span></p>
-<p>这个方程组只有在达到定常态的时候，才满足<span
-class="math inline">\(\nabla \cdot
-\mathbf{u}=0\)</span>，因此适合求解定常流问题。增大<span
-class="math inline">\(\beta\)</span>可以使得压力的收敛更快，但是会增加方程的刚性，降低时间步长。</p>
-<h2 id="定常问题">定常问题</h2>
-<p>对于定常问题，我们不关心中间过程的计算精度，只需要迭代(时间推进)到满足收敛的判断条件，例如取定足够小的
-<span class="math inline">\(\epsilon &gt;0\)</span>，要求</p>
+<p>从而把动量方程整理为</p>
 <p><span class="math display">\[
-\max(\Vert \mathbf{u}^{n+1}-\mathbf{u}^n \Vert,\Vert p^{n+1}-p^n\Vert)
-\le \epsilon
+\frac{\partial \mathbf{u}}{\partial t} + \nabla \cdot \mathbf{F}+\nabla
+p = 0
 \]</span></p>
-<p>最终达到稳态，同时满足了不可压缩条件 <span
-class="math inline">\(\nabla \cdot \mathbf{u}=0\)</span>。</p>
-<h2 id="非定常问题">非定常问题</h2>
-<p>对于非定常问题，在时间推进之间，需要加入<strong>内迭代</strong>，计算效率较低，通常不建议使用ACM计算非定常问题。</p>
-<p>例如对方程组使用如下显式格式进行离散：</p>
+<p>记<span class="math inline">\(L(\mathbf{u}) = \frac{\partial
+\mathbf{u}}{\partial t} + \nabla \cdot \mathbf{F}\)</span>。</p>
+<h2 id="空间离散交错网格">2.空间离散——交错网格</h2>
+<p>主要想法为：从二维区域<span
+class="math inline">\(\Omega\)</span>的三角网格剖分出发，构造一个对偶的四边形网格(edge-based)，在原始三角形上定义压强，在四边形上定义速度。</p>
+<p>记区域<span class="math inline">\(\Omega\)</span>被剖分为三角形<span
+class="math inline">\(\{T_i,i=1,\cdots,N_i\}\)</span>，共有<span
+class="math inline">\(N_i\)</span>个；记边为<span
+class="math inline">\(\{\Gamma_j,j=1,\cdots,N_j\}\)</span>，共有<span
+class="math inline">\(N_j\)</span>个。 记<span
+class="math inline">\(B(\Omega)\)</span>为属于<span
+class="math inline">\(\partial\Omega\)</span>的边的指标集，记<span
+class="math inline">\(S_i\)</span>为三角形<span
+class="math inline">\(T_i\)</span>的三条边的指标集。 对于<span
+class="math inline">\(j \notin B(\Omega)\)</span>，边<span
+class="math inline">\(\Gamma_j\)</span>被两个三角形共享，对应的指标记作<span
+class="math inline">\(l(j),r(j)\)</span>。</p>
+<p>对于三角形<span
+class="math inline">\(T_i\)</span>，以及它的一条边<span
+class="math inline">\(\Gamma_j\)</span>(<span class="math inline">\(j
+\in S_i\)</span>)，记与<span class="math inline">\(T_i\)</span>共享<span
+class="math inline">\(\Gamma_j\)</span>的三角形指标为<span
+class="math inline">\(\rho(i,j)\)</span>。</p>
+<p>对于内部边<span
+class="math inline">\(\Gamma_j\)</span>，对应有一个四边形单元<span
+class="math inline">\(R_j\)</span>，由两侧的小三角形拼成。</p>
+<p>如下图，对于三角形<span
+class="math inline">\(T_i\)</span>，有三条边<span
+class="math inline">\(\{\Gamma_{j_1},\Gamma_{j_2},\Gamma_{j_3}\}\)</span>，取内部一点(重心?)将<span
+class="math inline">\(T_i\)</span>分成三个小三角形，记作<span
+class="math inline">\(\{T_{i,j_1},T_{i,j_2},T_{i,j_3}\}\)</span>。在<span
+class="math inline">\(\Gamma_{j_1}\)</span>侧的相邻三角形为<span
+class="math inline">\(T_{i_1}\)</span>，四边形<span
+class="math inline">\(R_{j_1}\)</span>由两个小三角形<span
+class="math inline">\(T_{i,j_1},T_{i_1,j_1}\)</span>组成。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/inse-sdg-1.png"/></p>
+<p>下文将三角形网格称为原始网格或主网格，将四边形网格称作对偶网格。</p>
+<p>在对偶网格上，也有类似的记号： 记四边形的总数为<span
+class="math inline">\(N_l\)</span>，记<span
+class="math inline">\(\Gamma_l\)</span>为边的编号(不是原三角形的边)，<span
+class="math inline">\(S_j\)</span>为<span
+class="math inline">\(R_j\)</span>对应的边的指标集，对于<span
+class="math inline">\(\Gamma_l\)</span>被两个四边形共享，对应的指标记作<span
+class="math inline">\(l_{jl}(l),r_{jl}(l)\)</span>。</p>
+<h3 id="基函数">基函数</h3>
+<p>三角形的压强元总是可以变换到标准的直角三角形单元<span
+class="math inline">\(T_{std}\)</span>，四边形的速度元总是由两个三角形拼成，可以把它们分别变换到两个直角三角形单元，拼成一个正方形单元<span
+class="math inline">\(R_{std}\)</span>。</p>
 <p><span class="math display">\[
 \begin{aligned}
-\frac{\mathbf{u}^{n+1}-\mathbf{u}^n}{\Delta t} + (\mathbf{u}^n\cdot
-\nabla) \mathbf{u}^n &amp;= -\nabla p ^n+ \frac{1}{Re} \nabla^2
-\mathbf{u}^n\\
-\frac{p^{n+1}-p^n}{\Delta t} + \beta \nabla \cdot \mathbf{u}^n &amp;= 0
+T_{std}&amp;=\{(\xi,\eta)\in R^2 :0\le \xi \le 1,0,\le \eta \le 1 -
+\xi\}\\
+R_{std}&amp;=\{(\xi,\eta)\in R^2:0\le \xi \le 1,0,\le \eta \le 1\}\\
 \end{aligned}
 \]</span></p>
-<p>则完整的求解需要使用如下步骤：</p>
-<ul>
-<li>从<span class="math inline">\(t^n\)</span>时刻的第n步<span
-class="math inline">\(\mathbf{u}^n\)</span>出发，</li>
-<li>进入内迭代：
-<ul>
-<li>记<span
-class="math inline">\(\mathbf{u}^{n+1,0}=\mathbf{u}^n\)</span>，记<span
-class="math inline">\(p^{n+1,0}=p^n\)</span>，(或者压强以一个猜测值开始迭代，应该也可以)</li>
-<li>计算<span
-class="math inline">\(\mathbf{u}^{n+1,k},\cdots\)</span>，以及<span
-class="math inline">\(p^{n+1,k},\cdots\)</span>满足下式 <span
-class="math display">\[
+<p>从参考单元到一般单元的映射记作 <span class="math display">\[
 \begin{aligned}
-\frac{\mathbf{u}^{n+1,k+1}-\mathbf{u}^{n+1,k}}{\Delta t} +
-(\mathbf{u}^n\cdot \nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1,k}+
-\frac{1}{Re} \nabla^2 \mathbf{u}^n\\
-\frac{p^{n+1,k+1}-p^{n+1,k}}{\Delta t} + \beta \nabla \cdot
-\mathbf{u}^{n+1,k} &amp;= 0
+T_i \overset{T^i}{\to} T_{std}\\
+R_j \overset{R^j}{\to} R_{std}\\
 \end{aligned}
-\]</span></li>
-<li>不断迭代，直到满足类似定常流的收敛判断条件，记作<span
-class="math inline">\(\mathbf{u}^{n+1,k_N},p^{n+1,k_N}\)</span></li>
-</ul></li>
-<li>将内收敛得到的速度和压强作为<span
-class="math inline">\(t^{n+1}\)</span>时刻的速度和压强，<span
-class="math inline">\(\mathbf{u}^{n+1}=\mathbf{u}^{n+1,k_N}\)</span>，<span
-class="math inline">\(p^{n+1}=p^{n+1,k_N}\)</span>。</li>
-</ul>
-<div class="note info"><p>注：以上内迭代的公式来自李新亮的计算流体力学PPT，但是似乎应该像下面这样更合理？
+\]</span></p>
+<p>The maps from physical coordinates to reference coordinates can be
+constructed following a classical sub-parametric or a complete
+iso-parametric approach.</p>
+<p>在直角三角形<span class="math inline">\(T_{std}\)</span>使用<span
+class="math inline">\(P^k\)</span>多项式作为基函数，共<span
+class="math inline">\(\frac{(k+1)(k+2)}2\)</span>个； 在正方形<span
+class="math inline">\(R_{std}\)</span>使用<span
+class="math inline">\(Q^k\)</span>多项式作为基函数，共<span
+class="math inline">\((k+1)^2\)</span>个。</p>
+<p>取主网格(main grid)的分片多项式空间<span
+class="math inline">\(V_h^m\)</span>为</p>
+<p><span class="math display">\[
+\begin{aligned}
+V_h^m = \{\phi: \phi|_{T_i} \in P^k(T_i),\forall i\}
+\end{aligned}
+\]</span></p>
+<p>取对偶网格(dual grid)的分片多项式空间<span
+class="math inline">\(V_h^d\)</span>为</p>
+<p><span class="math display">\[
+\begin{aligned}
+V_h^d = \{\psi: \psi|_{R_j} \in Q^k(R_j),\forall j \notin B(\Omega)\}
+\end{aligned}
+\]</span></p>
+<p>定义离散的压强<span class="math inline">\(p_h \in
+V_h^m\)</span>，离散的速度<span class="math inline">\(\mathbf{u}_h \in
+[V_h^d]^2\)</span>，允许它们在每个单元的边界产生间断。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/inse-sdg-2.png"/></p>
+<p>分别用基函数展开，得到系数向量<span
+class="math inline">\(P_i(t),U_i(t)\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+p_h(x,y,t)|_{T_i} = \sum_l \phi_l^{(i)}(x,y)\hat{p}_{l,i}(t)=
+\Phi^{(i)}(x,y) P_i(t)
+\\
+\mathbf{u}_h(x,y,t)|_{R_j} = \sum_l
+\psi_l^{(j)}(x,y)\hat{\mathbf{u}}_{l,j}(t)
+=\Psi^{(j)}(x,y) U_j(t)
+\end{aligned}
+\]</span></p>
+<h2 id="dg格式">3.DG格式</h2>
+<p>对动量方程乘以速度测试函数<span class="math inline">\(\psi \in
+[V_h^d]^2\)</span>，在四边形<span
+class="math inline">\(R_j\)</span>积分；对连续性方程乘以压强测试函数<span
+class="math inline">\(\phi \in V_h^m\)</span>，在三角形<span
+class="math inline">\(T_i\)</span>积分，得到下式：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{R_j} \mathbf{\psi}^{(j)} \left(\frac{\partial \mathbf{u}}{\partial
+t} +\nabla \cdot \mathbf{F} + \nabla p \right) &amp;= 0\\
+\int_{T_i} \phi^{(i)} (\nabla \cdot \mathbf{u}) &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>其中第二个式子分部积分即</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{T_i} \nabla \phi^{(i)} \cdot \mathbf{u} - \int_{\partial T_i}
+\phi^{(i)} \,\mathbf{u}\cdot \mathbf{n} = 0
+\end{aligned}
+\]</span></p>
+<p>按照小三角形把积分区域拆分(离散的速度会在小三角形之间间断)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{j \in S_i}\left(\int_{T_{ij}} \nabla \phi^{(i)} \cdot \mathbf{u} -
+\int_{\Gamma_j} \phi^{(i)} \,\mathbf{u}\cdot \mathbf{n}\right) = 0
+\end{aligned}
+\]</span></p>
+<p>对于动量方程，<span
+class="math inline">\(R_j\)</span>由两个小三角形<span
+class="math inline">\(T_{l(j),j},T_{r(j),j}\)</span>组成，对应主网格的边<span
+class="math inline">\(\Gamma_j\)</span>，将压强部分拆开(离散的压强会在<span
+class="math inline">\(\Gamma_j\)</span>间断)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{R_j} \mathbf{\psi}^{(j)} \left(\frac{\partial \mathbf{u}}{\partial
+t} + \nabla \cdot \mathbf{F}\right)+
+\int_{T_{l(j),j}}\mathbf{\psi}^{(j)} \nabla p +
+\int_{T_{r(j),j}}\mathbf{\psi}^{(j)} \nabla p +
+\int_{\Gamma_j} \mathbf{n}\cdot \mathbf{\psi}^{(j)}(p_{r(j)}-p_{l(j)})
+&amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>对于<span
+class="math inline">\(\mathbf{u}_h,p_h\)</span>，代入上式，用基函数展开，得到系数组<span
+class="math inline">\(\hat{\mathbf{u}},\hat{p}\)</span>需要满足的方程组：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_l \sum_{j \in S_i}\left(\int_{T_{ij}} \nabla \phi^{(i)} \cdot
+\mathbf{\psi}^{(j)}_l  - \int_{\Gamma_j} \phi^{(i)}
+\,\mathbf{\psi}^{(j)}_l\cdot \mathbf{n}  \right)\hat{\mathbf{u}}_{l,j} =
+0
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{R_j} \mathbf{\psi}^{(j)} \psi_l^{(j)} L_h(\hat{\mathbf{u}}_{l,j})
++\int_{T_{l(j),j}}\mathbf{\psi}^{(j)} \nabla \phi_l^{(l(j))}
+\hat{p}_{l,l(j)} +
+\int_{T_{r(j),j}}\mathbf{\psi}^{(j)} \nabla \phi_l^{(r(j))}
+\hat{p}_{l,r(j)} +
+\int_{\Gamma_j} \mathbf{n}\cdot \mathbf{\psi}^{(j)}
+(\phi_l^{(r(j))} \hat{p}_{l,r(j)} - \phi_l^{l(j)} \hat{p}_{l,l(j)})
+&amp;= 0\\
+\end{aligned}
+\]</span></p>
+<p>其中<span class="math inline">\(L(\mathbf{u}) = \frac{\partial
+\mathbf{u}}{\partial t} + \nabla \cdot \mathbf{F}\)</span>，<span
+class="math inline">\(L_h\)</span>是<span
+class="math inline">\(L\)</span>算子的数值近似，见下文。</p>
+<p>最终可以整理为如下形式</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{j \in S_i} D_{ij}\hat{\mathbf{u}}_j &amp;= 0\\
+M_j L_h(\hat{\mathbf{u}}_j) + R_j \hat{p}_{r(j)} - L_j \hat{p}_{l(j)}
+&amp;=0
+\end{aligned}
+\]</span></p>
+<p>其中<span
+class="math inline">\(D_{ij},M_j,R_j,L_j\)</span>都是由网格和基函数所确定的值，并且<span
+class="math inline">\(R_j,L_j\)</span>可以被统一为<span
+class="math inline">\(Q_{ij}\)</span>，使得</p>
+<p><span class="math display">\[
+\begin{aligned}
+L_i = - Q_{l(j),j},
+R_i =  Q_{r(j),j}\\
+\end{aligned}
+\]</span></p>
+<p>从而得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{j \in S_i} D_{ij}\hat{\mathbf{u}}_j &amp;= 0\\
+M_j L_h(\hat{\mathbf{u}}_j) + Q_{r(j),j} \hat{p}_{r(j)} +Q_{l(j),j}
+\hat{p}_{l(j)} &amp;=0
+\end{aligned}
+\]</span></p>
+<h3 id="时间离散">时间离散</h3>
+<p>对于压强，取常数<span class="math inline">\(\theta \in
+[\frac12,1]\)</span>，使得<span
+class="math inline">\(p^{n+\theta}=\theta p^{n+1} +
+(1-\theta)p^n\)</span>，此时</p>
+<p><span class="math display">\[
+Q_{r(j),j} \hat{p}_{r(j)} +Q_{l(j),j} \hat{p}_{l(j)}
+\to
+\theta\left[Q_{r(j),j} \hat{p}^{n+1}_{r(j)} +Q_{l(j),j}
+\hat{p}^{n+1}_{l(j)}\right]+
+(1-\theta)\left[Q_{r(j),j} \hat{p}^n_{r(j)} +Q_{l(j),j}
+\hat{p}^n_{l(j)}\right]
+\]</span></p>
+<p>连续性方程的速度取<span class="math inline">\(n+1\)</span>时刻，即
 <span class="math display">\[
 \begin{aligned}
-\frac{\mathbf{u}^{n+1,k+1}-\mathbf{u}^{n}}{\Delta t} +
-(\mathbf{u}^n\cdot \nabla) \mathbf{u}^n &amp;= -\nabla p^{n+1,k}+
-\frac{1}{Re} \nabla^2 \mathbf{u}^n\\
-\frac{p^{n+1,k+1}-p^{n+1,k}}{\Delta t} + \beta \nabla \cdot
-\mathbf{u}^{n+1,k} &amp;= 0
+\sum_{j \in S_i} D_{ij}\hat{\mathbf{u}}_j^{n+1} &amp;= 0\\
 \end{aligned}
 \]</span></p>
-</div>
+<p>对于<span
+class="math inline">\(L_h(\hat{\mathbf{u}}_j)\)</span>部分，包含了时间项，对流项和扩散项，如果对流项和扩散项全部采用显式，则可以写成</p>
+<p><span class="math display">\[
+L_h(\hat{\mathbf{u}}_j) \to \frac{\hat{\mathbf{u}}_j^{n+1}-
+\widehat{F\mathbf{u}}_j^n}{\Delta t}
+\]</span></p>
+<p>最终得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{j \in S_i} D_{ij}\hat{\mathbf{u}}_j^{n+1} &amp;= 0\\
+M_j \frac{\hat{\mathbf{u}}_j^{n+1}- \widehat{F\mathbf{u}}_j^n}{\Delta t}
++ \theta\left[Q_{r(j),j} \hat{p}^{n+1}_{r(j)} +Q_{l(j),j}
+\hat{p}^{n+1}_{l(j)}\right]+
+(1-\theta)\left[Q_{r(j),j} \hat{p}^n_{r(j)} +Q_{l(j),j}
+\hat{p}^n_{l(j)}\right] &amp;=0
+\end{aligned}
+\]</span></p>
+<p>有</p>
+<p><span class="math display">\[
+\hat{\mathbf{u}}_j^{n+1}=\widehat{F\mathbf{u}}_j^n -\Delta t
+M_j^{-1}\left\{ \theta\left[Q_{r(j),j} \hat{p}^{n+1}_{r(j)} +Q_{l(j),j}
+\hat{p}^{n+1}_{l(j)}\right]+
+(1-\theta)\left[Q_{r(j),j} \hat{p}^n_{r(j)} +Q_{l(j),j}
+\hat{p}^n_{l(j)}\right] \right\}
+\]</span></p>
+<p>代入连续性方程可得关于<span
+class="math inline">\(\hat{p}^{n+1}\)</span>的全局的线性方程组，右端项<span
+class="math inline">\(b_i^n\)</span>已知，</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{j \in S_i} -\Delta t D_{ij} M_j^{-1} \theta\left[Q_{r(j),j}
+\hat{p}^{n+1}_{r(j)} +Q_{l(j),j} \hat{p}^{n+1}_{l(j)}\right]= b_i^n\\
+b_i^n = \sum_{j\in S_i} -D_{ij}\widehat{F\mathbf{u}}_j^n +
+(1-\theta)M_j^{-1} \left[Q_{r(j),j} \hat{p}^n_{r(j)} +Q_{l(j),j}
+\hat{p}^n_{l(j)}\right]
+\end{aligned}
+\]</span></p>
+<p>解得压强<span
+class="math inline">\(\hat{p}^{n+1}\)</span>后，可代回计算<span
+class="math inline">\(\hat{\mathbf{u}}^{n+1}\)</span></p>
 
     </div>
 
@@ -459,7 +641,7 @@ class="math inline">\(p^{n+1}=p^{n+1,k_N}\)</span>。</li>
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://fenglielie.github.io/learn/learn-inse-acm.html" title="人工压缩性方法(ACM)">https://fenglielie.github.io/learn/learn-inse-acm.html</a>
+      <a href="https://fenglielie.github.io/learn/learn-inse-sdg.html" title="交错网格上的DG格式2">https://fenglielie.github.io/learn/learn-inse-sdg.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -475,14 +657,11 @@ class="math inline">\(p^{n+1}=p^{n+1,k_N}\)</span>。</li>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/code/ldg/code-ldg.html" rel="prev" title="LDG——一维对流扩散方程，一维N-S方程组">
-                  <i class="fa fa-chevron-left"></i> LDG——一维对流扩散方程，一维N-S方程组
+                <a href="/learn/learn-inse-staggered-grid.html" rel="prev" title="交错网格上的DG格式1">
+                  <i class="fa fa-chevron-left"></i> 交错网格上的DG格式1
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/learn/learn-inse-projection.html" rel="next" title="投影法">
-                  投影法 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -569,7 +748,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"fenglielie","repo":"fenglielie.comments","client_id":"50489b01ad77168d635a","client_secret":"80c919881930af7ef1fecb47c11141083a5ab2c9","admin_user":"fenglielie","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"ee9086b2789a825128f0fd306eb62f3e"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"fenglielie","repo":"fenglielie.comments","client_id":"50489b01ad77168d635a","client_secret":"80c919881930af7ef1fecb47c11141083a5ab2c9","admin_user":"fenglielie","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"07831bcea02d97244d4cde6de47048fc"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 <div class="moon-menu">
   <div class="moon-menu-items">

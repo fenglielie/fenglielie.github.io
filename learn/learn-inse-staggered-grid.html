@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fenglielie.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"buttons","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="关于不可压N-S方程的半隐式DG的非结构交错网格的压力修正算法。">
+    <meta name="description" content="交错网格的DG格式求解不可压N-S方程组。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不可压N-S方程的交错网格DG格式">
+<meta property="og:title" content="交错网格上的DG格式1">
 <meta property="og:url" content="https://fenglielie.github.io/learn/learn-inse-staggered-grid.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
-<meta property="og:description" content="关于不可压N-S方程的半隐式DG的非结构交错网格的压力修正算法。">
+<meta property="og:description" content="交错网格的DG格式求解不可压N-S方程组。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/stagged-1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/stagged-2.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/stagged-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/stagged-5.png">
 <meta property="article:published_time" content="2022-07-24T13:18:48.000Z">
-<meta property="article:modified_time" content="2022-07-24T16:00:34.758Z">
+<meta property="article:modified_time" content="2022-07-24T20:12:02.426Z">
 <meta property="article:author" content="Fenglielie">
 <meta property="article:tag" content="inse">
 <meta name="twitter:card" content="summary">
@@ -47,10 +47,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/learn/learn-inse-staggered-grid.html","path":"learn/learn-inse-staggered-grid.html","title":"不可压N-S方程的交错网格DG格式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/learn/learn-inse-staggered-grid.html","path":"learn/learn-inse-staggered-grid.html","title":"交错网格上的DG格式1"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>不可压N-S方程的交错网格DG格式 | Fenglielie's Blog</title>
+<title>交错网格上的DG格式1 | Fenglielie's Blog</title>
   
 
 
@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -212,7 +212,10 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
-          <a href="/learn/learn-inse-staggered-grid.html" title="learn&#x2F;learn-inse-staggered-grid.html">不可压N-S方程的交错网格DG格式</a>
+          <a href="/learn/learn-inse-staggered-grid.html" title="learn&#x2F;learn-inse-staggered-grid.html">交错网格上的DG格式1</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/learn/learn-inse-sdg.html" title="learn&#x2F;learn-inse-sdg.html">交错网格上的DG格式2</a>
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/test/test-zotero.html" title="test&#x2F;test-zotero.html">Zotero文献管理</a>
@@ -222,9 +225,6 @@
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/learn/learn-inse.html" title="learn&#x2F;learn-inse.html">不可压N-S方程的数值算法</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/learn/learn-inse-simple.html" title="learn&#x2F;learn-inse-simple.html">SIMPLE算法</a>
         </li>
     </ul>
   </div>
@@ -269,12 +269,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="不可压N-S方程的交错网格DG格式 | Fenglielie's Blog">
+      <meta itemprop="name" content="交错网格上的DG格式1 | Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          不可压N-S方程的交错网格DG格式
+          交错网格上的DG格式1
         </h1>
 
         <div class="post-meta-container">
@@ -292,7 +292,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-25 00:00:34" itemprop="dateModified" datetime="2022-07-25T00:00:34+08:00">2022-07-25</time>
+      <time title="Modified: 2022-07-25 04:12:02" itemprop="dateModified" datetime="2022-07-25T04:12:02+08:00">2022-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,7 +311,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>3.7k</span>
+      <span>3.8k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -330,13 +330,13 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote class="blockquote-center">
-<p>关于不可压N-S方程的半隐式DG的非结构交错网格的压力修正算法。</p>
+<p>交错网格的DG格式求解不可压N-S方程组。</p>
 
 </blockquote>
 <span id="more"></span>
 <p><strong>Title:</strong> A novel staggered semi–implicit space–time
 discontinuous Galerkin method for the incompressible Navier-Stokes
-equations(2019)</p>
+equations(2021)</p>
 <p><strong>Author:</strong> F. L. Romeo, M. Dumbser, M. Tavelli</p>
 <p><strong>Keywords:</strong> Incompressible Navier-Stokes equations,
 Semi-implicit space–time Discontinuous Galerkin schemes, Staggered
@@ -450,6 +450,10 @@ N_\phi = 4 + 4(N-1) + N-1 + (N-1)(N-2) = (N+1)^2
 \]</span></p>
 <p>例如N=1时的四个结点基函数如下图</p>
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/stagged-3.png" width=70%/></p>
+<p>这里只是参考了连续有限元的基函数的构造，但是所有的基函数都只是一个单元拥有的，自由度并不会被多个单元共享，
+因此相当于三角形上使用了<span
+class="math inline">\(P^N\)</span>分片多项式空间，四边形单元上使用了<span
+class="math inline">\(Q^N\)</span>分片多项式空间。</p>
 <h3 id="时空基函数">2.2 时空基函数</h3>
 <p>时间剖分如下 <span class="math display">\[
 0 = t^0 &lt; t^1 &lt; \cdots &lt; t^{N_t} = T
@@ -489,9 +493,7 @@ N_{\gamma}\)</span>，下标<span class="math inline">\(d_1(k)=1 +
 <p>Find <span class="math inline">\(\widetilde{\mathbf{u}}_h \in
 [V_h^d]^2\)</span>, <span class="math inline">\(p_h \in V_h^m\)</span>,
 s.t.</p>
-<p><span class="math display">\[
-\begin{}
-\]</span></p>
+<p>(未完待续)</p>
 
     </div>
 
@@ -515,7 +517,7 @@ s.t.</p>
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://fenglielie.github.io/learn/learn-inse-staggered-grid.html" title="不可压N-S方程的交错网格DG格式">https://fenglielie.github.io/learn/learn-inse-staggered-grid.html</a>
+      <a href="https://fenglielie.github.io/learn/learn-inse-staggered-grid.html" title="交错网格上的DG格式1">https://fenglielie.github.io/learn/learn-inse-staggered-grid.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -536,6 +538,9 @@ s.t.</p>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/learn/learn-inse-sdg.html" rel="next" title="交错网格上的DG格式2">
+                  交错网格上的DG格式2 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
