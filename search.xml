@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>vim入门</title>
+    <url>/cs/vim-note.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>vim被称为编辑器之神，学习难度很大，但是熟练掌握后可以更高效地敲代码，因此学一下。</p>
+
+</blockquote>
+<span id="more"></span>
+<h2 id="安装与配置文件">1 安装与配置文件</h2>
+<p>vim默认是命令行版本的，而gvim是GUI版本的vim，这里我们使用的是Git for
+windows里面附带的vim(不含GUI)，可以按Linux风格进行配置和使用，感觉比直接下载<a
+href="https://www.vim.org/">Vim官网</a>的windows版的gvim更方便，便于直接把配置应用到到Linux服务器上。</p>
+<p>在vim中输入<code>:version</code>可以查看很多信息，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// vim的版本号</span><br><span class="line">VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Nov 22 2021 19:31:05)</span><br><span class="line">Included patches: 1-3582</span><br><span class="line">Compiled by &lt;https://www.msys2.org/&gt;</span><br><span class="line"></span><br><span class="line">// vim的安装模式(tiny,small,normal,big,huge等，huge的功能最全)</span><br><span class="line">Huge version without GUI.</span><br></pre></td></tr></table></figure>
+<p>还有一个列表描述了当前编译的vim支持或不支持的功能列表，例如<code>+clipboard</code>
+意味着剪贴板功能被编译支持了，<code>-clipboard</code>
+意味着剪贴板特性没有被编译支持。</p>
+<h2 id="工作模式">2 工作模式</h2>
+<p>vim分为三种模式：</p>
+<ul>
+<li>插入(编辑)模式(Insert mode)</li>
+<li>命令模式(Command mode)</li>
+<li>底线命令模式(Last line mode)</li>
+</ul>
+<p>启动vim会直接进入<strong>命令模式</strong>，此时的按键不会被视作输入字符，而是视作命令，例如输入<code>i</code>会切换到<strong>插入(编辑)模式</strong>，进行正常的文本编辑状态；输入英文冒号<code>:</code>会切换到<strong>底线输入模式</strong>，此时在最底行输入复杂命令(命令模式只支持一些基本的命令)</p>
+<p>三个模式的转换如下图，其中命令模式相当于中枢，其他模式按Esc键会返回命令模式。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-1.jpg"/></p>
+<p>vim的命令繁琐比较难记，有很多类似的速查图帮助记忆：</p>
+<p><img data-src="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png"></p>
+<h2 id="工作流程">3 工作流程</h2>
+<h3 id="打开vim">3.1 打开vim</h3>
+<p>在命令行直接输入<code>vim filename</code>即可打开或新建指定的文件：</p>
+<ul>
+<li>对于已存在的文件会打开它；</li>
+<li>对于不存在的文件，会创建一个临时文件，如果退出时选择保存，则会真实地创建该文件。</li>
+</ul>
+<p>注意，如果直接输入<code>vim</code>，不接文件名，则vim会给出如下的欢迎界面——帮助乌干达的贫困儿童。</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-2.png" width=70%/></p>
+<p>其中行首的<code>~</code>占位，表示该行不存在。</p>
+<h3 id="退出vim">3.2 退出vim</h3>
+<p>对于不熟悉vim的用户，几乎不可能体面地关闭vim，不管你按什么按键。一个冷笑话是：如何生成一串完全随机字符串?
+让新手退出vim。</p>
+<p>在编辑完成之后，退出vim的操作首先要明确所处的模式，假设当前处于命令模式中(输入<code>:</code>会进入底线命令模式)，有如下几种退出方式：</p>
+<ul>
+<li><code>:q</code>
+直接退出(quit)，只适合于当前文件没有被改动时，如果文件有改动，则会报错无法退出；</li>
+<li><code>:wq</code> 保存并退出(write and quit)；</li>
+<li><code>:q!</code>
+加感叹号表示强制退出，如果不希望保存文件的改动，则可以强制进行不保存的退出。</li>
+</ul>
+<h3 id="进入编辑模式">3.3 进入编辑模式</h3>
+<p>不论在命令模式还是编辑模式，在打开的文本中都存在一个可移动的光标，假设光标处于<code>···XYZ···</code>中的<code>Y</code>位置，从命令模式变成编辑模式，有如下几种方法：</p>
+<ul>
+<li>以单个字符的尺度
+<ul>
+<li>i:在光标所在字符前开始插入</li>
+<li>a:在光标所在字符后开始插入</li>
+<li>o:在<strong>光标所在行的下面</strong>另起一新行插入</li>
+<li>s:删除光标所在的字符并开始插入</li>
+</ul></li>
+<li>以整行的尺度
+<ul>
+<li>I:在光标所在行的行首开始插入，如果行首有空格则在空格之后插入</li>
+<li>A:在光标所在你行的行尾开始插入</li>
+<li>O:在<strong>光标所在行的上面</strong>另起一行开始插入</li>
+<li>S:删除光标所在行并开始插入</li>
+</ul></li>
+</ul>
+<h3 id="光标的移动">3.4 光标的移动</h3>
+<p>不论是在命令模式还是编辑模式，都可以使用上下左右方向键来移动光标。(在底线命令模式中，光标锁定在底线等待复杂命令的输入，可以左右移动调整光标，也可以上下翻页命令的历史记录)</p>
+<p>但是在命令模式中，我们不希望离开主键区，使用下面的4个按键来移动光标</p>
+<ul>
+<li><code>h</code> 左移；</li>
+<li><code>j</code> 下移；</li>
+<li><code>k</code> 上移；</li>
+<li><code>l</code> 右移；</li>
+</ul>
+<p>在命令模式中，还可以使用<code>gi</code>来直接返回编辑模式中最后的光标位置。</p>
+<p>常见配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&quot; 以下的设置可以用:开头，也可以省略</span><br><span class="line">&quot; 显示行号</span><br><span class="line">set number</span><br><span class="line">&quot; 设置Tab键为4个空格宽度</span><br><span class="line">set tabstop=4</span><br><span class="line">&quot; 将Tab键转换为空格</span><br><span class="line">set expandtab</span><br><span class="line">&quot; 突出显示当前行</span><br><span class="line">set cursorline</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>交错网格上的DG格式2</title>
     <url>/learn/learn-inse-sdg.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1383,7 +1465,7 @@ tensor-reduction operation.</p>
   </entry>
   <entry>
     <title>web自学——JavaScript</title>
-    <url>/web/web-javascript.html</url>
+    <url>/cs/web-javascript.html</url>
     <content><![CDATA[<p>在简单学习了HTML和CSS之后，接下来是JavaScript的学习，学习的重点不是JavaScript作为一个脚本语言的语法内容，而是JavaScript对于网页的控制。</p>
 <ul>
 <li>HTML 定义了网页的内容</li>
@@ -1657,7 +1739,7 @@ href="https://developer.mozilla.org/zh-CN/docs/Learn">Here</a></p>
   </entry>
   <entry>
     <title>web自学——CSS</title>
-    <url>/web/web-css.html</url>
+    <url>/cs/web-css.html</url>
     <content><![CDATA[<p>在简单学习了HTML之后，我们可以得到一个简单的静态网页，但是为了让网页呈现更加丰富的样式，一个明智的做法把样式信息和文本信息分离开，文本信息对应HTML，样式信息对应CSS，完成一个网页的组织分离，接下来是CSS的简单学习。</p>
 <ul>
 <li>HTML 定义了网页的内容</li>
@@ -1888,7 +1970,7 @@ href="https://developer.mozilla.org/zh-CN/docs/Learn">Here</a></p>
   </entry>
   <entry>
     <title>web自学——HTML</title>
-    <url>/web/web-html.html</url>
+    <url>/cs/web-html.html</url>
     <content><![CDATA[<p>众所周知，web前端主要包括HTML+CSS+JavaScript三部分组成，其中HTML是超文本标记语言，CSS是层叠样式表，JavaScript是脚本语言。</p>
 <p>以下学习的内容都是静态网页而非动态网页，不涉及服务器数据库之类的知识，目标之一是了解最基本的网页知识，例如可以写出几个简单的静态网页，并且利用Hexo+Github
 Pages部署，目的之二是看懂Hexo搭建博客的样式配置等。</p>
