@@ -25,16 +25,20 @@
 
     <meta name="description" content="vim被称为编辑器之神，学习难度很大，但是熟练掌握后可以更高效地敲代码，因此学一下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vim入门">
+<meta property="og:title" content="vim入门笔记">
 <meta property="og:url" content="https://fenglielie.github.io/cs/vim-note.html">
 <meta property="og:site_name" content="Fenglielie&#39;s Blog">
 <meta property="og:description" content="vim被称为编辑器之神，学习难度很大，但是熟练掌握后可以更高效地敲代码，因此学一下。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-1.jpg">
 <meta property="og:image" content="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-5.png">
 <meta property="article:published_time" content="2022-07-25T07:16:33.000Z">
-<meta property="article:modified_time" content="2022-07-25T16:12:29.732Z">
+<meta property="article:modified_time" content="2022-07-26T18:24:59.285Z">
 <meta property="article:author" content="Fenglielie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-1.jpg">
@@ -44,10 +48,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/cs/vim-note.html","path":"cs/vim-note.html","title":"vim入门"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fenglielie.github.io/cs/vim-note.html","path":"cs/vim-note.html","title":"vim入门笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>vim入门 | Fenglielie's Blog</title>
+<title>vim入门笔记 | Fenglielie's Blog</title>
   
 
 
@@ -154,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">1 安装与配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-text">2 工作模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">3 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%BC%80vim"><span class="nav-text">3.1 打开vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%87%BAvim"><span class="nav-text">3.2 退出vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.3 进入编辑模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E6%A0%87%E7%9A%84%E7%A7%BB%E5%8A%A8"><span class="nav-text">3.4 光标的移动</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">1 安装与配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-text">2 工作模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">3 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%BC%80vim"><span class="nav-text">3.1 打开vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%87%BAvim"><span class="nav-text">3.2 退出vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.3 进入编辑模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E6%A0%87%E7%9A%84%E7%A7%BB%E5%8A%A8"><span class="nav-text">3.4 光标的移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD"><span class="nav-text">3.5 常用功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="nav-text">4 常用配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%8F%B7"><span class="nav-text">4.1 行号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE"><span class="nav-text">4.2 模式设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tab%E4%B8%8E%E7%BC%A9%E8%BF%9B"><span class="nav-text">4.3 Tab与缩进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-text">4.4 其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">5 配置文件</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -209,7 +213,7 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
-          <a href="/cs/vim-note.html" title="cs&#x2F;vim-note.html">vim入门</a>
+          <a href="/cs/vim-note.html" title="cs&#x2F;vim-note.html">vim入门笔记</a>
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/learn/learn-inse-sdg.html" title="learn&#x2F;learn-inse-sdg.html">交错网格上的DG格式2</a>
@@ -266,12 +270,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="vim入门 | Fenglielie's Blog">
+      <meta itemprop="name" content="vim入门笔记 | Fenglielie's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          vim入门
+          vim入门笔记
         </h1>
 
         <div class="post-meta-container">
@@ -289,7 +293,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-26 00:12:29" itemprop="dateModified" datetime="2022-07-26T00:12:29+08:00">2022-07-26</time>
+      <time title="Modified: 2022-07-27 02:24:59" itemprop="dateModified" datetime="2022-07-27T02:24:59+08:00">2022-07-27</time>
     </span>
 
   
@@ -299,14 +303,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>1.7k</span>
+      <span>3.9k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>4 mins.</span>
     </span>
 </div>
 
@@ -338,11 +342,12 @@ target="_blank" rel="noopener" href="https://www.vim.org/">Vim官网</a>的windo
 <li>命令模式(Command mode)</li>
 <li>底线命令模式(Last line mode)</li>
 </ul>
-<p>启动vim会直接进入<strong>命令模式</strong>，此时的按键不会被视作输入字符，而是视作命令，例如输入<code>i</code>会切换到<strong>插入(编辑)模式</strong>，进行正常的文本编辑状态；输入英文冒号<code>:</code>会切换到<strong>底线输入模式</strong>，此时在最底行输入复杂命令(命令模式只支持一些基本的命令)</p>
+<p>启动vim会直接进入<strong>命令模式</strong>，此时的按键不会被视作输入字符，而是视作命令，例如输入<code>i</code>会切换到<strong>插入(编辑)模式</strong>，进行正常的文本编辑状态(下方会显示<code>-- INSERT --</code>)；输入英文冒号<code>:</code>会切换到<strong>底线输入模式</strong>，此时在最底行输入复杂命令(命令模式只支持一些基本的命令)</p>
 <p>三个模式的转换如下图，其中命令模式相当于中枢，其他模式按Esc键会返回命令模式。</p>
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-1.jpg"/></p>
 <p>vim的命令繁琐比较难记，有很多类似的速查图帮助记忆：</p>
 <p><img data-src="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png"></p>
+<p><img data-src="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch.gif"></p>
 <h2 id="工作流程">3 工作流程</h2>
 <h3 id="打开vim">3.1 打开vim</h3>
 <p>在命令行直接输入<code>vim filename</code>即可打开或新建指定的文件：</p>
@@ -354,32 +359,41 @@ target="_blank" rel="noopener" href="https://www.vim.org/">Vim官网</a>的windo
 <p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-2.png" width=70%/></p>
 <p>其中行首的<code>~</code>占位，表示该行不存在。</p>
 <h3 id="退出vim">3.2 退出vim</h3>
-<p>对于不熟悉vim的用户，几乎不可能体面地关闭vim，不管你按什么按键。一个冷笑话是：如何生成一串完全随机字符串?
+<div class="note info"><p>对于不熟悉vim的用户，几乎不可能体面地关闭vim，不管你按什么按键。一个冷笑话是：如何生成一串完全随机字符串?
 让新手退出vim。</p>
+</div>
 <p>在编辑完成之后，退出vim的操作首先要明确所处的模式，假设当前处于命令模式中(输入<code>:</code>会进入底线命令模式)，有如下几种退出方式：</p>
 <ul>
 <li><code>:q</code>
 直接退出(quit)，只适合于当前文件没有被改动时，如果文件有改动，则会报错无法退出；</li>
-<li><code>:wq</code> 保存并退出(write and quit)；</li>
+<li><code>:wq</code> 保存并退出(write and
+quit)，也可以拆成两个命令：保存<code>:w</code>，退出<code>:q</code>；</li>
 <li><code>:q!</code>
 加感叹号表示强制退出，如果不希望保存文件的改动，则可以强制进行不保存的退出。</li>
 </ul>
+<p>使用<code>:x</code>也可以保存并退出，而且和<code>:wq</code>相比有细微的差别，它仅仅会在文件真正改动时才写入文件。
+使用<code>:w newfilename</code>可以把改动另存为新的文件。
+使用<code>:w n1,n2 newfilename</code>可以把n1行到n2行的内容截断存储到新的文件。</p>
 <h3 id="进入编辑模式">3.3 进入编辑模式</h3>
-<p>不论在命令模式还是编辑模式，在打开的文本中都存在一个可移动的光标，假设光标处于<code>···XYZ···</code>中的<code>Y</code>位置，从命令模式变成编辑模式，有如下几种方法：</p>
+<p>不论在命令模式还是编辑模式，在打开的文本中都存在一个可移动的光标，从命令模式变成编辑模式，有如下几种方法：</p>
 <ul>
 <li>以单个字符的尺度
 <ul>
-<li>i:在光标所在字符前开始插入</li>
-<li>a:在光标所在字符后开始插入</li>
-<li>o:在<strong>光标所在行的下面</strong>另起一新行插入</li>
-<li>s:删除光标所在的字符并开始插入</li>
+<li><code>i</code>
+在光标所在字符前开始插入(相当于光标所处的字符会被挤到后面)</li>
+<li><code>a</code> 在光标所在字符后开始插入(光标会自动后移一格)</li>
+<li><code>o</code>
+在<strong>光标所在行的下面</strong>另起一新行插入</li>
+<li><code>s</code> 删除光标所在的字符并开始插入</li>
 </ul></li>
 <li>以整行的尺度
 <ul>
-<li>I:在光标所在行的行首开始插入，如果行首有空格则在空格之后插入</li>
-<li>A:在光标所在你行的行尾开始插入</li>
-<li>O:在<strong>光标所在行的上面</strong>另起一行开始插入</li>
-<li>S:删除光标所在行并开始插入</li>
+<li><code>I</code>
+在光标所在行的行首开始插入，如果行首有空格则在空格之后插入</li>
+<li><code>A</code> 在光标所在你行的行尾开始插入</li>
+<li><code>O</code>
+在<strong>光标所在行的上面</strong>另起一行开始插入</li>
+<li><code>S</code> 删除光标所在行并开始插入</li>
 </ul></li>
 </ul>
 <h3 id="光标的移动">3.4 光标的移动</h3>
@@ -391,9 +405,124 @@ target="_blank" rel="noopener" href="https://www.vim.org/">Vim官网</a>的windo
 <li><code>k</code> 上移；</li>
 <li><code>l</code> 右移；</li>
 </ul>
-<p>在命令模式中，还可以使用<code>gi</code>来直接返回编辑模式中最后的光标位置。</p>
-<p>常见配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&quot; 以下的设置可以用:开头，也可以省略</span><br><span class="line">&quot; 显示行号</span><br><span class="line">set number</span><br><span class="line">&quot; 设置Tab键为4个空格宽度</span><br><span class="line">set tabstop=4</span><br><span class="line">&quot; 将Tab键转换为空格</span><br><span class="line">set expandtab</span><br><span class="line">&quot; 突出显示当前行</span><br><span class="line">set cursorline</span><br></pre></td></tr></table></figure>
+<p>可以配合数字使用，例如<code>nh</code>代表光标左移n个字符，<code>nj</code>代表光标下移n行(如果足够长则列数不变，长度不足则变成行尾)。
+在命令模式中，还可以使用<code>gi</code>来直接返回在编辑模式中最后的光标位置，直接以插入的方式进入编辑模式。</p>
+<p>光标可以在当前行快速移动：</p>
+<ul>
+<li><code>0</code> 移动到当前行首；</li>
+<li><code>^</code> 移动到当前行的第一个非空字符；</li>
+<li><code>$</code> 移动到当前行尾；</li>
+<li><code>+</code> 移动到上一行的非空字符位置；</li>
+<li><code>-</code> 移动到下一行的非空字符位置；</li>
+<li><code>n&lt;space&gt;</code> 数字加空格，光标向后移动n个字符；</li>
+<li><code>n&lt;enter&gt;</code>
+数字加回车，光标向下移动n行到达非空字符位置；</li>
+</ul>
+<p>也可以在整个文件中移动：</p>
+<ul>
+<li>命令模式中
+<ul>
+<li><code>gg</code> 移动到当前文件的第一行；</li>
+<li><code>ngg</code>或<code>nG</code> 移动到当前文件的第n行；</li>
+<li><code>G</code> 移动到当前文件的最后一行；</li>
+<li><code>n%</code>
+移动到当前文件对应n比例的位置，例如<code>30%</code></li>
+</ul></li>
+<li>底线命令模式中，还有如下的命令(需要加回车来执行)：
+<ul>
+<li><code>:0</code> 移动到当前文件的第一行；</li>
+<li><code>:n</code> 移动到当前文件的第n行；</li>
+<li><code>:$</code> 移动到当前文件的最后一行；</li>
+</ul></li>
+</ul>
+<p>可以在屏幕尺度下进行移动：</p>
+<ul>
+<li><code>H</code> 移动到屏幕顶端的行；</li>
+<li><code>M</code> 移动到屏幕中部的行；</li>
+<li><code>L</code> 移动到屏幕底部的行；</li>
+</ul>
+<h3 id="常用功能">3.5 常用功能</h3>
+<p>在命令模式下，支持如下的常用功能：</p>
+<ul>
+<li>撤销功能<code>u</code>(undo)</li>
+<li>重做 <code>ctrl+r</code></li>
+<li>重复当前动作 <code>.</code> (句号)</li>
+</ul>
+<p>(注意在命令模式下，backspace键仅仅是光标的回退而不会删除字符，enter键也不会换行)</p>
+<p>删除：</p>
+<ul>
+<li>删除光标所在的字符 <code>x</code>，连续删除n个字符
+<code>nx</code></li>
+<li>删除光标之前的一个字符 <code>X</code></li>
+<li>删除光标所在的一整行 <code>dd</code>，删除(向下的)连续的n行
+<code>ndd</code></li>
+<li>删除光标之前的<strong>当前行</strong>的所有字符 <code>d0</code></li>
+<li>删除光标字符及后续的<strong>当前行</strong>的所有字符
+<code>d$</code></li>
+<li>删除光标所在行直到文件末尾行的所有字符 <code>dG</code></li>
+<li>删除光标所在行直到文件开头行的所有字符 <code>d1G</code></li>
+</ul>
+<p>复制：</p>
+<ul>
+<li>复制当前字符 <code>y</code></li>
+<li>复制整行 <code>yy</code>或<code>Y</code>，复制(向下的)连续的n行
+<code>nyy</code></li>
+<li>复制光标之前的<strong>当前行</strong>的所有字符 <code>y0</code></li>
+<li>复制光标字符及后续的<strong>当前行</strong>的所有字符
+<code>y$</code></li>
+<li>复制光标所在行直到文件末尾行的所有字符 <code>yG</code></li>
+<li>复制光标所在行直到文件开头行的所有字符 <code>y1G</code></li>
+</ul>
+<p>粘贴：</p>
+<ul>
+<li>把复制得到的字符粘贴到当前行之后 <code>p</code>(小写)</li>
+<li>把复制得到的字符粘贴到当前行之前 <code>P</code>(大写)</li>
+</ul>
+<p>搜索：</p>
+<ul>
+<li><code>/abc</code> 查找abc字符串</li>
+<li><code>n</code> 继续向后搜索(注意是n键而非数字)</li>
+<li><code>N</code> 继续向前搜索</li>
+</ul>
+<h2 id="常用配置">4 常用配置</h2>
+<h3 id="行号">4.1 行号</h3>
+<p>我们可以设置显示绝对行号<code>:set number</code>(或者简写为<code>:set nu</code>)，效果如下图</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-3.png" width=70%/></p>
+<p>可以设置<code>:set nonumber</code>关闭行号。(一般的配置项都可以通过加<code>no</code>前缀来取消)
+可以使用<code>:set number?</code>来查询当前行号是开启还是关闭的，会显示<code>number</code>或<code>nonumber</code>。(一般的配置项都可以通过加<code>?</code>查询状态)</p>
+<p>还可以设置显示相对行号<code>:set relativenumber</code>，光标所在的行记作0，上下相邻的行记作1，以此类推，效果如下图</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-4.png" width=70%/></p>
+<p>绝对行号和相对行号可以同时出现，效果如下图</p>
+<p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/vim-5.png" width=70%/></p>
+<p><code>:set cursorline</code>可以高亮光标所在的行，这里的高亮有可能是改成红色背景，有可能是整行添加下划线。</p>
+<h3 id="模式设置">4.2 模式设置</h3>
+<ul>
+<li><code>:set nocompatible</code>可以不兼容vi的操作命令，默认开启。</li>
+<li><code>:set showmode</code>可以提示当前是命令模式还是插入模式，默认开启。</li>
+<li><code>:set showcmd</code>可以把当前使用的命令留在屏幕上的最后一行，默认开启。</li>
+<li><code>:set encoding=utf-8</code>和<code>:set fileencoding=utf-8</code>
+支持编码，在遇到中文乱码时可以加上。</li>
+<li><code>:set laststatus=2</code>设置是否显示状态栏，0不显示，1在多窗口时显示，2总是显示，默认总是显示。</li>
+<li><code>:set ruler</code>设置在状态栏中是否显示光标的行列坐标，默认开启。</li>
+</ul>
+<h3 id="tab与缩进">4.3 Tab与缩进</h3>
+<ul>
+<li><code>:set autoindent</code>可以设置在回车新建下一行时，继承当前行的缩进格式，默认开启。</li>
+<li><code>:set expandtab</code>可以把Tab键转换为空格。</li>
+<li><code>:set tabstop=4</code>可以把Tab键的宽度设置为4格空格。</li>
+</ul>
+<h3 id="其它">4.4 其它</h3>
+<ul>
+<li><code>:set filetype=c</code>(<code>:set ft=c</code>)设置文件类型，默认情况下可以自动识别文件类型。</li>
+<li><code>:! command</code>可以暂时返回命令行界面执行指令，然后回车可以回到vim，常用<code>:! ls</code>快速查询目录。</li>
+</ul>
+<h2 id="配置文件">5 配置文件</h2>
+<p>在底线命令模式中，可以输入相关的设置命令，但仅仅对于当前窗口有效，如果希望在每次打开vim时都自动采用某些设置，则应该写入配置文件中，
+配置文件的位置和优先级可以通过<code>:version</code>查找，通常用户自定义的配置文件为<code>~/.vimrc</code>(对于windows的gvim，可能叫做<code>_vimrc</code>)。
+在配置文件中，以双引号<code>"</code>开头的行被视作注释。</p>
+<p>例如一个简单的配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&quot; 显示行号</span><br><span class="line">set number</span><br><span class="line">&quot; 显示相对行号</span><br><span class="line">&quot; set relativenumber</span><br><span class="line"></span><br><span class="line">&quot; 设置Tab键为4个空格宽度</span><br><span class="line">set tabstop=4</span><br><span class="line">&quot; 将Tab键转换为空格</span><br><span class="line">set expandtab</span><br><span class="line"></span><br><span class="line">&quot; 关闭visual bell</span><br><span class="line">set visualbell t_vb=</span><br><span class="line">&quot; 关闭beep</span><br><span class="line">au GuiEnter * set t_vb=</span><br><span class="line"></span><br><span class="line">&quot; 编码问题</span><br><span class="line">set encoding=utf-8</span><br><span class="line">set fileencoding=utf-8</span><br><span class="line"></span><br><span class="line">&quot; 文件监视，如果文件被别的编辑器改变产生冲突，会发出提示</span><br><span class="line">set autoread</span><br></pre></td></tr></table></figure>
+<p>vim的内容实在是太多了，包括丰富的插件系统，可以实现各种个性化的功能，最终甚至达到一个IDE的效果，但是我现在并不需要，只是轻量级的使用，因此入门的笔记就到此为止了。</p>
 
     </div>
 
@@ -417,7 +546,7 @@ target="_blank" rel="noopener" href="https://www.vim.org/">Vim官网</a>的windo
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://fenglielie.github.io/cs/vim-note.html" title="vim入门">https://fenglielie.github.io/cs/vim-note.html</a>
+      <a href="https://fenglielie.github.io/cs/vim-note.html" title="vim入门笔记">https://fenglielie.github.io/cs/vim-note.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
