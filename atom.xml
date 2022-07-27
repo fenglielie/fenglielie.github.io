@@ -86,12 +86,12 @@
   
   <entry>
     <title>Zotero文献管理</title>
-    <link href="https://fenglielie.github.io/test/test-zotero.html"/>
-    <id>https://fenglielie.github.io/test/test-zotero.html</id>
+    <link href="https://fenglielie.github.io/cs/zotero-note.html"/>
+    <id>https://fenglielie.github.io/cs/zotero-note.html</id>
     <published>2022-07-22T08:58:40.000Z</published>
-    <updated>2022-07-23T14:57:44.662Z</updated>
+    <updated>2022-07-27T10:49:16.531Z</updated>
     
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>工欲善其事，必先利其器。关于一个开源的文献管理软件Zotero的学习。</p></blockquote><span id="more"></span><h2 id="下载安装">1.下载安装</h2><p>下载地址：<a href="https://www.zotero.org/">Zotero</a></p><p>进入下载页面后，左右分别是Zotero本体和Zotero浏览器插件。<img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/zotero-1.png" width=80%/></p><p>Zotero浏览器插件可以更便捷地从浏览器向Zotero软件中导入文献，会跳转到Edge或者谷歌的浏览器插件商店下载，插件不重要，只是起到锦上添花的作用。</p><p>下载安装Zotero后，可以把界面切换为中文：Edit-&gt;Preferences-&gt;Advanced-&gt;Language<img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/zotero-2.png" width=70%/></p><h2 id="明确需求">2.明确需求</h2><p>在PC端可以管理文献，并且PDF需要保存在本地，在iPad上可以同步浏览文献，并且支持简单的批注和笔记(也要同步到PC端)。在手机端没有管理和浏览的需求。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>工欲善其事，必先利其器。关于一个开源的文献管理软件Zotero的学习。</p></blockquote><span id="more"></span><h2 id="下载安装">1 下载安装</h2><p>下载地址：<a href="https://www.zotero.org/">Zotero</a></p><p>进入下载页面后，左右分别是Zotero本体和Zotero浏览器插件。<img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/zotero-1.png" width=80%/></p><p>Zotero浏览器插件可以更便捷地从浏览器向Zotero软件中导入文献，会跳转到Edge或者谷歌的浏览器插件商店下载，插件不重要，只是起到锦上添花的作用。</p><p>下载安装Zotero后，可以把界面切换为中文：Edit-&gt;Preferences-&gt;Advanced-&gt;Language<img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/zotero-2.png" width=70%/></p><p>对于iPad，在App Store里面也有相应的Zotero，但是功能较少。</p><p><img data-src="https://raw.githubusercontent.com/fenglielie/notes_image/main/img/zotero-3.png" width=70%/></p><h2 id="明确需求">2 明确需求</h2><ul><li>PC端：<ul><li>管理文献；</li><li>浏览文献，在PDF上记笔记；</li><li>结合Google Scholar使用；</li></ul></li><li>iPad端：<ul><li>浏览文献，进行简单的笔记，并同步到PC端。</li></ul></li><li>手机端：没有需求。</li></ul><h2 id="section">3</h2>]]></content>
     
     
     <summary type="html">&lt;blockquote class=&quot;blockquote-center&quot;&gt;
@@ -101,8 +101,6 @@
     
     
     
-    
-    <category term="test" scheme="https://fenglielie.github.io/tags/test/"/>
     
   </entry>
   
